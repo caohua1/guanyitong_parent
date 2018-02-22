@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guanyitong.mapper.UserSignDao">
+
+    <!--签到，添加表数据-->
+    <insert id="insertUserSignDetail" parameterType="com.guanyitong.model.UserSignDetail">
+        insert into user_sign_detail(userId,signDate) VALUES (#{userId},#{signDate})
+    </insert>
+    <!--查询用户最近一天签到的日期,看是否今天已经签到-->
+    <select id="selectUserBeforeSignDate" parameterType="Long" resultType="com.guanyitong.model.UserSignDetail">
+        SELECT * FROM user_sign_detail where userId = #{userId} order by signDate desc limit 0,1
+    </select>
+    <!--查询user_sign_detail表有没有此用户信息-->
+    <select id="selectUserSignDetail" parameterType="Long" resultType="com.guanyitong.model.UserSignDetail">
+        select * from user_sign_detail where userId=#{userId}
+    </select>
+    <!--每月1号清空user_sign_detail-->
+    <delete id="deleteUserSignDetail">
+        delete FROM user_sign_detail
+    </delete>
+
+
+    <!--插入user_sign_calc-->
+    <insert id="insertUserSignCalc" parameterType="com.guanyitong.model.UserSignCalc">
+        insert into user_sign_calc(userId,continueDays) VALUES (#{userId},#{continueDays})
+    </insert>
+    <!--查询user_sign_calc表有没有此用户信息-->
+    <select id="selectUserSignCalc" parameterType="Long" resultType="com.guanyitong.model.UserSignCalc">
+        select * from user_sign_calc where userId=#{userId}
+    </select>
+    <!--用户签到,天数增加1天-->
+    <update id="updateSignDays" parameterType="Long">
+        update user_sign_calc set continueDays = continueDays + 1 where userId=#{userId}
+    </update>
+    <!--清空user_sign_calc-->
+    <delete id="deleteUserSignCalc">
+        delete FROM user_sign_calc
+    </delete>
+    <!--查询所有用户的签到次数-->
+    <select id="selectAllUserSignNums" resultType="com.guanyitong.model.UserSignCalc">
+        select * from user_sign_calc
+    </select>
+</mapper>

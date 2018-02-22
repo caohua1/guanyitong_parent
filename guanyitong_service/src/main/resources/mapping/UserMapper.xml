@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guanyitong.mapper.UserDAO">
+
+      <!--累计用户数量-->
+      <select id="selectUserNums" resultType="Integer">
+          select count(id) from user_info where status = 1
+      </select>
+      <!--累计交易额（出借的金额）-->
+      <select id="selectDealMoney" resultType="Integer">
+          select sum(dealMoney) from user_deal_money where type = 0
+      </select>
+      <!--查询用户是否已经存在-->
+         <select id="selectUserName" parameterType="com.guanyitong.model.User" resultType="com.guanyitong.model.User">
+             select * from user_info where userName=#{userName}
+         </select>
+
+       <!--用户注册-->
+         <insert id="insertUser" parameterType="User"  keyProperty="id">
+             insert into user_info(
+             userName,password,registTime,status)
+         values 
+         (        
+         #{userName},
+         #{password},
+         #{registTime},
+         #{status}
+       )
+         </insert>
+
+
+      <!--查询用户登陆信息是否正确-->
+         <select id="selectUser" parameterType="com.guanyitong.model.User" resultType="com.guanyitong.model.User">
+             select * from user_info where userName=#{userName} and password=#{password}
+         </select>
+
+       <!--添加个人资料-->
+         <insert id="insertUserPersonalData" parameterType="com.guanyitong.model.UserPersonalData">
+             INSERT INTO user_personal_data (
+                userId,headUrl,nickName,sex,marriage,diploma,job,city,address,risk,email,creatTime
+            )
+            VALUES
+                (
+                    #{userId},#{headUrl},#{nickName},#{sex},#{marriage},#{diploma},#{job},#{city},#{address},#{risk},#{email},#{creatTime}
+                )
+                where status = 1;
+         </insert>
+
+       <!--用户修改密码-->
+        <update id="updatePassword" parameterType="com.guanyitong.model.User">
+            update user_info set password=#{password},updateTime=#{updateTime} where id=#{id}
+        </update>
+
+        <!--修改个人资料-->
+        <update id="updatePersonalData" parameterType="com.guanyitong.model.UserPersonalData">
+            update user_personal_data
+            SET
+            headUrl=#{headUrl},nickName=#{nickName},sex=#{sex},marriage=#{marriage},diploma=#{diploma},
+            job=#{job},city=#{city},address=#{address},risk=#{risk},email=#{email},updateTime=#{updateTime}
+            where userId = #{userId}
+        </update>
+
+       <!--查询有没有此人的资料，如果没有就是添加，如果有就是修改-->
+        <select id="selectPersonalData" parameterType="Long" resultType="com.guanyitong.model.UserPersonalData">
+             select * from user_personal_data where userId=#{userId} and status=1
+        </select>
+
+       <!--查询问卷的问题-->
+       <select id="selectQuestion" resultType="com.guanyitong.model.UserQuestion">
+           select id,question from user_question where status=1
+       </select>
+
+       <!--根据问卷问题的id查询问卷每个问题的选项-->
+       <select id="selectUserQuestionContent" parameterType="Integer" resultType="com.guanyitong.model.UserQuestionContent">
+           select * from user_question_content where questionId=#{id}
+       </select>
+
+       <!--添加用户冠豆-->
+       <insert id="insertGuanDou" parameterType="com.guanyitong.model.UserGuanDou">
+           INSERT INTO user_guandou ( userId, guanDou,content,creatTime)
+           VALUES(#{userId}, #{guanDou},#{content},#{creatTime});
+       </insert>
+
+       <!--查询某个用户的冠豆-->
+       <select id="selectGuanDou" parameterType="Long" resultType="java.lang.Integer">
+           select sum(guandou) from user_guandou where userId=#{userId}
+       </select>
+
+       <!--查询某个用户消费或者获得的冠豆详情-->
+       <select id="selectUserGuanDouInfo" parameterType="java.util.Map" resultType="com.guanyitong.model.UserGuanDou">
+           select * from user_guandou where userId=#{userId}
+           <if test="type==0">
+               and guandou &lt; 0
+           </if>
+           <if test="type==1">
+               and guandou &gt; 0
+           </if>
+       </select>
+       <!--修改用户冠豆数(增加)-->
+       <update id="updateGuanDou" parameterType="java.util.Map">
+           update user_guandou set guanDou=#{guanDou}+guanDou where userId = #{userId}
+       </update>
+</mapper>

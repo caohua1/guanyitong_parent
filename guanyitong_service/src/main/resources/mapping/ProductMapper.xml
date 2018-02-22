@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guanyitong.mapper.ProductDao">
+
+     <!--查询所有的产品-->
+     <select id="selectProduct" parameterType="java.util.Map" resultType="com.guanyitong.model.Product">
+          select * from product where status=1
+          <if test="id!=null and id!=''">
+              and id=#{id}
+          </if>
+     </select>
+
+     <!--查询某项产品的所有详细信息-->
+     <select id="selectProductInfo" parameterType="java.util.Map" resultType="com.guanyitong.model.ProductInfo">
+          select * from productInfo where productId=#{id}
+     </select>
+</mapper>

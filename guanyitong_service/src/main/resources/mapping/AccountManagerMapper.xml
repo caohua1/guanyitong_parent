@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guanyitong.mapper.AccountManagerDao">
+
+    <!--查询此银行卡是否已经绑定-->
+    <select id="selectBank" parameterType="com.guanyitong.model.AccountManager" resultType="com.guanyitong.model.AccountManager">
+        select * from account_manager where bankNum = #{bankNum} and status=1
+    </select>
+    <!--用户开户，添加信息-->
+    <insert id="openAccount" parameterType="com.guanyitong.model.AccountManager">
+        INSERT INTO account_manager(
+	     userId,realName,idCard,bankName,bankNum,yuE,bankAddress
+         )
+        VALUES
+	     (
+		#{userId},#{realName},#{idCard},#{bankName},#{bankNum},#{yuE},#{bankAddress}
+          );
+    </insert>
+    <!--用户支付信息（支付密码）-->
+    <select id="insertPayInfo" parameterType="com.guanyitong.model.UserPayInfo">
+        insert into user_pay_info (userId,payPassword) VALUES (#{userId},#{payPassword});
+    </select>
+    <!--查询用户出借记录-->
+    <select id="selectUserOutInfo" parameterType="java.util.Map" resultType="com.guanyitong.model.UserDealMoney">
+        select * from user_deal_money where userId=#{userId} and type = #{type}
+    </select>
+    <!--查询某个产品的详细信息-->
+    <select id="selectProductInfo" parameterType="Long" resultType="com.guanyitong.model.ProductInfo">
+        select * from productInfo where id=#{productInfoId}
+    </select>
+
+    <!--查询我的宝箱-->
+    <select id="selectMyTreasure" parameterType="java.util.Map" resultType="com.guanyitong.model.UserTreasure">
+        select * from user_treasure where userId=#{userId}
+    </select>
+    <!--查询宝箱详情(treasure表)-->
+    <select id="selectTreasure" parameterType="java.util.Map" resultType="com.guanyitong.model.Treasure">
+        select * from treasure where  status=1
+        <if test="treasureId !=null and treasureId!=''">
+            and id=#{treasureId}
+        </if>
+        <if test="type!=null and type!=''">
+            and type in(${type})
+        </if>
+    </select>
+    <select id="selectTreasures" parameterType="java.util.Map" resultType="com.guanyitong.model.Treasure">
+        select * from treasure where  status=1
+        <if test="type!=null and type!=''">
+            and type in(${type})
+        </if>
+    </select>
+    <!--添加我的宝箱-->
+    <insert id="insertUserTreasure" parameterType="com.guanyitong.model.UserTreasure">
+        insert into user_treasure(userId,treasureId,num,startTime,endTime)
+        VALUES (#{userId},#{treasureId},#{num},#{startTime},#{endTime});
+    </insert>
+    <!--修改宝箱表，（库存）-->
+    <update id="updateInventory" parameterType="java.util.Map">
+        update treasure set inventory=#{inventory},saleNum=#{saleNum} where id=#{id} and status = 1
+    </update>
+</mapper>

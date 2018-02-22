@@ -1,0 +1,61 @@
+package com.guanyitong.service;
+
+
+import com.guanyitong.model.*;
+
+import java.util.List;
+import java.util.Map;
+
+public interface AccountManagerService {
+
+    /**
+     * 用户开户
+     * @param accountManager
+     * @return
+     */
+    public int openAccount(AccountManager accountManager,UserPayInfo userPayInfo);
+    /**
+     * 查询此银行卡是否已经注册过
+     * @param accountManager
+     * @return
+     */
+    public AccountManager selectBank(AccountManager accountManager);
+    /**
+     * 查询用户的出借情况
+     * @param map
+     * @return
+     */
+    public List<UserDealMoney> selectUserOutInfo(Map map);
+    /**
+     * 查询某个产品的具体信息
+     * @param productInfoId
+     * @return
+     */
+    public ProductInfo selectProductInfo(Long productInfoId);
+    /**
+     * 查询我的宝箱
+     * @param map
+     * @return
+     */
+    public List<UserTreasure> selectMyTreasure(Map map);
+
+    /**
+     * 查询宝箱详情
+     * @param map
+     * @return
+     */
+    public Treasure selectTreasure(Map map);
+
+    /**
+     * 查询宝箱详情
+     * @param map
+     * @return
+     */
+    public List<Treasure> selectTreasures(Map map);
+    /**
+     * 添加用户宝箱
+     * @param userTreasure
+     * @return
+     */
+    public int insertUserTreasure(UserTreasure userTreasure,Treasure treasure);
+}

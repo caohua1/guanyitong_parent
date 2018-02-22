@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="guanyitong_parent">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/guanyitong_entity/src/main/java" />
+      <root url="file://$PROJECT_DIR$/guanyitong_service/src/main/java" />
+      <root url="file://$PROJECT_DIR$/guanyitong_web/src/main/java" />
+    </SOURCES>
+  </library>
+</component>
