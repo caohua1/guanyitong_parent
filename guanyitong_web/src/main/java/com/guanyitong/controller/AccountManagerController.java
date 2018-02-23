@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import util.CheckBankCard;
+import util.CheckIdCard;
 import util.FinalData;
 import util.JsonResult;
 
@@ -21,6 +23,53 @@ import java.util.Map;
 public class AccountManagerController {
     @Autowired
     private AccountManagerService accountManagerService;
+
+    /**
+     * 验证身份证号格式是否符合
+     * @param idCard 身份证号
+     * @return
+     */
+    @RequestMapping(value = "/checkIdCard")
+    @ResponseBody
+    public JsonResult checkIdCard(String idCard){
+        JsonResult result = new JsonResult();
+        try{
+            String tipInfo = CheckIdCard.checkIdCard(idCard);
+            result.setState(JsonResult.SUCCESS);
+            result.setMessage(tipInfo);
+        }catch(Exception e){
+            e.printStackTrace();
+            result.setState(JsonResult.ERROR);
+            result.setMessage("网络出现问题");
+        }
+        return result;
+    }
+
+    /**
+     * 验证银行卡格式是否正确
+     * @param bankNum 银行卡号
+     * @return
+     */
+    @RequestMapping(value = "/checkBankCard")
+    @ResponseBody
+    public JsonResult checkBankCard(String bankNum){
+        JsonResult result = new JsonResult();
+        try{
+            boolean b = CheckBankCard.checkBankCard(bankNum);//调用验证工具类
+            if(b==false){
+                result.setState(JsonResult.ERROR);
+                result.setMessage("银行卡号格式不符合规定");
+            }else{
+                result.setState(JsonResult.SUCCESS);
+                result.setMessage("银行卡格式正确");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            result.setState(JsonResult.ERROR);
+            result.setMessage("网络出现问题");
+        }
+        return result;
+    }
     /**
      * 用户绑定银行卡（开户）
      * @param accountManager
@@ -31,6 +80,9 @@ public class AccountManagerController {
     public JsonResult openAccount(AccountManager accountManager, UserPayInfo userPayInfo){
         JsonResult result = new JsonResult();
         try{
+
+            //1.实名认证（真实姓名，是否与银行卡号对应）
+            //2.检验此银行卡是否已经绑定
             AccountManager accountManager1 = accountManagerService.selectBank(accountManager);
             if(accountManager1==null){//查询是否绑定过此银行卡
                 int i = accountManagerService.openAccount(accountManager,userPayInfo);
