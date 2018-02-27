@@ -10,6 +10,7 @@ public class ProductInfo implements Serializable {
     private Long id;
     private Long productId;
     private String NO;//编号
+    private Integer backMoneyType;//回款方式（1按月还本付息、2先息后本、3一次性还本付息、4等额本息）
     private Integer monthNum;//期限
     private Integer ZMoney;//借款总额（所有的用户出借总额不超过100万元）
     private Integer SYMoney;//剩余可出借的金额
@@ -40,6 +41,14 @@ public class ProductInfo implements Serializable {
 
     public void setNO(String NO) {
         this.NO = NO;
+    }
+
+    public Integer getBackMoneyType() {
+        return backMoneyType;
+    }
+
+    public void setBackMoneyType(Integer backMoneyType) {
+        this.backMoneyType = backMoneyType;
     }
 
     public Integer getZMoney() {
