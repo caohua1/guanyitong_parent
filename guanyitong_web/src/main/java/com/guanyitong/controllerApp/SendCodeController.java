@@ -1,4 +1,4 @@
-package com.guanyitong.controller;
+package com.guanyitong.controllerApp;
 import com.guanyitong.model.User;
 import com.guanyitong.service.UserService;
 import org.slf4j.Logger;

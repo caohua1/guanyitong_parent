@@ -1,4 +1,4 @@
-package com.guanyitong.controller;
+package com.guanyitong.controllerApp;
 import com.guanyitong.model.UserSignDetail;
 import com.guanyitong.service.UserSignService;
 import org.apache.commons.lang3.time.DateUtils;

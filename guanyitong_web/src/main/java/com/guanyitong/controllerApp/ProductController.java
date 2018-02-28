@@ -1,4 +1,4 @@
-package com.guanyitong.controller;
+package com.guanyitong.controllerApp;
 import com.guanyitong.model.Product;
 import com.guanyitong.model.ProductInfo;
 import com.guanyitong.service.ProductService;
@@ -65,6 +65,22 @@ public class ProductController {
             e.printStackTrace();
             result.setState(JsonResult.ERROR);
             result.setMessage("返回数据失败");
+        }
+        return result;
+    }
+
+    /**
+     * 输入金额后，查看收益详情
+     * @return
+     */
+    @RequestMapping("/earning")
+    @ResponseBody
+    public JsonResult earning(Integer dealMoney,ProductInfo productInfo){
+        JsonResult result = new JsonResult();
+        try{
+
+        }catch(Exception e){
+
         }
         return result;
     }

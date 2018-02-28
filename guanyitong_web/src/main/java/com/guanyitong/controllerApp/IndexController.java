@@ -1,4 +1,4 @@
-package com.guanyitong.controller;
+package com.guanyitong.controllerApp;
 import com.guanyitong.model.Treasure;
 import com.guanyitong.model.UserGuanDou;
 import com.guanyitong.model.UserTreasure;

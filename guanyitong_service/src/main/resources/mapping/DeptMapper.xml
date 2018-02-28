@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guanyitong.mapper.DeptDAO">
+    <!--添加部门-->
+    <insert id="insertDept" parameterType="com.guanyitong.model.Dept">
+        insert into dept(dname,dcreateTime,describes) values(#{dname},#{dcreateTime},#{describes})
+    </insert>
+
+    <!--查询所有的部门-->
+    <select id="selectAllDept"  resultType="com.guanyitong.model.Dept">
+        select * from dept where dstatus = 1
+    </select>
+
+    <!--修改部门信息-->
+    <update id="updateDept" parameterType="com.guanyitong.model.Dept">
+        update dept set
+        <if test="dname !=null and dname !=''">
+            dname = #{dname}
+        </if>
+        <if test="dupdateTime !=null and dupdateTime !=''">
+            dupdateTime = #{dupdateTime}
+        </if>
+        <if test="describes !=null and describes !=''">
+            describes = #{describes}
+        </if>
+        where id =#{id}
+    </update>
+
+    <!--删除某个部门，修改状态-->
+    <update id="deleteDept" parameterType="Long">
+        update dept set dstatus = 0 where id = #{id}
+    </update>
+</mapper>

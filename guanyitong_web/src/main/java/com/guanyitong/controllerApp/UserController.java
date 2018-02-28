@@ -1,4 +1,4 @@
-package com.guanyitong.controller;
+package com.guanyitong.controllerApp;
 import com.guanyitong.model.User;
 import com.guanyitong.model.UserPersonalData;
 import com.guanyitong.model.UserQuestion;

@@ -3,16 +3,27 @@
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+   <!--标签放置顺序properties?,settings?,typeAliases?,typeHandlers?,objectFactory?,objectWrapperFactory?,plugins?,environments?,mappers?-->
         <!-- 命名空间 -->
     <typeAliases>
          <typeAlias alias="User" type="com.guanyitong.model.User"/>
     </typeAliases>
 
+    <!--插件放中间-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageHelper"><!--4.2版本的，如果是5.0版本的是PageInterceptor-->
+            <property name="reasonable" value="true"/><!--如果输入的页数超过最后一页，默认查询最后一页，如果输入的页数小于1，默认查询第一页-->
+        </plugin>
+    </plugins>
     <!-- 映射map -->
     <mappers>
         <mapper resource="mapping/UserMapper.xml"/>
         <mapper resource="mapping/AccountManagerMapper.xml"/>
         <mapper resource="mapping/ProductMapper.xml"/>
         <mapper resource="mapping/UserSignMapper.xml"/>
+        <mapper resource="mapping/DeptMapper.xml"></mapper>
     </mappers>
+
+
+
 </configuration>

@@ -56,6 +56,4 @@ public class FinalData {
      * 提货券
      */
     public static final String THQ = "THQ";
-
-
 }

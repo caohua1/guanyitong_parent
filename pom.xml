@@ -270,6 +270,13 @@
            <classifier>jdk15</classifier>
        </dependency>
 
+        <!--mybatise分页插件依赖-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>5.0.0</version>
+        </dependency>
+
         <!-- log end -->
     </dependencies>
     <build>
