@@ -3,7 +3,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
-
+//用户交易的实体类
 public class UserDealMoney implements Serializable {
     private Long id;
     private Long userId;

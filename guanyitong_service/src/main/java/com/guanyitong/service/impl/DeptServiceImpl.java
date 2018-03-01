@@ -23,11 +23,23 @@ public class DeptServiceImpl implements DeptService {
     }
 
     @Override
-    public PageInfo<Dept> selectAllDept(Dept dept, Integer pageNum, Integer pageSize) {
+    public PageInfo<Dept> selectAllDept(Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum,pageSize);//开始分页
-        List<Dept> list =  deptDAO.selectAllDept(dept);
-        PageInfo<Dept> pageInfo = new PageInfo<Dept>(list);
+        List<Dept> depts =  deptDAO.selectAllDept();
+        PageInfo<Dept> pageInfo = new PageInfo<Dept>(depts);
         return pageInfo;
+    }
+
+    @Override
+    public List<Dept> selectAllDept() {
+        List<Dept> depts = deptDAO.selectAllDept();
+        return depts;
+    }
+
+    @Override
+    public Dept selectDeptById(Long id) {
+        Dept dept = deptDAO.selectDeptById(id);
+        return dept;
     }
 
     @Transactional

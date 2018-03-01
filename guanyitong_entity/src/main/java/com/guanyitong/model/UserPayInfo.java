@@ -1,7 +1,7 @@
 package com.guanyitong.model;
 
 import java.io.Serializable;
-
+//用户支付信息（支付密码）
 public class UserPayInfo implements Serializable {
     private Long id;
     private Long userId;

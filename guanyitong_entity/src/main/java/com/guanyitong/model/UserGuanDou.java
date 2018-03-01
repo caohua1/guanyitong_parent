@@ -3,7 +3,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
-
+//用户获取冠豆的实体类
 public class UserGuanDou implements Serializable {
 
    private Long id;

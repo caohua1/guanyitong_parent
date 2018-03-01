@@ -1,6 +1,7 @@
 package com.guanyitong.model;
 import java.io.Serializable;
 import java.util.List;
+//出借产品种类
 public class Product implements Serializable {
     private Long id;
     private String name;

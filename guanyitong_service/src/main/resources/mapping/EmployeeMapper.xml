@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guanyitong.mapper.EmployeeDAO">
+   <!--添加员工-->
+    <insert id="insertEmployee" parameterType="com.guanyitong.model.Employee">
+        insert into employee (ename,esex,ebirth,eidcard,ephone,email,edeptno,epostno,ecreateTime,epassword)
+        values(#{ename},#{esex},#{ebirth},#{eidcard},#{ephone},#{email},#{edeptno},#{epostno},#{ecreateTime},#{epassword})
+    </insert>
+
+    <!--查询员工列表(条件查询，姓名)-->
+    <select id="selectEmployee" parameterType="com.guanyitong.model.vo.EmployeeVo" resultType="com.guanyitong.model.vo.EmployeeVo">
+        select e.id,e.ename,e.esex,e.ebirth,e.eidcard,e.ephone,e.email,d.dname,p.pname,e.ecreateTime from employee e
+        left join dept d on  e.edeptno = d.id
+        left join post p on  e.epostno = p.id
+        where e.estatus = 1
+         <if test="ename!=null and ename!=''">
+             and e.ename LIKE CONCAT("%",#{ename},"%")
+         </if>
+    </select>
+
+    <!--查询某个员工的信息，编辑页面回显数据-->
+    <select id="selectEmployeeById" parameterType="Long" resultType="com.guanyitong.model.vo.EmployeeVo">
+        select * from employee where id = #{id}
+    </select>
+    <!--编辑员工信息-->
+    <update id="updateEmployee" parameterType="com.guanyitong.model.Employee">
+        update employee set
+        <if test="ename ! = null and ename !=''">
+            ename = #{ename},
+        </if>
+        <if test="esex ! = null and esex !=''">
+            esex = #{esex},
+        </if>
+        <if test="ebirth ! = null and ebirth !=''">
+            ebirth = #{ebirth},
+        </if>
+        <if test="eidcard ! = null and eidcard !=''">
+            eidcard = #{eidcard},
+        </if>
+        <if test="ephone ! = null and ephone !=''">
+            ephone = #{ephone},
+        </if>
+        <if test="email ! = null and email !=''">
+            email = #{email},
+        </if>
+        <if test="edeptno ! = null and edeptno !=''">
+            edeptno = #{edeptno},
+        </if>
+        <if test="epostno ! = null and epostno !=''">
+            epostno = #{epostno},
+        </if>
+        <if test="ecreateTime ! = null and ecreateTime !=''">
+            ecreateTime = #{ecreateTime},
+        </if>
+        <if test="epassword ! = null and epassword !=''">
+            epassword = #{epassword},
+        </if>
+        <if test="eupdateTime ! = null and eupdateTime !=''">
+            eupdateTime = #{eupdateTime}
+        </if>
+        where id = #{id}
+    </update>
+    <!--删除员工信息,修改状态-->
+    <update id="deleteEmployee" parameterType="Long">
+        update employee set estatus = 0 where id = #{id}
+    </update>
+</mapper>

@@ -8,22 +8,29 @@
         insert into dept(dname,dcreateTime,describes) values(#{dname},#{dcreateTime},#{describes})
     </insert>
 
-    <!--查询所有的部门-->
+    <!--&lt;!&ndash;查询所有的部门，下拉菜单的显示&ndash;&gt;
+    <select id="selectDepts" resultType="com.guanyitong.model.Dept">
+        select * from dept where dstatus = 1
+    </select>-->
+    <!--(分页)查询所有的部门-->
     <select id="selectAllDept"  resultType="com.guanyitong.model.Dept">
         select * from dept where dstatus = 1
     </select>
-
+    <!--查询某个部门的信息，编辑页面回显数据-->
+    <select id="selectDeptById" parameterType="Long" resultType="com.guanyitong.model.Dept">
+        select * from dept where id = #{id}
+    </select>
     <!--修改部门信息-->
     <update id="updateDept" parameterType="com.guanyitong.model.Dept">
         update dept set
         <if test="dname !=null and dname !=''">
-            dname = #{dname}
+            dname = #{dname},
+        </if>
+        <if test="describes !=null and describes !=''">
+            describes = #{describes},
         </if>
         <if test="dupdateTime !=null and dupdateTime !=''">
             dupdateTime = #{dupdateTime}
-        </if>
-        <if test="describes !=null and describes !=''">
-            describes = #{describes}
         </if>
         where id =#{id}
     </update>

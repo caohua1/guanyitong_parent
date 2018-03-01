@@ -1,7 +1,7 @@
 package com.guanyitong.model;
 
 import java.io.Serializable;
-
+//问卷选项表
 public class UserQuestionContent implements Serializable,Comparable<UserQuestionContent>{
     private Integer id;
     private Integer questionId;

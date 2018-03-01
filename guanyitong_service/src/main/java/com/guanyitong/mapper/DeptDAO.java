@@ -17,8 +17,14 @@ public interface DeptDAO {
      * 查询所有的部门
      * @return
      */
-    public List<Dept> selectAllDept(Dept dept);
+    public List<Dept> selectAllDept();
 
+    /**
+     * 查询某个部门的信息
+     * @param id
+     * @return
+     */
+    public Dept selectDeptById(Long id);
     /**
      * 修改部门信息
      * @param dept

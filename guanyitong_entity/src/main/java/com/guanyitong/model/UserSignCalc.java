@@ -1,5 +1,6 @@
 package com.guanyitong.model;
 import java.io.Serializable;
+//用户连续签到次数
 public class UserSignCalc implements Serializable{
     private Long id;
     private Long userId;

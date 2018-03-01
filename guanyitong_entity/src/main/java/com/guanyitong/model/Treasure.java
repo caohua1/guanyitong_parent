@@ -1,7 +1,7 @@
 package com.guanyitong.model;
 
 import java.io.Serializable;
-
+//宝箱实体类（0红包/1现金券/2体验金/3加息券/4提货券）
 public class Treasure implements Serializable {
     private Long id;
     private String NO;//编号

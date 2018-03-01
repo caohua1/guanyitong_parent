@@ -2,7 +2,7 @@ package com.guanyitong.model;
 
 import java.io.Serializable;
 import java.util.Date;
-
+//部门实体类
 public class Dept implements Serializable {
     private Long id;
     private String dname;

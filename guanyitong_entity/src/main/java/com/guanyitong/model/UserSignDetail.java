@@ -2,6 +2,7 @@ package com.guanyitong.model;
 import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serializable;
 import java.util.Date;
+//用户签到详情
 public class UserSignDetail implements Serializable {
     private Long id;
     private Long userId;

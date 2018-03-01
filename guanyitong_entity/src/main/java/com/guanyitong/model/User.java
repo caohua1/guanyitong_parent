@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 用户表
+ * 用户表（登录信息）
  * @author fenghaifeng
  * 2014年2月11日
  */

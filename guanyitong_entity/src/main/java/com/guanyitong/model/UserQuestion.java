@@ -5,7 +5,7 @@ import util.CustomDateSerializer;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
+//问卷实体类，用户的风险自评问卷（主题表）
 public class UserQuestion implements Serializable,Comparable<UserQuestion> {
     private Integer id;
     private String question;

@@ -1,5 +1,6 @@
 package com.guanyitong.model;
 import java.io.Serializable;
+//用户账户管理的重要信息
 public class AccountManager implements Serializable {
     private Long id;
     private Long userId;

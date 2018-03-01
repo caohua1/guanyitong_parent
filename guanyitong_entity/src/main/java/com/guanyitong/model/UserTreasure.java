@@ -2,7 +2,7 @@ package com.guanyitong.model;
 
 import java.io.Serializable;
 import java.util.Date;
-
+//用户的宝箱
 public class UserTreasure implements Serializable {
     private Long id;
     private Long userId;

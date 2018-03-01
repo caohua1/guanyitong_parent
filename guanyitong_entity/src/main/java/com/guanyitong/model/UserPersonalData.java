@@ -3,6 +3,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
+//用户个人资料实体类
 public class UserPersonalData implements Serializable{
     private Long id;
     private Long userId;

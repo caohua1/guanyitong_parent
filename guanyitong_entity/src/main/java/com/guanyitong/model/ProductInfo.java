@@ -1,11 +1,9 @@
 package com.guanyitong.model;
-
-
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
-
+//出借的产品（每个种类有不同的产品）详情
 public class ProductInfo implements Serializable {
     private Long id;
     private Long productId;
