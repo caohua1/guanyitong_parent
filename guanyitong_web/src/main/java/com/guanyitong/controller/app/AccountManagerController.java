@@ -1,4 +1,4 @@
-package com.guanyitong.controllerApp;
+package com.guanyitong.controller.app;
 import com.guanyitong.model.*;
 import com.guanyitong.service.AccountManagerService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -4,7 +4,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
    <!--标签放置顺序properties?,settings?,typeAliases?,typeHandlers?,objectFactory?,objectWrapperFactory?,plugins?,environments?,mappers?-->
-        <!-- 命名空间 -->
+    <settings>
+    <setting name="logImpl" value="STDOUT_LOGGING" ></setting>
+    </settings>
+    <!-- 命名空间 -->
     <typeAliases>
          <typeAlias alias="User" type="com.guanyitong.model.User"/>
     </typeAliases>
@@ -24,6 +27,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         <mapper resource="mapping/DeptMapper.xml"></mapper>
         <mapper resource="mapping/EmployeeMapper.xml"></mapper>
         <mapper resource="mapping/PostMapper.xml"></mapper>
+        <mapper resource="mapping/UserDealMapper.xml"></mapper>
     </mappers>
 
 

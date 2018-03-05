@@ -1,4 +1,4 @@
-package com.guanyitong.controllerApp;
+package com.guanyitong.controller.app;
 import com.guanyitong.model.Product;
 import com.guanyitong.model.ProductInfo;
 import com.guanyitong.service.ProductService;

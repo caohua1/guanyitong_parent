@@ -1,8 +1,11 @@
 package com.guanyitong.model.vo;
 
 import com.guanyitong.model.Employee;
+
+import java.io.Serializable;
+
 //员工的vo
-public class EmployeeVo extends Employee {
+public class EmployeeVo extends Employee implements Serializable{
     private String dname;//部门名称
     private String pname;//职位名称
 

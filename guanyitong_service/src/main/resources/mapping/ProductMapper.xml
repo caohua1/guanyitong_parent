@@ -7,7 +7,7 @@
      <!--查询所有的产品-->
      <select id="selectProduct" parameterType="java.util.Map" resultType="com.guanyitong.model.Product">
           select * from product where status=1
-          <if test="id!=null and id!=''">
+          <if test="id!=null ">
               and id=#{id}
           </if>
      </select>
@@ -15,5 +15,72 @@
      <!--查询某项产品的所有详细信息-->
      <select id="selectProductInfo" parameterType="java.util.Map" resultType="com.guanyitong.model.ProductInfo">
           select * from productInfo where productId=#{id}
+     </select>
+
+
+
+     <!--==================================================================后台管理-->
+     <!--添加产品种类（标种）-->
+     <insert id="insertProduct" parameterType="com.guanyitong.model.Product">
+          insert into product (name,createTime) values(#{name},#{createTime})
+     </insert>
+     <!--查询列表（分页）-->
+     <select id="selectAllProducts" parameterType="com.guanyitong.model.Product" resultType="com.guanyitong.model.Product">
+          select * from product where status = 1
+          <if test="name !=null and name !=''">
+               and name LIKE CONCAT("%",#{name},"%")
+          </if>
+     </select>
+     <!--根据id查询某一产品，编辑页面回显数据-->
+     <select id="selectProductById" parameterType="Long" resultType="com.guanyitong.model.Product">
+          select * from product where id = #{id}
+     </select>
+     <!--编辑-->
+     <update id="updateProduct" parameterType="com.guanyitong.model.Product">
+          update product SET
+          <if test="name !=null and name!=''">
+               name = #{name},
+          </if>
+          <if test="updateTime !=null ">
+               updateTime = #{updateTime}
+          </if>
+          where id = #{id}
+     </update>
+     <!--删除-->
+     <delete id="deleteProduct" parameterType="Long">
+          update product set status = 0 where id = #{id}
+     </delete>
+     <!--===================================================================投标（不同标种下。有不同类型的投标）-->
+     <!--添加投标-->
+     <insert id="insertProductInfo" parameterType="com.guanyitong.model.ProductInfo">
+          insert into productinfo(productId,NO,backMoneyType,monthNum,ZMoney,SYMoney,yield,createTime)
+          values(#{productId},#{NO},#{backMoneyType},#{monthNum},#{ZMoney},#{SYMoney},#{yield},#{createTime})
+     </insert>
+     <!--（条件查询根据产品id）分页查询所有的此产品下的所有的投标-->
+     <select id="selectAllProductinfo" parameterType="com.guanyitong.model.ProductInfo" resultType="com.guanyitong.model.ProductInfo">
+          select * from productinfo
+          <if test="productId !=null ">
+               where productId = #{productId}
+          </if>
+     </select>
+     <!--删除投标-->
+     <delete id="deleteProductinfo" parameterType="Long">
+          delete from productinfo where id = #{id}
+     </delete>
+     <!--查看投标详情，所有用户的此投标的信息
+         private String username;
+         private Integer dealMoney;
+         private String name;//投资类型（产品）
+         private String backMoneyType;//回款方式（盈利方式）
+         private Double money;//盈利金额
+         private Date createTime;
+         private Integer monthNum;//还款期限-->
+     <select id="selectUserProductinfo" parameterType="Long" resultType="com.guanyitong.model.vo.UserProductInfo">
+          select udm.dealMoney,p.name,pi.backMoneyType,udm.createTime,pi.monthNum,ui.username
+          from user_deal_money udm
+          left join productinfo pi on pi.id = udm.productInfoId
+          left join product p on p.id = pi.productId
+          left join user_info ui on ui.id = udm.userId
+          where udm.productInfoId = #{productInfoId}
      </select>
 </mapper>

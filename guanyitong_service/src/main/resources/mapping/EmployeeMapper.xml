@@ -45,19 +45,19 @@
         <if test="email ! = null and email !=''">
             email = #{email},
         </if>
-        <if test="edeptno ! = null and edeptno !=''">
+        <if test="edeptno ! = null ">
             edeptno = #{edeptno},
         </if>
-        <if test="epostno ! = null and epostno !=''">
+        <if test="epostno ! = null ">
             epostno = #{epostno},
         </if>
-        <if test="ecreateTime ! = null and ecreateTime !=''">
+        <if test="ecreateTime ! = null ">
             ecreateTime = #{ecreateTime},
         </if>
         <if test="epassword ! = null and epassword !=''">
             epassword = #{epassword},
         </if>
-        <if test="eupdateTime ! = null and eupdateTime !=''">
+        <if test="eupdateTime ! = null ">
             eupdateTime = #{eupdateTime}
         </if>
         where id = #{id}

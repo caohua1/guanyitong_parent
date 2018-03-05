@@ -1,4 +1,4 @@
-package com.guanyitong.controllerApp;
+package com.guanyitong.controller.app;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,4 +1,5 @@
 package com.guanyitong.service;
+import com.github.pagehelper.PageInfo;
 import com.guanyitong.model.*;
 
 import java.util.List;
@@ -106,4 +107,28 @@ public interface UserService {
 	 * @return
 	 */
 	public List<UserGuanDou> selectUserGuanDouInfo(Map map);
+
+
+	//========================================================后台开发的信息查询
+
+	/**
+	 * 分页查询所有注册的用户的信息（条件查询username）
+	 * @param user
+	 * @return
+	 */
+	public PageInfo<User> selectAllRegistUsers(User user,Integer pageNum,Integer pageSize);
+
+	/**
+	 * 查询某个用户的个人资料
+	 * @param id
+	 * @return
+	 */
+	public UserPersonalData selectUserPersonalDataById(Long id);
+
+	/**
+	 * 查询某个用户绑定银行的信息
+	 * @param id
+	 * @return
+	 */
+	public AccountManager selectAccountManagerById(Long id);
 }

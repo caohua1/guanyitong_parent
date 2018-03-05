@@ -102,4 +102,22 @@
        <update id="updateGuanDou" parameterType="java.util.Map">
            update user_guandou set guanDou=#{guanDou}+guanDou where userId = #{userId}
        </update>
+
+    <!--===========================================================================-->
+    <!--===========================================================================-->
+    <!--后台管理，查询所有注册的用户信息（分页，条件查询（用户名查询））-->
+    <select id="selectAllRegistUsers" parameterType="com.guanyitong.model.User" resultType="com.guanyitong.model.User">
+        select * from user_info where status = 1
+        <if test="username != null and username !=''">
+            and username LIKE CONCAT("%",#{username},"%")
+        </if>
+    </select>
+    <!--查询某个用户的个人资料-->
+    <select id="selectUserPersonalDataById" parameterType="Long" resultType="com.guanyitong.model.UserPersonalData">
+        select * from user_personal_data where userId = #{id}
+    </select>
+    <!--查询用户绑定银行的信息-->
+    <select id="selectAccountManagerById" parameterType="Long" resultType="com.guanyitong.model.AccountManager">
+        select * from account_manager where userId = #{id}
+    </select>
 </mapper>

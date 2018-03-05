@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guanyitong.mapper.UserDealDao">
+
+     <!--(分页)查询所有用户的出借情况
+     private Long id;
+    private String username;
+    private String realName;
+    private String name;//产品的类型
+    private String NO;//标的编号
+    private String monthNum;//期限
+    private Integer yield;//利率
+    private Integer dealMoney;//出借金额
+    private Integer status;//状态（0未审核 1后台审核成功 2已还款）-->
+     <select id="selectAllUserDeal" parameterType="java.util.Map" resultType="com.guanyitong.model.vo.UserDealMoneyVo">
+          select DISTINCT udm.id,udm.dealMoney,am.realName,ui.username,pi.NO,pi.monthNum,pi.yield,p.name,udm.status from user_deal_money udm
+          left join account_manager am on am.userId = udm.userId
+          left join user_info ui on ui.id = udm.userId
+          left join productinfo pi on pi.id = udm.productInfoId
+          left join product p on p.id = pi.productId
+          where udm.type = 0
+          <if test="productInfoId !=null ">
+              and udm.productInfoId = #{productInfoId}
+          </if>
+          <if test="status !=null ">
+               and udm.status = #{status}
+          </if>
+     </select>
+</mapper>

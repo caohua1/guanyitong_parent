@@ -29,7 +29,7 @@
         <if test="describes !=null and describes !=''">
             describes = #{describes},
         </if>
-        <if test="dupdateTime !=null and dupdateTime !=''">
+        <if test="dupdateTime !=null ">
             dupdateTime = #{dupdateTime}
         </if>
         where id =#{id}

@@ -102,4 +102,28 @@ public interface UserDAO {
 	 */
 	public List<UserGuanDou> selectUserGuanDouInfo(Map map);
 
+
+	//========================================================后台开发的信息查询
+
+	/**
+	 * 分页查询所有注册的用户的信息（条件查询username）
+	 * @param user
+	 * @return
+	 */
+	public List<User> selectAllRegistUsers(User user);
+
+	/**
+	 * 查询某个用户的个人资料
+	 * @param id
+	 * @return
+	 */
+	public UserPersonalData selectUserPersonalDataById(Long id);
+
+	/**
+	 * 查询某个用户绑定银行的信息
+	 * @param id
+	 * @return
+	 */
+	public AccountManager selectAccountManagerById(Long id);
+
 }

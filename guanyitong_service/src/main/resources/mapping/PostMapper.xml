@@ -27,7 +27,7 @@
         <if test="pdescribe !=null and pdescribe!=''">
             pdescribe = #{[pdescribe},
         </if>
-        <if test="pupdateTime !=null and pupdateTime !=''">
+        <if test="pupdateTime !=null ">
             pupdateTime = #{pupdateTime}
         </if>
         where id = #{id}
