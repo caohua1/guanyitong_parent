@@ -28,6 +28,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         <mapper resource="mapping/EmployeeMapper.xml"></mapper>
         <mapper resource="mapping/PostMapper.xml"></mapper>
         <mapper resource="mapping/UserDealMapper.xml"></mapper>
+        <mapper resource="mapping/BackMoneyMapper.xml"></mapper>
     </mappers>
 
 

@@ -8,6 +8,9 @@ import java.util.Date;
 public class BackMoney implements Serializable {
     private Long id;
     private Long dealMoneyId;
+    private String bj;//本金
+    private String lx;//利息
+    private String backMoney;//本金加利息
     private Date backTime;
     private Integer status;//（0回款，1回款）
     private Integer count;//回款次数（第几个月）
@@ -26,6 +29,30 @@ public class BackMoney implements Serializable {
 
     public void setDealMoneyId(Long dealMoneyId) {
         this.dealMoneyId = dealMoneyId;
+    }
+
+    public String getBj() {
+        return bj;
+    }
+
+    public void setBj(String bj) {
+        this.bj = bj;
+    }
+
+    public String getLx() {
+        return lx;
+    }
+
+    public void setLx(String lx) {
+        this.lx = lx;
+    }
+
+    public String getBackMoney() {
+        return backMoney;
+    }
+
+    public void setBackMoney(String backMoney) {
+        this.backMoney = backMoney;
     }
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
