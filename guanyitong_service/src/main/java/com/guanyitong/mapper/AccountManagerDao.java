@@ -28,11 +28,38 @@ public interface AccountManagerDao {
     public AccountManager selectBank(AccountManager accountManager);
 
     /**
-     * 查询用户的出借情况
+     * 根据id查询某一个出借记录
+     * @param id
+     * @return
+     */
+    public UserDealMoney selectDealMoneyById(Long id);
+    /**
+     * 查询当前用户的出借情况
      * @param map
      * @return
      */
     public List<UserDealMoney> selectUserOutInfo(Map map);
+
+    /**
+     * 查询当前用户回款记录
+     * @param map
+     * @return
+     */
+    public List<BackMoney> selectUserBackMoney(Map map);
+
+    /**
+     * 查询当前用户的提现记录
+     * @param map
+     * @return
+     */
+    public List<WithdrawalMoney> selectUserWithdrawalMoney(Map map);
+
+    /**
+     * 查询当前用户的充值记录
+     * @param userId
+     * @return
+     */
+    public List<RechargeMoney> selectUserRechargeMoney(Long userId);
 
     /**
      * 查询某个产品的具体信息

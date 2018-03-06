@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import util.CheckBankCard;
 import util.CheckIdCard;
@@ -102,25 +103,22 @@ public class AccountManagerController {
         return result;
     }
     /**
-     * 查询用户的交易（type=0/出借，1/回款，2/充值，3/提现，4/其他）情况
+     * 查询当前用户的（出借）交易记录情况
      * @param userId
      * @return
      */
     @RequestMapping(value = "/selectUserDealInfo",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResult selectUserDealInfo(Long userId,Integer type){
+    public JsonResult selectUserDealInfo(Long userId){
         JsonResult result = new JsonResult();
         try{
             Map map = new HashMap();
             map.put("userId",userId);
-            map.put("type",type);
             List<UserDealMoney> userDealMonies = accountManagerService.selectUserOutInfo(map);
             if(userDealMonies!=null){
-                if(type==0 || type==1){
                     for(UserDealMoney userDealMoney : userDealMonies){
                         ProductInfo productInfo = accountManagerService.selectProductInfo(userDealMoney.getProductInfoId());
                         userDealMoney.setProductInfo(productInfo);//把产品信息set进去
-                    }
                 }
                 result.setData(userDealMonies);
                 result.setState(JsonResult.ERROR);
@@ -133,6 +131,103 @@ public class AccountManagerController {
         }
         return result;
     }
+
+    /**
+     * 查询当前用户的（每条出借）回款记录
+     * @param userId
+     * @param dealMoneyId
+     * @param status (0,未还款,1,已还款)
+     * @return
+     */
+    @RequestMapping("/selectUserBackMoney")
+    @ResponseBody
+    public JsonResult selectUserBackMoney(Long userId, @RequestParam(required=false)Long dealMoneyId,@RequestParam(required=false)Integer status){
+        JsonResult result = new JsonResult();
+        try{
+            Map map = new HashMap();
+            if(userId !=null){
+                map.put("userId",userId);
+            }
+            if(dealMoneyId !=null){
+                map.put("dealMoneyId",dealMoneyId);
+            }
+            if(status !=null){
+                map.put("status",status);
+            }
+            List<BackMoney> backMonies = accountManagerService.selectUserBackMoney(map);
+            if(backMonies !=null && backMonies.size()>0){
+                for(BackMoney backMoney : backMonies){
+                    UserDealMoney userDealMoney = accountManagerService.selectDealMoneyById(backMoney.getDealMoneyId());
+                    if(userDealMoney!=null){
+                        ProductInfo productInfo = accountManagerService.selectProductInfo(userDealMoney.getProductInfoId());
+                        userDealMoney.setProductInfo(productInfo);//把产品信息set进去
+                    }
+                    backMoney.setUserDealMoney(userDealMoney);//把出借那条信息set进去
+                }
+            }
+            result.setState(JsonResult.SUCCESS);
+            result.setData(backMonies);
+            result.setMessage("返回数据成功");
+        }catch(Exception e){
+            e.printStackTrace();
+            result.setState(JsonResult.ERROR);
+            result.setMessage("返回数据失败");
+        }
+        return result;
+    }
+
+    /**
+     * 查询当前用户的提现记录
+     * @param  userId
+     * @param  status (0失败，1已提现,转账中，2审核中)
+     * @return
+     */
+    @RequestMapping("/selectUserWithdrawalMoney")
+    @ResponseBody
+    public JsonResult selectUserWithdrawalMoney(Long userId,@RequestParam(required=false)Integer status){
+        JsonResult result = new JsonResult();
+        try{
+            Map map = new HashMap();
+            if(userId !=null){
+                map.put("userId",userId);
+            }
+            if(status !=null){
+                map.put("status",status);
+            }
+            List<WithdrawalMoney> withdrawalMonies = accountManagerService.selectUserWithdrawalMoney(map);
+            result.setState(JsonResult.SUCCESS);
+            result.setData(withdrawalMonies);
+            result.setMessage("返回数据成功");
+        }catch(Exception e){
+            e.printStackTrace();
+            result.setState(JsonResult.ERROR);
+            result.setMessage("返回数据失败");
+        }
+        return result;
+    }
+
+    /**
+     * 查询当前用户的充值记录
+     * @param userId
+     * @return
+     */
+    @RequestMapping("/selectUserRechargeMoney")
+    @ResponseBody
+    public JsonResult selectUserRechargeMoney(Long userId){
+        JsonResult result = new JsonResult();
+        try{
+            List<RechargeMoney> rechargeMonies = accountManagerService.selectUserRechargeMoney(userId);
+            result.setState(JsonResult.SUCCESS);
+            result.setData(rechargeMonies);
+            result.setMessage("返回数据成功");
+        }catch(Exception e){
+            e.printStackTrace();
+            result.setState(JsonResult.ERROR);
+            result.setMessage("返回数据失败");
+        }
+        return result;
+    }
+
     /**
      * 查询我的宝箱
      * @param userId

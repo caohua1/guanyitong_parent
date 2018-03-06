@@ -4,16 +4,15 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
 import java.util.Date;
-//用户交易的实体类
+//用户交易(出借)的实体类
 public class UserDealMoney implements Serializable {
     private Long id;
     private Long userId;
-    private Integer type;
     private  Long productInfoId;
-    private Long backMoneyId;
     private Integer dealMoney;
     private Date createTime;
     private Date endTime;
+    private Integer status;
     private ProductInfo productInfo;
 
     public ProductInfo getProductInfo() {
@@ -40,28 +39,12 @@ public class UserDealMoney implements Serializable {
         this.userId = userId;
     }
 
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
     public Long getProductInfoId() {
         return productInfoId;
     }
 
     public void setProductInfoId(Long productInfoId) {
         this.productInfoId = productInfoId;
-    }
-
-    public Long getBackMoneyId() {
-        return backMoneyId;
-    }
-
-    public void setBackMoneyId(Long backMoneyId) {
-        this.backMoneyId = backMoneyId;
     }
 
     public Integer getDealMoney() {
@@ -88,5 +71,13 @@ public class UserDealMoney implements Serializable {
 
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

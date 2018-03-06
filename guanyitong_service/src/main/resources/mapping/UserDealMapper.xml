@@ -20,7 +20,7 @@
           left join user_info ui on ui.id = udm.userId
           left join productinfo pi on pi.id = udm.productInfoId
           left join product p on p.id = pi.productId
-          where udm.type = 0
+          where 1=1
           <if test="productInfoId !=null ">
               and udm.productInfoId = #{productInfoId}
           </if>

@@ -22,10 +22,46 @@
     <select id="insertPayInfo" parameterType="com.guanyitong.model.UserPayInfo">
         insert into user_pay_info (userId,payPassword) VALUES (#{userId},#{payPassword});
     </select>
-    <!--查询用户出借记录-->
-    <select id="selectUserOutInfo" parameterType="java.util.Map" resultType="com.guanyitong.model.UserDealMoney">
-        select * from user_deal_money where userId=#{userId} and type = #{type}
+
+
+    <!--查询某一个出借记录-->
+    <select id="selectDealMoneyById" parameterType="Long" resultType="com.guanyitong.model.UserDealMoney">
+        select * from user_deal_money where id = #{id}
     </select>
+    <!--查询当前用户出借记录-->
+    <select id="selectUserOutInfo" parameterType="java.util.Map" resultType="com.guanyitong.model.UserDealMoney">
+        select * from user_deal_money where userId=#{userId} and status !=0
+    </select>
+    <!--查询当前用户的回款记录-->
+    <select id="selectUserBackMoney" parameterType="java.util.Map" resultType="com.guanyitong.model.BackMoney">
+        select * from back_money where 1=1
+        <if test="userId !=null">
+            and userId = #{userId}
+        </if>
+        <if test="dealMoneyId !=null">
+            and dealMoneyId = #{dealMoneyId}
+        </if>
+        <if test="status !=null">
+            and status =#{status}
+        </if>
+    </select>
+    <!--查询当前用户的提现记录-->
+    <select id="selectUserWithdrawalMoney" parameterType="java.util.Map" resultType="com.guanyitong.model.WithdrawalMoney">
+        select * from withdrawal_money where 1=1
+        <if test="userId !=null">
+            and  userId = #{userId}
+        </if>
+        <if test="status !=null">
+            and status = #{status}
+        </if>
+
+    </select>
+    <!--查询当前用户的充值记录-->
+    <select id="selectUserRechargeMoney" parameterType="Long" resultType="com.guanyitong.model.RechargeMoney">
+        select * from recharge_money where userId = #{userId} and status = 1
+    </select>
+
+
     <!--查询某个产品的详细信息-->
     <select id="selectProductInfo" parameterType="Long" resultType="com.guanyitong.model.ProductInfo">
         select * from productInfo where id=#{productInfoId}

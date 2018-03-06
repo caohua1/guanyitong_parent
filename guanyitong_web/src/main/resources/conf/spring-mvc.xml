@@ -42,7 +42,7 @@
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
 	<!--日期格式转换-->
-	<mvc:annotation-driven conversion-service="conversionService"/>
+	<!--<mvc:annotation-driven conversion-service="conversionService"/>
 	<bean id="dateFormatter" class="org.springframework.format.datetime.DateFormatter">
 		<property name="pattern" value="yyyy-MM-dd hh:mm:ss"></property>
 	</bean>
@@ -55,6 +55,6 @@
 				</bean>
 			</set>
 		</property>
-	</bean>
+	</bean>-->
 
 </beans>

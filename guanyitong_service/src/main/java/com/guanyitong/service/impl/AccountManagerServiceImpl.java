@@ -55,6 +55,16 @@ public class AccountManagerServiceImpl  implements AccountManagerService {
     }
 
     /**
+     * 根据id查询某一个出借记录
+     * @param id
+     * @return
+     */
+    @Override
+    public UserDealMoney selectDealMoneyById(Long id) {
+        return accountManagerDao.selectDealMoneyById(id);
+    }
+
+    /**
      * 查询用户的出借情况
      * @param map
      * @return
@@ -62,6 +72,36 @@ public class AccountManagerServiceImpl  implements AccountManagerService {
     @Override
     public List<UserDealMoney> selectUserOutInfo(Map map) {
         return accountManagerDao.selectUserOutInfo(map);
+    }
+
+    /**
+     * 查询当前用户的汇款记录
+     * @param map
+     * @return
+     */
+    @Override
+    public List<BackMoney> selectUserBackMoney(Map map) {
+        return accountManagerDao.selectUserBackMoney(map);
+    }
+
+    /**
+     * 查询当前用户的提现记录
+     * @param map
+     * @return
+     */
+    @Override
+    public List<WithdrawalMoney> selectUserWithdrawalMoney(Map map) {
+        return accountManagerDao.selectUserWithdrawalMoney(map);
+    }
+
+    /**
+     * 查询当前用户的充值记录
+     * @param userId
+     * @return
+     */
+    @Override
+    public List<RechargeMoney> selectUserRechargeMoney(Long userId) {
+        return accountManagerDao.selectUserRechargeMoney(userId);
     }
 
     /**

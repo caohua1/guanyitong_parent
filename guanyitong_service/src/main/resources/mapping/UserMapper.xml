@@ -10,7 +10,7 @@
       </select>
       <!--累计交易额（出借的金额）-->
       <select id="selectDealMoney" resultType="Integer">
-          select sum(dealMoney) from user_deal_money where type = 0
+          select sum(dealMoney) from user_deal_money where status != 0
       </select>
       <!--查询用户是否已经存在-->
          <select id="selectUserName" parameterType="com.guanyitong.model.User" resultType="com.guanyitong.model.User">
