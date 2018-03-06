@@ -1,5 +1,6 @@
 package com.guanyitong.model;
-import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -13,7 +14,6 @@ public class ProductInfo implements Serializable {
     private Integer ZMoney;//借款总额（所有的用户出借总额不超过100万元）
     private Integer SYMoney;//剩余可出借的金额
     private Integer yield;//收益率
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date createTime;
     private Integer status;
 
@@ -81,6 +81,7 @@ public class ProductInfo implements Serializable {
         this.yield = yield;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getCreateTime() {
         return createTime;
     }

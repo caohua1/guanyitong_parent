@@ -1,5 +1,7 @@
 package com.guanyitong.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 //员工实体类
@@ -42,6 +44,7 @@ public class Employee implements Serializable {
         this.esex = esex;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getEbirth() {
         return ebirth;
     }
@@ -90,6 +93,7 @@ public class Employee implements Serializable {
         this.epostno = epostno;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getEcreateTime() {
         return ecreateTime;
     }
@@ -98,6 +102,7 @@ public class Employee implements Serializable {
         this.ecreateTime = ecreateTime;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getEupdateTime() {
         return eupdateTime;
     }

@@ -1,5 +1,6 @@
 package com.guanyitong.model;
-import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,10 +10,9 @@ public class UserDealMoney implements Serializable {
     private Long userId;
     private Integer type;
     private  Long productInfoId;
+    private Long backMoneyId;
     private Integer dealMoney;
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date createTime;
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date endTime;
     private ProductInfo productInfo;
 
@@ -56,6 +56,14 @@ public class UserDealMoney implements Serializable {
         this.productInfoId = productInfoId;
     }
 
+    public Long getBackMoneyId() {
+        return backMoneyId;
+    }
+
+    public void setBackMoneyId(Long backMoneyId) {
+        this.backMoneyId = backMoneyId;
+    }
+
     public Integer getDealMoney() {
         return dealMoney;
     }
@@ -64,6 +72,7 @@ public class UserDealMoney implements Serializable {
         this.dealMoney = dealMoney;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getCreateTime() {
         return createTime;
     }
@@ -72,6 +81,7 @@ public class UserDealMoney implements Serializable {
         this.createTime = createTime;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getEndTime() {
         return endTime;
     }

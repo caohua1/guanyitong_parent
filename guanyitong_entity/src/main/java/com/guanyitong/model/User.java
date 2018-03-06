@@ -1,5 +1,6 @@
 package com.guanyitong.model;
-import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,12 +14,11 @@ public class User implements Serializable{
 	private Long id;
 	private String userName;
 	private String password;
-	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	private Date registTime;
-	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	private Date updateTime;
     private int status;
 
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 	public Date getRegistTime() {
 		return registTime;
 	}
@@ -27,6 +27,7 @@ public class User implements Serializable{
 		this.registTime = registTime;
 	}
 
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getUpdateTime() {
         return updateTime;
     }

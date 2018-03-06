@@ -1,7 +1,6 @@
 package com.guanyitong.model;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
-import org.springframework.format.annotation.DateTimeFormat;
-import util.CustomDateSerializer;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -9,7 +8,6 @@ import java.util.List;
 public class UserQuestion implements Serializable,Comparable<UserQuestion> {
     private Integer id;
     private String question;
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date createTime;
     private Integer status;
     private List<UserQuestionContent> userQuestionContentList;
@@ -38,7 +36,7 @@ public class UserQuestion implements Serializable,Comparable<UserQuestion> {
         this.question = question;
     }
 
-    @JsonSerialize(using = CustomDateSerializer.class)
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getCreateTime() {
         return createTime;
     }

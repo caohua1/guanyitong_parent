@@ -1,5 +1,6 @@
 package com.guanyitong.model;
-import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -10,7 +11,6 @@ public class UserGuanDou implements Serializable {
    private Long userId;
    private Integer guanDou;
    private String content;
-   @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
    private Date creatTime;
 
     public Long getId() {
@@ -45,6 +45,7 @@ public class UserGuanDou implements Serializable {
         this.content = content;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getCreatTime() {
         return creatTime;
     }

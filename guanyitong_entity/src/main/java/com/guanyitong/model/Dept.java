@@ -1,5 +1,7 @@
 package com.guanyitong.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 //部门实体类
@@ -27,6 +29,7 @@ public class Dept implements Serializable {
         this.dname = dname;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getDcreateTime() {
         return dcreateTime;
     }
@@ -35,6 +38,7 @@ public class Dept implements Serializable {
         this.dcreateTime = dcreateTime;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getDupdateTime() {
         return dupdateTime;
     }

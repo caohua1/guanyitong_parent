@@ -1,5 +1,7 @@
 package com.guanyitong.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 //用户的宝箱
@@ -52,6 +54,7 @@ public class UserTreasure implements Serializable {
         this.num = num;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getStartTime() {
         return startTime;
     }
@@ -60,6 +63,7 @@ public class UserTreasure implements Serializable {
         this.startTime = startTime;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getEndTime() {
         return endTime;
     }
