@@ -38,4 +38,24 @@ public class BorrowMoneyUserController {
         }
         return result;
     }
+    /**
+     * 展示需要认证审核资料
+     */
+    @RequestMapping("/selectBorrowMoneyUser")
+    @ResponseBody
+    public JsonResult selectBorrowMoneyUser(Long id){
+        JsonResult result = new JsonResult();
+
+        try{
+            BorrowMoneyUser borrowMoneyUser = borrowMoneyUserService.selectBorrowMoneyUser(id);
+            result.setData(borrowMoneyUser);
+            result.setState(JsonResult.SUCCESS);
+            result.setMessage("返回数据成功");
+        }catch (Exception e){
+            e.printStackTrace();
+            result.setState(JsonResult.ERROR);
+            result.setMessage("返回数据失败");
+        }
+        return result;
+    }
 }

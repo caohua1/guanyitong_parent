@@ -17,7 +17,19 @@ public class BorrowMoneyUserServiceImpl implements BorrowMoneyUserService {
      */
     @Override
     public Integer insertUser(BorrowMoneyUser borrowMoneyUser) {
+
         return borrowMoneyUserDao.insertUser(borrowMoneyUser);
     }
+
+    /**
+     * 查询认证审核信息
+     */
+    @Override
+    public BorrowMoneyUser selectBorrowMoneyUser(Long id) {
+
+        return borrowMoneyUserDao.selectBorrowMoneyUser(id);
+    }
+
+
 
 }
