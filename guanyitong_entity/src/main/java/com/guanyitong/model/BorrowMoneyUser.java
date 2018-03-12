@@ -1,4 +1,6 @@
-package com.guanyitong.model.vo;
+package com.guanyitong.model;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -90,6 +92,7 @@ public class BorrowMoneyUser implements Serializable {
         this.legalPhone = legalPhone;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getCompanyCreateTime() {
         return companyCreateTime;
     }
