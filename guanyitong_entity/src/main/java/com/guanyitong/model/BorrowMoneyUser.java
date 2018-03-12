@@ -39,9 +39,12 @@ public class BorrowMoneyUser implements Serializable {
     private String legalIDCard;
     private String legalIDCardImageZ;
     private String legalIDCardImageF;
+    private String XYJF;//信用积分
+    private String XYJFDescribe;
     private String address;
     private String companyDescribe;
     private String borrowUse;
+    private Date createTime;//申请时间
     private Integer status;
 
     public Long getId() {
@@ -157,6 +160,22 @@ public class BorrowMoneyUser implements Serializable {
         this.legalIDCardImageF = legalIDCardImageF;
     }
 
+    public String getXYJF() {
+        return XYJF;
+    }
+
+    public void setXYJF(String XYJF) {
+        this.XYJF = XYJF;
+    }
+
+    public String getXYJFDescribe() {
+        return XYJFDescribe;
+    }
+
+    public void setXYJFDescribe(String XYJFDescribe) {
+        this.XYJFDescribe = XYJFDescribe;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -179,6 +198,15 @@ public class BorrowMoneyUser implements Serializable {
 
     public void setBorrowUse(String borrowUse) {
         this.borrowUse = borrowUse;
+    }
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public Integer getStatus() {
