@@ -37,6 +37,8 @@ public class BorrowMoneyUser implements Serializable {
     private String legalIDCard;
     private String legalIDCardImageZ;
     private String legalIDCardImageF;
+    private String XYJF;//信用积分
+    private String XYJFDescribe;
     private String address;
     private String companyDescribe;
     private String borrowUse;
@@ -152,6 +154,22 @@ public class BorrowMoneyUser implements Serializable {
 
     public void setLegalIDCardImageF(String legalIDCardImageF) {
         this.legalIDCardImageF = legalIDCardImageF;
+    }
+
+    public String getXYJF() {
+        return XYJF;
+    }
+
+    public void setXYJF(String XYJF) {
+        this.XYJF = XYJF;
+    }
+
+    public String getXYJFDescribe() {
+        return XYJFDescribe;
+    }
+
+    public void setXYJFDescribe(String XYJFDescribe) {
+        this.XYJFDescribe = XYJFDescribe;
     }
 
     public String getAddress() {
