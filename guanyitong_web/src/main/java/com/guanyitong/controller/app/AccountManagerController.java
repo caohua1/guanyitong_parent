@@ -121,7 +121,7 @@ public class AccountManagerController {
                         userDealMoney.setProductInfo(productInfo);//把产品信息set进去
                 }
                 result.setData(userDealMonies);
-                result.setState(JsonResult.ERROR);
+                result.setState(JsonResult.SUCCESS);
                 result.setMessage("返回数据成功");
             }
         }catch(Exception e){
