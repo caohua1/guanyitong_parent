@@ -1,4 +1,4 @@
-package com.guanyitong.model.vo;
+package com.guanyitong.model;
 
 import java.io.Serializable;
 import java.util.Date;
