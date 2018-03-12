@@ -44,6 +44,7 @@ public class BorrowMoneyUser implements Serializable {
     private String address;
     private String companyDescribe;
     private String borrowUse;
+    private Date createTime;//申请时间
     private Integer status;
 
     public Long getId() {
@@ -197,6 +198,15 @@ public class BorrowMoneyUser implements Serializable {
 
     public void setBorrowUse(String borrowUse) {
         this.borrowUse = borrowUse;
+    }
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public Integer getStatus() {
