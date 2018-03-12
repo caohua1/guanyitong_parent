@@ -6,9 +6,9 @@
     <!-- 添加新用户-->
     <insert id="insertUser" parameterType="com.guanyitong.model.BorrowMoneyUser">
       INSERT INTO borrowmoney_user(
-      companyName,charterNum,charterImage,legalPersonName,legalPhone,companyCreateTime,registerMoney,registerAddress,borrowMoney,apprroveName,legalIDCard,legalIDCardImageZ,legalIDCardImageF,address,companyDescribe,borrowUse,status
+      companyName,charterNum,charterImage,legalPersonName,legalPhone,companyCreateTime,registerMoney,registerAddress,borrowMoney,apprroveName,legalIDCard,legalIDCardImageZ,legalIDCardImageF,XYJF,XYJFDescribe,address,companyDescribe,borrowUse,createTime,status
       )
       VALUES
-      (#{companyName},#{charterNum},#{charterImage},#{legalPersonName},#{legalPhone},#{companyCreateTime},#{registerMoney},#{registerAddress},#{borrowMoney},#{apprroveName},#{legalIDCard},#{legalIDCardImageZ},#{legalIDCardImageF},#{address},#{companyDescribe},#{borrowUse},#{status})
+      (#{companyName},#{charterNum},#{charterImage},#{legalPersonName},#{legalPhone},#{companyCreateTime},#{registerMoney},#{registerAddress},#{borrowMoney},#{apprroveName},#{legalIDCard},#{legalIDCardImageZ},#{legalIDCardImageF},#{XYJF},#{XYJFDescribe},#{address},#{companyDescribe},#{borrowUse},#{createTime},#{status})
     </insert>
 </mapper>
