@@ -8,15 +8,6 @@
       <root url="file://$PROJECT_DIR$/guanyitong_entity/src/main/java" />
       <root url="file://$PROJECT_DIR$/guanyitong_service/src/main/java" />
       <root url="file://$PROJECT_DIR$/guanyitong_web/src/main/java" />
-      <root url="file://$PROJECT_DIR$/guanyitong_dao/target/guanyitong_dao/WEB-INF/lib/guanyitong_dao/target/guanyitong_dao/WEB-INF/lib/guanyitong_dao/target/guanyitong_dao/WEB-INF/lib/guanyitong_entity/src/main/java" />
-      <root url="file://$PROJECT_DIR$/guanyitong_dao/target/guanyitong_dao/WEB-INF/lib/guanyitong_dao/target/guanyitong_dao/WEB-INF/lib/guanyitong_dao/target/guanyitong_dao/WEB-INF/lib/guanyitong_service/src/main/java" />
-      <root url="file://$PROJECT_DIR$/guanyitong_dao/target/guanyitong_dao/WEB-INF/lib/guanyitong_dao/target/guanyitong_dao/WEB-INF/lib/guanyitong_dao/target/guanyitong_dao/WEB-INF/lib/guanyitong_web/src/main/java" />
-      <root url="file://$PROJECT_DIR$/guanyitong_dao/target/guanyitong_dao/WEB-INF/lib/guanyitong_dao/target/guanyitong_dao/WEB-INF/lib/guanyitong_entity/src/main/java" />
-      <root url="file://$PROJECT_DIR$/guanyitong_dao/target/guanyitong_dao/WEB-INF/lib/guanyitong_dao/target/guanyitong_dao/WEB-INF/lib/guanyitong_service/src/main/java" />
-      <root url="file://$PROJECT_DIR$/guanyitong_dao/target/guanyitong_dao/WEB-INF/lib/guanyitong_dao/target/guanyitong_dao/WEB-INF/lib/guanyitong_web/src/main/java" />
-      <root url="file://$PROJECT_DIR$/guanyitong_dao/target/guanyitong_dao/WEB-INF/lib/guanyitong_entity/src/main/java" />
-      <root url="file://$PROJECT_DIR$/guanyitong_dao/target/guanyitong_dao/WEB-INF/lib/guanyitong_service/src/main/java" />
-      <root url="file://$PROJECT_DIR$/guanyitong_dao/target/guanyitong_dao/WEB-INF/lib/guanyitong_web/src/main/java" />
     </SOURCES>
   </library>
 </component>
