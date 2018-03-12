@@ -18,7 +18,7 @@ public class FileController {
     @Autowired
     private IFileService fileService;
     /**
-     * 文件上传(头像上传)
+     * 文件上传(头像上传，图片上传)
      * @param request
      * @param response
      * @return

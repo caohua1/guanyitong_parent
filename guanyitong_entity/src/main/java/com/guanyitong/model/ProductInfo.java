@@ -8,6 +8,7 @@ import java.util.Date;
 public class ProductInfo implements Serializable {
     private Long id;
     private Long productId;
+    private Long borrowMoneyUserId;//借款主体id
     private String NO;//编号
     private String backMoneyType;//回款方式（1按月还本付息、2先息后本、3一次性还本付息、4等额本息）
     private Integer monthNum;//期限
@@ -31,6 +32,14 @@ public class ProductInfo implements Serializable {
 
     public void setProductId(Long productId) {
         this.productId = productId;
+    }
+
+    public Long getBorrowMoneyUserId() {
+        return borrowMoneyUserId;
+    }
+
+    public void setBorrowMoneyUserId(Long borrowMoneyUserId) {
+        this.borrowMoneyUserId = borrowMoneyUserId;
     }
 
     public String getNO() {
