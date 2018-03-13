@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import util.JsonResult;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +29,7 @@ public class BorrowMoneyUserController {
     public JsonResult addBorrowMoneyUser(BorrowMoneyUser borrowMoneyUser){
         JsonResult result = new JsonResult();
         try{
+            borrowMoneyUser.setCreateTime(new Date());
             Integer i = borrowMoneyUserService.insertUser(borrowMoneyUser);
             if(i>0){
                 result.setState(JsonResult.SUCCESS);
