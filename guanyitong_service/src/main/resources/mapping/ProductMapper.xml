@@ -92,7 +92,26 @@
      <!--========================================================================借款流程-->
      <!--（分页）借款列表-->
      <select id="selectBorrowInfo" parameterType="java.util.Map" resultType="com.guanyitong.model.vo.UserProductInfoVo">
-          select * from productinfo where 1=1
-          <if test=""></if>
+          select productinfo.*,product.name from productinfo
+          left join product on product.id = productinfo.productId
+          where 1=1
+          <if test="borrowMoneyUserId !=null">
+               and borrowMoneyUserId = #{borrowMoneyUserId}
+          </if>
+          <if test="NO !=null and NO !=''">
+               and NO = #{NO}
+          </if>
+          <if test="startTime !=null and endTime !=null">
+               and createTime BETWEEN #{startTime} and #{endTime}
+          </if>
+          <if test="startBorrowTime !=null and endBorrowTime !=null">
+               and startBorrowTime = #{startBorrowTime} and endBorrowTime = #{endBorrowTime}
+          </if>
+          <if test="backMoneyType !=null and backMoneyType !=''">
+               and backMoneyType = #{backMoneyType}
+          </if>
+          <if test="status !=null">
+               and status = #{status}
+          </if>
      </select>
 </mapper>

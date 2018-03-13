@@ -87,4 +87,14 @@ public interface ProductService {
      * @return
      */
     public PageInfo<UserProductInfoVo> selectUserProductinfo(Long productInfoId, Integer pageNum, Integer pageSize);
+
+
+    //==============================================借款流程
+
+    /**
+     * 查询借款列表（分页，条件查询）
+     * @param map
+     * @return
+     */
+    public PageInfo<UserProductInfoVo> selectBorrowInfo(Map map,Integer pageNum,Integer pageSize);
 }

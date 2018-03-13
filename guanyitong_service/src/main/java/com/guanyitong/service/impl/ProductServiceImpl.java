@@ -152,4 +152,19 @@ public class ProductServiceImpl implements ProductService{
         PageInfo<UserProductInfoVo> productInfoPageInfo = new PageInfo<UserProductInfoVo>(userProductInfoVos);
         return productInfoPageInfo;
     }
+
+    /**
+     * 分页查询借款列表（条件查询）
+     * @param map
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public PageInfo<UserProductInfoVo> selectBorrowInfo(Map map, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<UserProductInfoVo> userProductInfoVos = productDao.selectBorrowInfo(map);
+        PageInfo<UserProductInfoVo> productInfoVoPageInfo = new PageInfo<UserProductInfoVo>(userProductInfoVos);
+        return productInfoVoPageInfo;
+    }
 }
