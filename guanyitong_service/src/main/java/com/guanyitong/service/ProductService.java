@@ -2,7 +2,7 @@ package com.guanyitong.service;
 import com.github.pagehelper.PageInfo;
 import com.guanyitong.model.Product;
 import com.guanyitong.model.ProductInfo;
-import com.guanyitong.model.vo.UserProductInfo;
+import com.guanyitong.model.vo.UserProductInfoVo;
 
 import java.util.List;
 import java.util.Map;
@@ -86,5 +86,5 @@ public interface ProductService {
      * @param productInfoId
      * @return
      */
-    public PageInfo<UserProductInfo> selectUserProductinfo(Long productInfoId,Integer pageNum,Integer pageSize);
+    public PageInfo<UserProductInfoVo> selectUserProductinfo(Long productInfoId, Integer pageNum, Integer pageSize);
 }

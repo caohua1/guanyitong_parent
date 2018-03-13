@@ -1,7 +1,7 @@
 package com.guanyitong.mapper;
 import com.guanyitong.model.Product;
 import com.guanyitong.model.ProductInfo;
-import com.guanyitong.model.vo.UserProductInfo;
+import com.guanyitong.model.vo.UserProductInfoVo;
 
 import java.util.List;
 import java.util.Map;
@@ -84,6 +84,6 @@ public interface ProductDao {
      * @param productInfoId
      * @return
      */
-    public List<UserProductInfo> selectUserProductinfo(Long productInfoId);
+    public List<UserProductInfoVo> selectUserProductinfo(Long productInfoId);
 
 }

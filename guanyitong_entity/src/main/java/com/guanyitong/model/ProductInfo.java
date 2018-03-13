@@ -9,15 +9,18 @@ public class ProductInfo implements Serializable {
     private Long id;
     private Long productId;
     private Long borrowMoneyUserId;//借款主体id
-    private String NO;//编号
+    private String NO;//编号，名称
     private String backMoneyType;//回款方式（1按月还本付息、2先息后本、3一次性还本付息、4等额本息）
-    private Integer monthNum;//期限
+    private Integer monthNum;//借款期限
+    private Integer raiseMoneyMonth;//筹钱期限
     private Integer ZMoney;//借款总额（所有的用户出借总额不超过100万元）
     private Integer SYMoney;//剩余可出借的金额
     private Integer yield;//收益率
     private Date createTime;
-    private Date startTime;//开始筹钱的时间
-    private Date endTime;//结束筹钱的时间
+    private Date startRaiseTime;//开始筹钱的时间
+    private Date endRaiseTime;//结束筹钱的时间
+    private Date startBorrowTime;//开始借款时间
+    private Date endBorrowTime;//结束借款时间
     private Integer status;
 
     public Long getId() {
@@ -84,6 +87,15 @@ public class ProductInfo implements Serializable {
         this.monthNum = monthNum;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    public Integer getRaiseMoneyMonth() {
+        return raiseMoneyMonth;
+    }
+
+    public void setRaiseMoneyMonth(Integer raiseMoneyMonth) {
+        this.raiseMoneyMonth = raiseMoneyMonth;
+    }
+
     public Integer getYield() {
         return yield;
     }
@@ -102,21 +114,39 @@ public class ProductInfo implements Serializable {
     }
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    public Date getStartTime() {
-        return startTime;
+    public Date getStartRaiseTime() {
+        return startRaiseTime;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+    public void setStartRaiseTime(Date startTime) {
+        this.startRaiseTime = startTime;
     }
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    public Date getEndTime() {
-        return endTime;
+    public Date getEndRaiseTime() {
+        return endRaiseTime;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
+    public void setEndRaiseTime(Date endTime) {
+        this.endRaiseTime = endTime;
+    }
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    public Date getStartBorrowTime() {
+        return startBorrowTime;
+    }
+
+    public void setStartBorrowTime(Date startBorrowTime) {
+        this.startBorrowTime = startBorrowTime;
+    }
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    public Date getEndBorrowTime() {
+        return endBorrowTime;
+    }
+
+    public void setEndBorrowTime(Date endBorrowTime) {
+        this.endBorrowTime = endBorrowTime;
     }
 
     public Integer getStatus() {

@@ -3,7 +3,7 @@ package com.guanyitong.controller.borrowingManage;
 import com.github.pagehelper.PageInfo;
 import com.guanyitong.model.Product;
 import com.guanyitong.model.ProductInfo;
-import com.guanyitong.model.vo.UserProductInfo;
+import com.guanyitong.model.vo.UserProductInfoVo;
 import com.guanyitong.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -243,7 +243,7 @@ public class ProductManagerController {
         JsonResult result = new JsonResult();
         try{
             if(pageNum!=null && pageSize!=null){
-                PageInfo<UserProductInfo> productInfoPageInfo = productService.selectUserProductinfo(productInfoId, pageNum, pageSize);
+                PageInfo<UserProductInfoVo> productInfoPageInfo = productService.selectUserProductinfo(productInfoId, pageNum, pageSize);
                 result.setState(JsonResult.SUCCESS);
                 result.setData(productInfoPageInfo);
                 result.setMessage("返回数据成功");
