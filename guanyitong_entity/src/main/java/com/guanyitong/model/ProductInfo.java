@@ -16,6 +16,8 @@ public class ProductInfo implements Serializable {
     private Integer SYMoney;//剩余可出借的金额
     private Integer yield;//收益率
     private Date createTime;
+    private Date startTime;//开始筹钱的时间
+    private Date endTime;//结束筹钱的时间
     private Integer status;
 
     public Long getId() {
@@ -97,6 +99,24 @@ public class ProductInfo implements Serializable {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
     public Integer getStatus() {
