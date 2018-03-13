@@ -5,5 +5,5 @@ public interface BorrowMoneyUserDao {
 
     public Integer insertUser(BorrowMoneyUser borrowMoneyUser);
     public BorrowMoneyUser selectBorrowMoneyUser(Long id);
-    //aaaaaaa
+    //
 }
