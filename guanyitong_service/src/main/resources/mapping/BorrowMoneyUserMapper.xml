@@ -6,12 +6,18 @@
     <!-- 添加新用户-->
     <insert id="insertUser" parameterType="com.guanyitong.model.BorrowMoneyUser">
       INSERT INTO borrowmoney_user(
-      companyName,charterNum,charterImage,legalPersonName,legalPhone,companyCreateTime,registerMoney,registerAddress,borrowMoney,apprroveName,legalIDCard,legalIDCardImageZ,legalIDCardImageF,XYJF,XYJFDescribe,address,companyDescribe,borrowUse,createTime,status
+      companyName,charterNum,charterImage,legalPersonName,legalPhone,companyCreateTime,
+      registerMoney,registerAddress,borrowMoney,apprroveName,legalIDCard,legalIDCardImageZ,
+      legalIDCardImageF,XYJF,XYJFDescribe,address,companyDescribe,borrowUse,createTime,status
       )
       VALUES
-      (#{companyName},#{charterNum},#{charterImage},#{legalPersonName},#{legalPhone},#{companyCreateTime},#{registerMoney},#{registerAddress},#{borrowMoney},#{apprroveName},#{legalIDCard},#{legalIDCardImageZ},#{legalIDCardImageF},#{XYJF},#{XYJFDescribe},#{address},#{companyDescribe},#{borrowUse},#{createTime},#{status})
+      (#{companyName},#{charterNum},#{charterImage},#{legalPersonName},#{legalPhone},
+      #{companyCreateTime},#{registerMoney},#{registerAddress},#{borrowMoney},#{apprroveName},
+      #{legalIDCard},#{legalIDCardImageZ},#{legalIDCardImageF},#{XYJF},#{XYJFDescribe},#{address},
+      #{companyDescribe},#{borrowUse},#{createTime},#{status})
     </insert>
-    <select id="selectBorrowMoneyUser" parameterType="java.lang.Long">
+    <!--根据id查询借款用户信息，进行审核-->
+    <select id="selectBorrowMoneyUser" parameterType="java.lang.Long" resultType="com.guanyitong.model.BorrowMoneyUser">
         SELECT * from borrowmoney_user WHERE  id=#{id}
     </select>
 </mapper>
