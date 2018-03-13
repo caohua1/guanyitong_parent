@@ -161,6 +161,7 @@ public class ProductManagerController {
         JsonResult result = new JsonResult();
         try{
             productInfo.setCreateTime(new Date());
+            productInfo.setSYMoney(productInfo.getZMoney());//默认开始剩余可出借的金额与借款总额相等
             Integer i = productService.insertProductInfo(productInfo);
             if(i>0){
                 result.setState(JsonResult.SUCCESS);
