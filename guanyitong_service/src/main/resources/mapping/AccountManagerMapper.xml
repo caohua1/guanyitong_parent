@@ -11,11 +11,11 @@
     <!--用户开户，添加信息-->
     <insert id="openAccount" parameterType="com.guanyitong.model.AccountManager">
         INSERT INTO account_manager(
-	     userId,realName,idCard,bankName,bankNum,yuE,bankAddress
+	     userId,realName,idCard,bankName,bankNum,yuE,bankAddress,createTime
          )
         VALUES
 	     (
-		#{userId},#{realName},#{idCard},#{bankName},#{bankNum},#{yuE},#{bankAddress}
+		#{userId},#{realName},#{idCard},#{bankName},#{bankNum},#{yuE},#{bankAddress},#{createTime}
           );
     </insert>
     <!--用户支付信息（支付密码）-->
