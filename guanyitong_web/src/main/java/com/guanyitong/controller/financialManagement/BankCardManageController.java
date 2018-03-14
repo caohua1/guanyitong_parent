@@ -3,21 +3,26 @@ package com.guanyitong.controller.financialManagement;
 import com.github.pagehelper.PageInfo;
 import com.guanyitong.model.UserBankcard;
 import com.guanyitong.service.UserBankcardService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import util.JsonResult;
 
 import javax.xml.crypto.Data;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/BankCardManagementController")
-public class BankCardManagementController {
+@RequestMapping("/BankCardManagementr")
+public class BankCardManageController {
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private UserBankcardService userBankcardService;
@@ -30,7 +35,6 @@ public class BankCardManagementController {
         JsonResult result = new JsonResult();
         try{
             PageInfo<UserBankcard> userBankcardPageInfo = userBankcardService.selectUserBankcardDao(pageNum, pageSize);
-            System.out.println("查询银行卡信息返回报文-----"+userBankcardPageInfo);
             result.setData(userBankcardPageInfo);
             result.setState(JsonResult.SUCCESS);
             result.setMessage("返回数据成功");
@@ -70,18 +74,26 @@ public class BankCardManagementController {
      */
     @RequestMapping("/selectByUserBankcard")
     @ResponseBody
-    public JsonResult selectByUserBankcard(String userName,String realName,String firstDate,String lastDate){
+    public JsonResult selectByUserBankcard(@RequestParam(required=false)UserBankcard userBankcard,  @RequestParam(required=false)Date firstDate,  @RequestParam(required=false)Date lastDate){
         JsonResult result = new JsonResult();
         try{
             Map<Object, Object> conditionMap = new HashMap<Object, Object>();
-            System.out.println("用户编号"+userName+"-----用户真实姓名"+realName+"-----起始时间"+firstDate+"------结束时间"+lastDate);
-            conditionMap.put("userName",userName);
-            conditionMap.put("realName",realName);
-            conditionMap.put("firstDate",convertTime(firstDate));
-            conditionMap.put("lastDate",convertTime(lastDate));
-            UserBankcard userBankcard = userBankcardService.selectByUserBankcard(conditionMap);
-            System.out.println("按条件查找返回报文-----"+userBankcard);
-            result.setData(userBankcard);
+            if(userBankcard!=null){
+                if(userBankcard.getUserName()!=null && ("").equals(userBankcard.getUserName())){
+                    conditionMap.put("userName",userBankcard.getUserName());
+                }
+               if(userBankcard.getRealName()!=null && ("").equals(userBankcard.getRealName())){
+                   conditionMap.put("realName",userBankcard.getRealName());
+               }
+                if(firstDate !=null){
+                    conditionMap.put("firstDate",firstDate);
+                }
+                if(lastDate !=null){
+                    conditionMap.put("lastDate",lastDate);
+                }
+            }
+            UserBankcard userBankcard1 = userBankcardService.selectByUserBankcard(conditionMap);
+            result.setData(userBankcard1);
             result.setState(JsonResult.SUCCESS);
             result.setMessage("返回数据成功");
         }catch (Exception e){
@@ -90,23 +102,5 @@ public class BankCardManagementController {
             result.setMessage("返回数据失败");
         }
         return result;
-    }
-
-    /**
-     * 转换时间类型
-     * @return
-     */
-    public Data convertTime(String date)  {
-        //获得SimpleDateFormat类，我们转换为yyyy-MM-dd的时间格式
-        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
-        Data dateTime = null;
-        try {
-            //使用SimpleDateFormat的parse()方法生成Date
-            dateTime = (Data) sf.parse(date);
-            System.out.println("转换时间格式------"+dateTime);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return dateTime;
     }
 }
