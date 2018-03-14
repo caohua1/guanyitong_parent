@@ -1,5 +1,9 @@
 package com.guanyitong.model;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
+import java.util.Date;
+
 //用户账户管理的重要信息
 public class AccountManager implements Serializable {
     private Long id;
@@ -10,6 +14,7 @@ public class AccountManager implements Serializable {
     private String bankNum;
     private Integer yuE;
     private String bankAddress;
+    private Date createTime;
     private Integer status;
 
     public Long getId() {
@@ -74,6 +79,15 @@ public class AccountManager implements Serializable {
 
     public void setBankAddress(String bankAddress) {
         this.bankAddress = bankAddress;
+    }
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public Integer getStatus() {
