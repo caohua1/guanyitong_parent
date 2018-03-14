@@ -12,10 +12,8 @@ import util.CheckIdCard;
 import util.FinalData;
 import util.JsonResult;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 /**
  * 开户
  */
@@ -84,6 +82,7 @@ public class AccountManagerController {
 
             //1.实名认证（真实姓名，是否与银行卡号对应）
             //2.检验此银行卡是否已经绑定
+            accountManager.setCreateTime(new Date());
             AccountManager accountManager1 = accountManagerService.selectBank(accountManager);
             if(accountManager1==null){//查询是否绑定过此银行卡
                 int i = accountManagerService.openAccount(accountManager,userPayInfo);
