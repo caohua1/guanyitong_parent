@@ -167,4 +167,25 @@ public class ProductServiceImpl implements ProductService{
         PageInfo<UserProductInfoVo> productInfoVoPageInfo = new PageInfo<UserProductInfoVo>(userProductInfoVos);
         return productInfoVoPageInfo;
     }
+
+    /**
+     * 根据id查询借款明细
+     * @param id
+     * @return
+     */
+    @Override
+    public UserProductInfoVo selectBorrowInfoById(Long id) {
+        return productDao.selectBorrowInfoById(id);
+    }
+
+    /**
+     * 修改投标信息
+     * @param productInfo
+     * @return
+     */
+    @Transactional
+    @Override
+    public Integer updateProductInfo(ProductInfo productInfo) {
+        return productDao.updateProductInfo(productInfo);
+    }
 }

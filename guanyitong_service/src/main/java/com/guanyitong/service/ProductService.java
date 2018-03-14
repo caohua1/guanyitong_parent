@@ -97,4 +97,16 @@ public interface ProductService {
      * @return
      */
     public PageInfo<UserProductInfoVo> selectBorrowInfo(Map map,Integer pageNum,Integer pageSize);
+    /**
+     * 根据id查询借款明细
+     * @param id
+     * @return
+     */
+    public UserProductInfoVo selectBorrowInfoById(Long id);
+    /**
+     * 修改投标信息
+     * @param productInfo
+     * @return
+     */
+    public Integer updateProductInfo(ProductInfo productInfo);
 }
