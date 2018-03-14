@@ -58,6 +58,7 @@ public class UserBankcard implements Serializable {
     public void setCardNo(String cardNo) {
         this.cardNo = cardNo;
     }
+
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Data getSubmitTime() {
         return submitTime;
@@ -66,8 +67,6 @@ public class UserBankcard implements Serializable {
     public void setSubmitTime(Data submitTime) {
         this.submitTime = submitTime;
     }
-
-
 
     public String getOpenAccountRegion() {
         return openAccountRegion;
@@ -85,20 +84,5 @@ public class UserBankcard implements Serializable {
         this.userName = userName;
     }
 
-    public UserBankcard(Long id, String realName, String IDCardNumber, String bankName, String cardNo, Data submitTime, String openAccountRegion, String userName) {
-        this.id = id;
-        this.realName = realName;
-        this.IDCardNumber = IDCardNumber;
-        this.bankName = bankName;
-        this.cardNo = cardNo;
-        this.submitTime = submitTime;
-        this.openAccountRegion = openAccountRegion;
-        this.userName = userName;
-    }
-
-    @Override
-    public String toString() {
-        return super.toString();
-    }
 
 }
