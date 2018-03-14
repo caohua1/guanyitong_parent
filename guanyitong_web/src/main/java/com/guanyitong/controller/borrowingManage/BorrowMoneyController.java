@@ -48,10 +48,10 @@ public class BorrowMoneyController {
         try{
             Map map = new HashMap();
             if(userProductInfoVo !=null){
-                if(userProductInfoVo.getBorrowMoneyUserId()!=null && ("").equals(userProductInfoVo.getBorrowMoneyUserId())){
+                if(userProductInfoVo.getBorrowMoneyUserId()!=null && !("").equals(userProductInfoVo.getBorrowMoneyUserId())){
                     map.put("borrowMoneyUserId",userProductInfoVo.getBorrowMoneyUserId());
                 }
-                if(userProductInfoVo.getNO()!=null && ("").equals(userProductInfoVo.getNO())){
+                if(userProductInfoVo.getNO()!=null && !("").equals(userProductInfoVo.getNO())){
                     map.put("NO",userProductInfoVo.getNO());
                 }
                 if(startTime !=null){
@@ -60,16 +60,16 @@ public class BorrowMoneyController {
                 if(endTime !=null){
                     map.put("endTime",endTime);
                 }
-                if(userProductInfoVo.getStartBorrowTime() !=null && ("").equals(userProductInfoVo.getStartBorrowTime())){
+                if(userProductInfoVo.getStartBorrowTime() !=null && !("").equals(userProductInfoVo.getStartBorrowTime())){
                     map.put("startBorrowTime",userProductInfoVo.getStartBorrowTime());
                 }
-                if(userProductInfoVo.getEndBorrowTime()!=null && ("").equals(userProductInfoVo.getEndBorrowTime())){
+                if(userProductInfoVo.getEndBorrowTime()!=null && !("").equals(userProductInfoVo.getEndBorrowTime())){
                     map.put("endBorrowTime",userProductInfoVo.getEndBorrowTime());
                 }
-                if(userProductInfoVo.getBackMoneyType()!=null && ("").equals(userProductInfoVo.getBackMoneyType())){
+                if(userProductInfoVo.getBackMoneyType()!=null && !("").equals(userProductInfoVo.getBackMoneyType())){
                     map.put("backMoneyType",userProductInfoVo.getBackMoneyType());
                 }
-                if(userProductInfoVo.getStatus()!=null && ("").equals(userProductInfoVo.getStatus())){
+                if(userProductInfoVo.getStatus()!=null && !("").equals(userProductInfoVo.getStatus())){
                     map.put("status",userProductInfoVo.getStatus());
                 }
             }
