@@ -7,6 +7,7 @@ import com.guanyitong.model.UserBankcard;
 import com.guanyitong.service.UserBankcardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -44,9 +45,14 @@ public class UserBankcardServiceImpl implements UserBankcardService{
         return userBankcardDao.selectByUserBankcard(conditionMap);
     }
 
+    /**
+     * 绑定借款用户银行卡
+     * @param userBankcard
+     * @return
+     */
+    @Transactional
     @Override
     public int insertUserBankcardDao(UserBankcard userBankcard) {
-
         return userBankcardDao.insertUserBankcardDao(userBankcard);
     }
 }
