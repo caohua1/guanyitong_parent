@@ -16,6 +16,40 @@
       #{legalIDCard},#{legalIDCardImageZ},#{legalIDCardImageF},#{XYJF},#{XYJFDescribe},#{address},
       #{companyDescribe},#{borrowUse},#{createTime},#{status})
     </insert>
+    <!--借款人认证资料审核列表，（分页）0待审核 (1 3 审核未通过) 4审核通过-->
+    <select id="selectAllBorrowUser" parameterType="com.guanyitong.model.BorrowMoneyUser" resultType="com.guanyitong.model.BorrowMoneyUser">
+        select * from borrowmoney_user where 1=1
+        <if test="id !=null">
+           and id = #{id}
+        </if>
+        <if test="apprroveName !=null and apprroveName != ''">
+           and apprroveName = #{apprroveName}
+        </if>
+        <if test="createTime !=null">
+            and apprroveName = #{apprroveName}
+        </if>
+        <if test="companyName !=null and companyName !=''">
+            and companyName = #{companyName}
+        </if>
+        <if test="auditUserName !=null and auditUserName !=''">
+            and auditUserName = #{auditUserName}
+        </if>
+        <if test="status != null">
+            and status = #{status}
+        </if>
+    </select>
+
+    <!--审核借款人的资料信息-->
+    <update id="updateStatus" parameterType="java.util.Map">
+        update borrowmoney_user set status = #{status}
+        <if test="causeBy !=null and causeBy !=''">
+            ,causeBy = #{causeBy}
+        </if>
+        <if test="contractImage !=null and contractImage !=''">
+            ,contractImage = #{contractImage}
+        </if>
+        where id = #{id}
+    </update>
     <!--根据id查询借款用户信息，进行审核-->
     <select id="selectBorrowMoneyUser" parameterType="java.lang.Long" resultType="com.guanyitong.model.BorrowMoneyUser">
         SELECT * from borrowmoney_user WHERE  id=#{id}

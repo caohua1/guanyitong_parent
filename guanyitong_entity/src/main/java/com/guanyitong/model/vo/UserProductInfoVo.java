@@ -1,16 +1,16 @@
 package com.guanyitong.model.vo;
 
+import com.guanyitong.model.ProductInfo;
+
 import java.io.Serializable;
 import java.util.Date;
 //查看投标数（所有的用户投标）
-public class UserProductInfo implements Serializable {
-    private String username;
-    private Integer dealMoney;
+public class UserProductInfoVo extends ProductInfo implements Serializable {
+    private String username;//所有出借用户
+    private Integer dealMoney;//出借金额（交易）
     private String name;//投资类型（产品）
-    private String backMoneyType;//回款方式（盈利方式）
     private Double money;//盈利金额
-    private Date createTime;
-    private Integer monthNum;//还款期限
+
 
     public String getUsername() {
         return username;
@@ -36,13 +36,6 @@ public class UserProductInfo implements Serializable {
         this.name = name;
     }
 
-    public String getBackMoneyType() {
-        return backMoneyType;
-    }
-
-    public void setBackMoneyType(String backMoneyType) {
-        this.backMoneyType = backMoneyType;
-    }
 
     public Double getMoney() {
         return money;
@@ -52,19 +45,5 @@ public class UserProductInfo implements Serializable {
         this.money = money;
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Integer getMonthNum() {
-        return monthNum;
-    }
-
-    public void setMonthNum(Integer monthNum) {
-        this.monthNum = monthNum;
-    }
 }

@@ -53,8 +53,12 @@
      <!--===================================================================投标（不同标种下。有不同类型的投标）-->
      <!--添加投标-->
      <insert id="insertProductInfo" parameterType="com.guanyitong.model.ProductInfo">
-          insert into productinfo(productId,borrowMoneyUserId,NO,backMoneyType,monthNum,ZMoney,SYMoney,yield,createTime)
-          values(#{productId},#{borrowMoneyUserId},#{NO},#{backMoneyType},#{monthNum},#{ZMoney},#{SYMoney},#{yield},#{createTime})
+          insert into productinfo(productId,borrowMoneyUserId,NO,backMoneyType,
+          monthNum,raiseMoneyMonth,ZMoney,SYMoney,yield,createTime,startRaiseTime,
+          endRaiseTime,startBorrowTime,endBorrowTime)
+          values(#{productId},#{borrowMoneyUserId},#{NO},#{backMoneyType},
+          #{monthNum},#{raiseMoneyMonth},#{ZMoney},#{SYMoney},#{yield},#{createTime},
+          #{startRaiseTime},#{endRaiseTime},#{startBorrowTime},#{endBorrowTime})
      </insert>
      <!--（条件查询根据产品id）分页查询所有的此产品下的所有的投标-->
      <select id="selectAllProductinfo" parameterType="com.guanyitong.model.ProductInfo" resultType="com.guanyitong.model.ProductInfo">
@@ -75,12 +79,39 @@
          private Double money;//盈利金额
          private Date createTime;
          private Integer monthNum;//还款期限-->
-     <select id="selectUserProductinfo" parameterType="Long" resultType="com.guanyitong.model.vo.UserProductInfo">
+     <select id="selectUserProductinfo" parameterType="Long" resultType="com.guanyitong.model.vo.UserProductInfoVo">
           select udm.dealMoney,p.name,pi.backMoneyType,udm.createTime,pi.monthNum,ui.username
           from user_deal_money udm
           left join productinfo pi on pi.id = udm.productInfoId
           left join product p on p.id = pi.productId
           left join user_info ui on ui.id = udm.userId
           where udm.productInfoId = #{productInfoId}
+     </select>
+
+
+     <!--========================================================================借款流程-->
+     <!--（分页）借款列表-->
+     <select id="selectBorrowInfo" parameterType="java.util.Map" resultType="com.guanyitong.model.vo.UserProductInfoVo">
+          select productinfo.*,product.name from productinfo
+          left join product on product.id = productinfo.productId
+          where 1=1
+          <if test="borrowMoneyUserId !=null">
+               and borrowMoneyUserId = #{borrowMoneyUserId}
+          </if>
+          <if test="NO !=null and NO !=''">
+               and NO = #{NO}
+          </if>
+          <if test="startTime !=null and endTime !=null">
+               and createTime BETWEEN #{startTime} and #{endTime}
+          </if>
+          <if test="startBorrowTime !=null and endBorrowTime !=null">
+               and startBorrowTime = #{startBorrowTime} and endBorrowTime = #{endBorrowTime}
+          </if>
+          <if test="backMoneyType !=null and backMoneyType !=''">
+               and backMoneyType = #{backMoneyType}
+          </if>
+          <if test="status !=null">
+               and status = #{status}
+          </if>
      </select>
 </mapper>

@@ -45,6 +45,9 @@ public class BorrowMoneyUser implements Serializable {
     private String companyDescribe;
     private String borrowUse;
     private Date createTime;//申请时间
+    private String auditUserName;//审核人姓名
+    private String causeBy;//审核未通过原因
+    private String contractImage;//合同照片
     private Integer status;
 
     public Long getId() {
@@ -207,6 +210,30 @@ public class BorrowMoneyUser implements Serializable {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getAuditUserName() {
+        return auditUserName;
+    }
+
+    public void setAuditUserName(String auditUserName) {
+        this.auditUserName = auditUserName;
+    }
+
+    public String getCauseBy() {
+        return causeBy;
+    }
+
+    public void setCauseBy(String causeBy) {
+        this.causeBy = causeBy;
+    }
+
+    public String getContractImage() {
+        return contractImage;
+    }
+
+    public void setContractImage(String contractImage) {
+        this.contractImage = contractImage;
     }
 
     public Integer getStatus() {

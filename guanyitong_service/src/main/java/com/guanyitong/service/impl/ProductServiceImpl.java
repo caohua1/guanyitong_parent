@@ -5,7 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.guanyitong.mapper.ProductDao;
 import com.guanyitong.model.Product;
 import com.guanyitong.model.ProductInfo;
-import com.guanyitong.model.vo.UserProductInfo;
+import com.guanyitong.model.vo.UserProductInfoVo;
 import com.guanyitong.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -146,10 +146,25 @@ public class ProductServiceImpl implements ProductService{
      * @return
      */
     @Override
-    public PageInfo<UserProductInfo> selectUserProductinfo(Long productInfoId, Integer pageNum, Integer pageSize) {
+    public PageInfo<UserProductInfoVo> selectUserProductinfo(Long productInfoId, Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum,pageSize);
-        List<UserProductInfo> userProductInfos = productDao.selectUserProductinfo(productInfoId);
-        PageInfo<UserProductInfo> productInfoPageInfo = new PageInfo<UserProductInfo>(userProductInfos);
+        List<UserProductInfoVo> userProductInfoVos = productDao.selectUserProductinfo(productInfoId);
+        PageInfo<UserProductInfoVo> productInfoPageInfo = new PageInfo<UserProductInfoVo>(userProductInfoVos);
         return productInfoPageInfo;
+    }
+
+    /**
+     * 分页查询借款列表（条件查询）
+     * @param map
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public PageInfo<UserProductInfoVo> selectBorrowInfo(Map map, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<UserProductInfoVo> userProductInfoVos = productDao.selectBorrowInfo(map);
+        PageInfo<UserProductInfoVo> productInfoVoPageInfo = new PageInfo<UserProductInfoVo>(userProductInfoVos);
+        return productInfoVoPageInfo;
     }
 }

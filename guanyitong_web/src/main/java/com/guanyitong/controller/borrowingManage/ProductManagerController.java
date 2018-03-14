@@ -3,7 +3,7 @@ package com.guanyitong.controller.borrowingManage;
 import com.github.pagehelper.PageInfo;
 import com.guanyitong.model.Product;
 import com.guanyitong.model.ProductInfo;
-import com.guanyitong.model.vo.UserProductInfo;
+import com.guanyitong.model.vo.UserProductInfoVo;
 import com.guanyitong.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -148,7 +148,7 @@ public class ProductManagerController {
     }
 
 
-    //============================================================投标（不同标种下。有不同类型的投标）
+    //============================================================投标（不同标种下。有不同类型的投标，每个投标都对应一个借款用户id）
 
     /**
      * 添加投标
@@ -161,6 +161,7 @@ public class ProductManagerController {
         JsonResult result = new JsonResult();
         try{
             productInfo.setCreateTime(new Date());
+            productInfo.setSYMoney(productInfo.getZMoney());//默认开始剩余可出借的金额与借款总额相等
             Integer i = productService.insertProductInfo(productInfo);
             if(i>0){
                 result.setState(JsonResult.SUCCESS);
@@ -242,7 +243,7 @@ public class ProductManagerController {
         JsonResult result = new JsonResult();
         try{
             if(pageNum!=null && pageSize!=null){
-                PageInfo<UserProductInfo> productInfoPageInfo = productService.selectUserProductinfo(productInfoId, pageNum, pageSize);
+                PageInfo<UserProductInfoVo> productInfoPageInfo = productService.selectUserProductinfo(productInfoId, pageNum, pageSize);
                 result.setState(JsonResult.SUCCESS);
                 result.setData(productInfoPageInfo);
                 result.setMessage("返回数据成功");
