@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guanyitong.mapper.UserBankcardDao">
+
+    <!-- 查询所有用户银行卡信息-->
+    <select id="selectUserBankcardDao" resultType="com.guanyitong.model.UserBankcard">
+        SELECT userName,realName,IDCardNumber,bankName,cardNo,submitTime FROM user_bankcard
+    </select>
+    <!--按条件查询 -->
+    <select id="selectByUserBankcard" parameterType="java.util.Map" resultType="com.guanyitong.model.UserBankcard">
+        SELECT userName,realName,IDCardNumber,bankName,cardNo,submitTime FROM user_bankcard WHERE 1=1
+        <if test="userName !=null and userName !=''">
+           and userName=#{userName},
+        </if>
+        <if test="realName !=null and realName !=''">
+            and realName=#{realName}
+        </if>
+        <if test="firstDate !=null and lastDate !=null">
+            and submitTime BETWEEN firstDate and lastDate
+        </if>
+    </select>
+    <!-- 用户绑定银行卡-->
+    <insert id="insertUserBankcardDao" parameterType="com.guanyitong.model.UserBankcard">
+       INSERT INTO user_bankcard (userName,realName,IDCardNumber,cardNo,bankName,openAccountRegion)
+       VALUES
+       (#{userName},#{realName},#{IDCardNumber},#{cardNo},#{bankName},#{openAccountRegion})
+    </insert>
+
+</mapper>

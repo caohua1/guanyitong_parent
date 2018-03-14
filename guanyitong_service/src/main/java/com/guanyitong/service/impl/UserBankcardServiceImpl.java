@@ -1,0 +1,52 @@
+package com.guanyitong.service.impl;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.guanyitong.mapper.UserBankcardDao;
+import com.guanyitong.model.UserBankcard;
+import com.guanyitong.service.UserBankcardService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * 银行卡管理业务层
+ */
+@Service
+public class UserBankcardServiceImpl implements UserBankcardService{
+
+    @Autowired
+    private UserBankcardDao userBankcardDao;
+
+    /**
+     * 分页查询银行卡信息
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public PageInfo<UserBankcard> selectUserBankcardDao(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);//开始分页
+        List<UserBankcard> userBankcards = userBankcardDao.selectUserBankcardDao();
+        PageInfo<UserBankcard> pageInfo = new PageInfo<UserBankcard>(userBankcards);
+        return pageInfo;
+    }
+
+    /**
+     * 条件查询
+     * @param conditionMap
+     * @return
+     */
+    @Override
+    public UserBankcard selectByUserBankcard(Map conditionMap) {
+        return userBankcardDao.selectByUserBankcard(conditionMap);
+    }
+
+    @Override
+    public int insertUserBankcardDao(UserBankcard userBankcard) {
+
+        return userBankcardDao.insertUserBankcardDao(userBankcard);
+    }
+}
