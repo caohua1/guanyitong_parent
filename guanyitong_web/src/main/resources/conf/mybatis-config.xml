@@ -31,6 +31,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         <mapper resource="mapping/BackMoneyMapper.xml"></mapper>
         <mapper resource="mapping/BorrowMoneyUserMapper.xml"></mapper>
         <mapper resource="mapping/UserBankcardMapper.xml"></mapper>
+        <mapper resource="mapping/LenderManagementVoMapper.xml"></mapper>
     </mappers>
 
 

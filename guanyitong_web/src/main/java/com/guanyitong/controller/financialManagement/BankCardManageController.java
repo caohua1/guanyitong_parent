@@ -61,7 +61,6 @@ public class BankCardManageController {
                 result.setState(JsonResult.ERROR);
                 result.setMessage("返回数据失败");
             }
-
         }catch (Exception e){
             e.printStackTrace();
             result.setState(JsonResult.ERROR);
@@ -79,10 +78,10 @@ public class BankCardManageController {
         try{
             Map<Object, Object> conditionMap = new HashMap<Object, Object>();
             if(userBankcard!=null){
-                if(userBankcard.getUserName()!=null && ("").equals(userBankcard.getUserName())){
+                if(userBankcard.getUserName()!=null && !("").equals(userBankcard.getUserName())){
                     conditionMap.put("userName",userBankcard.getUserName());
                 }
-               if(userBankcard.getRealName()!=null && ("").equals(userBankcard.getRealName())){
+               if(userBankcard.getRealName()!=null && !("").equals(userBankcard.getRealName())){
                    conditionMap.put("realName",userBankcard.getRealName());
                }
                 if(firstDate !=null){
