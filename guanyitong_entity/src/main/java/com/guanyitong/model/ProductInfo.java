@@ -8,7 +8,7 @@ import java.util.Date;
 public class ProductInfo implements Serializable {
     private Long id;
     private Long productId;
-    private Long borrowMoneyUserId;//借款主体id
+    private String borrowMoneyUserId;//借款主体id
     private String NO;//编号，名称
     private String backMoneyType;//回款方式（1按月还本付息、2先息后本、3一次性还本付息、4等额本息）
     private Integer monthNum;//借款期限
@@ -21,6 +21,8 @@ public class ProductInfo implements Serializable {
     private Date endRaiseTime;//结束筹钱的时间
     private Date startBorrowTime;//开始借款时间
     private Date endBorrowTime;//结束借款时间
+    private String coverImage;//封面路径
+    private Date updateTime;
     private Integer status;
 
     public Long getId() {
@@ -39,11 +41,11 @@ public class ProductInfo implements Serializable {
         this.productId = productId;
     }
 
-    public Long getBorrowMoneyUserId() {
+    public String getBorrowMoneyUserId() {
         return borrowMoneyUserId;
     }
 
-    public void setBorrowMoneyUserId(Long borrowMoneyUserId) {
+    public void setBorrowMoneyUserId(String borrowMoneyUserId) {
         this.borrowMoneyUserId = borrowMoneyUserId;
     }
 
@@ -147,6 +149,23 @@ public class ProductInfo implements Serializable {
 
     public void setEndBorrowTime(Date endBorrowTime) {
         this.endBorrowTime = endBorrowTime;
+    }
+
+    public String getCoverImage() {
+        return coverImage;
+    }
+
+    public void setCoverImage(String coverImage) {
+        this.coverImage = coverImage;
+    }
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public Integer getStatus() {

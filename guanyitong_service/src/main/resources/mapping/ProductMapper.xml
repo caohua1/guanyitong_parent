@@ -55,10 +55,10 @@
      <insert id="insertProductInfo" parameterType="com.guanyitong.model.ProductInfo">
           insert into productinfo(productId,borrowMoneyUserId,NO,backMoneyType,
           monthNum,raiseMoneyMonth,ZMoney,SYMoney,yield,createTime,startRaiseTime,
-          endRaiseTime,startBorrowTime,endBorrowTime)
+          endRaiseTime,startBorrowTime,endBorrowTime,coverImage)
           values(#{productId},#{borrowMoneyUserId},#{NO},#{backMoneyType},
           #{monthNum},#{raiseMoneyMonth},#{ZMoney},#{SYMoney},#{yield},#{createTime},
-          #{startRaiseTime},#{endRaiseTime},#{startBorrowTime},#{endBorrowTime})
+          #{startRaiseTime},#{endRaiseTime},#{startBorrowTime},#{endBorrowTime},#{coverImage})
      </insert>
      <!--（条件查询根据产品id）分页查询所有的此产品下的所有的投标-->
      <select id="selectAllProductinfo" parameterType="com.guanyitong.model.ProductInfo" resultType="com.guanyitong.model.ProductInfo">
@@ -95,7 +95,7 @@
           select productinfo.*,product.name from productinfo
           left join product on product.id = productinfo.productId
           where 1=1
-          <if test="borrowMoneyUserId !=null">
+          <if test="borrowMoneyUserId !=null and borrowMoneyUserId !=''">
                and borrowMoneyUserId = #{borrowMoneyUserId}
           </if>
           <if test="NO !=null and NO !=''">
@@ -114,4 +114,70 @@
                and status = #{status}
           </if>
      </select>
+     <!--根据id查询借款明细-->
+     <select id="selectBorrowInfoById" parameterType="Long" resultType="com.guanyitong.model.vo.UserProductInfoVo">
+          select productinfo.*,product.name from productinfo
+          left join product on product.id = productinfo.productId
+          where productinfo.id = #{id}
+     </select>
+    <!--修改投标（未开始的，和筹集失败的能修改，修改后需要审核）-->
+    <!--private Long productId;
+    private String NO;//编号，名称
+    private String backMoneyType;//回款方式（1按月还本付息、2先息后本、3一次性还本付息、4等额本息）
+    private Integer monthNum;//借款期限
+    private Integer raiseMoneyMonth;//筹钱期限
+    private Integer ZMoney;//借款总额（所有的用户出借总额不超过100万元）
+    private Integer SYMoney;//剩余可出借的金额
+    private Integer yield;//收益率
+    private Date startRaiseTime;//开始筹钱的时间
+    private Date endRaiseTime;//结束筹钱的时间
+    private Date startBorrowTime;//开始借款时间
+    private Date endBorrowTime;//结束借款时间
+    private String coverImage;//封面路径
+    private Integer status;-->
+    <update id="updateProductInfo" parameterType="com.guanyitong.model.ProductInfo">
+        update productinfo set
+        <if test="productId !=null">
+            productId = #{productId},
+        </if>
+        <if test="NO !=null and NO !=''">
+            NO = #{NO},
+        </if>
+        <if test="backMoneyType !=null and backMoneyType !=''">
+            backMoneyType = #{backMoneyType},
+        </if>
+        <if test="monthNum !=null">
+            monthNum = #{monthNum},
+        </if>
+        <if test="raiseMoneyMonth !=null">
+            raiseMoneyMonth = #{raiseMoneyMonth},
+        </if>
+        <if test="ZMoney !=null">
+            ZMoney = #{ZMoney},SYMoney = #{SYMoney},
+        </if>
+        <if test="yield !=null">
+            yield = #{yield},
+        </if>
+        <if test="startRaiseTime !=null">
+            startRaiseTime = #{startRaiseTime},
+        </if>
+        <if test="endRaiseTime !=null">
+            endRaiseTime = #{endRaiseTime},
+        </if>
+        <if test="startBorrowTime !=null">
+            startBorrowTime = #{startBorrowTime},
+        </if>
+        <if test="endBorrowTime !=null">
+            endBorrowTime = #{endBorrowTime},
+        </if>
+        <if test="coverImage !=null and coverImage !=''">
+            coverImage = #{coverImage},
+        </if>
+        <if test="status !=null">
+            status = #{status},
+        </if>
+        updateTime = #{updateTime}
+        where id = #{id}
+    </update>
+
 </mapper>

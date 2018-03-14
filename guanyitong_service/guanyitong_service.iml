@@ -54,7 +54,7 @@
     <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.13" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.4.2" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.4.2" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.8.1" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.4.2" level="project" />
     <orderEntry type="library" name="Maven: org.mod4j.com.google:collect:0.8.0" level="project" />
     <orderEntry type="library" name="Maven: org.bytedeco:javacv:0.8" level="project" />
     <orderEntry type="library" name="Maven: org.bytedeco:javacpp:0.8" level="project" />
