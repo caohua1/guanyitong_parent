@@ -2,15 +2,19 @@ package com.guanyitong.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.guanyitong.mapper.AccountManagerDao;
 import com.guanyitong.mapper.ProductDao;
+import com.guanyitong.mapper.UserDealDao;
 import com.guanyitong.model.Product;
 import com.guanyitong.model.ProductInfo;
+import com.guanyitong.model.UserDealMoney;
 import com.guanyitong.model.vo.UserProductInfoVo;
 import com.guanyitong.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +22,10 @@ import java.util.Map;
 public class ProductServiceImpl implements ProductService{
     @Autowired
     private ProductDao  productDao;
-
+    @Autowired
+    private UserDealDao userDealDao;
+    @Autowired
+    private AccountManagerDao accountManagerDao;
 
     /**
      * 查询产品
@@ -187,5 +194,42 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public Integer updateProductInfo(ProductInfo productInfo) {
         return productDao.updateProductInfo(productInfo);
+    }
+
+    /**
+     * 标，7上架，8下架，9放弃（退款给出借用户）
+     * @param map
+     * @return
+     */
+    @Transactional
+    @Override
+    public Boolean updateStatus(Map map) {
+
+        if((Integer)map.get("status")!=9){
+            Integer i = productDao.updateStatus(map);
+            return  i>0;
+        }else{
+            Integer i=0;
+            Integer j=0;
+            Integer k=0;
+            i = productDao.updateStatus(map);
+            //查询所有此表下的出借用户出借情况
+            List<UserDealMoney> userDealMonies = userDealDao.selectUserDealByProductInfoId((Long) map.get("id"));
+            if(userDealMonies!=null && userDealMonies.size()>0){
+                for(UserDealMoney userDealMoney : userDealMonies){
+                    //给每个用户退款
+                    Map backMoneyMap = new HashMap();
+                    backMoneyMap.put("dealMoney",userDealMoney.getDealMoney());
+                    backMoneyMap.put("userId",userDealMoney.getUserId());
+                    j += accountManagerDao.backMoney(backMoneyMap);
+                }
+                //修改状态
+                Map updateStatusMap = new HashMap();
+                updateStatusMap.put("status",0);
+                updateStatusMap.put("productInfoId",map.get("id"));
+                k =  userDealDao.updateUserDealMoneyStatus(updateStatusMap);
+            }
+            return i>0 && k==userDealMonies.size() && j==userDealMonies.size();//几个出借用户就修改几个状态
+        }
     }
 }

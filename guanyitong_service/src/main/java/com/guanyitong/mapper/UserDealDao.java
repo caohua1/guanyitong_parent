@@ -23,9 +23,9 @@ public interface UserDealDao {
     public List<UserDealMoney> selectUserDealByProductInfoId(Long productInfoId);
 
     /**
-     * 放弃的标，进行退款
+     * 修改状态（0退款 1出借中 2已还款）
      * @param map
      * @return
      */
-    public Integer backMoney(Map map);
+    public Integer updateUserDealMoneyStatus(Map map);
 }

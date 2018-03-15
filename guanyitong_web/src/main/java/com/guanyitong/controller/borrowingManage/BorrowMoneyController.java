@@ -85,6 +85,35 @@ public class BorrowMoneyController {
         return result;
     }
 
+    /**
+     * 修改标的状态0待审核 1审核完成 2审核失败 3未开始 4筹集中 5筹集完成 6筹集失败 7上架 8下架 9放弃
+     * @param id
+     * @param status
+     * @return
+     */
+    @RequestMapping("/updateStatus")
+    @ResponseBody
+    public JsonResult updateStatus(Long id,Integer status){
+        JsonResult result = new JsonResult();
+        try{
+            Map map = new HashMap();
+            map.put("id",id);
+            map.put("status",status);
+            Boolean b = productService.updateStatus(map);
+            if(b==true){
+                result.setState(JsonResult.SUCCESS);
+                result.setMessage("操作成功");
+            }else{
+                result.setState(JsonResult.ERROR);
+                result.setMessage("操作失败");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            result.setState(JsonResult.ERROR);
+            result.setMessage("操作失败");
+        }
+        return result;
+    }
 
     /**
      * 根据id查询借款明细

@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="guanyitong_web:war exploded">
-    <output-path>$PROJECT_DIR$/../tomcat8/apache-tomcat-8.5.27/webapps/ROOT</output-path>
+    <output-path>$PROJECT_DIR$/guanyitong_web/target/guanyitong_web</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
