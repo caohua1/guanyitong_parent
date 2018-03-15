@@ -17,8 +17,13 @@ public interface LenderManagementVoDao  {
     public List<LenderManagementVo> listLenderManagementVo();
 
     /**
-     * 按条件查找出借人银行卡
+     * 模糊查找出借人银行卡
      * @return
      */
     public LenderManagementVo selectLenderManagementVo(Map needsMap);
+
+    /**
+     * 条件查找（根据用户身份证查询）
+     */
+    public  LenderManagementVo selectByIDCard(Map IDCardMap);
 }

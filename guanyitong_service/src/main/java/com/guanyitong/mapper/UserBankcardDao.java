@@ -17,9 +17,14 @@ public interface UserBankcardDao {
     public List<UserBankcard> selectUserBankcardDao();
 
     /**
-     * 按条件查询
+     * 模糊查询
      */
     public UserBankcard selectByUserBankcard(Map conditionMap);
+
+    /**
+     * 按条件查询（根据userName）
+     */
+    public UserBankcard seelctByUserName(Map userNameMap);
 
     /**
      * 用户添加银行卡信息

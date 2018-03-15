@@ -6,7 +6,7 @@ import javax.xml.crypto.Data;
 import java.io.Serializable;
 
 /**
- * 用户银行卡管理
+ * 借款用户银行卡管理
  */
 public class UserBankcard implements Serializable {
 
@@ -18,6 +18,8 @@ public class UserBankcard implements Serializable {
     private Data submitTime;//用户提交时间
     private String openAccountRegion;//用户开户行地区
     private String userName;//用户名（唯一标识）
+    private int poneNumber;//借款人可联系手机号
+    private String YN;//是否作为还款银行卡
 
     public Long getId() {
         return id;
@@ -84,5 +86,19 @@ public class UserBankcard implements Serializable {
         this.userName = userName;
     }
 
+    public int getPoneNumber() {
+        return poneNumber;
+    }
 
+    public void setPoneNumber(int poneNumber) {
+        this.poneNumber = poneNumber;
+    }
+
+    public String getYN() {
+        return YN;
+    }
+
+    public void setYN(String YN) {
+        this.YN = YN;
+    }
 }

@@ -12,7 +12,7 @@
         ON a.userId=u.id
     </select>
 
-    <!-- 条件查找-->
+    <!-- 模糊查找-->
     <select id="selectLenderManagementVo" parameterType="java.util.Map" resultType="com.guanyitong.model.vo.LenderManagementVo">
         SELECT username,realName,idCard,bankName,bankNum,createTime,a.`status`
         FROM account_manager a
@@ -31,7 +31,14 @@
         <if test="firstDate !=null and lastDate !=null">
             and createTime BETWEEN firstDate and lastDate
         </if>
-
+    </select>
+    <!-- 条件查找（根据身份证查询）-->
+    <select id="selectByIDCard" parameterType="java.util.Map" resultType="com.guanyitong.model.vo.LenderManagementVo">
+            SELECT username,realName,idCard,bankName,bankNum,createTime,a.`status`
+            FROM account_manager a
+            JOIN user_info u
+            ON a.userId=u.id
+            WHERE idCard=#{idCard}
     </select>
 
 </mapper>

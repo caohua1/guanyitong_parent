@@ -10,4 +10,6 @@ public interface LenderManagementVoService {
     public PageInfo<LenderManagementVo> listLenderManagementVo(Integer pageNum, Integer pageSize);
 
     public LenderManagementVo selectLenderManagementVo(Map needsMap);
+
+    public  LenderManagementVo selectByIDCard(Map IDCardMap);
 }

@@ -6,9 +6,9 @@
 
     <!-- 查询所有用户银行卡信息-->
     <select id="selectUserBankcardDao" resultType="com.guanyitong.model.UserBankcard">
-        SELECT userName,realName,IDCardNumber,bankName,cardNo,submitTime FROM user_bankcard
+        SELECT userName,realName,IDCardNumber,bankName,cardNo,submitTime,YN FROM user_bankcard
     </select>
-    <!--按条件查询 -->
+    <!--模糊查询 -->
     <select id="selectByUserBankcard" parameterType="java.util.Map" resultType="com.guanyitong.model.UserBankcard">
         SELECT userName,realName,IDCardNumber,bankName,cardNo,submitTime FROM user_bankcard WHERE 1=1
         <if test="userName !=null and userName !=''">
@@ -17,15 +17,27 @@
         <if test="realName !=null and realName !=''">
             and realName=#{realName}
         </if>
+        <if test="IDCardNumber!=null and IDCardNumber!=''">
+            and IDCardNumber=#{IDCardNumber}
+        </if>
+        <if test="cardNo!=null and cardNo!=''">
+            and cardNo=#{cardNo}
+        </if>
         <if test="firstDate !=null and lastDate !=null">
             and submitTime BETWEEN firstDate and lastDate
         </if>
+        
     </select>
     <!-- 用户绑定银行卡-->
     <insert id="insertUserBankcardDao" parameterType="com.guanyitong.model.UserBankcard">
-       INSERT INTO user_bankcard (userName,realName,IDCardNumber,cardNo,bankName,openAccountRegion)
+       INSERT INTO user_bankcard (userName,realName,IDCardNumber,cardNo,bankName,openAccountRegion,poneNumber)
        VALUES
-       (#{userName},#{realName},#{IDCardNumber},#{cardNo},#{bankName},#{openAccountRegion})
+       (#{userName},#{realName},#{IDCardNumber},#{cardNo},#{bankName},#{openAccountRegion},#{poneNumber})
     </insert>
-
+    <!-- 按条件查询（userName）-->
+    <select id="seelctByUserName" parameterType="java.util.Map" resultType="com.guanyitong.model.UserBankcard">
+        SELECT userName,realName,IDCardNumber,bankName,cardNo,submitTime,YN,poneNumber
+        FROM user_bankcard
+        WHERE userName=#{userName}
+    </select>
 </mapper>

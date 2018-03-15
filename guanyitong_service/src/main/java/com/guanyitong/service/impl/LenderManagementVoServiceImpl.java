@@ -31,12 +31,20 @@ public class LenderManagementVoServiceImpl implements LenderManagementVoService 
     }
 
     /**
-     * 模糊查询（条件查询）出借人银行卡信息
+     * 模糊查询出借人银行卡信息
      * @param needsMap
      * @return
      */
     @Override
     public LenderManagementVo selectLenderManagementVo(Map needsMap) {
         return lenderManagementVoDao.selectLenderManagementVo(needsMap);
+    }
+
+    /**
+     * 条件查询出借人银行卡信息
+     */
+    @Override
+    public LenderManagementVo selectByIDCard(Map IDCardMap) {
+        return lenderManagementVoDao.selectByIDCard(IDCardMap);
     }
 }

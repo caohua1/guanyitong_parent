@@ -36,7 +36,7 @@ public class UserBankcardServiceImpl implements UserBankcardService{
     }
 
     /**
-     * 条件查询
+     * 模糊查询
      * @param conditionMap
      * @return
      */
@@ -46,11 +46,20 @@ public class UserBankcardServiceImpl implements UserBankcardService{
     }
 
     /**
+     * 按条件查询（根据userName）
+     * @param userNameMap
+     * @return
+     */
+    @Override
+    public UserBankcard seelctByUserName(Map userNameMap) {
+        return userBankcardDao.seelctByUserName(userNameMap);
+    }
+
+    /**
      * 绑定借款用户银行卡
      * @param userBankcard
      * @return
      */
-    @Transactional
     @Override
     public int insertUserBankcardDao(UserBankcard userBankcard) {
         return userBankcardDao.insertUserBankcardDao(userBankcard);

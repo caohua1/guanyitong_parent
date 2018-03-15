@@ -27,7 +27,7 @@ public class BankCardManageController {
     @Autowired
     private UserBankcardService userBankcardService;
     /**
-     *展示银行卡信息
+     * 展示借款人银行卡信息
      */
     @RequestMapping("/selectUserBankcard")
     @ResponseBody
@@ -46,7 +46,7 @@ public class BankCardManageController {
         return result;
     }
     /**
-     * 绑定用户银行卡
+     * 绑定借款人用户银行卡
      */
     @RequestMapping("/addUserBankcard")
     @ResponseBody
@@ -69,7 +69,7 @@ public class BankCardManageController {
         return result;
     }
     /**
-     * 模糊查询（按条件查找）
+     * 模糊查询
      */
     @RequestMapping("/selectByUserBankcard")
     @ResponseBody
@@ -84,6 +84,12 @@ public class BankCardManageController {
                if(userBankcard.getRealName()!=null && !("").equals(userBankcard.getRealName())){
                    conditionMap.put("realName",userBankcard.getRealName());
                }
+               if (userBankcard.getIDCardNumber()!=null &&!("").equals(userBankcard.getIDCardNumber())){
+                   conditionMap.put("IDCardNumber",userBankcard.getIDCardNumber());
+               }
+                if (userBankcard.getCardNo()!=null && !("").equals(userBankcard.getCardNo())){
+                    conditionMap.put("cardNo",userBankcard.getCardNo());
+                }
                 if(firstDate !=null){
                     conditionMap.put("firstDate",firstDate);
                 }
@@ -93,6 +99,27 @@ public class BankCardManageController {
             }
             UserBankcard userBankcard1 = userBankcardService.selectByUserBankcard(conditionMap);
             result.setData(userBankcard1);
+            result.setState(JsonResult.SUCCESS);
+            result.setMessage("返回数据成功");
+        }catch (Exception e){
+            e.printStackTrace();
+            result.setState(JsonResult.ERROR);
+            result.setMessage("返回数据失败");
+        }
+        return result;
+    }
+    /**
+     * 根据userName进行条件查询
+     */
+    @RequestMapping("/selectByIdUserBankcard")
+    @ResponseBody
+    public JsonResult selectByIdUserBankcard(String userName){
+        JsonResult result = new JsonResult();
+        try{
+            Map<Object, Object> userNameMap = new HashMap<Object, Object>();
+            userNameMap.put("userName",userName);
+            UserBankcard selectByUserName = userBankcardService.seelctByUserName(userNameMap);
+            result.setData(selectByUserName);
             result.setState(JsonResult.SUCCESS);
             result.setMessage("返回数据成功");
         }catch (Exception e){

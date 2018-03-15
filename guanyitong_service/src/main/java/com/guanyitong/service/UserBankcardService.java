@@ -12,5 +12,7 @@ public interface UserBankcardService {
 
     public UserBankcard selectByUserBankcard(Map conditionMap);
 
+    public UserBankcard seelctByUserName(Map userNameMap);
+
     public int insertUserBankcardDao(UserBankcard userBankcard);
 }
