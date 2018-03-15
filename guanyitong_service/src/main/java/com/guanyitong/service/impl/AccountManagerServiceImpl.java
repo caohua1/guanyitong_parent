@@ -75,16 +75,6 @@ public class AccountManagerServiceImpl  implements AccountManagerService {
     }
 
     /**
-     * 查询当前用户的汇款记录
-     * @param map
-     * @return
-     */
-    @Override
-    public List<BackMoney> selectUserBackMoney(Map map) {
-        return accountManagerDao.selectUserBackMoney(map);
-    }
-
-    /**
      * 查询当前用户的提现记录
      * @param map
      * @return

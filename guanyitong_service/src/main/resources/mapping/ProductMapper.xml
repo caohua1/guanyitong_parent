@@ -180,4 +180,9 @@
         where id = #{id}
     </update>
 
+      <!--产品 上架，下架，放弃（退款）-->
+    <update id="updateStatus" parameterType="java.util.Map">
+        update productinfo set status = #{status} where id = #{id}
+    </update>
+
 </mapper>

@@ -179,7 +179,7 @@ public class ProductManagerController {
      }
 
     /**
-     * 查询所有的投标（分页）
+     * 查询某标种下的所有的投标（分页）
      * @param productInfo
      * @param pageNum
      * @param pageSize

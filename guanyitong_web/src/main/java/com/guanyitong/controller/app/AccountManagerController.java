@@ -131,49 +131,6 @@ public class AccountManagerController {
         return result;
     }
 
-    /**
-     * 查询当前用户的（每条出借）回款记录
-     * @param userId
-     * @param dealMoneyId
-     * @param status (0,未还款,1,已还款)
-     * @return
-     */
-    @RequestMapping("/selectUserBackMoney")
-    @ResponseBody
-    public JsonResult selectUserBackMoney(Long userId, @RequestParam(required=false)Long dealMoneyId,@RequestParam(required=false)Integer status){
-        JsonResult result = new JsonResult();
-        try{
-            Map map = new HashMap();
-            if(userId !=null){
-                map.put("userId",userId);
-            }
-            if(dealMoneyId !=null){
-                map.put("dealMoneyId",dealMoneyId);
-            }
-            if(status !=null){
-                map.put("status",status);
-            }
-            List<BackMoney> backMonies = accountManagerService.selectUserBackMoney(map);
-            if(backMonies !=null && backMonies.size()>0){
-                for(BackMoney backMoney : backMonies){
-                    UserDealMoney userDealMoney = accountManagerService.selectDealMoneyById(backMoney.getDealMoneyId());
-                    if(userDealMoney!=null){
-                        ProductInfo productInfo = accountManagerService.selectProductInfo(userDealMoney.getProductInfoId());
-                        userDealMoney.setProductInfo(productInfo);//把产品信息set进去
-                    }
-                    backMoney.setUserDealMoney(userDealMoney);//把出借那条信息set进去
-                }
-            }
-            result.setState(JsonResult.SUCCESS);
-            result.setData(backMonies);
-            result.setMessage("返回数据成功");
-        }catch(Exception e){
-            e.printStackTrace();
-            result.setState(JsonResult.ERROR);
-            result.setMessage("返回数据失败");
-        }
-        return result;
-    }
 
     /**
      * 查询当前用户的提现记录

@@ -34,12 +34,6 @@ public interface AccountManagerService {
      */
     public List<UserDealMoney> selectUserOutInfo(Map map);
 
-    /**
-     * 查询当前用户回款记录
-     * @param map
-     * @return
-     */
-    public List<BackMoney> selectUserBackMoney(Map map);
 
     /**
      * 查询当前用户的提现记录
