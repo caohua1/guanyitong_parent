@@ -33,6 +33,9 @@ public class BorrowMoneyController {
     private ProductService productService;
 
     /**
+     * 投标审核管理
+     * 借款管理
+     * 投标管理
      * 分页，条件查询 查询借款列表（借款流程）
      * 0待审核 1审核完成 2审核失败 3未开始 4筹集中 5筹集完成 6筹集失败 7上架 8下架 9放弃
      * @param userProductInfoVo
@@ -86,6 +89,7 @@ public class BorrowMoneyController {
     }
 
     /**
+     * 投标审核管理（审核）
      * 修改标的状态0待审核 1审核完成 2审核失败 3未开始 4筹集中 5筹集完成 6筹集失败 7上架 8下架 9放弃
      * @param id
      * @param status
@@ -116,6 +120,9 @@ public class BorrowMoneyController {
     }
 
     /**
+     * 投标审核管理
+     * 投标管理
+     * 借款管理
      * 根据id查询借款明细
      * @param id
      * @return
