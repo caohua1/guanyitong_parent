@@ -34,7 +34,7 @@
     </select>
     <!-- 条件查找（根据身份证查询）-->
     <select id="selectByIDCard" parameterType="java.util.Map" resultType="com.guanyitong.model.vo.LenderManagementVo">
-            SELECT username,realName,idCard,bankName,bankNum,createTime,a.`status`
+            SELECT userId,realName,idCard,bankNum,bankName,bankAddress
             FROM account_manager a
             JOIN user_info u
             ON a.userId=u.id
