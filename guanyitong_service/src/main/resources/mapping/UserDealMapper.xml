@@ -28,4 +28,17 @@
                and udm.status = #{status}
           </if>
      </select>
+     <!--查询某个标的所有用户的出借情况（放弃的都退款）-->
+     <select id="selectUserDealByProductInfoId" parameterType="Long" resultType="com.guanyitong.model.UserDealMoney">
+          select * from user_deal_money where productInfoId = #{productInfoId}
+     </select>
+
+     <!--放弃的标，进行退款到用户的余额中-->
+     <update id="backMoney" parameterType="java.util.Map">
+          update account_manager set yuE = yuE + #{dealMoney} where userId = #{userId}
+     </update>
+     <!--退款之后，用户出借状态改为0  0退款 1出借中 2已还款-->
+     <update id="updateUserDealMoneyStatus" parameterType="java.util.Map">
+
+     </update>
 </mapper>

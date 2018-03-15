@@ -34,7 +34,7 @@ public class BorrowMoneyController {
 
     /**
      * 分页，条件查询 查询借款列表（借款流程）
-     * 0未开始 1筹集中 2筹集完成 3筹集失败 4下架
+     * 0待审核 1审核完成 2审核失败 3未开始 4筹集中 5筹集完成 6筹集失败 7上架 8下架 9放弃
      * @param userProductInfoVo
      * @param startTime
      * @param endTime

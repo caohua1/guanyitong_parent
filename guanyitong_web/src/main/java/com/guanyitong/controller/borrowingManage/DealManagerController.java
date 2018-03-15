@@ -18,8 +18,7 @@ import java.util.Map;
 public class DealManagerController {
     @Autowired
     private UserDealService userDealService;
-    @Autowired
-    private BackMoneyService backMoneyService;
+
     /**
      * (分页)查询所有用户的出借情况
      * @param productInfoId
@@ -52,31 +51,5 @@ public class DealManagerController {
         return result;
     }
 
-    /**
-     * 分页)查询所有某个用户的某个出借的--回款--详情
-     * @param dealMoneyId(某用户的某项出借的回款情况)
-     * @param pageNum
-     * @param pageSize
-     * @return
-     */
-    @RequestMapping("/selectBackMoneyByDealId")
-    @ResponseBody
-    public JsonResult selectBackMoneyByDealId(Long dealMoneyId,Integer pageNum,Integer pageSize){
-        JsonResult result = new JsonResult();
-        try{
-            Map map = new HashMap();
-            if(dealMoneyId != null){
-              map.put("dealMoneyId",dealMoneyId);
-            }
-            PageInfo<BackMoney> pageInfo = backMoneyService.selectBackMoneyByDealId(map, pageNum, pageSize);
-            result.setState(JsonResult.SUCCESS);
-            result.setData(pageInfo);
-            result.setMessage("返回数据成功");
-        }catch(Exception e){
-            e.printStackTrace();
-            result.setState(JsonResult.ERROR);
-            result.setMessage("返回数据失败");
-        }
-        return result;
-    }
+
 }
