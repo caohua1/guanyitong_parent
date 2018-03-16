@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 public interface LenderManagementVoService {
-    public PageInfo<LenderManagementVo> listLenderManagementVo(Integer pageNum, Integer pageSize);
 
-    public LenderManagementVo selectLenderManagementVo(Map needsMap);
 
-    public  LenderManagementVo selectByIDCard(Map IDCardMap);
+    public PageInfo<LenderManagementVo> selectLenderManagementVo(Integer pageNum,Integer pageSize,Map lenderMap);
+
+    public  LenderManagementVo selectByID(Map IDMap);
 }

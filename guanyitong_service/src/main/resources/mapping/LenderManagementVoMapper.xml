@@ -4,21 +4,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.guanyitong.mapper.LenderManagementVoDao">
 
-    <!-- 查询出借人银行卡信息-->
-    <select id="listLenderManagementVo" resultType="com.guanyitong.model.vo.LenderManagementVo">
-        SELECT username,realName,idCard,bankName,bankNum,createTime,a.`status`
-        FROM account_manager a
-        JOIN user_info u
-        ON a.userId=u.id
-    </select>
+
 
     <!-- 条件查询-->
     <select id="selectLenderManagementVo" parameterType="java.util.Map" resultType="com.guanyitong.model.vo.LenderManagementVo">
-        SELECT username,realName,idCard,bankName,bankNum,createTime,a.`status`
+        SELECT a.*,u.username
         FROM account_manager a
-        JOIN user_info u
+        LEFT JOIN user_info u
         ON a.userId=u.id
         WHERE 1=1
+        <if test="id !=nulland id !=''">
+            and id=#{id}
+        </if>
         <if test="username !=null and username !=''">
             and username=#{username}
         </if>
@@ -32,13 +29,12 @@
             and createTime BETWEEN firstDate and lastDate
         </if>
     </select>
-    <!-- 条件查找（根据身份证查询）-->
-    <select id="selectByIDCard" parameterType="java.util.Map" resultType="com.guanyitong.model.vo.LenderManagementVo">
-            SELECT userId,realName,idCard,bankNum,bankName,bankAddress
+    <!-- 条件查找（）-->
+    <select id="selectByID" parameterType="java.util.Map" resultType="com.guanyitong.model.vo.LenderManagementVo">
+            SELECT a.*,u.username
             FROM account_manager a
-            JOIN user_info u
+            LEFT JOIN user_info u
             ON a.userId=u.id
-            WHERE idCard=#{idCard}
+            WHERE a.id=#{id}
     </select>
-
 </mapper>

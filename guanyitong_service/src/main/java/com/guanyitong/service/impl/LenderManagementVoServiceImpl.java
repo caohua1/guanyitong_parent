@@ -17,34 +17,24 @@ public class LenderManagementVoServiceImpl implements LenderManagementVoService 
     private LenderManagementVoDao lenderManagementVoDao;
 
     /**
-     * 分页查询出借人银行卡信息（业务层）
+     * 分页查询出借人银行卡信息（业务层,条件查询）
      * @param pageNum
      * @param pageSize
      * @return
      */
+
     @Override
-    public PageInfo<LenderManagementVo> listLenderManagementVo(Integer pageNum, Integer pageSize) {
+    public PageInfo<LenderManagementVo> selectLenderManagementVo(Integer pageNum, Integer pageSize,Map lenderMap){
         PageHelper.startPage(pageNum,pageSize);//开始分页
-        List<LenderManagementVo> lenderManagementVos = lenderManagementVoDao.listLenderManagementVo();
+        List<LenderManagementVo> lenderManagementVos = lenderManagementVoDao.selectLenderManagementVo(lenderMap);
         PageInfo<LenderManagementVo> lenderManagementVoPageInfo = new PageInfo<LenderManagementVo>(lenderManagementVos);
         return lenderManagementVoPageInfo;
     }
-
-    /**
-     * 模糊查询出借人银行卡信息
-     * @param needsMap
-     * @return
-     */
-    @Override
-    public LenderManagementVo selectLenderManagementVo(Map needsMap) {
-        return lenderManagementVoDao.selectLenderManagementVo(needsMap);
-    }
-
     /**
      * 条件查询出借人银行卡信息
      */
     @Override
-    public LenderManagementVo selectByIDCard(Map IDCardMap) {
-        return lenderManagementVoDao.selectByIDCard(IDCardMap);
+    public LenderManagementVo selectByID(Map IDMap) {
+        return lenderManagementVoDao.selectByID(IDMap);
     }
 }
