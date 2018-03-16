@@ -4,6 +4,7 @@ import com.guanyitong.model.Product;
 import com.guanyitong.model.ProductInfo;
 import com.guanyitong.model.vo.UserProductInfoVo;
 import com.guanyitong.service.ProductService;
+import com.guanyitong.service.UserDealService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +32,8 @@ public class BorrowMoneyController {
     //7.确认收款
     @Autowired
     private ProductService productService;
+    @Autowired
+    private UserDealService userDealService;
 
     /**
      * 投标审核管理
@@ -90,7 +93,8 @@ public class BorrowMoneyController {
 
     /**
      * 投标审核管理（审核）
-     * 修改标的状态0待审核 1审核完成 2审核失败 3未开始 4筹集中 5筹集完成 6筹集失败 7上架 8下架 9放弃
+     * 修改标的状态0待审核 1审核完成 2审核失败 3未开始 4筹集中 5筹集完成，待提现 6筹集失败 7上架 8下架 9放弃
+     *  10提现申请中 11提现成功 12提现失败
      * @param id
      * @param status
      * @return
@@ -123,7 +127,8 @@ public class BorrowMoneyController {
      * 投标审核管理
      * 投标管理
      * 借款管理
-     * 根据id查询借款明细
+     * 查看满标
+     * 根据id查询借款明细（status ==4，5 借款人数统计）
      * @param id
      * @return
      */
@@ -133,6 +138,11 @@ public class BorrowMoneyController {
         JsonResult result = new JsonResult();
         try{
             UserProductInfoVo userProductInfoVo = productService.selectBorrowInfoById(id);
+            if(userProductInfoVo !=null && (userProductInfoVo.getStatus()==4 || userProductInfoVo.getStatus()==5)){
+                //查询人数，根据productInfoId
+                Integer count = userDealService.selectCountByProductInfoId(userProductInfoVo.getProductId());
+                userProductInfoVo.setCount(count);
+            }
             result.setData(userProductInfoVo);
             result.setState(JsonResult.SUCCESS);
             result.setMessage("返回数据成功");
@@ -190,7 +200,7 @@ public class BorrowMoneyController {
     }
 
     /**
-     * 出借人列表（分页）
+     * 根据标id查询出借人列表（分页）
      * @param productInfoId
      * @param pageNum
      * @param pageSize
@@ -212,4 +222,5 @@ public class BorrowMoneyController {
         }
         return result;
     }
+
 }

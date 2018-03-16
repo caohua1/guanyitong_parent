@@ -19,7 +19,7 @@ public class UserManagerController {
     private UserService userService;
 
     /**
-     * 分页查询所有注册的用户的信息
+     * 分页查询所有出借注册的用户的信息
      * @param user
      * @param pageNum
      * @param pageSize

@@ -27,4 +27,14 @@ public class UserDealServiceImpl implements UserDealService {
         PageInfo<UserDealMoneyVo> pageInfo = new PageInfo<UserDealMoneyVo>(userDealMoneyVos);
         return pageInfo;
     }
+
+    /**
+     * 统计某标的出借人数
+     * @param productInfoId
+     * @return
+     */
+    @Override
+    public Integer selectCountByProductInfoId(Long productInfoId) {
+        return userDealDao.selectCountByProductInfoId(productInfoId);
+    }
 }

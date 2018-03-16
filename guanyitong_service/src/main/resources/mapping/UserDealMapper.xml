@@ -15,18 +15,31 @@
     private Integer dealMoney;//出借金额
     private Integer status;//状态（0未审核 1后台审核成功 2已还款）-->
      <select id="selectAllUserDeal" parameterType="java.util.Map" resultType="com.guanyitong.model.vo.UserDealMoneyVo">
-          select DISTINCT udm.id,udm.dealMoney,am.realName,ui.username,pi.NO,pi.monthNum,pi.yield,p.name,udm.status from user_deal_money udm
+          select DISTINCT udm.id,udm.dealMoney,udm.createTime,am.realName,ui.username,pi.NO,pi.ZMoney,pi.yield,p.name,udm.status from user_deal_money udm
           left join account_manager am on am.userId = udm.userId
           left join user_info ui on ui.id = udm.userId
           left join productinfo pi on pi.id = udm.productInfoId
           left join product p on p.id = pi.productId
           where 1=1
-          <if test="productInfoId !=null ">
-              and udm.productInfoId = #{productInfoId}
+          <if test="username !=null and username !=''">
+              and  ui.username = #{username}
           </if>
-          <if test="status !=null ">
-               and udm.status = #{status}
+          <if test="name !=null and name !=''">
+              and  p.name = #{name}
           </if>
+          <if test="idCard !=null and idCard !=''">
+              and  am.idCard = #{idCard}
+          </if>
+          <if test="startTime !=null and endTime !=null">
+              and  udm.createTime BETWEEN #{startTime} and endTime
+          </if>
+          <if test="minMoney !=null and maxMoney">
+               and udm.dealMoney BETWEEN #{minMoney} and #{maxMoney}
+          </if>
+     </select>
+     <!--根据productInfoId，查询出借人数-->
+     <select id="selectCountByProductInfoId" parameterType="Long" resultType="Integer">
+          select count(id) from user_deal_money where productInfoId = #{productInfoId}
      </select>
      <!--查询某个标的所有用户的出借情况（放弃的都退款）-->
      <select id="selectUserDealByProductInfoId" parameterType="Long" resultType="com.guanyitong.model.UserDealMoney">

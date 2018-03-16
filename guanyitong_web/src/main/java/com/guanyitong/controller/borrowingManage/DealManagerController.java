@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import util.JsonResult;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,24 +21,44 @@ public class DealManagerController {
     private UserDealService userDealService;
 
     /**
-     * (分页)查询所有用户的出借情况
-     * @param productInfoId
-     * @param status
+     * 出借用户统计（分页）
+     * @param userDealMoneyVo
+     * @param startTime
+     * @param endTime
      * @param pageNum
      * @param pageSize
      * @return
      */
     @RequestMapping("/selectAllUserDeal")
     @ResponseBody
-    public JsonResult selectAllUserDeal(@RequestParam(required=false) Long productInfoId, @RequestParam(required=false)Integer status, Integer pageNum, Integer pageSize){
+    public JsonResult selectAllUserDeal(UserDealMoneyVo userDealMoneyVo, @RequestParam(required=false)Date startTime,
+                                        @RequestParam(required=false)Date endTime,@RequestParam(required=false)Integer minMoney,
+                                        @RequestParam(required=false)Integer maxMoney,Integer pageNum, Integer pageSize){
         JsonResult result = new JsonResult();
         try{
             Map map = new HashMap();
-            if(productInfoId !=null){
-                map.put("productInfoId",productInfoId);
-            }
-            if(status !=null){
-                map.put("status",status);
+            if(userDealMoneyVo!=null){
+                if(userDealMoneyVo.getUsername() !=null && !("").equals(userDealMoneyVo.getUsername())){
+                    map.put("username",userDealMoneyVo.getUsername() );
+                }
+                if(userDealMoneyVo.getName() !=null && !("").equals(userDealMoneyVo.getName() )){
+                    map.put("name",userDealMoneyVo.getName());
+                }
+                if(userDealMoneyVo.getIdCard()!=null &&!("").equals(userDealMoneyVo.getIdCard())){
+                    map.put("idCard",userDealMoneyVo.getIdCard());
+                }
+                if(startTime !=null){
+                    map.put("startTime",startTime);
+                }
+                if(endTime !=null){
+                    map.put("endTime",endTime);
+                }
+                if(minMoney !=null){
+                    map.put("minMoney",minMoney);
+                }
+                if(maxMoney !=null){
+                    map.put("maxMoney",maxMoney);
+                }
             }
             PageInfo<UserDealMoneyVo> pageInfo = userDealService.selectAllUserDeal(map, pageNum, pageSize);
             result.setState(JsonResult.SUCCESS);

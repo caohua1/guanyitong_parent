@@ -28,4 +28,11 @@ public interface UserDealDao {
      * @return
      */
     public Integer updateUserDealMoneyStatus(Map map);
+
+    /**
+     * 统计某标的出借人数
+     * @param productInfoId
+     * @return
+     */
+    public Integer selectCountByProductInfoId(Long productInfoId);
 }
