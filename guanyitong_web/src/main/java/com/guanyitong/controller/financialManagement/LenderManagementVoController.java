@@ -76,25 +76,4 @@ public class LenderManagementVoController {
         }
         return result;
     }
-    /**
-     * 条件查询（根据借款人身份证）
-     */
-    @RequestMapping("/selectIDCard")
-    @ResponseBody
-    public JsonResult selectIDCard(String IDCard){
-        JsonResult result = new JsonResult();
-        try{
-            Map<Object, Object> IDCardMap = new HashMap<Object, Object>();
-            IDCardMap.put("idCard",IDCard);
-            LenderManagementVo selectByIDCardLenderManagementVo= lenderManagementVoService.selectByIDCard(IDCardMap);
-            result.setData(selectByIDCardLenderManagementVo);
-            result.setState(JsonResult.SUCCESS);
-            result.setMessage("返回数据成功");
-        }catch (Exception e){
-            e.printStackTrace();
-            result.setState(JsonResult.ERROR);
-            result.setMessage("返回数据失败");
-        }
-        return result;
-    }
 }

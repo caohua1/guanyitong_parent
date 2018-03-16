@@ -12,7 +12,7 @@
         ON a.userId=u.id
     </select>
 
-    <!-- 模糊查找-->
+    <!-- 条件查询-->
     <select id="selectLenderManagementVo" parameterType="java.util.Map" resultType="com.guanyitong.model.vo.LenderManagementVo">
         SELECT username,realName,idCard,bankName,bankNum,createTime,a.`status`
         FROM account_manager a
