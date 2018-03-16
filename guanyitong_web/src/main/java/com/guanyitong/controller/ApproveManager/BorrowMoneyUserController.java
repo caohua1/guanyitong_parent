@@ -71,9 +71,11 @@ public class BorrowMoneyUserController {
     }
 
     /**
-     *  审核借款人的基本信息(合同管理)
-     * 0 认证信息待审核  1 认证审核失败 2 认证信息审核成功，借款待审核
-     * 3 借款审核失败  4 借款审核成功，合同待确认  5 合同确认失败  6 合同确认成功，产品待审核
+     *  审核 借款人的基本信息(合同管理)
+     *  审核 借款额度
+     *  合同的确认
+     * 0 认证信息待审核  1 认证审核失败 2 认证信息审核成功，借款额度待审核
+     * 3 借款额度审核失败  4 借款额度审核成功，合同待确认  5 合同确认失败  6 合同确认成功，产品待审核
      * @param id
      * @param status
      * @param causeBy
@@ -112,6 +114,7 @@ public class BorrowMoneyUserController {
 
     /**
      * 展示需要认证审核资料
+     * 查看页面
      */
     @RequestMapping("/selectBorrowMoneyUser")
     @ResponseBody

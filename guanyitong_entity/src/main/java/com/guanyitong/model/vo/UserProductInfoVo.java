@@ -10,6 +10,7 @@ public class UserProductInfoVo extends ProductInfo implements Serializable {
     private Integer dealMoney;//出借金额（交易）
     private String name;//投资类型（产品）
     private Double money;//盈利金额
+    private Integer count;//某标的人数统计
 
 
     public String getUsername() {
@@ -36,7 +37,6 @@ public class UserProductInfoVo extends ProductInfo implements Serializable {
         this.name = name;
     }
 
-
     public Double getMoney() {
         return money;
     }
@@ -45,5 +45,11 @@ public class UserProductInfoVo extends ProductInfo implements Serializable {
         this.money = money;
     }
 
+    public Integer getCount() {
+        return count;
+    }
 
+    public void setCount(Integer count) {
+        this.count = count;
+    }
 }

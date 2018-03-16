@@ -12,4 +12,10 @@ public interface UserDealService {
      * @return
      */
     public PageInfo<UserDealMoneyVo> selectAllUserDeal(Map map,Integer pageNum,Integer pageSize);
+    /**
+     * 统计某标的出借人数
+     * @param productInfoId
+     * @return
+     */
+    public Integer selectCountByProductInfoId(Long productInfoId);
 }
