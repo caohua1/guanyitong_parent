@@ -109,4 +109,11 @@ public interface ProductService {
      * @return
      */
     public Integer updateProductInfo(ProductInfo productInfo);
+
+    /**
+     * 产品上架，下架，放弃（退款给用户）
+     * @param map
+     * @return
+     */
+    public Boolean updateStatus(Map map);
 }

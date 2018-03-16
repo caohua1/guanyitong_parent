@@ -18,6 +18,12 @@
 		#{userId},#{realName},#{idCard},#{bankName},#{bankNum},#{yuE},#{bankAddress},#{createTime}
           );
     </insert>
+
+    <!--放弃的标，进行退款到用户的余额中-->
+    <update id="backMoney" parameterType="java.util.Map">
+        update account_manager set yuE = yuE + #{dealMoney} where userId = #{userId}
+    </update>
+
     <!--用户支付信息（支付密码）-->
     <select id="insertPayInfo" parameterType="com.guanyitong.model.UserPayInfo">
         insert into user_pay_info (userId,payPassword) VALUES (#{userId},#{payPassword});
@@ -32,19 +38,7 @@
     <select id="selectUserOutInfo" parameterType="java.util.Map" resultType="com.guanyitong.model.UserDealMoney">
         select * from user_deal_money where userId=#{userId} and status !=0
     </select>
-    <!--查询当前用户的回款记录-->
-    <select id="selectUserBackMoney" parameterType="java.util.Map" resultType="com.guanyitong.model.BackMoney">
-        select * from back_money where 1=1
-        <if test="userId !=null">
-            and userId = #{userId}
-        </if>
-        <if test="dealMoneyId !=null">
-            and dealMoneyId = #{dealMoneyId}
-        </if>
-        <if test="status !=null">
-            and status =#{status}
-        </if>
-    </select>
+
     <!--查询当前用户的提现记录-->
     <select id="selectUserWithdrawalMoney" parameterType="java.util.Map" resultType="com.guanyitong.model.WithdrawalMoney">
         select * from withdrawal_money where 1=1
@@ -96,4 +90,5 @@
     <update id="updateInventory" parameterType="java.util.Map">
         update treasure set inventory=#{inventory},saleNum=#{saleNum} where id=#{id} and status = 1
     </update>
+
 </mapper>
