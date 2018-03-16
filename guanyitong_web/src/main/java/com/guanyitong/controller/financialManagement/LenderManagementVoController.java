@@ -23,34 +23,20 @@ public class LenderManagementVoController {
 
     /**
      * 分页查询出借人银行卡信息
-     */
-    @RequestMapping("/listLenderManagement")
-    @ResponseBody
-    public JsonResult listLenderManagement(Integer pageNum, Integer pageSize){
-        JsonResult result = new JsonResult();
-       try{
-           PageInfo<LenderManagementVo> lenderManagementVoPageInfo = lenderManagementVoService.listLenderManagementVo(pageNum, pageSize);
-           result.setData(lenderManagementVoPageInfo);
-           result.setState(JsonResult.SUCCESS);
-           result.setMessage("返回数据成功");
-       } catch (Exception e){
-           e.printStackTrace();
-           result.setState(JsonResult.ERROR);
-           result.setMessage("返回数据失败");
-       }
-        return result;
-    }
-
-    /**
-     * 模糊查询出借人银行卡信息
+     * 条件查询出借人银行卡信息
      */
     @RequestMapping("/selectLenderManagement")
     @ResponseBody
-    public JsonResult selectLenderManagement(@RequestParam(required=false)LenderManagementVo lenderManagementVo, @RequestParam(required=false)Date firstDate, @RequestParam(required=false)Date lastDate){
+    public JsonResult selectLenderManagement(@RequestParam(required=false)LenderManagementVo lenderManagementVo,
+                                             @RequestParam(required=false)Date firstDate, @RequestParam(required=false)Date lastDate,
+                                             @RequestParam(required=false)Integer pageNum, @RequestParam(required=false)Integer pageSize){
         JsonResult result = new JsonResult();
         Map<Object, Object> lenderMap = new HashMap<Object, Object>();
         try{
         if(lenderManagementVo!=null){
+            if(lenderManagementVo.getId()!=null){
+                lenderMap.put("id",lenderManagementVo.getId());
+            }
             if(lenderManagementVo.getUsername()!=null && !("").equals(lenderManagementVo.getUsername())){
                 lenderMap.put("username",lenderManagementVo.getUsername());
             }
@@ -61,14 +47,35 @@ public class LenderManagementVoController {
                 lenderMap.put("idCard",lenderManagementVo.getIdCard());
             }if(firstDate!=null){
                 lenderMap.put("firstDate",firstDate);
-            }if(lastDate!=null){
+            }
+            if(lastDate!=null){
                 lenderMap.put("lastDate",lastDate);
             }
-            LenderManagementVo lenderManagementVo1 = lenderManagementVoService.selectLenderManagementVo(lenderMap);
+        }
+            PageInfo<LenderManagementVo> lenderManagementVo1 = lenderManagementVoService.selectLenderManagementVo(pageNum, pageSize,lenderMap);
             result.setData(lenderManagementVo1);
             result.setState(JsonResult.SUCCESS);
             result.setMessage("返回数据成功");
+
+        }catch (Exception e){
+            e.printStackTrace();
+            result.setState(JsonResult.ERROR);
+            result.setMessage("返回数据失败");
         }
+        return result;
+    }
+
+    @RequestMapping("/selectById")
+    @ResponseBody
+    public JsonResult selectById(Integer id){
+        JsonResult result = new JsonResult();
+        Map<Object, Object> IDMap = new HashMap<Object, Object>();
+        IDMap.put("id",id);
+        try{
+            LenderManagementVo lenderManagementVo = lenderManagementVoService.selectByID(IDMap);
+            result.setData(lenderManagementVo);
+            result.setState(JsonResult.SUCCESS);
+            result.setMessage("返回数据成功");
         }catch (Exception e){
             e.printStackTrace();
             result.setState(JsonResult.ERROR);

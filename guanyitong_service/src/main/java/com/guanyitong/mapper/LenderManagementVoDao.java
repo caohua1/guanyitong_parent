@@ -10,20 +10,15 @@ import java.util.Map;
  */
 public interface LenderManagementVoDao  {
 
-    /**
-     * 查询出借人银行
-     * @return
-     */
-    public List<LenderManagementVo> listLenderManagementVo();
 
     /**
-     * 模糊查找出借人银行卡
+     * 条件查找出借人银行卡
      * @return
      */
-    public LenderManagementVo selectLenderManagementVo(Map needsMap);
+    public List<LenderManagementVo> selectLenderManagementVo(Map needsMap);
 
     /**
      * 条件查找（根据用户身份证查询）
      */
-    public  LenderManagementVo selectByIDCard(Map IDCardMap);
+    public  LenderManagementVo selectByID(Map IDMap);
 }
