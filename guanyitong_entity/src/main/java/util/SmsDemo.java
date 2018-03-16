@@ -34,6 +34,13 @@ public class SmsDemo {
     static final String accessKeyId = "yourAccessKeyId";
     static final String accessKeySecret = "yourAccessKeySecret";
 
+    /**
+     * 短信发送验证码
+     * @param realName
+     * @param username
+     * @return
+     * @throws ClientException
+     */
     public static SendSmsResponse sendSms(String realName,String username) throws ClientException {
 
         //可自助调整超时时间
