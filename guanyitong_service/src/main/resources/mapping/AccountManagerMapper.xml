@@ -19,6 +19,10 @@
           );
     </insert>
 
+    <!--查看出借用户的余额-->
+    <select id="selectUserYuE" parameterType="Long" resultType="com.guanyitong.model.AccountManager">
+        select * from account_manager where userId = #{userId}
+    </select>
     <!--放弃的标，进行退款到用户的余额中-->
     <update id="backMoney" parameterType="java.util.Map">
         update account_manager set yuE = yuE + #{dealMoney} where userId = #{userId}

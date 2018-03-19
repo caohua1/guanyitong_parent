@@ -1,6 +1,7 @@
 package com.guanyitong.controller.app;
 import com.guanyitong.model.*;
 import com.guanyitong.service.AccountManagerService;
+import com.guanyitong.service.WithdrawMoneyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,8 @@ import java.util.*;
 public class AccountManagerController {
     @Autowired
     private AccountManagerService accountManagerService;
+    @Autowired
+    private WithdrawMoneyService withdrawMoneyService;
 
     /**
      * 验证身份证号格式是否符合
@@ -160,6 +163,42 @@ public class AccountManagerController {
             result.setMessage("返回数据失败");
         }
         return result;
+    }
+
+    /**
+     * 出借人申请提现（查看余额是否足够）
+     * @param withdrawalMoney
+     * @return
+     */
+    public JsonResult withdrawal(WithdrawalMoney withdrawalMoney){
+       JsonResult result = new JsonResult();
+       try{
+           if(withdrawalMoney !=null){
+               AccountManager accountManager = accountManagerService.selectUserYuE(withdrawalMoney.getUserId());
+               if(accountManager !=null){
+                   int txMoney = Integer.parseInt(withdrawalMoney.getTxMoney());//提现金额
+                   if( accountManager.getYuE()>=txMoney){
+                       withdrawalMoney.setUserType(0);//出借人 提现
+                       Integer i = withdrawMoneyService.insertWithdrawMoney(withdrawalMoney);
+                       if(i>0){
+                           result.setState(JsonResult.SUCCESS);
+                           result.setMessage("申请提现成功");
+                       }else{
+                           result.setState(JsonResult.ERROR);
+                           result.setMessage("申请提现失败");
+                       }
+                   }else{
+                       result.setState(JsonResult.ERROR);
+                       result.setMessage("您的余额不足");
+                   }
+               }
+           }
+       }catch(Exception e){
+           e.printStackTrace();
+           result.setState(JsonResult.ERROR);
+           result.setMessage("操作失败");
+       }
+       return result;
     }
 
     /**

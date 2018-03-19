@@ -20,6 +20,12 @@ public interface AccountManagerService {
      * @return
      */
     public AccountManager selectBank(AccountManager accountManager);
+    /**
+     * 查看出借用户的余额
+     * @param userId
+     * @return
+     */
+    public AccountManager selectUserYuE(Long userId);
 
     /**
      * 根据id查询某一个出借记录
