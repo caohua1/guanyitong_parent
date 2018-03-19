@@ -7,6 +7,12 @@ import java.util.List;
 import java.util.Map;
 
 public interface UserDealDao {
+    /**
+     * 用户出借（添加）
+     * @param userDealMoney
+     * @return
+     */
+    public Integer insertUserDealMoney(UserDealMoney userDealMoney);
 
     /**
      * (分页)查询所有用户的出借情况
