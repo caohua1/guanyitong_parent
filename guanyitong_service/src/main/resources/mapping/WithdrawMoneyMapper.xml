@@ -19,6 +19,9 @@
         <if test="shTime !=null">
           shTime = #{shTime}
         </if>
+        <if test="txTime !=null and dzMoney !=null">
+            ,txTime = #{txTime}, dzMoney = #{dzMoney}
+        </if>
       where id = #{id}
     </update>
 </mapper>

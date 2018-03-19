@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import util.JsonResult;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,8 +30,8 @@ public class WithdrawMoneyController {
         JsonResult result = new JsonResult();
         try{
             withdrawalMoney.setUserType(1);//借款人申请提现
-            Integer i = withdrawMoneyService.insertWithdrawMoney(withdrawalMoney);
-            if(i>0){
+            Boolean b = withdrawMoneyService.insertWithdrawMoney(withdrawalMoney);
+            if(b==true){
                 result.setState(JsonResult.SUCCESS);
                 result.setMessage("申请提现成功");
             }else{
@@ -53,7 +54,7 @@ public class WithdrawMoneyController {
      */
     @RequestMapping("/updateStatus")
     @ResponseBody
-    public JsonResult updateStatus(@RequestParam(required = false)Integer status,  Long id){
+    public JsonResult updateStatus(@RequestParam(required = false)Integer status,  Long id,@RequestParam(required = false)String dzMoney){
         JsonResult result = new JsonResult();
         try{
             Map map = new HashMap();
@@ -62,6 +63,10 @@ public class WithdrawMoneyController {
             }
             if(status !=null){
                 map.put("status",status);
+            }
+            if(status ==1){
+                map.put("txTime",new Date());
+                map.put("dzMoney",dzMoney);
             }
             Integer i = withdrawMoneyService.updateStatus(map);
             if(i>0){

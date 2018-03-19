@@ -10,7 +10,7 @@ public interface WithdrawMoneyService {
      * @param withdrawalMoney
      * @return
      */
-    public Integer insertWithdrawMoney(WithdrawalMoney withdrawalMoney);
+    public Boolean insertWithdrawMoney(WithdrawalMoney withdrawalMoney);
 
     /**
      * 确认提现成功、失败（修改状态）,添加审核时间

@@ -170,6 +170,8 @@ public class AccountManagerController {
      * @param withdrawalMoney
      * @return
      */
+    @RequestMapping("/withdrawal")
+    @ResponseBody
     public JsonResult withdrawal(WithdrawalMoney withdrawalMoney){
        JsonResult result = new JsonResult();
        try{
@@ -179,8 +181,8 @@ public class AccountManagerController {
                    int txMoney = Integer.parseInt(withdrawalMoney.getTxMoney());//提现金额
                    if( accountManager.getYuE()>=txMoney){
                        withdrawalMoney.setUserType(0);//出借人 提现
-                       Integer i = withdrawMoneyService.insertWithdrawMoney(withdrawalMoney);
-                       if(i>0){
+                       Boolean b = withdrawMoneyService.insertWithdrawMoney(withdrawalMoney);
+                       if(b==true){
                            result.setState(JsonResult.SUCCESS);
                            result.setMessage("申请提现成功");
                        }else{
