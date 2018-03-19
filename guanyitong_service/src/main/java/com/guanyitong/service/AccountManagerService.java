@@ -34,6 +34,13 @@ public interface AccountManagerService {
      */
     public List<UserDealMoney> selectUserOutInfo(Map map);
 
+    /**
+     * 查看出借用户的余额
+     * @param userId
+     * @return
+     */
+    public AccountManager selectUserYuE(Long userId);
+
 
     /**
      * 查询当前用户的提现记录

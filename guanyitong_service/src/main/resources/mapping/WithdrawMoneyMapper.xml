@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guanyitong.mapper.WithdrawMoneyDao">
+
+    <!--申请提现，添加数据到数据库 status = 0-->
+    <insert id="insertWithdrawMoney" parameterType="com.guanyitong.model.WithdrawalMoney">
+        insert withdrawal_money (userId,borrowMoneyUserId,userType,txNumber,txBank,txMoney,dzMoney,sxf,txTime,sqUser) values(
+            #{userId}, #{borrowMoneyUserId},#{userType},#{txNumber},#{txBank},#{txMoney},#{dzMoney},#{sxf},#{txTime},#{sqUser}
+        );
+    </insert>
+    <!--确认提现成功、失败（修改状态）,添加审核时间-->
+    <update id="updateStatus" parameterType="java.util.Map">
+      update withdrawal_money set
+        <if test="status !=null">
+            status = #{status}
+        </if>
+        <if test="shTime !=null">
+          shTime = #{shTime}
+        </if>
+        <if test="txTime !=null and dzMoney !=null">
+            ,txTime = #{txTime}, dzMoney = #{dzMoney}
+        </if>
+      where id = #{id}
+    </update>
+</mapper>

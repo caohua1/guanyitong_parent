@@ -4,6 +4,12 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.guanyitong.mapper.UserDealDao">
 
+     <!--用户出借（添加）-->
+     <insert id="insertUserDealMoney" parameterType="com.guanyitong.model.UserDealMoney">
+          insert into user_deal_money (userId,productInfoId,dealMoney,createTime)
+          values(#{userId},#{productInfoId},#{dealMoney},#{createTime});
+     </insert>
+
      <!--(分页)查询所有用户的出借情况
      private Long id;
     private String username;
