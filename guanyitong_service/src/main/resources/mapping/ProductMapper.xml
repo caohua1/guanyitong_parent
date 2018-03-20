@@ -90,7 +90,7 @@
 
 
      <!--========================================================================借款流程-->
-     <!--（分页）借款列表-->
+     <!--（分页）（投标管理）投标列表-->
      <select id="selectBorrowInfo" parameterType="java.util.Map" resultType="com.guanyitong.model.vo.UserProductInfoVo">
           select productinfo.*,product.name from productinfo
           left join product on product.id = productinfo.productId
