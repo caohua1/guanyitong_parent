@@ -104,9 +104,21 @@
           <if test="startTime !=null and endTime !=null">
                and createTime BETWEEN #{startTime} and #{endTime}
           </if>
+         <if test="startTime !=null and endTime ==null">
+             and createTime &gt;= #{startTime}
+         </if>
+         <if test="startTime ==null and endTime !=null">
+             and createTime &lt;= #{endTime}
+         </if>
           <if test="startBorrowTime !=null and endBorrowTime !=null">
-               and startBorrowTime = #{startBorrowTime} and endBorrowTime = #{endBorrowTime}
+             and startBorrowTime &gt;= #{startBorrowTime} and endBorrowTime &lt;= #{endBorrowTime}
           </if>
+         <if test="startBorrowTime !=null and endBorrowTime ==null">
+             and startBorrowTime &gt;= #{startBorrowTime}
+         </if>
+         <if test="startBorrowTime ==null and endBorrowTime !=null">
+             and endBorrowTime &lt;= #{endBorrowTime}
+         </if>
           <if test="backMoneyType !=null and backMoneyType !=''">
                and backMoneyType = #{backMoneyType}
           </if>
