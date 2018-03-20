@@ -31,6 +31,4 @@
                 AND r.`status`=#{status}
             </if>
     </select>
-
-
 </mapper>
