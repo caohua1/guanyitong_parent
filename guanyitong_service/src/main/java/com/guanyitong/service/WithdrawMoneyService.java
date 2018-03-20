@@ -1,7 +1,7 @@
 package com.guanyitong.service;
-
+import com.github.pagehelper.PageInfo;
 import com.guanyitong.model.WithdrawalMoney;
-
+import com.guanyitong.model.vo.WithdrawalMoneyVo;
 import java.util.Map;
 
 public interface WithdrawMoneyService {
@@ -18,4 +18,10 @@ public interface WithdrawMoneyService {
      * @return
      */
     public Integer updateStatus(Map map);
+    /**
+     * （分页，条件查询）查询所有提现数据
+     * @param withdrawalMoneyVo
+     * @return
+     */
+    public PageInfo<WithdrawalMoneyVo> selectWithdrawal(WithdrawalMoneyVo withdrawalMoneyVo,Integer pageNum,Integer pageSize);
 }

@@ -1,14 +1,18 @@
 package com.guanyitong.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.guanyitong.mapper.AccountManagerDao;
 import com.guanyitong.mapper.WithdrawMoneyDao;
 import com.guanyitong.model.WithdrawalMoney;
+import com.guanyitong.model.vo.WithdrawalMoneyVo;
 import com.guanyitong.service.WithdrawMoneyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -50,5 +54,20 @@ public class WithdrawMoneyServiceImpl implements WithdrawMoneyService{
     @Override
     public Integer updateStatus(Map map) {
         return withdrawMoneyDao.updateStatus(map);
+    }
+
+    /**
+     * 确认提现成功、失败（修改状态）,添加审核时间
+     * @param withdrawalMoneyVo
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public PageInfo<WithdrawalMoneyVo> selectWithdrawal(WithdrawalMoneyVo withdrawalMoneyVo, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<WithdrawalMoneyVo> withdrawalMoneyVos = withdrawMoneyDao.selectWithdrawal(withdrawalMoneyVo);
+        PageInfo<WithdrawalMoneyVo> pageInfo = new PageInfo<WithdrawalMoneyVo>(withdrawalMoneyVos);
+        return pageInfo;
     }
 }

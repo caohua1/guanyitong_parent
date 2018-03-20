@@ -1,7 +1,9 @@
 package com.guanyitong.mapper;
 
 import com.guanyitong.model.WithdrawalMoney;
+import com.guanyitong.model.vo.WithdrawalMoneyVo;
 
+import java.util.List;
 import java.util.Map;
 
 public interface WithdrawMoneyDao {
@@ -18,4 +20,11 @@ public interface WithdrawMoneyDao {
      * @return
      */
     public Integer updateStatus(Map map);
+
+    /**
+     * （分页，条件查询）查询所有提现数据
+     * @param withdrawalMoneyVo
+     * @return
+     */
+    public List<WithdrawalMoneyVo> selectWithdrawal(WithdrawalMoneyVo withdrawalMoneyVo);
 }
