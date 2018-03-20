@@ -110,12 +110,12 @@ public class WithdrawalMoney implements Serializable {
         this.status = status;
     }
 
-    public String getShUser() {
+    public String getSqUser() {
         return sqUser;
     }
 
-    public void setShUser(String shUser) {
-        this.sqUser = shUser;
+    public void setShUser(String sqUser) {
+        this.sqUser = sqUser;
     }
 
 }

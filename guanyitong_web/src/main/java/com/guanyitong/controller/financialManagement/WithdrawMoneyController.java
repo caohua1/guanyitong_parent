@@ -1,6 +1,8 @@
 package com.guanyitong.controller.financialManagement;
 
+import com.github.pagehelper.PageInfo;
 import com.guanyitong.model.WithdrawalMoney;
+import com.guanyitong.model.vo.WithdrawalMoneyVo;
 import com.guanyitong.service.WithdrawMoneyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,6 +48,29 @@ public class WithdrawMoneyController {
         return result;
     }
 
+    /**
+     * 分页，条件查询，所有提现数据
+     * @param withdrawalMoneyVo
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @RequestMapping("/selectWithdrawal")
+    @ResponseBody
+    public JsonResult selectWithdrawal(WithdrawalMoneyVo withdrawalMoneyVo,Integer pageNum,Integer pageSize){
+        JsonResult result = new JsonResult();
+        try{
+            PageInfo<WithdrawalMoneyVo> pageInfo = withdrawMoneyService.selectWithdrawal(withdrawalMoneyVo, pageNum, pageSize);
+            result.setState(JsonResult.SUCCESS);
+            result.setData(pageInfo);
+            result.setMessage("返回数据成功");
+        }catch(Exception e){
+            e.printStackTrace();
+            result.setState(JsonResult.ERROR);
+            result.setMessage("返回数据失败");
+        }
+        return result;
+    }
     /**
      * 确认提现1成功、2失败（修改状态）,添加审核时间
      * @param status
