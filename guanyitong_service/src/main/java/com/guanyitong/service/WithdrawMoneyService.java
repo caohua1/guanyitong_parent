@@ -17,7 +17,7 @@ public interface WithdrawMoneyService {
      * @param map
      * @return
      */
-    public Integer updateStatus(Map map);
+    public Boolean updateStatus(Map map);
     /**
      * （分页，条件查询）查询所有提现数据
      * @param withdrawalMoneyVo

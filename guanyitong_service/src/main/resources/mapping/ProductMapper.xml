@@ -195,9 +195,18 @@
         where id = #{id}
     </update>
 
-      <!--产品 上架，下架，放弃（退款）-->
+      <!--产品 上架，下架，放弃（退款）10待提现，11提现成功 12 提现失败-->
     <update id="updateStatus" parameterType="java.util.Map">
-        update productinfo set status = #{status} where id = #{id}
+        update productinfo set status = #{status} where 1=1
+        <if test="id !=null">
+           and id = #{id}
+        </if>
+        <if test="borrowMoneyUserId !=null and borrowMoneyUserId !=''">
+            and borrowMoneyUserId = #{borrowMoneyUserId}
+        </if>
+        <if test="status1 !=null">
+            and status = #{status1}
+        </if>
     </update>
 
 </mapper>

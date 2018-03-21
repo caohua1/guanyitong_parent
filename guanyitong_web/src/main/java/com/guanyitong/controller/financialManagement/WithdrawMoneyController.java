@@ -79,7 +79,7 @@ public class WithdrawMoneyController {
      */
     @RequestMapping("/updateStatus")
     @ResponseBody
-    public JsonResult updateStatus(@RequestParam(required = false)Integer status,  Long id,@RequestParam(required = false)String dzMoney){
+    public JsonResult updateStatus(@RequestParam(required = false)String borrowMoneyUserId,@RequestParam(required = false)Integer status,  Long id,@RequestParam(required = false)String dzMoney){
         JsonResult result = new JsonResult();
         try{
             Map map = new HashMap();
@@ -92,9 +92,13 @@ public class WithdrawMoneyController {
             if(status ==1){
                 map.put("txTime",new Date());
                 map.put("dzMoney",dzMoney);
+                map.put("borrowMoneyUserId",borrowMoneyUserId);
             }
-            Integer i = withdrawMoneyService.updateStatus(map);
-            if(i>0){
+            if(status ==2){
+                map.put("borrowMoneyUserId",borrowMoneyUserId);
+            }
+            Boolean b = withdrawMoneyService.updateStatus(map);
+            if(b==true){
                 result.setState(JsonResult.SUCCESS);
                 result.setMessage("操作成功");
             }else{
