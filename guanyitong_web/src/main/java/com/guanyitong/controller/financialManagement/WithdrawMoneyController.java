@@ -1,19 +1,20 @@
 package com.guanyitong.controller.financialManagement;
 
 import com.github.pagehelper.PageInfo;
+import com.guanyitong.model.BackMoney;
 import com.guanyitong.model.WithdrawalMoney;
 import com.guanyitong.model.vo.WithdrawalMoneyVo;
+import com.guanyitong.service.BackMoneyService;
 import com.guanyitong.service.WithdrawMoneyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import util.DateChangeUtil;
 import util.JsonResult;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/withdrawMoney")
@@ -21,6 +22,8 @@ import java.util.Map;
 public class WithdrawMoneyController {
     @Autowired
     private WithdrawMoneyService withdrawMoneyService;
+    @Autowired
+    private BackMoneyService backMoneyService;
 
     /**
      * 提现，添加数据（//pc端的是借款人,有申请人姓名）
@@ -72,7 +75,7 @@ public class WithdrawMoneyController {
         return result;
     }
     /**
-     * 确认提现1成功、2失败（修改状态）,添加审核时间
+     * 确认提现1成功、2失败（修改状态,如果是提现成功，那么会生成一个还款计划（批量插入backMoney））,添加审核时间
      * @param status
      * @param id
      * @return
@@ -112,4 +115,6 @@ public class WithdrawMoneyController {
         }
         return result;
     }
+
+
 }
