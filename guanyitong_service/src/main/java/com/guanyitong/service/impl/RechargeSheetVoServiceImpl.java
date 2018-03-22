@@ -2,8 +2,10 @@ package com.guanyitong.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.guanyitong.mapper.AccountManagerDao;
 import com.guanyitong.mapper.RechargeMoneyDao;
 
+import com.guanyitong.model.RechargeMoney;
 import com.guanyitong.model.vo.RechargeSheetVo;
 import com.guanyitong.service.RechargeSheetVoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class RechargeSheetVoServiceImpl implements RechargeSheetVoService {
     @Autowired
     private RechargeMoneyDao rechargeMoneyDao;
 
+    @Autowired
+    private AccountManagerDao accountManagerDao;
+
     /**
      * 分页查询
      * 条件查询（）
@@ -33,5 +38,28 @@ public class RechargeSheetVoServiceImpl implements RechargeSheetVoService {
         return rechargeSheetVoPageInfo;
     }
 
+    /**
+     * 添加充值记录并修改当前用户余额
+     * @param rechargeMoney
+     * @return
+     */
+    @Override
+    public boolean insertRechargeMoney(RechargeMoney rechargeMoney) {
+        Long id = rechargeMoneyDao.insertRechargeMoney(rechargeMoney);
+        HashMap<Object, Object> balanceMap = new HashMap<Object, Object>();
+        balanceMap.put("userId",rechargeMoney.getUserId());
+        balanceMap.put("yuE",rechargeMoney.getRechargeMoney());
+        Integer integer = accountManagerDao.updateBalance(balanceMap);
+        return false;
+    }
 
+    /**
+     * 修改充值记录状态
+     * @param id
+     * @return
+     */
+    @Override
+    public Integer updateRechargeMoney(Long id) {
+        return rechargeMoneyDao.updateRechargeMoney(id);
+    }
 }

@@ -31,4 +31,30 @@
                 AND r.`status`=#{status}
             </if>
     </select>
+    <insert id="insertRechargeMoney" useGeneratedKeys="true" keyProperty="id" parameterType="com.guanyitong.model.RechargeMoney">
+        INSERT INTO recharge_money (
+	    userId,
+	    rechargeType,
+	    serial,
+	    rechargeMoney,
+	    rate,
+        dzMoney,
+        rechargeTime,
+        status
+    )
+        VALUES
+	(
+		#{userId},
+		#{rechargeType},
+		#{serial},
+		#{rechargeMoney},
+		#{rate},
+		#{dzMoney},
+		#{rechargeTime},
+		#{status}
+	)
+    </insert>
+    <update id="updateRechargeMoney"  parameterType="java.lang.Long">
+        UPDATE recharge_money SET status=1 WHERE id=#{id}
+    </update>
 </mapper>

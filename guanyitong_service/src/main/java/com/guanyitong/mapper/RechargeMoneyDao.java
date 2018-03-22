@@ -1,5 +1,6 @@
 package com.guanyitong.mapper;
 
+import com.guanyitong.model.RechargeMoney;
 import com.guanyitong.model.vo.RechargeSheetVo;
 
 import java.util.List;
@@ -15,6 +16,16 @@ public interface RechargeMoneyDao {
      * @return
      */
     public List<RechargeSheetVo>  listRechargeSheetVo(Map demandMap);
+
+    /**
+     * 添加
+     */
+    public Long insertRechargeMoney(RechargeMoney rechargeMoney);
+
+    /**
+     * 修改
+     */
+    public Integer updateRechargeMoney(Long id);
 
 
 }

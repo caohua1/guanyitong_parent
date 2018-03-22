@@ -170,4 +170,6 @@ public class AccountManagerServiceImpl  implements AccountManagerService {
         int i2 = accountManagerDao.updateInventory(map);
         return (i>0&&i1>0&&i2>0)?1:0;
     }
+
+
 }

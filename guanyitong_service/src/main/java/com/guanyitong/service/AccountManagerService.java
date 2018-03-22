@@ -88,4 +88,6 @@ public interface AccountManagerService {
      * @return
      */
     public int insertUserTreasure(UserTreasure userTreasure,Treasure treasure);
+
+    
 }

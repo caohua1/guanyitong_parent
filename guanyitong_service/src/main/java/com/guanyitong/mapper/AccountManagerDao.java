@@ -116,4 +116,11 @@ public interface AccountManagerDao {
      */
     public Integer backMoney(Map map);
 
+    /**
+     * 更新用户余额
+     * @param balanceMap
+     * @return
+     */
+    public  Integer updateBalance(Map balanceMap);
+
 }

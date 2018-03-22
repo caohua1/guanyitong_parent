@@ -99,4 +99,7 @@
         update treasure set inventory=#{inventory},saleNum=#{saleNum} where id=#{id} and status = 1
     </update>
 
+    <update id="updateBalance" parameterType="java.util.Map">
+        UPDATE account_manager SET yuE=yuE+#{yuE} WHERE userId=#{userId}
+    </update>
 </mapper>
