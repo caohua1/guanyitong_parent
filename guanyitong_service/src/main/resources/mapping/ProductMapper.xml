@@ -90,7 +90,7 @@
 
 
      <!--========================================================================借款流程-->
-     <!--（分页）借款列表-->
+     <!--（分页）（投标管理）投标列表-->
      <select id="selectBorrowInfo" parameterType="java.util.Map" resultType="com.guanyitong.model.vo.UserProductInfoVo">
           select productinfo.*,product.name from productinfo
           left join product on product.id = productinfo.productId
@@ -104,9 +104,21 @@
           <if test="startTime !=null and endTime !=null">
                and createTime BETWEEN #{startTime} and #{endTime}
           </if>
+         <if test="startTime !=null and endTime ==null">
+             and createTime &gt;= #{startTime}
+         </if>
+         <if test="startTime ==null and endTime !=null">
+             and createTime &lt;= #{endTime}
+         </if>
           <if test="startBorrowTime !=null and endBorrowTime !=null">
-               and startBorrowTime = #{startBorrowTime} and endBorrowTime = #{endBorrowTime}
+             and startBorrowTime &gt;= #{startBorrowTime} and endBorrowTime &lt;= #{endBorrowTime}
           </if>
+         <if test="startBorrowTime !=null and endBorrowTime ==null">
+             and startBorrowTime &gt;= #{startBorrowTime}
+         </if>
+         <if test="startBorrowTime ==null and endBorrowTime !=null">
+             and endBorrowTime &lt;= #{endBorrowTime}
+         </if>
           <if test="backMoneyType !=null and backMoneyType !=''">
                and backMoneyType = #{backMoneyType}
           </if>
@@ -114,6 +126,16 @@
                and status = #{status}
           </if>
      </select>
+    <!--查询一条数据（根据borrowMoneyUserId 和 status）-->
+    <select id="selectProductInfoByStAndBUId" parameterType="java.util.Map" resultType="com.guanyitong.model.ProductInfo">
+        select * from productinfo where 1=1
+        <if test="borrowMoneyUserId !=null and borrowMoneyUserId !=''">
+            and borrowMoneyUserId = #{borrowMoneyUserId}
+        </if>
+        <if test="status !=null">
+            and status = #{status}
+        </if>
+    </select>
      <!--根据id查询借款明细-->
      <select id="selectBorrowInfoById" parameterType="Long" resultType="com.guanyitong.model.vo.UserProductInfoVo">
           select productinfo.*,product.name from productinfo
@@ -183,9 +205,18 @@
         where id = #{id}
     </update>
 
-      <!--产品 上架，下架，放弃（退款）-->
+      <!--产品 上架，下架，放弃（退款）10待提现，11提现成功 12 提现失败-->
     <update id="updateStatus" parameterType="java.util.Map">
-        update productinfo set status = #{status} where id = #{id}
+        update productinfo set status = #{status} where 1=1
+        <if test="id !=null">
+           and id = #{id}
+        </if>
+        <if test="borrowMoneyUserId !=null and borrowMoneyUserId !=''">
+            and borrowMoneyUserId = #{borrowMoneyUserId}
+        </if>
+        <if test="status1 !=null">
+            and status = #{status1}
+        </if>
     </update>
 
 </mapper>

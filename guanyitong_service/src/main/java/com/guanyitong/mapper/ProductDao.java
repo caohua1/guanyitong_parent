@@ -116,4 +116,11 @@ public interface ProductDao {
      * @return
      */
     public Integer updateStatus(Map map);
+
+    /**
+     * 查询一条数据（根据borrowMoneyUserId 和 status）
+     * @param map
+     * @return
+     */
+    public ProductInfo selectProductInfoByStAndBUId(Map map);
 }

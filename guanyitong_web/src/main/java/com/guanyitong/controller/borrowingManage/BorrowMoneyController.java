@@ -175,7 +175,9 @@ public class BorrowMoneyController {
         return "";
     }
     /**
-     * 修改投标信息
+     * 修改投标
+     * 投标审核管理
+     * 审核投标
      * @param productInfo
      * @return
      */

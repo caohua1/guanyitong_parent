@@ -13,10 +13,10 @@ public class DateChangeUtil {
     }
 
     //加月份
-    public static Date dateAddMonths(Date date,int maonths){
+    public static Date dateAddMonths(Date date,int months){
         Calendar rightNow = Calendar.getInstance();
         rightNow.setTime(date);
-        rightNow.add(Calendar.MONTH,maonths);//日期加3个月
+        rightNow.add(Calendar.MONTH,months);//日期加3个月
         Date dt1=rightNow.getTime();
         return dt1;
     }
