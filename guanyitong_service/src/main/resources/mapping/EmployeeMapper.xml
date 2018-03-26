@@ -66,4 +66,9 @@
     <update id="deleteEmployee" parameterType="Long">
         update employee set estatus = 0 where id = #{id}
     </update>
+
+    <!-- 登陆，根据用户手机查询用户密码-->
+    <select id="register" parameterType="java.lang.Long" resultType="java.lang.String">
+        SELECT epassword FROM employee WHERE ephone=#{edeptno}
+    </select>
 </mapper>

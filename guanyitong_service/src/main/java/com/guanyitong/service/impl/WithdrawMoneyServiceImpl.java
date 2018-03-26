@@ -22,6 +22,7 @@ import java.util.*;
 
 @Service
 public class WithdrawMoneyServiceImpl implements WithdrawMoneyService{
+
     @Autowired
     private WithdrawMoneyDao withdrawMoneyDao;
     @Autowired

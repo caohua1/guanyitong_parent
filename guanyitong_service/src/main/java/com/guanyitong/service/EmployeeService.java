@@ -35,4 +35,9 @@ public interface EmployeeService {
      * @return
      */
     public Integer deleteEmployee(Long id);
+
+    /**
+     * 登陆查询
+     */
+    public boolean register(Long edeptno,String epassword);
 }
