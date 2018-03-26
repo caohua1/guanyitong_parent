@@ -14,7 +14,16 @@
 
      <!--查询某项产品的所有详细信息-->
      <select id="selectProductInfo" parameterType="java.util.Map" resultType="com.guanyitong.model.ProductInfo">
-          select * from productInfo where productId=#{id}
+          select * from productInfo where 1=1
+          <if test="id !=null">
+              and  productId=#{id}
+          </if>
+         <if test="borrowMoneyUserId !=null and borrowMoneyUserId !=''">
+             and borrowMoneyUserId = #{borrowMoneyUserId}
+         </if>
+         <if test="productInfoId !=null">
+             and id = #{productInfoId}
+         </if>
      </select>
 
 
@@ -205,9 +214,16 @@
         where id = #{id}
     </update>
 
-      <!--产品 上架，下架，放弃（退款）10待提现，11提现成功 12 提现失败-->
+      <!--产品 上架，下架，放弃（退款）10待提现，11提现成功 12 提现失败 13 还款中 14 还款完成-->
     <update id="updateStatus" parameterType="java.util.Map">
-        update productinfo set status = #{status} where 1=1
+        update productinfo set
+        <if test="status !=null">
+            status = #{status},
+        </if>
+        <if test="updateTime !=null">
+            updateTime = #{updateTime}
+        </if>
+         where 1=1
         <if test="id !=null">
            and id = #{id}
         </if>

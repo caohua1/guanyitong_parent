@@ -12,7 +12,7 @@ public class AccountManager implements Serializable {
     private String idCard;
     private String bankName;
     private String bankNum;
-    private Integer yuE;
+    private Double yuE;
     private String bankAddress;
     private Date createTime;
     private Integer status;
@@ -65,11 +65,11 @@ public class AccountManager implements Serializable {
         this.bankNum = bankNum;
     }
 
-    public Integer getYuE() {
+    public Double getYuE() {
         return yuE;
     }
 
-    public void setYuE(Integer yuE) {
+    public void setYuE(Double yuE) {
         this.yuE = yuE;
     }
 

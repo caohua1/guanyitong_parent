@@ -1,4 +1,4 @@
-package com.guanyitong.controller.ApproveManager;
+package com.guanyitong.controller.UserApproveManage;
 import com.github.pagehelper.PageInfo;
 import com.guanyitong.model.BorrowMoneyUser;
 import com.guanyitong.service.BorrowMoneyUserService;

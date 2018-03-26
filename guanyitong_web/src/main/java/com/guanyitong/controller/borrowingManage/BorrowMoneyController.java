@@ -2,7 +2,9 @@ package com.guanyitong.controller.borrowingManage;
 import com.github.pagehelper.PageInfo;
 import com.guanyitong.model.Product;
 import com.guanyitong.model.ProductInfo;
+import com.guanyitong.model.vo.BackMoneyVo;
 import com.guanyitong.model.vo.UserProductInfoVo;
+import com.guanyitong.service.BackMoneyService;
 import com.guanyitong.service.ProductService;
 import com.guanyitong.service.UserDealService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,8 @@ public class BorrowMoneyController {
     private ProductService productService;
     @Autowired
     private UserDealService userDealService;
+    @Autowired
+    private BackMoneyService backMoneyService;
 
     /**
      * 投标审核管理
@@ -146,6 +150,38 @@ public class BorrowMoneyController {
             result.setData(userProductInfoVo);
             result.setState(JsonResult.SUCCESS);
             result.setMessage("返回数据成功");
+        }catch(Exception e){
+            e.printStackTrace();
+            result.setState(JsonResult.ERROR);
+            result.setMessage("返回数据失败");
+        }
+        return result;
+    }
+
+    /**
+     * 查询还款计划
+     * @param borrowMoneyUserId(必传)
+     * @param productInfoId（必传）
+     * @return
+     */
+    @RequestMapping("/selectAllBackMoney")
+    @ResponseBody
+    public JsonResult selectAllBackMoney(String borrowMoneyUserId,Long productInfoId,String NO){
+        JsonResult result = new JsonResult();
+        try{
+            Map map = new HashMap();
+            map.put("borrowMoneyUserId",borrowMoneyUserId);
+            map.put("productInfoId",productInfoId);
+            map.put("NO",NO);
+            BackMoneyVo backMoneyVo = backMoneyService.selectBackMoney(map);
+            if(backMoneyVo!=null){
+                result.setState(JsonResult.SUCCESS);
+                result.setData(backMoneyVo);
+                result.setMessage("返回数据成功");
+            }else{
+                result.setState(JsonResult.ERROR);
+                result.setMessage("暂无数据");
+            }
         }catch(Exception e){
             e.printStackTrace();
             result.setState(JsonResult.ERROR);

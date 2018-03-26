@@ -3,6 +3,7 @@ package com.guanyitong.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.guanyitong.mapper.AccountManagerDao;
+import com.guanyitong.mapper.BackMoneyDao;
 import com.guanyitong.mapper.ProductDao;
 import com.guanyitong.mapper.WithdrawMoneyDao;
 import com.guanyitong.model.BackMoney;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import util.DateChangeUtil;
+import util.FinalData;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -30,7 +32,7 @@ public class WithdrawMoneyServiceImpl implements WithdrawMoneyService{
     @Autowired
     private ProductDao productDao;
     @Autowired
-    private BackMoneyService backMoneyService;
+    private BackMoneyDao backMoneyDao;
 
     /**
      * 提现（修改体现表的状态，同时修改标（productinfo）的状态），添加数据
@@ -81,6 +83,7 @@ public class WithdrawMoneyServiceImpl implements WithdrawMoneyService{
             if((Integer)map.get("status")==2){//提现失败
                 map1.put("status",12);
             }
+            map1.put("updateTime",new Date());
             j = productDao.updateStatus(map1);//修改标（productinfo的状态）
             //提现成功后，批量插入回款计划表数据（根据borrowMoneyUserId和status==11查询表标的id）
             if((Integer)map.get("status")==1 && j>0){//提现成功
@@ -90,31 +93,14 @@ public class WithdrawMoneyServiceImpl implements WithdrawMoneyService{
                 ProductInfo productInfo = productDao.selectProductInfoByStAndBUId(map2);
                 if(productInfo!=null ){
                     List<BackMoney> backMoneyList = new ArrayList<BackMoney>();
-                    int count = 1;
-                    int monthNum = productInfo.getMonthNum();//期限（几个月）
-                    double bj= productInfo.getZMoney()/monthNum;//本金
-                    double lx =bj*productInfo.getYield()/100/12;
-                    BigDecimal b = new BigDecimal(lx);
-                    double lx1 = b.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();//保留两位有效数字
-                    Date date = new Date();
-                    for(int m=0;m<monthNum;m++){
-                        BackMoney backMoney = new BackMoney();
-                        if(m==0){
-                            backMoney.setBackTime(date);
-                        }else{
-                            date = DateChangeUtil.dateAddMonths(date,1);
-                            backMoney.setBackTime(date);
-                        }
-                        backMoney.setBorrowMoneyUserId(String.valueOf(map.get("borrowMoneyUserId")));
-                        backMoney.setProductInfoId(productInfo.getId());
-                        backMoney.setLx(String.valueOf(lx1));
-                        backMoney.setBj(String.valueOf(bj));
-                        backMoney.setBackMoney(String.valueOf(bj+lx1));
-                        backMoney.setCount(count);
-                        count++;
-                        backMoneyList.add(backMoney);
+                    if((FinalData.ByMonth).equals(productInfo.getBackMoneyType())){//1.还款方式：按月还本还息
+                        byMonth(map,productInfo,backMoneyList);
+                    }else if((FinalData.BlxAfterbj).equals(productInfo.getBackMoneyType())){//2.先息后本
+                        BlxAfterbj(map,productInfo,backMoneyList);
+                    }else if((FinalData.AllBack).equals(productInfo.getBackMoneyType())){
+                        AllBack(map,productInfo,backMoneyList);
                     }
-                     n = backMoneyService.insertBatchBackMoney(backMoneyList);
+                     n = backMoneyDao.insertBatchBackMoney(backMoneyList);
                 }
                 return i>0 && j>0 && n>0;
             }else{
@@ -137,5 +123,87 @@ public class WithdrawMoneyServiceImpl implements WithdrawMoneyService{
         List<WithdrawalMoneyVo> withdrawalMoneyVos = withdrawMoneyDao.selectWithdrawal(withdrawalMoneyVo);
         PageInfo<WithdrawalMoneyVo> pageInfo = new PageInfo<WithdrawalMoneyVo>(withdrawalMoneyVos);
         return pageInfo;
+    }
+
+    //==================================1 按月还本还息
+    private List<BackMoney> byMonth(Map map,ProductInfo productInfo,List<BackMoney> backMoneyList){
+        int count = 1;
+        int monthNum = productInfo.getMonthNum();//期限（几个月）
+        int ZMoney = productInfo.getZMoney();
+        double bj= ZMoney /monthNum;//本金
+        Date date = new Date();
+        for(int m=0;m<monthNum;m++){
+            double lx =ZMoney*productInfo.getYield()/100/12;//每个月的利息不一样，ZMoney（逐渐递减）不一样，
+            BigDecimal b = new BigDecimal(lx);
+            double lx1 = b.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();//保留两位有效数字
+            BackMoney backMoney = new BackMoney();
+            date = DateChangeUtil.dateAddMonths(date,1);
+            backMoney.setBackTime(date);
+            backMoney.setBorrowMoneyUserId(String.valueOf(map.get("borrowMoneyUserId")));
+            backMoney.setProductInfoId(productInfo.getId());
+            backMoney.setLx(String.valueOf(lx1));
+            backMoney.setBj(String.valueOf(bj));
+            backMoney.setBackMoney(String.valueOf(bj+lx1));
+            backMoney.setCount(count);
+            count++;
+            ZMoney -= bj; //借款金额不断减少，利息也要减少
+            backMoneyList.add(backMoney);
+        }
+        return backMoneyList;
+    }
+
+    //===================================2 先息后本
+    private List<BackMoney> BlxAfterbj(Map map,ProductInfo productInfo,List<BackMoney> backMoneyList){
+        int count = 1;
+        int monthNum = productInfo.getMonthNum();//期限（几个月）
+        int ZMoney = productInfo.getZMoney();
+        double bj= ZMoney ;//本金
+        Date date = new Date();
+        for(int m=0;m<monthNum;m++){
+            double lx =ZMoney*productInfo.getYield()/100/12;//每个月的利息一样
+            BigDecimal b = new BigDecimal(lx);
+            double lx1 = b.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();//保留两位有效数字
+            BackMoney backMoney = new BackMoney();
+            date = DateChangeUtil.dateAddMonths(date,1);
+            backMoney.setBackTime(date);
+            backMoney.setBorrowMoneyUserId(String.valueOf(map.get("borrowMoneyUserId")));
+            backMoney.setProductInfoId(productInfo.getId());
+            backMoney.setLx(String.valueOf(lx1));
+            if(m==(monthNum-1)){
+                backMoney.setBj(String.valueOf(bj));
+                backMoney.setBackMoney(String.valueOf(bj+lx1));
+            }else{
+                backMoney.setBj(String.valueOf(0));
+                backMoney.setBackMoney(String.valueOf(0+lx1));
+            }
+            backMoney.setCount(count);
+            count++;
+            backMoneyList.add(backMoney);
+        }
+        return backMoneyList;
+    }
+
+    //===================================3 一次性还本付息
+    private List<BackMoney> AllBack(Map map,ProductInfo productInfo,List<BackMoney> backMoneyList){
+        int count = 1;
+        int monthNum = productInfo.getMonthNum();//期限（几个月）
+        int ZMoney = productInfo.getZMoney();
+        double bj= ZMoney ;//本金
+        Date date = new Date();
+        double lx =monthNum*ZMoney*productInfo.getYield()/100/12;//总利息
+        BigDecimal b = new BigDecimal(lx);
+        double lx1 = b.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();//保留两位有效数字
+        BackMoney backMoney = new BackMoney();
+        date = DateChangeUtil.dateAddMonths(date,1);
+        backMoney.setBackTime(date);
+        backMoney.setBorrowMoneyUserId(String.valueOf(map.get("borrowMoneyUserId")));
+        backMoney.setProductInfoId(productInfo.getId());
+        backMoney.setLx(String.valueOf(lx1));
+        backMoney.setBj(String.valueOf(bj));
+        backMoney.setBackMoney(String.valueOf(bj+lx1));
+        backMoney.setCount(count);
+        count++;
+        backMoneyList.add(backMoney);
+        return backMoneyList;
     }
 }

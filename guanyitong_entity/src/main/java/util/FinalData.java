@@ -56,4 +56,16 @@ public class FinalData {
      * 提货券
      */
     public static final String THQ = "THQ";
+    /**
+     * 还款方式：按月还本还息
+     */
+    public static final String ByMonth = "按月还本还息";
+    /**
+     * 还款方式：先息后本
+     */
+    public static final String BlxAfterbj = "先息后本";
+    /**
+     * 还款方式：一次性还本付息
+     */
+    public static final String AllBack = "一次性还本付息";
 }
