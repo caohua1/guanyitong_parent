@@ -12,4 +12,22 @@
             #{item.bj},#{item.lx},#{item.backMoney},#{item.backTime},#{item.count})
         </foreach>
     </insert>
+
+    <!--根据borrowMoneyUserId和productInfoId查询用户的还款计划-->
+    <select id="selectBackMoney" parameterType="java.util.Map" resultType="com.guanyitong.model.BackMoney">
+        select * from back_money  where 1=1
+        <if test="borrowMoneyUserId !=null and borrowMoneyUserId !=''">
+            and borrowMoneyUserId = #{borrowMoneyUserId}
+        </if>
+        <if test="productInfoId !=null and productInfoId !=''">
+            and productInfoId = #{productInfoId}
+        </if>
+    </select>
+    <!--还款（还款方式不同）-->
+    <update id="updateStatus" parameterType="com.guanyitong.model.BackMoney">
+        update back_money set status= #{status} where 1=1
+        <if test="id !=null">
+            and id = #{id}
+        </if>
+    </update>
 </mapper>

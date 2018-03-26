@@ -1,4 +1,4 @@
-package com.guanyitong.controller.financialManagement;
+package com.guanyitong.controller.financialManage;
 
 
 

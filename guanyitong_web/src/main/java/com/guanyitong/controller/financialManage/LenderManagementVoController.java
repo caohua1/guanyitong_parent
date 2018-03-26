@@ -1,4 +1,4 @@
-package com.guanyitong.controller.financialManagement;
+package com.guanyitong.controller.financialManage;
 
 import com.github.pagehelper.PageInfo;
 import com.guanyitong.model.vo.LenderManagementVo;

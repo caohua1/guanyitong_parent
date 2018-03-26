@@ -1,4 +1,4 @@
-package com.guanyitong.controller.manage;
+package com.guanyitong.controller.EmployeeManage;
 import com.github.pagehelper.PageInfo;
 import com.guanyitong.model.Dept;
 import com.guanyitong.service.DeptService;
