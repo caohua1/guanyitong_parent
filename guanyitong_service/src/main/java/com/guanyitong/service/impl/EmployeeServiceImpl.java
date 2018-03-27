@@ -79,4 +79,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         Integer i = employeeDAO.deleteEmployee(id);
         return i;
     }
+
+    /**
+     * 登陆查询
+     */
+    @Override
+    public boolean register(Long edeptno,String epassword) {
+        if(epassword.equals(employeeDAO.register(edeptno))){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }
