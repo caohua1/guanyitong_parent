@@ -15,7 +15,7 @@ public class BackMoneyController {
 
     /**
      * 借款人回款（status=1）
-     * @param backMoney
+     * @param backMoney（传参:id,borrowMoneyUserId,status,productInfoId,count）
      * @return
      */
     @RequestMapping("/backMoney")
