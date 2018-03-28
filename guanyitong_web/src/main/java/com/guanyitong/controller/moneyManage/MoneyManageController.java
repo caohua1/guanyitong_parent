@@ -7,9 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import util.JsonResult;
-
 import java.util.*;
 
+//资金账户管理模块
 @Controller
 @RequestMapping("/moneyManage")
 public class MoneyManageController {
