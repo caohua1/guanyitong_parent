@@ -2,6 +2,7 @@ package com.guanyitong.mapper;
 
 import com.guanyitong.model.UserDealMoney;
 import com.guanyitong.model.vo.UserDealMoneyVo;
+import com.guanyitong.model.vo.UserProductInfoVo;
 
 import java.util.List;
 import java.util.Map;
@@ -41,4 +42,18 @@ public interface UserDealDao {
      * @return
      */
     public Integer selectCountByProductInfoId(Long productInfoId);
+
+    /**
+     * =====================资金账户管理
+     * 查询用户保护期金额（标的状态未筹集中，出借状态为 未还款 ，的金额
+     * @return
+     */
+    public Double selectAllDealMoney(Long userId);
+
+    /**
+     * 查询用户下的待回款的标(statud = 13 or 11)
+     * @param userId
+     * @return
+     */
+    public List<UserProductInfoVo> selectDHKProductInfo(Long userId);
 }

@@ -22,6 +22,9 @@
         <if test="productInfoId !=null and productInfoId !=''">
             and productInfoId = #{productInfoId}
         </if>
+        <if test="status !=null">
+            and status = #{status}
+        </if>
     </select>
     <!--还款（还款方式不同）-->
     <update id="updateStatus" parameterType="com.guanyitong.model.BackMoney">

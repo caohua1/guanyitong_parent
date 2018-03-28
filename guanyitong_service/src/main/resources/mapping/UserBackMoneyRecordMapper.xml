@@ -9,4 +9,10 @@
         insert into userBackMoneyRecord (userId,productInfoId,bj,lx,time,status)
         values(#{userId},#{productInfoId},#{bj},#{lx},#{time},#{status})
     </insert>
+
+    <!--资金账户管理-->
+    <!--查询某用户累计收益-->
+    <select id="selectUserBackMoney" parameterType="Long" resultType="java.lang.Double">
+        select sum(lx) from userbackmoneyrecord where status = 1 and userId =18
+    </select>
 </mapper>

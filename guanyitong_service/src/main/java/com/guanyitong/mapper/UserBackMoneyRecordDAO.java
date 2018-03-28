@@ -9,4 +9,12 @@ public interface UserBackMoneyRecordDAO {
      * @return
      */
     public Integer insertUserBackMoneyRecord(UserDealBackMoneyRecord userDealBackMoneyRecord);
+
+    /**
+     * 资金账户管理
+     * 查询某用户的累计收益
+     * @param userId
+     * @return
+     */
+    public Double selectUserBackMoney(Long userId);
 }

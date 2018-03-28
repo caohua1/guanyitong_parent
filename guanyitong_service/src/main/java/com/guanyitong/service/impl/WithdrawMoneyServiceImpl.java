@@ -134,8 +134,7 @@ public class WithdrawMoneyServiceImpl implements WithdrawMoneyService{
         Date date = new Date();
         for(int m=0;m<monthNum;m++){
             double lx =ZMoney*productInfo.getYield()/100/12;//每个月的利息不一样，ZMoney（逐渐递减）不一样，
-            BigDecimal b = new BigDecimal(lx);
-            double lx1 = b.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();//保留两位有效数字
+            double lx1 = doubleTwo(lx);//保留两位有效数字
             BackMoney backMoney = new BackMoney();
             date = DateChangeUtil.dateAddMonths(date,1);
             backMoney.setBackTime(date);
@@ -152,6 +151,7 @@ public class WithdrawMoneyServiceImpl implements WithdrawMoneyService{
         return backMoneyList;
     }
 
+
     //===================================2 先息后本
     private List<BackMoney> BlxAfterbj(Map map,ProductInfo productInfo,List<BackMoney> backMoneyList){
         int count = 1;
@@ -161,8 +161,7 @@ public class WithdrawMoneyServiceImpl implements WithdrawMoneyService{
         Date date = new Date();
         for(int m=0;m<monthNum;m++){
             double lx =ZMoney*productInfo.getYield()/100/12;//每个月的利息一样
-            BigDecimal b = new BigDecimal(lx);
-            double lx1 = b.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();//保留两位有效数字
+            double lx1 = doubleTwo(lx);//保留两位有效数字
             BackMoney backMoney = new BackMoney();
             date = DateChangeUtil.dateAddMonths(date,1);
             backMoney.setBackTime(date);
@@ -191,8 +190,7 @@ public class WithdrawMoneyServiceImpl implements WithdrawMoneyService{
         double bj= ZMoney ;//本金
         Date date = new Date();
         double lx =monthNum*ZMoney*productInfo.getYield()/100/12;//总利息
-        BigDecimal b = new BigDecimal(lx);
-        double lx1 = b.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();//保留两位有效数字
+        double lx1 = doubleTwo(lx);//保留两位有效数字
         BackMoney backMoney = new BackMoney();
         date = DateChangeUtil.dateAddMonths(date,1);
         backMoney.setBackTime(date);
@@ -205,5 +203,12 @@ public class WithdrawMoneyServiceImpl implements WithdrawMoneyService{
         count++;
         backMoneyList.add(backMoney);
         return backMoneyList;
+    }
+
+    //保留两位有效数字
+    private double doubleTwo(double a){
+        BigDecimal b = new BigDecimal(a);
+        double c = b.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();//保留两位有效数字
+        return c;
     }
 }

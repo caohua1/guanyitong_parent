@@ -74,5 +74,11 @@
             and wm.status = #{status}
         </if>
     </select>
+
+    <!--资金账户管理-->
+    <!--查询某用户提现中的金额-->
+    <select id="selectUserZTxMoney" parameterType="Long" resultType="java.lang.Double">
+        select sum(txMoney) from withdrawal_money where status = 0 and userId =18
+    </select>
 </mapper>
 

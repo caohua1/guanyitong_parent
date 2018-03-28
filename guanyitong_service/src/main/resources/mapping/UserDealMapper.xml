@@ -56,4 +56,19 @@
      <update id="updateUserDealMoneyStatus" parameterType="java.util.Map">
          update user_deal_money set status = #{status} where productInfoId = #{productInfoId}
      </update>
+
+
+     <!--资金账户管理-->
+     <!--查询用户保护期金额（标的状态未筹集中，出借状态为 未还款 ，的金额）-->
+     <select id="selectAllDealMoney" parameterType="Long" resultType="java.lang.Double">
+          select sum(udm.dealMoney)from user_deal_money udm
+          left join productinfo p on p.id = udm.productInfoId
+          where udm.userId = #{userId} and (p.status = 4 or p.status = 5) and udm.status = 2
+     </select>
+     <!--查询用户下的待回款的标(statud = 13 or 11)-->
+     <select id="selectDHKProductInfo" parameterType="Long" resultType="com.guanyitong.model.vo.UserProductInfoVo">
+          select p.*,udm.dealMoney from productinfo p
+          left join user_deal_money udm on p.id = udm.productInfoId
+          where udm.userId = #{userId} and (p.status = 11 or p.status = 13)
+     </select>
 </mapper>

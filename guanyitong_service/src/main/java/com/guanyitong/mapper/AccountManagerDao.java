@@ -1,11 +1,18 @@
 package com.guanyitong.mapper;
 
 import com.guanyitong.model.*;
+import com.guanyitong.model.vo.MoneyManageVo;
 
 import java.util.List;
 import java.util.Map;
 
 public interface AccountManagerDao {
+
+    /**
+     * 查询所有绑定银行卡的用户的信息以及银行卡信息
+     * @return
+     */
+    public List<MoneyManageVo> selectAllAcountManager(Map map);
     /**
      * 用户开户
      * @param accountManager

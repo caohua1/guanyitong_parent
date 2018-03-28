@@ -27,4 +27,12 @@ public interface WithdrawMoneyDao {
      * @return
      */
     public List<WithdrawalMoneyVo> selectWithdrawal(WithdrawalMoneyVo withdrawalMoneyVo);
+
+    /**
+     * 资金账户管理
+     * 查询某用户提现中的金额
+     * @param userId
+     * @return
+     */
+    public Double selectUserZTxMoney(Long userId);
 }
