@@ -101,7 +101,7 @@ public class MoneyManageServiceImpl implements MoneyManageService {
 
     //==========================================
     //如果是按月还本还息
-    public double ByMonth(UserProductInfoVo userProductInfoVo,double DHKMoney,List<BackMoney> backMoneyList){
+    private double ByMonth(UserProductInfoVo userProductInfoVo,double DHKMoney,List<BackMoney> backMoneyList){
         //求剩余的钱
         double dealMoney = userProductInfoVo.getDealMoney();
         int monthNum = userProductInfoVo.getMonthNum();
@@ -116,7 +116,7 @@ public class MoneyManageServiceImpl implements MoneyManageService {
     }
 
     //如果是先息后本
-    public double BlxAfterbj(UserProductInfoVo userProductInfoVo,double DHKMoney,List<BackMoney> backMoneyList){
+    private double BlxAfterbj(UserProductInfoVo userProductInfoVo,double DHKMoney,List<BackMoney> backMoneyList){
         double dealMoney = userProductInfoVo.getDealMoney();
         int monthNum = userProductInfoVo.getMonthNum();
         double yield = userProductInfoVo.getYield();
@@ -126,7 +126,7 @@ public class MoneyManageServiceImpl implements MoneyManageService {
     }
 
     //如果是一次性还本付息
-    public double AllBack(UserProductInfoVo userProductInfoVo,double DHKMoney){
+    private double AllBack(UserProductInfoVo userProductInfoVo,double DHKMoney){
         double dealMoney = userProductInfoVo.getDealMoney();
         int monthNum = userProductInfoVo.getMonthNum();
         double yield = userProductInfoVo.getYield();
