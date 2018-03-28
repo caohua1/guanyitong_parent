@@ -65,7 +65,7 @@ public class MoneyManageController {
                             }
                         }
                         if(minLJSY!=null && maxLJSY !=null){
-                            if(minLJSY<moneyManageVo.getLJSY() || maxLJSY>moneyManageVo.getLJSY()){
+                            if(minLJSY<moneyManageVo.getLJSY() && maxLJSY>moneyManageVo.getLJSY()){
                                 list1.add(moneyManageVo);
                             }
                         }
