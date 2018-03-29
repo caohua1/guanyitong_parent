@@ -6,31 +6,34 @@
 
 
 
-    <!-- 条件查询-->
+    <!-- 条件查询,分页查询出借人银行卡信息-->
     <select id="selectLenderManagementVo" parameterType="java.util.Map" resultType="com.guanyitong.model.vo.LenderManagementVo">
         SELECT a.*,u.username
         FROM account_manager a
         LEFT JOIN user_info u
         ON a.userId=u.id
         WHERE 1=1
-        <if test="id !=null and id !=''">
-            and id=#{id}
-        </if>
         <if test="username !=null and username !=''">
-            and username=#{username}
+            and u.username=#{username}
         </if>
         <if test="realName!=null and realName !=''">
-            and realName=#{realName}
+            and a.realName=#{realName}
         </if>
         <if test="idCard!=null and idCard!=''">
-            and idCard=#{idCard}
+            and a.idCard=#{idCard}
+        </if>
+        <if test="firstDate !=null and lastDate ==null">
+            and a.createTime &gt;= #{firstDate}
+        </if>
+        <if test="firstDate ==null and lastDate !=null">
+            and a.createTime &lt;= #{lastDate}
         </if>
         <if test="firstDate !=null and lastDate !=null">
             and createTime BETWEEN firstDate and lastDate
         </if>
     </select>
-    <!-- 条件查找（）-->
-    <select id="selectByID" parameterType="java.util.Map" resultType="com.guanyitong.model.vo.LenderManagementVo">
+    <!-- 条件查找（根据id条件查询出借人银行卡信息）-->
+    <select id="selectByID" parameterType="Long" resultType="com.guanyitong.model.vo.LenderManagementVo">
             SELECT a.*,u.username
             FROM account_manager a
             LEFT JOIN user_info u

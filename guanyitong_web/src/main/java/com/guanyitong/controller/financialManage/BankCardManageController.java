@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+//借款人银行卡管理
 @Controller
 @RequestMapping("/BankCardManagementr")
 public class BankCardManageController {
@@ -23,27 +24,9 @@ public class BankCardManageController {
 
     @Autowired
     private UserBankcardService userBankcardService;
+
     /**
-     * 展示借款人银行卡信息
-     */
-    @RequestMapping("/selectUserBankcard")
-    @ResponseBody
-    public JsonResult selectUserBankcard(Integer pageNum, Integer pageSize){
-        JsonResult result = new JsonResult();
-        try{
-            PageInfo<UserBankcard> userBankcardPageInfo = userBankcardService.selectUserBankcardDao(pageNum, pageSize);
-            result.setData(userBankcardPageInfo);
-            result.setState(JsonResult.SUCCESS);
-            result.setMessage("返回数据成功");
-        }catch (Exception e){
-            e.printStackTrace();
-            result.setState(JsonResult.ERROR);
-            result.setMessage("返回数据失败");
-        }
-        return result;
-    }
-    /**
-     * 绑定借款人用户银行卡
+     * 绑定借款人用户银行卡（添加数据）
      */
     @RequestMapping("/addUserBankcard")
     @ResponseBody
@@ -66,17 +49,17 @@ public class BankCardManageController {
         return result;
     }
     /**
-     * 模糊查询
+     * 条件查询（借款人银行卡信息）
      */
     @RequestMapping("/selectByUserBankcard")
     @ResponseBody
-    public JsonResult selectByUserBankcard(@RequestParam(required=false)UserBankcard userBankcard,  @RequestParam(required=false)Date firstDate,  @RequestParam(required=false)Date lastDate){
+    public JsonResult selectByUserBankcard(Integer pageNum, Integer pageSize,UserBankcard userBankcard,  @RequestParam(required=false)Date firstDate,  @RequestParam(required=false)Date lastDate){
         JsonResult result = new JsonResult();
         try{
             Map<Object, Object> conditionMap = new HashMap<Object, Object>();
             if(userBankcard!=null){
                 if(userBankcard.getUserName()!=null && !("").equals(userBankcard.getUserName())){
-                    conditionMap.put("userName",userBankcard.getUserName());
+                    conditionMap.put("borrowMoneyUserId",userBankcard.getUserName());
                 }
                if(userBankcard.getRealName()!=null && !("").equals(userBankcard.getRealName())){
                    conditionMap.put("realName",userBankcard.getRealName());
@@ -94,8 +77,8 @@ public class BankCardManageController {
                     conditionMap.put("lastDate",lastDate);
                 }
             }
-            UserBankcard userBankcard1 = userBankcardService.selectByUserBankcard(conditionMap);
-            result.setData(userBankcard1);
+            PageInfo<UserBankcard> userBankcardPageInfo = userBankcardService.selectByUserBankcard(conditionMap, pageNum, pageSize);
+            result.setData(userBankcardPageInfo);
             result.setState(JsonResult.SUCCESS);
             result.setMessage("返回数据成功");
         }catch (Exception e){
@@ -105,25 +88,32 @@ public class BankCardManageController {
         }
         return result;
     }
+
     /**
-     * 根据userName进行条件查询
+     * 根据主键查询详情
+     * @param id
+     * @return
      */
-    @RequestMapping("/selectByIdUserBankcard")
+    @RequestMapping("/selectUserBankcardById")
     @ResponseBody
-    public JsonResult selectByIdUserBankcard(String userName){
+    public JsonResult selectUserBankcardById(Long id){
         JsonResult result = new JsonResult();
         try{
-            Map<Object, Object> userNameMap = new HashMap<Object, Object>();
-            userNameMap.put("userName",userName);
-            UserBankcard selectByUserName = userBankcardService.seelctByUserName(userNameMap);
-            result.setData(selectByUserName);
-            result.setState(JsonResult.SUCCESS);
-            result.setMessage("返回数据成功");
-        }catch (Exception e){
+            UserBankcard userBankcard = userBankcardService.selectUserBankcardById(id);
+            if(userBankcard!=null){
+                result.setState(JsonResult.SUCCESS);
+                result.setData(userBankcard);
+                result.setMessage("返回数据成功");
+            }else{
+                result.setState(JsonResult.ERROR);
+                result.setMessage("返回数据为空");
+            }
+        }catch(Exception e){
             e.printStackTrace();
             result.setState(JsonResult.ERROR);
             result.setMessage("返回数据失败");
         }
         return result;
     }
+
 }

@@ -21,47 +21,39 @@ public class UserBankcardServiceImpl implements UserBankcardService{
     @Autowired
     private UserBankcardDao userBankcardDao;
 
+
+
     /**
-     * 分页查询银行卡信息
-     * @param pageNum
-     * @param pageSize
+     * 条件查询查询（借款人银行卡信息）
+     * @param conditionMap
      * @return
      */
     @Override
-    public PageInfo<UserBankcard> selectUserBankcardDao(Integer pageNum, Integer pageSize) {
+    public PageInfo<UserBankcard> selectByUserBankcard(Map conditionMap,Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum,pageSize);//开始分页
-        List<UserBankcard> userBankcards = userBankcardDao.selectUserBankcardDao();
+        List<UserBankcard> userBankcards = userBankcardDao.selectByUserBankcard(conditionMap);
         PageInfo<UserBankcard> pageInfo = new PageInfo<UserBankcard>(userBankcards);
         return pageInfo;
     }
 
     /**
-     * 模糊查询
-     * @param conditionMap
-     * @return
-     */
-    @Override
-    public UserBankcard selectByUserBankcard(Map conditionMap) {
-        return userBankcardDao.selectByUserBankcard(conditionMap);
-    }
-
-    /**
-     * 按条件查询（根据userName）
-     * @param userNameMap
-     * @return
-     */
-    @Override
-    public UserBankcard seelctByUserName(Map userNameMap) {
-        return userBankcardDao.seelctByUserName(userNameMap);
-    }
-
-    /**
-     * 绑定借款用户银行卡
+     * 绑定借款人银行卡
      * @param userBankcard
      * @return
      */
+    @Transactional
     @Override
     public int insertUserBankcardDao(UserBankcard userBankcard) {
         return userBankcardDao.insertUserBankcardDao(userBankcard);
+    }
+
+    /**
+     * 根据id查看详情
+     * @param id
+     * @return
+     */
+    @Override
+    public UserBankcard selectUserBankcardById(Long id) {
+        return userBankcardDao.selectUserBankcardById(id);
     }
 }

@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.guanyitong.mapper.RechargeMoneyDao">
 
+    <!--查询充值记录（分页查询，条件查询）-->
     <select id="listRechargeSheetVo" parameterType="java.util.Map" resultType="com.guanyitong.model.vo.RechargeSheetVo">
       SELECT
             r.*,a.bankAddress,a.bankName,a.bankNum,a.createTime,a.idCard,a.realName
@@ -20,17 +21,30 @@
             <if test="realName!=null and realName!=''">
                   AND a.realName = #{realName}
             </if>
+            <if test="firstMoney !=null and lastMoney ==null">
+                  and cast(r.rechargeMoney AS signed INT) &gt;= #{firstMoney}
+            </if>
+            <if test="firstMoney ==null and lastMoney !=null">
+                and cast(r.rechargeMoney AS signed INT) &lt;= #{lastMoney}
+            </if>
             <if test="firstMoney!=null and lastMoney!=null">
                 AND cast(r.rechargeMoney AS signed INT) BETWEEN #{firstMoney}
                 AND #{lastMoney}
+            </if>
+            <if test="firstDate!=null and lastDate==null">
+                AND r.rechargeTime  &gt;= #{firstDate}
+            </if>
+            <if test="firstDate==null and lastDate !=null">
+                AND r.rechargeTime &lt;= #{lastDate}
             </if>
             <if test="firstDate!=null and lastDate!=null">
                 AND r.rechargeTime BETWEEN #{firstDate} and #{lastDate}
             </if>
             <if test="status!=null and status!=''">
-                AND r.`status`=#{status}
+                AND r.status =#{status}
             </if>
     </select>
+    <!--添加充值记录-->
     <insert id="insertRechargeMoney" useGeneratedKeys="true" keyProperty="id" parameterType="com.guanyitong.model.RechargeMoney">
         INSERT INTO recharge_money (
 	    userId,
@@ -54,6 +68,7 @@
 		#{status}
 	)
     </insert>
+    <!--修改充值记录-->
     <update id="updateRechargeMoney"  parameterType="java.lang.Long">
         UPDATE recharge_money SET status=1 WHERE id=#{id}
     </update>

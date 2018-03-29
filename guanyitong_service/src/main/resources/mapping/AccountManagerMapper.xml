@@ -123,9 +123,17 @@
     </insert>
     <!--修改宝箱表，（库存）-->
     <update id="updateInventory" parameterType="java.util.Map">
-        update treasure set inventory=#{inventory},saleNum=#{saleNum} where id=#{id} and status = 1
+        update treasure set
+        <if test="inventory !=null and inventory !=''">
+            inventory=#{inventory},
+        </if>
+        <if test="saleNum !=null and saleNum !=''">
+            saleNum=#{saleNum}
+        </if>
+         where id=#{id} and status = 1
     </update>
 
+    <!--修改余额-->
     <update id="updateBalance" parameterType="java.util.Map">
         UPDATE account_manager SET yuE=yuE+#{yuE} WHERE userId=#{userId}
     </update>

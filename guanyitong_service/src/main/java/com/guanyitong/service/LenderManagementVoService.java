@@ -11,5 +11,5 @@ public interface LenderManagementVoService {
 
     public PageInfo<LenderManagementVo> selectLenderManagementVo(Integer pageNum,Integer pageSize,Map lenderMap);
 
-    public  LenderManagementVo selectByID(Map IDMap);
+    public  LenderManagementVo selectByID(Long id);
 }

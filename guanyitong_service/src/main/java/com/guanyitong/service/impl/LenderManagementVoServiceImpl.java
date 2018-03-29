@@ -34,7 +34,7 @@ public class LenderManagementVoServiceImpl implements LenderManagementVoService 
      * 条件查询出借人银行卡信息
      */
     @Override
-    public LenderManagementVo selectByID(Map IDMap) {
-        return lenderManagementVoDao.selectByID(IDMap);
+    public LenderManagementVo selectByID(Long id) {
+        return lenderManagementVoDao.selectByID(id);
     }
 }

@@ -20,5 +20,5 @@ public interface LenderManagementVoDao  {
     /**
      * 条件查找（根据用户身份证查询）
      */
-    public  LenderManagementVo selectByID(Map IDMap);
+    public  LenderManagementVo selectByID(Long id);
 }

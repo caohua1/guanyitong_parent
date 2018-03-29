@@ -4,15 +4,12 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.guanyitong.mapper.UserBankcardDao">
 
-    <!-- 查询所有用户银行卡信息-->
-    <select id="selectUserBankcardDao" resultType="com.guanyitong.model.UserBankcard">
-        SELECT userName,realName,IDCardNumber,bankName,cardNo,submitTime,YN FROM user_bankcard
-    </select>
-    <!--模糊查询 -->
+
+    <!--条件查询(查询所有用户银行卡信息) -->
     <select id="selectByUserBankcard" parameterType="java.util.Map" resultType="com.guanyitong.model.UserBankcard">
-        SELECT userName,realName,IDCardNumber,bankName,cardNo,submitTime FROM user_bankcard WHERE 1=1
-        <if test="userName !=null and userName !=''">
-           and userName=#{userName},
+        SELECT borrowMoneyUserId,realName,IDCardNumber,bankName,cardNo,submitTime FROM user_bankcard WHERE 1=1
+        <if test="borrowMoneyUserId !=null and borrowMoneyUserId !=''">
+            and borrowMoneyUserId = #{borrowMoneyUserId}
         </if>
         <if test="realName !=null and realName !=''">
             and realName=#{realName}
@@ -23,6 +20,12 @@
         <if test="cardNo!=null and cardNo!=''">
             and cardNo=#{cardNo}
         </if>
+        <if test="firstDate !=null and lastDate ==null">
+            and submitTime  &gt;= #{firstDate}
+        </if>
+        <if test="firstDate ==null and lastDate !=null">
+            and submitTime  &lt;= #{lastDate}
+        </if>
         <if test="firstDate !=null and lastDate !=null">
             and submitTime BETWEEN firstDate and lastDate
         </if>
@@ -30,14 +33,14 @@
     </select>
     <!-- 用户绑定银行卡-->
     <insert id="insertUserBankcardDao" parameterType="com.guanyitong.model.UserBankcard">
-       INSERT INTO user_bankcard (userName,realName,IDCardNumber,cardNo,bankName,openAccountRegion,poneNumber)
+       INSERT INTO user_bankcard (borrowMoneyUserId,realName,IDCardNumber,cardNo,bankName,openAccountRegion,phone,YN)
        VALUES
-       (#{userName},#{realName},#{IDCardNumber},#{cardNo},#{bankName},#{openAccountRegion},#{poneNumber})
+       (#{borrowMoneyUserId},#{userName},#{realName},#{IDCardNumber},#{cardNo},#{bankName},#{openAccountRegion},#{phone},#{YN})
     </insert>
-    <!-- 按条件查询（userName）-->
-    <select id="seelctByUserName" parameterType="java.util.Map" resultType="com.guanyitong.model.UserBankcard">
-        SELECT userName,realName,IDCardNumber,bankName,cardNo,submitTime,YN,poneNumber
-        FROM user_bankcard
-        WHERE userName=#{userName}
+
+    <!--根据主键id查看详情-->
+    <select id="selectUserBankcardById" parameterType="Long" resultType="com.guanyitong.model.UserBankcard">
+        select * from user_bankcard where id = #{id}
     </select>
+
 </mapper>

@@ -16,7 +16,7 @@ import javax.xml.crypto.Data;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+//充值记录
 @Controller
 @RequestMapping("/RechargeSheetVo")
 public class RechargeSheetVoController {
@@ -24,6 +24,17 @@ public class RechargeSheetVoController {
     @Autowired
     private RechargeSheetVoService rechargeSheetVoService;
 
+    /**
+     * 查询充值记录
+     * @param pageNum
+     * @param pageSize
+     * @param rechargeSheetVo 条件查询
+     * @param firstMoney
+     * @param lastMoney
+     * @param firstDate
+     * @param lastDate
+     * @return
+     */
     @RequestMapping("/selectRechargeSheetVo")
     @ResponseBody
     public JsonResult selectRechargeSheetVo(Integer pageNum, Integer pageSize,
@@ -60,18 +71,6 @@ public class RechargeSheetVoController {
                 demandMap.put("lastDate",lastDate);
             }
             PageInfo<RechargeSheetVo> rechargeSheetVoPageInfo = rechargeSheetVoService.listRechargeSheetVo(pageNum, pageSize, demandMap);
-            List<RechargeSheetVo> listRechargeSheetVos = rechargeSheetVoPageInfo.getList();
-            int numBer=0;
-            int amount=0;
-            for (RechargeSheetVo ignored :listRechargeSheetVos) {
-                if(ignored.getStatus()==1){
-                    int rechargeMoney = Integer.parseInt(ignored.getRechargeMoney());
-                    amount+=rechargeMoney;
-                }
-                numBer++;
-            }
-            System.out.println("充值成功的总金额是"+amount+"$");
-            System.out.println("数据库查询"+numBer+"条数据");
             result.setData(rechargeSheetVoPageInfo);
             result.setState(JsonResult.SUCCESS);
             result.setMessage("返回数据成功");

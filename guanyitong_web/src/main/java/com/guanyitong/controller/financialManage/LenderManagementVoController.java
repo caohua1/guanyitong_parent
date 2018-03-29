@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+//出借人银行卡管理
 @Controller
 @RequestMapping("/LenderManagement")
 public class LenderManagementVoController {
@@ -24,19 +25,22 @@ public class LenderManagementVoController {
     /**
      * 分页查询出借人银行卡信息
      * 条件查询出借人银行卡信息
+     * @param lenderManagementVo
+     * @param firstDate
+     * @param lastDate
+     * @param pageNum
+     * @param pageSize
+     * @return
      */
     @RequestMapping("/selectLenderManagement")
     @ResponseBody
-    public JsonResult selectLenderManagement(@RequestParam(required=false)LenderManagementVo lenderManagementVo,
+    public JsonResult selectLenderManagement(LenderManagementVo lenderManagementVo,
                                              @RequestParam(required=false)Date firstDate, @RequestParam(required=false)Date lastDate,
                                              @RequestParam(required=false)Integer pageNum, @RequestParam(required=false)Integer pageSize){
         JsonResult result = new JsonResult();
         Map<Object, Object> lenderMap = new HashMap<Object, Object>();
         try{
         if(lenderManagementVo!=null){
-            if(lenderManagementVo.getId()!=null){
-                lenderMap.put("id",lenderManagementVo.getId());
-            }
             if(lenderManagementVo.getUsername()!=null && !("").equals(lenderManagementVo.getUsername())){
                 lenderMap.put("username",lenderManagementVo.getUsername());
             }
@@ -65,17 +69,23 @@ public class LenderManagementVoController {
         return result;
     }
 
+
+    /**
+     * 根据id查询某个银行卡绑定的信息
+     * @param id
+     * @return
+     */
     @RequestMapping("/selectById")
     @ResponseBody
-    public JsonResult selectById(Integer id){
+    public JsonResult selectById(Long id){
         JsonResult result = new JsonResult();
-        Map<Object, Object> IDMap = new HashMap<Object, Object>();
-        IDMap.put("id",id);
         try{
-            LenderManagementVo lenderManagementVo = lenderManagementVoService.selectByID(IDMap);
-            result.setData(lenderManagementVo);
-            result.setState(JsonResult.SUCCESS);
-            result.setMessage("返回数据成功");
+            if(id !=null){
+                LenderManagementVo lenderManagementVo = lenderManagementVoService.selectByID(id);
+                result.setData(lenderManagementVo);
+                result.setState(JsonResult.SUCCESS);
+                result.setMessage("返回数据成功");
+            }
         }catch (Exception e){
             e.printStackTrace();
             result.setState(JsonResult.ERROR);
