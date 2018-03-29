@@ -265,33 +265,8 @@ public class ProductManagerController {
         return result;
    }
 
-   /* *//**
-     * 查询某标种下的所有的投标（分页）
-     * @param productInfo
-     * @param pageNum
-     * @param pageSize
-     * @return
-     *//*
-    @RequestMapping("/selectAllProductinfo")
-    @ResponseBody
-     public JsonResult selectAllProductinfo(ProductInfo productInfo,Integer pageNum,Integer pageSize){
-        JsonResult result = new JsonResult();
-        try{
-            if(pageNum!=null && pageSize !=null){
-                PageInfo<ProductInfo> productInfoPageInfo = productService.selectAllProductinfo(productInfo, pageNum, pageSize);
-                result.setState(JsonResult.SUCCESS);
-                result.setData(productInfoPageInfo);
-                result.setMessage("返回数据成功");
-            }
-        }catch(Exception e){
-            e.printStackTrace();
-            result.setState(JsonResult.ERROR);
-            result.setMessage("返回数据失败");
-        }
-        return result;
-     }
 
-    *//**
+    /**//**
      * 删除投标
      * @param id
      * @return
@@ -381,6 +356,88 @@ public class ProductManagerController {
              result.setMessage("返回数据失败");
          }
          return result;
+    }
+
+
+    /**
+     * 查询某标种下的所有的投标（分页）
+     * @param productInfo
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @RequestMapping("/selectAllProductinfo")
+    @ResponseBody
+    public JsonResult selectAllProductinfo(ProductInfo productInfo,Integer pageNum,Integer pageSize){
+        JsonResult result = new JsonResult();
+        try{
+            if(pageNum!=null && pageSize !=null){
+                PageInfo<ProductInfo> productInfoPageInfo = productService.selectAllProductinfo(productInfo, pageNum, pageSize);
+                result.setState(JsonResult.SUCCESS);
+                result.setData(productInfoPageInfo);
+                result.setMessage("返回数据成功");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            result.setState(JsonResult.ERROR);
+            result.setMessage("返回数据失败");
+        }
+        return result;
+    }
+
+
+    /**
+     * 出借用户统计(分页，条件)
+     * @param username
+     * @param idCard
+     * @param NO
+     * @param startTime
+     * @param endTime
+     * @param minDealMoney
+     * @param maxDealMoney
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @RequestMapping("/selectAllUserDeal")
+    @ResponseBody
+    public JsonResult selectAllUserDeal(String username,String idCard,String NO,Date startTime,
+                                        Date endTime,Integer minDealMoney,Integer maxDealMoney,
+                                        Integer pageNum,Integer pageSize){
+        JsonResult result = new JsonResult();
+        try{
+            Map map = new HashMap();
+            if(username !=null && !("").equals(username)){
+                map.put("username",username);
+            }
+            if(idCard!=null && !("").equals(idCard)){
+                map.put("idCard",idCard);
+            }
+            if(NO !=null && !("").equals(NO)){
+                map.put("NO",NO);
+            }
+            if(startTime!=null){
+                map.put("startTime",startTime);
+            }
+            if(endTime!=null){
+                map.put("endTime",endTime);
+            }
+            if(minDealMoney!=null){
+                map.put("minDealMoney",minDealMoney);
+            }
+            if(maxDealMoney!=null){
+                map.put("maxDealMoney",maxDealMoney);
+            }
+            PageInfo<UserProductInfoVo> productInfoVoPageInfo = productService.selectAllUserDeal(map, pageNum, pageSize);
+            result.setState(JsonResult.SUCCESS);
+            result.setData(productInfoVoPageInfo);
+            result.setMessage("返回数据成功");
+        }catch(Exception e){
+            e.printStackTrace();
+            result.setState(JsonResult.ERROR);
+            result.setMessage("返回数据失败");
+        }
+        return result;
     }
 
 }

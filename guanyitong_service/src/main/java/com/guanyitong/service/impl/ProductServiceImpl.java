@@ -47,6 +47,21 @@ public class ProductServiceImpl implements ProductService{
         return productDao.selectProductInfo(map);
     }
 
+    /**
+     * 出借用户统计(分页，条件)
+     * @param map
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public PageInfo<UserProductInfoVo> selectAllUserDeal(Map map, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<UserProductInfoVo> userProductInfoVos = productDao.selectAllUserDeal(map);
+        PageInfo<UserProductInfoVo> pageInfo = new PageInfo<UserProductInfoVo>(userProductInfoVos);
+        return pageInfo;
+    }
+
     //=======================================================后台管理
     /**
      * 添加产品（标种）

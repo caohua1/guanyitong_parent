@@ -97,6 +97,41 @@
           where udm.productInfoId = #{productInfoId}
      </select>
 
+    <!--出借用户统计(分页，条件)-->
+    <select id="selectAllUserDeal" resultType="com.guanyitong.model.vo.UserProductInfoVo" parameterType="java.util.Map">
+        select udm.dealMoney,pi.*,ui.username from user_deal_money udm
+        left join productinfo pi on pi.id = udm.productInfoId
+        left join user_info ui on ui.id = udm.userId
+        left join account_manager am on udm.userId = am.userId
+        where 1=1
+        <if test="username !=null and username !=''">
+            and ui.username = #{username}
+        </if>
+        <if test="NO !=null and NO !=''">
+            and pi.NO = #{NO}
+        </if>
+        <if test="idCard !=null and idCard !=''">
+            and am.idCard = #{idCard}
+        </if>
+        <if test="startTime !=null and endTime ==null">
+            and pi.createTime &gt;= #{startTime}
+        </if>
+        <if test="startTime ==null and endTime !=null">
+            and pi.createTime &lt;= #{endTime}
+        </if>
+        <if test="startTime !=null and endTime !=null">
+            and pi.createTime BETWEEN #{startTime} and #{endTime}
+        </if>
+        <if test="minDealMoney !=null and maxDealMoney ==null">
+            and udm.dealMoney &gt;= #{minDealMoney}
+        </if>
+        <if test="minDealMoney ==null and maxDealMoney !=null">
+            and udm.dealMoney &lt;= #{maxDealMoney}
+        </if>
+        <if test="minDealMoney !=null and maxDealMoney !=null">
+            and udm.dealMoney BETWEEN #{minDealMoney} and #{maxDealMoney}
+        </if>
+    </select>
 
      <!--========================================================================借款流程-->
      <!--（分页）（投标管理）投标列表-->
