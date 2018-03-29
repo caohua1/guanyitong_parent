@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.guanyitong.mapper.LenderManagementVoDao">
 
-
+<!--出借人银行卡信息xml-->
 
     <!-- 条件查询,分页查询出借人银行卡信息-->
     <select id="selectLenderManagementVo" parameterType="java.util.Map" resultType="com.guanyitong.model.vo.LenderManagementVo">
