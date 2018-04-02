@@ -89,8 +89,10 @@
   </servlet-mapping>
 
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>/WEB-INF/jsp/borrowUserManager/index.jsp</welcome-file>
   </welcome-file-list>
+
+
 
   <!-- 错误跳转页面 -->
   <!--<error-page>
