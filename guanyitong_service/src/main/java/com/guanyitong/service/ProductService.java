@@ -20,6 +20,13 @@ public interface ProductService {
      */
     public List<ProductInfo> selectProductInfo(Map map);
 
+    /**
+     * 出借用户统计(分页，条件)
+     * @param map
+     * @return
+     */
+    public PageInfo<UserProductInfoVo> selectAllUserDeal(Map map,Integer pageNum,Integer pageSize);
+
 
 
     //===========================================后台管理

@@ -10,7 +10,7 @@ public class MainController {
 	@RequestMapping("index")
 	public String index(){
 		System.out.println(111);
-		return "index";
+		return "/HT_jsp/index.jsp";
 	}
 	
 }

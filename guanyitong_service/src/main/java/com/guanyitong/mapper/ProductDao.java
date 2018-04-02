@@ -86,6 +86,13 @@ public interface ProductDao {
      */
     public List<UserProductInfoVo> selectUserProductinfo(Long productInfoId);
 
+    /**
+     * 出借用户统计(分页，条件)
+     * @param map
+     * @return
+     */
+    public List<UserProductInfoVo> selectAllUserDeal(Map map);
+
 
     //==============================================借款流程
 
