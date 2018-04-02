@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 public class userInfoVo extends AccountManager implements Serializable {
 
-    private String username;
+    private String username;//手机号
 
     public String getUsername() {
         return username;

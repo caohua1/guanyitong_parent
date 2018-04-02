@@ -123,4 +123,11 @@ public interface ProductDao {
      * @return
      */
     public ProductInfo selectProductInfoByStAndBUId(Map map);
+
+    /**
+     * 根据标Id和userId查询出回款方式
+     * @param
+     * @return
+     */
+    public List<ProductInfo> selectReceivableWay(Map ReceivableWayMap);
 }

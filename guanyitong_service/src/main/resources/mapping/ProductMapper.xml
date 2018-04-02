@@ -234,5 +234,8 @@
             and status = #{status1}
         </if>
     </update>
+    <!-- 根据标Id查询出回款方式-->
+    <select id="selectReceivableWay" parameterType="java.lang.Long" resultType="com.guanyitong.model.ProductInfo">
 
+    </select>
 </mapper>
