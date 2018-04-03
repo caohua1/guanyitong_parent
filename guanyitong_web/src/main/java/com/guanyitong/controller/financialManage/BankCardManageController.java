@@ -54,6 +54,7 @@ public class BankCardManageController {
     @RequestMapping("/selectByUserBankcard")
     @ResponseBody
     public JsonResult selectByUserBankcard(Integer pageNum, Integer pageSize,UserBankcard userBankcard,  @RequestParam(required=false)Date firstDate,  @RequestParam(required=false)Date lastDate){
+        System.out.println("ajxa异步提价");
         JsonResult result = new JsonResult();
         try{
             Map<Object, Object> conditionMap = new HashMap<Object, Object>();

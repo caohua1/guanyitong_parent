@@ -93,7 +93,7 @@
 
                 <ul class="submenu">
 
-                    <li onclick="liClick(this)" url="iframe_l.html">借款人银行卡管理</li>
+                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/toBankCardManage.do">借款人银行卡管理</li>
 
                     <li onclick="liClick(this)" url="iframe_m.html">出借人银行卡管理</li>
 

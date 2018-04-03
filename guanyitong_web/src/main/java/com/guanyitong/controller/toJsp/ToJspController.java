@@ -26,4 +26,12 @@ public class ToJspController {
     public String toAddBorrowUser(){
         return "borrowUserManager/borrowUser_add";
     }
+
+    //============================借款人(财务管理)
+    /**
+     * 跳转到借款人银行卡管理
+     * @return
+     */
+    @RequestMapping("/toBankCardManage")
+    public String toBankCardManage(){ return "borrowUserManager/borrowUserBank";}
 }
