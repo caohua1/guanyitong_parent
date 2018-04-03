@@ -36,13 +36,13 @@ public class BorrowMoneyUserServiceImpl implements BorrowMoneyUserService {
 
     /**
      * 借款人认证资料审核列表，（分页）0待审核 (1 3 审核未通过) 4审核通过
-     * @param borrowMoneyUser
+     * @param map
      * @return
      */
     @Override
-    public PageInfo<BorrowMoneyUser> selectAllBorrowUser(BorrowMoneyUser borrowMoneyUser,Integer pageNum,Integer pageSize) {
+    public PageInfo<BorrowMoneyUser> selectAllBorrowUser(Map map,Integer pageNum,Integer pageSize) {
         PageHelper.startPage(pageNum,pageSize);
-        List<BorrowMoneyUser> borrowMoneyUsers = borrowMoneyUserDao.selectAllBorrowUser(borrowMoneyUser);
+        List<BorrowMoneyUser> borrowMoneyUsers = borrowMoneyUserDao.selectAllBorrowUser(map);
         PageInfo<BorrowMoneyUser> pageInfo = new PageInfo<BorrowMoneyUser>(borrowMoneyUsers);
         return pageInfo;
     }
@@ -58,6 +58,16 @@ public class BorrowMoneyUserServiceImpl implements BorrowMoneyUserService {
     @Override
     public Integer updateStatus(Map map) {
         return borrowMoneyUserDao.updateStatus(map);
+    }
+
+    /**
+     * 查询总用户数（列表展示）
+     * @param map
+     * @return
+     */
+    @Override
+    public int selectCount(Map map) {
+        return borrowMoneyUserDao.selectCount(map);
     }
 
 

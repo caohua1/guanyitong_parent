@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="<%=path%>/css/common_css/style.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/css.css" />
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
+    <script src="<%=path%>/js/common_js/mydate.js"></script>
+    <script src="<%=path%>/js/common_js/page.js"></script>
     <script  src="${ctx}/js/HT_js/borrowUserManager_js/borrowUser_list.js"></script>
 </head>
 <body>
@@ -39,11 +41,20 @@
     <div class="acont-nav">借款人列表：</div>
     <div class="acont-ahref"><a href="<%=basePath%>toJsp/toAddBorrowUser.do">添加新用户</a></div>
     <div class="acon-input">
-        <div><span>用户ID:</span><span><input type="text"></span></div>
-        <div><span>真实姓名:</span><span><input type="text"></span></div>
-        <div><span>身份证号:</span><span><input type="text"></span></div>
-        <div><span>企业名称:</span><span><input type="text"></span></div>
-        <div class="tjiaoP_a"><span>提交时间:</span><span><input type="text"></span><span>至</span><span><input type="text"></span></div>
+        <div><span>用户ID:</span><span><input type="text" id="borrowMoneyUserId"></span></div>
+        <div><span>真实姓名:</span><span><input type="text" id="apprroveName"></span></div>
+        <div><span>身份证号:</span><span><input type="text" id="legalIDCard"></span></div>
+        <div><span>企业名称:</span><span><input type="text" id="companyName"></span></div>
+        <div class="tjiaoP_a">
+            <span>提交时间:</span>
+            <span>
+                <input type="text" id="startTime" onfocus="MyCalendar.SetDate(this)" class="input-text">
+            </span>
+            <span>至</span>
+            <span>
+                <input type="text" id="endTime" onfocus="MyCalendar.SetDate(this)" class="input-text">
+            </span>
+        </div>
         <div><span>分配人:</span>
             <span><select>
 							<option>==请选择</option>
@@ -52,14 +63,21 @@
 						</select></span>
         </div>
         <div><span>分配状态:</span>
-            <span><select>
-							<option>==请选择</option>
-							<option>==请选择1</option>
-							<option>==请选择2</option>
+            <span><select id="select_id">
+                <%--0 认证信息待审核  1 认证审核失败 2 认证信息审核成功，借款额度待审核  3 借款额度审核失败  4 借款额度审核成功，合同待确认
+                 5 合同确认失败  6 合同确认成功，产品待审核  --%>
+                            <option selected="selected" value="-1">==请选择</option>
+							<option value="0">认证信息待审核</option>
+							<option value="1">认证审核失败</option>
+							<option value="2">认证信息审核成功，借款额度待审核</option>
+                            <option value="3">借款额度审核失败</option>
+                            <option value="4">借款额度审核成功，合同待确认</option>
+                            <option value="5">合同确认失败</option>
+                            <option value="6">合同确认成功，产品待审核</option>
 						</select></span>
         </div>
 
-        <div class="soua"><button>搜索</button></div>
+        <div class="soua"><button id="select">搜索</button></div>
 
 
     </div>
@@ -91,7 +109,7 @@
     </div>
 
     <div class="acon-yong">
-        <span>用户总数：</span><span>0</span>
+        <span>用户总数：</span><span id = "count"></span>
     </div>
 
 
