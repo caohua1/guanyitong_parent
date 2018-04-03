@@ -184,5 +184,15 @@ public class DateAndTimeUtil {
         // str = dateFormat("2014-11");  
         str = getNow_Pre_Date("2014-10")[0];  
         System.out.println(str);  
-    }  
+    }
+    public static Date convert(String stringDate) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            return simpleDateFormat.parse(stringDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }  

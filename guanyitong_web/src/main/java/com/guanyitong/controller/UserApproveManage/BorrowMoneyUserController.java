@@ -3,10 +3,10 @@ import com.github.pagehelper.PageInfo;
 import com.guanyitong.model.BorrowMoneyUser;
 import com.guanyitong.service.BorrowMoneyUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import util.DateAndTimeUtil;
 import util.JsonResult;
 
 import java.util.Date;
@@ -26,7 +26,7 @@ public class BorrowMoneyUserController {
      */
     @RequestMapping("/addBorrowMoneyUser")
     @ResponseBody
-    public JsonResult addBorrowMoneyUser(BorrowMoneyUser borrowMoneyUser){
+    public JsonResult addBorrowMoneyUser(@RequestBody BorrowMoneyUser borrowMoneyUser){
         JsonResult result = new JsonResult();
         try{
             borrowMoneyUser.setCreateTime(new Date());
@@ -53,13 +53,45 @@ public class BorrowMoneyUserController {
      * @param pageSize
      * @return
      */
-    @RequestMapping("/selectAllBorrowUser")
+
+    @RequestMapping(value="/selectAllBorrowUser",method= RequestMethod.POST)
     @ResponseBody
-    public JsonResult selectAllBorrowUser(BorrowMoneyUser borrowMoneyUser,Integer pageNum,Integer pageSize){
+    public JsonResult selectAllBorrowUser( BorrowMoneyUser borrowMoneyUser, String startTime,  String endTime, Integer pageNum, Integer pageSize){
         JsonResult result = new JsonResult();
         try{
-            PageInfo<BorrowMoneyUser> pageInfo = borrowMoneyUserService.selectAllBorrowUser(borrowMoneyUser, pageNum, pageSize);
-            result.setData(pageInfo);
+            Map map = new HashMap();
+            if(borrowMoneyUser!=null){
+                if(borrowMoneyUser.getId()!=null){
+                    map.put("id",borrowMoneyUser.getId());
+                }
+                if(borrowMoneyUser.getApprroveName()!=null && !("").equals(borrowMoneyUser.getApprroveName())){
+                    map.put("apprroveName",borrowMoneyUser.getApprroveName());
+                }
+                if(borrowMoneyUser.getLegalIDCard()!=null && !("").equals(borrowMoneyUser.getLegalIDCard())){
+                    map.put("legalIDCard",borrowMoneyUser.getLegalIDCard());
+                }
+                if(borrowMoneyUser.getCompanyName()!=null && !("").equals(borrowMoneyUser.getCompanyName())){
+                    map.put("companyName",borrowMoneyUser.getCompanyName());
+                }
+                if(borrowMoneyUser.getAuditUserName()!=null && !("").equals(borrowMoneyUser.getAuditUserName())){
+                    map.put("auditUserName",borrowMoneyUser.getAuditUserName());
+                }
+                if(borrowMoneyUser.getStatus()!=null && borrowMoneyUser.getStatus()>=0){
+                    map.put("status",borrowMoneyUser.getStatus());
+                }
+            }
+            if(startTime !=null && !("").equals(startTime)){
+                map.put("startTime", DateAndTimeUtil.convert(startTime) );
+            }
+            if(endTime !=null && !("").equals(endTime)){
+                map.put("endTime",DateAndTimeUtil.convert(endTime));
+            }
+            int count = borrowMoneyUserService.selectCount(map);
+            PageInfo<BorrowMoneyUser> pageInfo = borrowMoneyUserService.selectAllBorrowUser(map, pageNum, pageSize);
+            Map data = new HashMap();
+            data.put("count",count);
+            data.put("pageInfo",pageInfo);
+            result.setData(data);
             result.setState(JsonResult.SUCCESS);
             result.setMessage("返回数据成功");
         }catch(Exception e){

@@ -1,6 +1,7 @@
 package com.guanyitong.controller.toJsp;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/toJsp")
@@ -15,7 +16,7 @@ public class ToJspController {
      */
     @RequestMapping("/toborrowUserList")
     public String toborrowUserList(){
-        return "borrowUserManager/borrowUser_approve";
+        return "borrowUserManager/borrowUser_list";
     }
 
     /**
@@ -34,4 +35,25 @@ public class ToJspController {
      */
     @RequestMapping("/toBankCardManage")
     public String toBankCardManage(){ return "borrowUserManager/borrowUserBank";}
+
+    /**
+     * 跳转到借款人认证资料审核
+     * @return
+     */
+    @RequestMapping("/toborrowUserApprrove1")
+    public String toborrowUserApprrove1(){
+        return "borrowUserManager/borrowUser_apprrove1";
+    }
+
+    /**
+     * 跳转到资料审核的详情查看页面
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping("/toborrowUserApprrove1_info")
+    public String toborrowUserApprrove1_info(Long id,Model model){
+        model.addAttribute("id",id);
+        return "borrowUserManager/borrowUser-apprrove_info";
+    }
 }

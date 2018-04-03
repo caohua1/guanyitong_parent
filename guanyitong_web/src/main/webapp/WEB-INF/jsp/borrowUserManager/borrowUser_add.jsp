@@ -29,7 +29,7 @@
     <div class="angcon">
         <p><span>企业名称：</span><span><input type="text"></span></p>
         <p><span>营业执照号：</span><span><input type="text"></span></p>
-        <p><span>营业执照图片：</span><span><button>点击上传图片</button></span></p>
+        <p><span>营业执照图片：</span><span><input type="file" name="myFile"></span></p>
         <p><span>法人代表：</span><span><input type="text"></span></p>
         <p><span>法人手机号：</span><span><input type="text"></span></p>
         <p><span>成立时间：</span><span><input type="text"></span></p>
@@ -43,7 +43,7 @@
     <div class="angcon">
         <p><span>真实姓名：</span><span><input type="text"></span></p>
         <p><span>法人身份证号：</span><span><input type="text"></span></p>
-        <p><span>法人身份证图片：</span><span><button>点击上传图片</button></span><span><button>点击上传图片</button></span></p>
+        <p><span>法人身份证图片：</span><span><input type="file" name="myFile"></span><span><input type="file" name="myFile"></span></p>
 
     </div>
 
