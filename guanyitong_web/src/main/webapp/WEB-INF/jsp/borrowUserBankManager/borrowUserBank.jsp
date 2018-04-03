@@ -44,17 +44,17 @@
     <div class="acont-nav">银行卡管理：</div>
     <div class="acont-ahref"><a href="iframe_lcon.html">添加用户银行卡</a></div>
     <div class="acon-input">
-        <div><span>用户ID:</span><span><input type="text"></span></div>
-        <div><span>真实姓名:</span><span><input type="text"></span></div>
-        <div><span>身份证号:</span><span><input type="text"></span></div>
-        <div><span>卡号:</span><span><input type="text"></span></div>
-        <div class="tjiaoP_a"><span>绑定时间:</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text"></span><span>至</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text"></span></div>
-        <div class="soua"><button>搜索</button></div>
+        <div><span>用户ID:</span><span><input type="text" id="borrowMoneyUserId"></span></div>
+        <div><span>真实姓名:</span><span><input type="text" id="realName"></span></div>
+        <div><span>身份证号:</span><span><input type="text" id="IDCardNumber"></span></div>
+        <div><span>卡号:</span><span><input type="text" id="cardNo"></span></div>
+        <div class="tjiaoP_a"><span>绑定时间:</span><span><input type="text" id="firstDate" onfocus="MyCalendar.SetDate(this)" class="input-text"></span><span>至</span><span><input type="text" id="lastDate" onfocus="MyCalendar.SetDate(this)" class="input-text"></span></div>
+        <div class="soua"><button id="select">搜索</button></div>
     </div>
 
 
     <div class="acon-table">
-        <table border="1"  border="0" cellspacing="0" cellpadding="0" >
+        <table  border="1"  border="0" cellspacing="0" cellpadding="0" >
             <thead>
             <tr>
                 <th>序号</th>
@@ -68,8 +68,9 @@
                 <th>操作</th>
             </tr>
             </thead>
+            <tr id="tbody-result"></tr>
         </table>
-        <table id="tbody-result">
+        <table >
         </table>
     </div>
 

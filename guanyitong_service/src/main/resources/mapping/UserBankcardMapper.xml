@@ -7,7 +7,7 @@
 
     <!--条件查询(查询所有用户银行卡信息) -->
     <select id="selectByUserBankcard" parameterType="java.util.Map" resultType="com.guanyitong.model.UserBankcard">
-        SELECT borrowMoneyUserId,realName,IDCardNumber,bankName,cardNo,submitTime FROM user_bankcard WHERE 1=1
+        SELECT * FROM user_bankcard WHERE 1=1
         <if test="borrowMoneyUserId !=null and borrowMoneyUserId !=''">
             and borrowMoneyUserId = #{borrowMoneyUserId}
         </if>
@@ -40,7 +40,7 @@
 
     <!--根据主键id查看详情-->
     <select id="selectUserBankcardById" parameterType="Long" resultType="com.guanyitong.model.UserBankcard">
-        select * from user_bankcard where id = #{id}
+        select * from user_bankcard where borrowMoneyUserId = #{id}
     </select>
 
 </mapper>
