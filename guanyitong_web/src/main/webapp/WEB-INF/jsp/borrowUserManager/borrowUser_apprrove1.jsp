@@ -148,7 +148,9 @@
     <div class="fenye">
         <div class="pageTest">
         </div>
-
+        <div class="acon-yong">
+            <span>第</span><span id="pageNum">1</span><span>页</span><span>/</span><span>总</span><span id="pageCount">1</span><span>页</span>/<span>每页显示</span><span id="pageSize">3</span><span>条</span>
+        </div>
     </div>
 
 
@@ -206,3 +208,15 @@
         }
     }
 </script>
+<%--
+<script>
+    $(function(){
+        var pageCount = $('#pageCount').text();
+        var pageNum = $('#pageNum').text();
+        $('.pageTest').page({
+            leng:pageCount,
+            nowPage:pageNum,
+            activeClass: 'activP'  //active 类样式定义
+        });
+    });
+</script>--%>
