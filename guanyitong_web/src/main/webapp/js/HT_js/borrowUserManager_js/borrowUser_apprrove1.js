@@ -1,10 +1,21 @@
 
+
 $(function(){
     var status =0;
-     initlist(status);
+    //初始化
+     initlist(status,1);
+
+    //分页
+   /* $('.pageTest').page({
+        activeClass: 'page-active' , //active 类样式定义
+        clickBack:function(page){
+            initlist(status,page);
+        }
+    })*/
+
 
     //点击li按钮
-    $("li").click(function(){
+    $("li").click(function(){ //从第一页开始
         if( $(this).val()==0){//待审核
             status = 0;
         }else if($(this).val()==1){//审核失败
@@ -12,23 +23,31 @@ $(function(){
         }else if($(this).val()==2){//审核成功
             status = 2;
         }
-        initlist(status);
+        initlist(status,1);
     });
     //点击搜索
-    $("#select").click(function(){
-        alert(status);
-        initlist(status);
+    $("#select").click(function(){//搜索从第一页开始
+        initlist(status,1);
+    });
+    //点击查看
+    $("#select").on('click', function (){
+        //单机后要执行的操作
+        var id = $(this).val();
+        alert(id);
+        location.href=basePath +"toJsp/toborrowUserApprrove1_info?id =" +id;
+
     });
 });
 
 //初始化列表
-function initlist(status){
+function initlist(status,pageNum){
     var id = $("#borrowMoneyUserId").val();
     var apprroveName = $("#apprroveName").val();
     var legalIDCard = $("#legalIDCard").val();
     var companyName = $("#companyName").val();
     var startTime = $("#startTime").val();
     var endTime = $("#endTime").val();
+    var pageSize = 3;
     var tbody = "";
     if(status ==0){
          tbody= window.document.getElementById("tbody-result1");
@@ -45,8 +64,8 @@ function initlist(status){
         dataType: "json",
         url: basePath+"BorrowMoneyUser/selectAllBorrowUser.do",
         data: {
-            pageNum:1,
-            pageSize:3,
+            pageNum:pageNum,
+            pageSize:pageSize,
             id:id,
             apprroveName:apprroveName,
             legalIDCard:legalIDCard,
@@ -57,13 +76,22 @@ function initlist(status){
         },
         success: function (msg) {
             var str = "";
-            $('#count').text( msg.data.count);
+            var count = msg.data.count;
+            var j = (pageNum-1)*pageSize+1;
+            $('#count').text(count);
             var data = msg.data.pageInfo.list;
-            console.log(msg);
-            var j = 1;
+
             if(data !=null && data.length>0){
-                for (i in data) {
-                    str += "<tr>" +
+                if(j<count || (count == 1 && j == 1)){
+                    $('.pageTest').page({
+                        leng:count/pageSize+1,
+                        nowPage:pageNum,
+                        activeClass: 'activP'  //active 类样式定义
+
+                    });
+                    console.log(msg);
+                   for (i in data) {
+                        str += "<tr>" +
                         "<td>" + (j++) + "</td>" +
                         "<td>" + data[i].id + "</td>" +
                         "<td>" + data[i].apprroveName + "</td>" +
@@ -87,10 +115,17 @@ function initlist(status){
                         if(status==1){
                         str+="<td>" + data[i].causeBy + "</td>"
                         }
-                        str += "<td><span><a href='javascript:selectById('"+data[i].id+"')'  >查看</a></span><span><a href='javascript:;'>修改</a></span></td>" +
+                        str += "<td><span><a  href=\"toborrowUserApprrove1_info.do?id="+ data[i].id+"\" >查看</a></span><span><a href='javascript:;'>修改</a></span></td>" +
                         "</tr>";
+                    }
+                    tbody.innerHTML = str;
+                    clickBack=function(page){
+                        initlist(status,page);
+                    }
+
+                }else{//点击下一页没有数据
+                    tbody.innerHTML = "此页暂无数据";
                 }
-                tbody.innerHTML = str;
             }else{
                 tbody.innerHTML = "暂无数据";
             }
@@ -103,7 +138,4 @@ function initlist(status){
 }
 
 
-//点击查看
-function selectById(id){
-    window.location.href= basePath +"toJsp/toborrowUserApprrove1_info?id =" +id;
-}
+

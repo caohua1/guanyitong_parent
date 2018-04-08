@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="<%=path%>/css/common_css/base.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/style.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/css.css" />
+    <link rel="stylesheet" href="<%=path%>/css/common_css/page.css" />
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
     <script src="<%=path%>/js/common_js/mydate.js"></script>
     <script src="<%=path%>/js/common_js/page.js"></script>
@@ -123,23 +124,13 @@
             </div>
         </div>
     </div>
-
+    <%--分页--%>
+    <div class="fenye">
+        <div class="pageTest">
+        </div>
+    </div>
 
 </div>
 </body>
 </html>
-<%--<script>
-    $(function(){
-        $('.tjiaoP_a>span').find('input').css({'width':'91px','height':'30px'});
-        $('.quespan').click(function(){
-            $('.showhide').show();
-        })
-        $('.showhideng>span').click(function(){
-            $('.showhide').hide();
-        })
-
-    })
-
-
-</script>--%>
 

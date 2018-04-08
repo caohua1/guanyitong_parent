@@ -48,6 +48,8 @@ public class BorrowMoneyUser implements Serializable {
     private String auditUserName;//审核人姓名
     private String causeBy;//审核未通过原因
     private String contractImage;//合同照片
+    private String moneyInfo;//资产信息
+    private String ensureInfo;//保证信息
     private Integer status;
 
     public Long getId() {
@@ -234,6 +236,22 @@ public class BorrowMoneyUser implements Serializable {
 
     public void setContractImage(String contractImage) {
         this.contractImage = contractImage;
+    }
+
+    public String getMoneyInfo() {
+        return moneyInfo;
+    }
+
+    public void setMoneyInfo(String moneyInfo) {
+        this.moneyInfo = moneyInfo;
+    }
+
+    public String getEnsureInfo() {
+        return ensureInfo;
+    }
+
+    public void setEnsureInfo(String ensureInfo) {
+        this.ensureInfo = ensureInfo;
     }
 
     public Integer getStatus() {

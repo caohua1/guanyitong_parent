@@ -20,8 +20,10 @@
     <link rel="stylesheet" href="<%=path%>/css/common_css/base.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/style.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/css.css" />
+    <link rel="stylesheet" href="<%=path%>/css/common_css/page.css" />
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
     <script src="<%=path%>/js/common_js/mydate.js"></script>
+    <script src="<%=path%>/js/common_js/page.js"></script>
     <script  src="${ctx}/js/HT_js/borrowUserManager_js/borrowUser_apprrove1.js"></script>
     <style>
         .acon-table{
@@ -142,6 +144,12 @@
     <div class="acon-yong">
         <span>用户总数：</span><span id="count">0</span>
     </div>
+    <%--分页--%>
+    <div class="fenye">
+        <div class="pageTest">
+        </div>
+
+    </div>
 
 
     <div class="showhide">
@@ -154,6 +162,7 @@
             </div>
         </div>
     </div>
+
 
 
 </div>
