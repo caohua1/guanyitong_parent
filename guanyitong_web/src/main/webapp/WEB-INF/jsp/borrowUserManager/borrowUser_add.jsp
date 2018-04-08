@@ -5,6 +5,7 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://"
@@ -20,77 +21,100 @@
     <link rel="stylesheet" href="<%=path%>/css/common_css/style.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/css.css" />
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
+    <script  src="${ctx}/js/HT_js/borrowUserManager_js/borrowUser_add.js"></script>
 </head>
 <body>
 <!--公共的外层-->
 <div class="iframe_acont">
 
     <div class="acont-nav">借款人资料：</div>
-    <div class="angcon">
-        <p><span>企业名称：</span><span><input type="text"></span></p>
-        <p><span>营业执照号：</span><span><input type="text"></span></p>
-        <p><span>营业执照图片：</span><span><input type="file" name="myFile"></span></p>
-        <p><span>法人代表：</span><span><input type="text"></span></p>
-        <p><span>法人手机号：</span><span><input type="text"></span></p>
-        <p><span>成立时间：</span><span><input type="text"></span></p>
-        <p><span>注册资本：</span><span><input type="text"></span></p>
-        <p><span>注册地址：</span><span><input type="text"></span></p>
-        <p><span>借款金额：</span><span><input type="text"></span></p>
-    </div>
+    <form>
+        <div class="angcon">
+            <p><span>企业名称：</span><span><input type="text" id="companyName"></span></p>
+            <p><span>营业执照号：</span><span><input type="text" id="charterNum"></span></p>
+            <p><span>营业执照图片：</span><span><input type="file" name="file" id="myFile" onchange="upload()"></span></p>
+
+            <p style="height: auto;line-height: 0;"><span></span><span id="myFile_div"><img src="" id="myImg" style="display: none;width: 100px;height: 100px;margin-left: 15px;"></span></p>
+            <p><span>法人代表：</span><span><input type="text" id="legalPersonName"></span></p>
+            <p><span>法人手机号：</span><span><input type="text" id="legalPhone"></span></p>
+            <p><span>成立时间：</span><span><input type="text" id="companyCreateTime"></span></p>
+            <p><span>注册资本：</span><span><input type="text" id="registerMoney"></span></p>
+            <p><span>注册地址：</span><span><input type="text" id="registerAddress"></span></p>
+            <p><span>借款金额：</span><span><input type="text" id="borrowMoney"></span></p>
+        </div>
 
 
-    <div class="acont-nav">身份认证：</div>
-    <div class="angcon">
-        <p><span>真实姓名：</span><span><input type="text"></span></p>
-        <p><span>法人身份证号：</span><span><input type="text"></span></p>
-        <p><span>法人身份证图片：</span><span><input type="file" name="myFile"></span><span><input type="file" name="myFile"></span></p>
+        <div class="acont-nav">身份认证：</div>
+        <div class="angcon anlin">
+            <p><span>真实姓名：</span><span><input type="text" id="apprroveName"></span></p>
+            <p><span>法人身份证号：</span><span><input type="text" id="legalIDCard"></span></p>
 
-    </div>
+            <div class="shcuan" style="line-height: 0;height: 0;">
+                <div style="line-height: 50px;height: auto;">法人身份证图片：</div>
+                <div style="line-height: 0;height: auto;">
+                    <div style="line-height: 50px;height: auto;"><span style="margin-right: 10px;">正面照片:</span><input type="file" name="file" id="myFile2" onchange="upload()"></div>
+                    <div id="myFile_div2" style="line-height: 0;height: auto;">
+                        <img src="" id="myImg2" style="display: none;width: 100px;height: 100px;">
+                    </div>
 
+                </div>
+                <div style="line-height: 0;height: auto;">
+                    <div style="line-height: 50px;height: auto;"><span style="margin-right: 10px;">正面照片:</span><input type="file" name="file" id="myFile3" onchange="upload()"></div>
+                    <div id="myFile_div3" style="line-height: 0;height: auto;">
+                        <img src="" id="myImg3" style="display: none;width: 100px;height: 100px;">
+                    </div>
 
-    <div class="acont-nav">信用报告认证：</div>
-    <div class="angcon">
-        <p><span>征信积分：</span>
-            <span><select>
-						<option>0</option>
-						<option>9</option>
-					</select></span>
-        </p>
-        <div><span>征信备注：</span><span><textarea></textarea></span></div>
+                </div>
 
+            </div>
 
-    </div>
-
-    <div class="acont-nav">居住地认证：</div>
-    <div class="angcon">
-        <p><span>居住地：</span><span><input type="text"></span></p>
-
-    </div>
-    <div class="acont-nav">企业介绍：</div>
-    <div class="angcontext">
-        <textarea></textarea>
-    </div>
-
-    <div class="acont-nav">借款用途：</div>
-    <div class="angcontext">
-        <textarea></textarea>
-    </div>
-
-    <div class="acont-nav">资产信息：</div>
-    <div class="angcontext">
-        <button>添加资产信息</button>
-    </div>
-
-    <div class="acont-nav">保证信息：</div>
-    <div class="angcontext">
-        <button>添加保证信息</button>
-    </div>
+        </div>
 
 
-    <div class="aatj">
-        <div><button>确定</button></div>
-        <div><button>取消</button></div>
-    </div>
+        <div class="acont-nav">信用报告认证：</div>
+        <div class="angcon">
+            <p><span>征信积分：</span>
+                <span><select id="XYJF">
+							<option>0</option>
+							<option>9</option>
+						</select></span>
+            </p>
+            <div><span>征信备注：</span><span><textarea id="XYJFDescribe"></textarea></span></div>
+
+
+        </div>
+
+        <div class="acont-nav">居住地认证：</div>
+        <div class="angcon">
+            <p><span>居住地：</span><span><input type="text" id="address"></span></p>
+
+        </div>
+        <div class="acont-nav">企业介绍：</div>
+        <div class="angcontext">
+            <textarea id="companyDescribe"></textarea>
+        </div>
+
+        <div class="acont-nav">借款用途：</div>
+        <div class="angcontext">
+            <textarea id="borrowUse"></textarea>
+        </div>
+
+        <div class="acont-nav">资产信息：</div>
+        <div class="angcontext">
+            <button>添加资产信息</button>
+        </div>
+
+        <div class="acont-nav">保证信息：</div>
+        <div class="angcontext">
+            <button>添加保证信息</button>
+        </div>
+
+
+        <div class="aatj">
+            <div><button id="toAdd">确定</button></div>
+            <div><input type="reset" value="取消"></div>
+        </div>
+    </form>
 
 
 </div>
@@ -116,3 +140,39 @@ $("#add").click(function(){
     });
 })
 --%>
+<script>
+    function test(){
+        var selectedFile = $('#myFile').get(0).files[0];
+        var reader = new FileReader();
+        reader.readAsDataURL(selectedFile);
+        reader.onload = function(e){
+            var urlsrc = this.result;
+            $('#myImg').show();
+            $('#myImg').attr('src', urlsrc);
+        }
+        console.log(selectedFile);
+    }
+    function test2(){
+        var selectedFile = $('#myFile2').get(0).files[0];
+        var reader = new FileReader();
+        reader.readAsDataURL(selectedFile);
+        reader.onload = function(e){
+            var urlsrc = this.result;
+            $('#myImg2').show();
+            $('#myImg2').attr('src', urlsrc);
+        }
+        console.log(selectedFile);
+    }
+    function test3(){
+        var selectedFile = $('#myFile3').get(0).files[0];
+        var reader = new FileReader();
+        reader.readAsDataURL(selectedFile);
+        reader.onload = function(e){
+            var urlsrc = this.result;
+            $('#myImg3').show();
+            $('#myImg3').attr('src', urlsrc);
+        }
+        console.log(selectedFile);
+    }
+
+</script>
