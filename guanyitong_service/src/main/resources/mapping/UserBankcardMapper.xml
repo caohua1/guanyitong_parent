@@ -45,7 +45,7 @@
 
     <!--模糊查询 borrowMoneyUserId -->
     <select id="selectDimId" parameterType="Long" resultType="com.guanyitong.model.UserBankcard">
-        select * from user_bankcard where borrowMoneyUserId LIKE '%1%'
+        select * from user_bankcard where borrowMoneyUserId LIKE CONCAT("%",#{borrowMoneyUserId},"%")
     </select>
 
 </mapper>
