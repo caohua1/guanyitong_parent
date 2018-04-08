@@ -26,14 +26,18 @@ public class BorrowMoneyUserController {
      */
     @RequestMapping("/addBorrowMoneyUser")
     @ResponseBody
-    public JsonResult addBorrowMoneyUser(@RequestBody BorrowMoneyUser borrowMoneyUser){
+    public JsonResult addBorrowMoneyUser(BorrowMoneyUser borrowMoneyUser,String companytime){
         JsonResult result = new JsonResult();
         try{
             borrowMoneyUser.setCreateTime(new Date());
+            if(companytime!=null && !("").equals(companytime)){
+                borrowMoneyUser.setCompanyCreateTime(DateAndTimeUtil.convert(companytime));
+            }
             Integer i = borrowMoneyUserService.insertUser(borrowMoneyUser);
             if(i>0){
                 result.setState(JsonResult.SUCCESS);
                 result.setMessage("返回数据成功");
+                result.setData(null);
             }else {
                 result.setState(JsonResult.ERROR);
                 result.setMessage("返回数据失败");
