@@ -57,7 +57,6 @@ public class BankCardManageController {
     @RequestMapping("/selectByUserBankcard")
     @ResponseBody
     public JsonResult selectByUserBankcard(Integer pageNum, Integer pageSize,UserBankcard userBankcard,  @RequestParam(required=false)String first,  @RequestParam(required=false)String last){
-        System.out.println("ajxa异步提交");
         JsonResult result = new JsonResult();
         DateAndTimeUtil dateAndTimeUtil = new DateAndTimeUtil();
         Date firstDate=null;
@@ -92,11 +91,6 @@ public class BankCardManageController {
                 }
             }
             PageInfo<UserBankcard> userBankcardPageInfo = userBankcardService.selectByUserBankcard(conditionMap, pageNum, pageSize);
-            List<UserBankcard> list = userBankcardPageInfo.getList();
-            for (UserBankcard li:list
-                 ) {
-                System.out.println("controller返回给前台页面报文"+li.getIDCardNumber()+"------"+li.getYN());
-            }
             result.setData(userBankcardPageInfo);
             result.setState(JsonResult.SUCCESS);
             result.setMessage("返回数据成功");
@@ -116,10 +110,8 @@ public class BankCardManageController {
     @RequestMapping("/selectUserBankcardById")
     public String selectUserBankcardById(String userId, Model model){
         Long id= Long.valueOf(userId);
-        System.out.println("前台传值为---"+id);
         try{
             UserBankcard userBankcard = userBankcardService.selectUserBankcardById(id);
-            System.out.println("根据userId查询----"+userBankcard);
             if(userBankcard!=null){
                 model.addAttribute("userBankcard",userBankcard);
             }
@@ -127,6 +119,33 @@ public class BankCardManageController {
             e.printStackTrace();
         }
         return "borrowUserBankManager/borrowUserBank_select";
+    }
+
+    /**
+     * 模糊查询用户id
+     * @param borrowMoneyUserId
+     * @return
+     */
+    @RequestMapping("/selectDimId")
+    @ResponseBody
+    public JsonResult selectDimId(String borrowMoneyUserId){
+        System.out.println("ajxa异步提交");
+        System.out.println("前台传值--------"+borrowMoneyUserId);
+        JsonResult result = new JsonResult();
+        try{
+            Long dimId= Long.valueOf(borrowMoneyUserId);
+
+            List<UserBankcard> userBankcards = userBankcardService.selectDimId(dimId);
+            System.out.println("数据库返回数据--"+userBankcards);
+            result.setData(userBankcards);
+            result.setState(JsonResult.SUCCESS);
+            result.setMessage("返回数据成功");
+        }catch (Exception e){
+            e.printStackTrace();
+            result.setState(JsonResult.ERROR);
+            result.setMessage("返回数据失败");
+        }
+        return result;
     }
 
 }

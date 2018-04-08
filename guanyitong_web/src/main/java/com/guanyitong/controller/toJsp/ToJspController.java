@@ -60,6 +60,11 @@ public class ToJspController {
     @RequestMapping("/toBankCardManage")
     public String toBankCardManage(){ return "borrowUserBankManager/borrowUserBank";}
 
-
+    /**
+     * 跳转到添加用户银行卡页面
+     * @return
+     */
+    @RequestMapping("/toAddBankCard")
+    public String toAddBankCard(){return "borrowUserBankManager/borrowUserBank_add";}
 
 }

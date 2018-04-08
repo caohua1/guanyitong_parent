@@ -42,7 +42,7 @@
 <div class="iframe_acont">
 
     <div class="acont-nav">银行卡管理：</div>
-    <div class="acont-ahref"><a href="iframe_lcon.html">添加用户银行卡</a></div>
+    <div class="acont-ahref"><a href="${ctx}/toJsp/toAddBankCard.do">添加用户银行卡</a></div>
     <div class="acon-input">
         <div><span>用户ID:</span><span><input type="text" id="borrowMoneyUserId"></span></div>
         <div><span>真实姓名:</span><span><input type="text" id="realName"></span></div>

@@ -3,6 +3,7 @@ package com.guanyitong.service;
 import com.github.pagehelper.PageInfo;
 import com.guanyitong.model.UserBankcard;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -29,4 +30,13 @@ public interface UserBankcardService {
      * @return
      */
     public UserBankcard selectUserBankcardById(Long id);
+
+
+
+    /**
+     * 模糊查询borrowMoneyUserId
+     * @param dimId
+     * @return
+     */
+    public List<UserBankcard> selectDimId(Long dimId);
 }
