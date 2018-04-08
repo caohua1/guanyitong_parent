@@ -7,13 +7,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import util.DateAndTimeUtil;
 import util.JsonResult;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 //借款人银行卡管理
@@ -53,8 +56,18 @@ public class BankCardManageController {
      */
     @RequestMapping("/selectByUserBankcard")
     @ResponseBody
-    public JsonResult selectByUserBankcard(Integer pageNum, Integer pageSize,UserBankcard userBankcard,  @RequestParam(required=false)Date firstDate,  @RequestParam(required=false)Date lastDate){
+    public JsonResult selectByUserBankcard(Integer pageNum, Integer pageSize,UserBankcard userBankcard,  @RequestParam(required=false)String first,  @RequestParam(required=false)String last){
         JsonResult result = new JsonResult();
+        DateAndTimeUtil dateAndTimeUtil = new DateAndTimeUtil();
+        Date firstDate=null;
+        Date lastDate =null;
+        if(first!=null&&first!=""){
+            firstDate = dateAndTimeUtil.convert(first);
+        }
+        if(last!=null&&last!=""){
+            lastDate = dateAndTimeUtil.convert(last);
+        }
+        System.out.println("字符串转换时间类型--------"+lastDate);
         try{
             Map<Object, Object> conditionMap = new HashMap<Object, Object>();
             if(userBankcard!=null){
@@ -91,24 +104,43 @@ public class BankCardManageController {
 
     /**
      * 根据主键查询详情
-     * @param id
+     * @param userId
      * @return
      */
     @RequestMapping("/selectUserBankcardById")
-    @ResponseBody
-    public JsonResult selectUserBankcardById(Long id){
-        JsonResult result = new JsonResult();
+    public String selectUserBankcardById(String userId, Model model){
+        Long id= Long.valueOf(userId);
         try{
             UserBankcard userBankcard = userBankcardService.selectUserBankcardById(id);
             if(userBankcard!=null){
-                result.setState(JsonResult.SUCCESS);
-                result.setData(userBankcard);
-                result.setMessage("返回数据成功");
-            }else{
-                result.setState(JsonResult.ERROR);
-                result.setMessage("返回数据为空");
+                model.addAttribute("userBankcard",userBankcard);
             }
         }catch(Exception e){
+            e.printStackTrace();
+        }
+        return "borrowUserBankManager/borrowUserBank_select";
+    }
+
+    /**
+     * 模糊查询用户id
+     * @param borrowMoneyUserId
+     * @return
+     */
+    @RequestMapping("/selectDimId")
+    @ResponseBody
+    public JsonResult selectDimId(String borrowMoneyUserId){
+        System.out.println("ajxa异步提交");
+        System.out.println("前台传值--------"+borrowMoneyUserId);
+        JsonResult result = new JsonResult();
+        try{
+            Long dimId= Long.valueOf(borrowMoneyUserId);
+
+            List<UserBankcard> userBankcards = userBankcardService.selectDimId(dimId);
+            System.out.println("数据库返回数据--"+userBankcards);
+            result.setData(userBankcards);
+            result.setState(JsonResult.SUCCESS);
+            result.setMessage("返回数据成功");
+        }catch (Exception e){
             e.printStackTrace();
             result.setState(JsonResult.ERROR);
             result.setMessage("返回数据失败");

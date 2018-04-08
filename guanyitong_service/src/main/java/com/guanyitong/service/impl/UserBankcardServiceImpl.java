@@ -56,4 +56,15 @@ public class UserBankcardServiceImpl implements UserBankcardService{
     public UserBankcard selectUserBankcardById(Long id) {
         return userBankcardDao.selectUserBankcardById(id);
     }
+
+
+    /**
+     * 模糊查询borrowMoneyUserId
+     * @param dimId
+     * @return
+     */
+    @Override
+    public List<UserBankcard> selectDimId(Long dimId) {
+        return userBankcardDao.selectDimId(dimId);
+    }
 }

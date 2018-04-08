@@ -28,5 +28,12 @@ public interface UserBankcardDao {
      */
     public UserBankcard selectUserBankcardById(Long id);
 
+    /**
+     * 模糊查询borrowMoneyUserId
+     * @param dimId
+     * @return
+     */
+    public List<UserBankcard> selectDimId(Long dimId);
+
 
 }

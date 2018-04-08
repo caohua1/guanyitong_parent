@@ -28,6 +28,8 @@ public class ToJspController {
         return "borrowUserManager/borrowUser_add";
     }
 
+
+
     /**
      * 跳转到借款人认证资料审核
      * @return
@@ -48,4 +50,21 @@ public class ToJspController {
         model.addAttribute("id",id);
         return "borrowUserManager/borrowUser-apprrove_info";
     }
+
+
+    //============================借款人(财务管理)
+    /**
+     * 跳转到借款人银行卡管理
+     * @return
+     */
+    @RequestMapping("/toBankCardManage")
+    public String toBankCardManage(){ return "borrowUserBankManager/borrowUserBank";}
+
+    /**
+     * 跳转到添加用户银行卡页面
+     * @return
+     */
+    @RequestMapping("/toAddBankCard")
+    public String toAddBankCard(){return "borrowUserBankManager/borrowUserBank_add";}
+
 }
