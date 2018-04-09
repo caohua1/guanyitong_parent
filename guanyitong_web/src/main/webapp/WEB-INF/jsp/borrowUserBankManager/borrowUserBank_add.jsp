@@ -40,71 +40,62 @@
 <body>
 <!--公共的外层-->
 <div class="iframe_acont">
-
     <div class="acont-nav">添加用户银行卡：</div>
-
     <div class="iframe_lcona">
         <div>用户ID：</div>
         <div class="dianconl">
-            <input  id="btnShow" type="text" onkeyup="test(this.value,event)">
+            <input  id="btnShow" type="test" onkeyup="dim(this.value,event)">
             <div class="dianbot">
-                <ul id='lists'  onchange="test2()">
+                <ul id='lists'>
                 </ul>
             </div>
         </div>
     </div>
-
     <div class="iframe_lcona">
         <div>真实姓名：</div>
         <div>
-            <input type="text">
+            <input type="text" id="realName">
         </div>
     </div>
-
     <div class="iframe_lcona">
         <div>身份证号：</div>
         <div>
-            <input type="text">
+            <input type="text" id="IDCardNumber">
         </div>
     </div>
-
     <div class="iframe_lcona">
         <div>卡号：</div>
         <div>
-            <input type="text">
+            <input type="text" id="cardNo">
         </div>
     </div>
-
     <div class="iframe_lcona">
         <div>开户银行：</div>
         <div>
-            <input type="text">
+            <input type="text" id="bankName">
         </div>
     </div>
-
     <div class="iframe_lcona">
         <div>开户地区：</div>
         <div>
-            <input type="text">
+            <input type="text" id="openAccountRegion">
         </div>
     </div>
     <div class="iframe_lcona">
         <div>可联系手机号：</div>
         <div>
-            <input type="text">
+            <input type="text" id="phone">
         </div>
     </div>
-
     <div class="btnlcon">
-        <span><input type="checkbox" checked="checked" onclick="return false;"></span>
+        <span><input type="checkbox" checked="checked" onclick="check()" id="YN"></span>
         <span>同时为在还款期作为扣款银行卡</span>
     </div>
 
     <div class="aatj">
-        <div><button>确定修改</button></div>
+        <div><input type="button" onclick="addUserBank()" value="确定修改"></div>
         <div><button>取消</button></div>
     </div>
-
 </div>
 </body>
 </html>

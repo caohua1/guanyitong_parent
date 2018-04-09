@@ -68,10 +68,9 @@
                 <th>操作</th>
             </tr>
             </thead>
-            <tr id="tbody-result"></tr>
+            <tbody id="result"></tbody>
         </table>
-        <table >
-        </table>
+
     </div>
 
     <div class="acon-yong">
