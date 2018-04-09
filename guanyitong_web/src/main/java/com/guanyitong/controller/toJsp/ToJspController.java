@@ -48,7 +48,7 @@ public class ToJspController {
     @RequestMapping("/toborrowUserApprrove1_info")
     public String toborrowUserApprrove1_info(Long id,Model model){
         model.addAttribute("id",id);
-        return "borrowUserManager/borrowUser-apprrove_info";
+        return "borrowUserManager/borrowUser_apprrove1_info";
     }
 
 

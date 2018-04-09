@@ -58,5 +58,6 @@
 			</set>
 		</property>
 	</bean>-->
+	<!--SpringMVC上传文件时，需要配置MultipartResolver处理器-->
 
 </beans>

@@ -147,5 +147,4 @@ public class BankCardManageController {
         }
         return result;
     }
-
 }

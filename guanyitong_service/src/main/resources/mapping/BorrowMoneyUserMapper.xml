@@ -8,13 +8,13 @@
       INSERT INTO borrowmoney_user(
       companyName,charterNum,charterImage,legalPersonName,legalPhone,companyCreateTime,
       registerMoney,registerAddress,borrowMoney,apprroveName,legalIDCard,legalIDCardImageZ,
-      legalIDCardImageF,XYJF,XYJFDescribe,address,companyDescribe,borrowUse,createTime,moneyInfo,ensureInfo,status
+      legalIDCardImageF,XYJF,XYJFDescribe,address,companyDescribe,borrowUse,createTime,moneyInfo,ensureInfo
       )
       VALUES
       (#{companyName},#{charterNum},#{charterImage},#{legalPersonName},#{legalPhone},
       #{companyCreateTime},#{registerMoney},#{registerAddress},#{borrowMoney},#{apprroveName},
       #{legalIDCard},#{legalIDCardImageZ},#{legalIDCardImageF},#{XYJF},#{XYJFDescribe},#{address},
-      #{companyDescribe},#{borrowUse},#{createTime},#{moneyInfo},#{ensureInfo},#{status})
+      #{companyDescribe},#{borrowUse},#{createTime},#{moneyInfo},#{ensureInfo})
     </insert>
     <!--借款人认证资料审核列表，（分页）0待审核 (1 3 审核未通过) 4审核通过-->
     <select id="selectAllBorrowUser" parameterType="java.util.Map" resultType="com.guanyitong.model.BorrowMoneyUser">

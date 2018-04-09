@@ -3,16 +3,7 @@
 $(function(){
     var status =0;
     //初始化
-     initlist(status,1);
-
-    //分页
-   /* $('.pageTest').page({
-        activeClass: 'page-active' , //active 类样式定义
-        clickBack:function(page){
-            initlist(status,page);
-        }
-    })*/
-
+     initlist(status);
 
     //点击li按钮
     $("li").click(function(){ //从第一页开始
@@ -23,31 +14,33 @@ $(function(){
         }else if($(this).val()==2){//审核成功
             status = 2;
         }
-        initlist(status,1);
+        $("#pageNum").text(1);
+        initlist(status);
     });
     //点击搜索
     $("#select").click(function(){//搜索从第一页开始
-        initlist(status,1);
+        $("#pageNum").text(1);
+        initlist(status);
     });
     //点击查看
     $("#select").on('click', function (){
         //单机后要执行的操作
         var id = $(this).val();
-        alert(id);
         location.href=basePath +"toJsp/toborrowUserApprrove1_info?id =" +id;
 
     });
 });
 
 //初始化列表
-function initlist(status,pageNum){
+function initlist(status){
     var id = $("#borrowMoneyUserId").val();
     var apprroveName = $("#apprroveName").val();
     var legalIDCard = $("#legalIDCard").val();
     var companyName = $("#companyName").val();
     var startTime = $("#startTime").val();
     var endTime = $("#endTime").val();
-    var pageSize = 3;
+    var pageSize = $("#pageSize").text();
+    var pageNum = $("#pageNum").text();
     var tbody = "";
     if(status ==0){
          tbody= window.document.getElementById("tbody-result1");
@@ -80,15 +73,9 @@ function initlist(status,pageNum){
             var j = (pageNum-1)*pageSize+1;
             $('#count').text(count);
             var data = msg.data.pageInfo.list;
-
             if(data !=null && data.length>0){
+                $("#pageCount").text(Math.ceil(count/pageSize));
                 if(j<count || (count == 1 && j == 1)){
-                    $('.pageTest').page({
-                        leng:count/pageSize+1,
-                        nowPage:pageNum,
-                        activeClass: 'activP'  //active 类样式定义
-
-                    });
                     console.log(msg);
                    for (i in data) {
                         str += "<tr>" +
@@ -119,10 +106,14 @@ function initlist(status,pageNum){
                         "</tr>";
                     }
                     tbody.innerHTML = str;
-                    clickBack=function(page){
-                        initlist(status,page);
-                    }
-
+                    $('.pageTest').page({
+                        leng:Math.ceil(count/pageSize),
+                        activeClass: 'activP',
+                        clickBack: function (pageNum) {
+                            $("#pageNum").text(pageNum);
+                            initlist(status);
+                        }
+                    });
                 }else{//点击下一页没有数据
                     tbody.innerHTML = "此页暂无数据";
                 }

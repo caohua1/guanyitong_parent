@@ -1,6 +1,7 @@
 
 $(function(){
-    createTBody(1);
+    createTBody();
+
 
     $('.tjiaoP_a>span').find('input').css({'width':'91px','height':'30px'});
     $('.quespan').click(function(){
@@ -11,7 +12,8 @@ $(function(){
     });
     //点击搜索
     $("#select").click(function(){
-         createTBody(1);
+        $("#pageNum").text(1);
+         createTBody();
 
     });
 
@@ -19,7 +21,7 @@ $(function(){
 });
 
 //初始化列表
-function createTBody(pageNum){
+function createTBody(){
     var id = $("#borrowMoneyUserId").val();
     var apprroveName = $("#apprroveName").val();
     var legalIDCard = $("#legalIDCard").val();
@@ -30,7 +32,8 @@ function createTBody(pageNum){
     var tbody=window.document.getElementById("tbody-result");
     var local = window.location;
     var basePath = local.protocol+"//"+local.host+"/";
-    var pageSize = 3;
+    var pageSize = $("#pageSize").text();
+    var pageNum = $("#pageNum").text();
         $.ajax({
             type: "post",
             dataType: "json",
@@ -53,12 +56,9 @@ function createTBody(pageNum){
                 $('#count').text(count);
                 var data = msg.data.pageInfo.list;
                     if(data !=null && data.length>0){
+                        $("#pageCount").text(Math.ceil(count/pageSize));
                         if(j<count || (j == 1 && count == 1)){
-                            $('.pageTest').page({
-                                leng:count/pageSize+1,
-                                nowPage:pageNum,
-                                activeClass: 'activP'  //active 类样式定义
-                            });
+
                            for (i in data) {
                                       str += "<tr>"+
                                       "<td>" +(j++) + "</td>"+
@@ -87,14 +87,20 @@ function createTBody(pageNum){
                                     }
                                     str += "<td><select> <option>==请选择</option> <option>==请选择1</option> <option>==请选择2</option> </select></td>" +
 
-                                        "<td><span><a href='#'>查看</a></span><span"+" class="+"quespan"+">确定审核人员</span></td>" +
+                                        "<td><span><a  href=\"toborrowUserApprrove1_info.do?id="+ data[i].id+"\" >查看</a></span><span"+" class="+"quespan"+">确定审核人员</span></td>" +
 
                                         "</tr>";
                                 }
-                                tbody.innerHTML = str;
-                                clickBack=function(page){
-                                    createTBody(pageNum);
-                                }
+                                   tbody.innerHTML = str;
+                                   $('.pageTest').page({
+                                     leng:Math.ceil(count/pageSize),
+                                     activeClass: 'activP' , //active 类样式定义
+                                     clickBack :function(page) {
+                                         $("#pageNum").text(page);
+                                         createTBody();
+                                     }
+                                   });
+
                         }else{//点击下一页没有数据
                             tbody.innerHTML = "此页暂无数据";
                         }
