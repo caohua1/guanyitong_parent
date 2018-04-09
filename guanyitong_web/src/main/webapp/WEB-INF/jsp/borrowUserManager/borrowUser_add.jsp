@@ -32,7 +32,7 @@
         <div class="angcon">
             <p><span>企业名称：</span><span><input type="text" id="companyName"></span></p>
             <p><span>营业执照号：</span><span><input type="text" id="charterNum"></span></p>
-            <p><span>营业执照图片：</span><span><input type="file" name="file" id="myFile" onchange="upload()"></span></p>
+            <p><span>营业执照图片：</span><span><input type="file" name="file"  onchange="upload1(this.files)"></span></p>
 
             <p style="height: auto;line-height: 0;"><span></span><span id="myFile_div"><img src="" id="myImg" style="display: none;width: 100px;height: 100px;margin-left: 15px;"></span></p>
             <p><span>法人代表：</span><span><input type="text" id="legalPersonName"></span></p>
@@ -52,14 +52,14 @@
             <div class="shcuan" style="line-height: 0;height: 0;">
                 <div style="line-height: 50px;height: auto;">法人身份证图片：</div>
                 <div style="line-height: 0;height: auto;">
-                    <div style="line-height: 50px;height: auto;"><span style="margin-right: 10px;">正面照片:</span><input type="file" name="file" id="myFile2" onchange="upload()"></div>
+                    <div style="line-height: 50px;height: auto;"><span style="margin-right: 10px;">正面照片:</span><input type="file" name="file"  onchange="upload2(this.files)" ></div>
                     <div id="myFile_div2" style="line-height: 0;height: auto;">
                         <img src="" id="myImg2" style="display: none;width: 100px;height: 100px;">
                     </div>
 
                 </div>
                 <div style="line-height: 0;height: auto;">
-                    <div style="line-height: 50px;height: auto;"><span style="margin-right: 10px;">正面照片:</span><input type="file" name="file" id="myFile3" onchange="upload()"></div>
+                    <div style="line-height: 50px;height: auto;"><span style="margin-right: 10px;">反面照片:</span><input type="file" name="file"  onchange="upload3(this.files)"></div>
                     <div id="myFile_div3" style="line-height: 0;height: auto;">
                         <img src="" id="myImg3" style="display: none;width: 100px;height: 100px;">
                     </div>

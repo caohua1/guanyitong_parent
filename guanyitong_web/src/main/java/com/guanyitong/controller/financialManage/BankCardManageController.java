@@ -129,14 +129,10 @@ public class BankCardManageController {
     @RequestMapping("/selectDimId")
     @ResponseBody
     public JsonResult selectDimId(String borrowMoneyUserId){
-        System.out.println("ajxa异步提交");
-        System.out.println("前台传值--------"+borrowMoneyUserId);
         JsonResult result = new JsonResult();
         try{
             Long dimId= Long.valueOf(borrowMoneyUserId);
-
             List<UserBankcard> userBankcards = userBankcardService.selectDimId(dimId);
-            System.out.println("数据库返回数据--"+userBankcards);
             result.setData(userBankcards);
             result.setState(JsonResult.SUCCESS);
             result.setMessage("返回数据成功");
@@ -147,5 +143,4 @@ public class BankCardManageController {
         }
         return result;
     }
-
 }

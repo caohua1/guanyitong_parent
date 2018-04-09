@@ -87,7 +87,7 @@ function createTBody(){
                                     }
                                     str += "<td><select> <option>==请选择</option> <option>==请选择1</option> <option>==请选择2</option> </select></td>" +
 
-                                        "<td><span><a href='#'>查看</a></span><span"+" class="+"quespan"+">确定审核人员</span></td>" +
+                                        "<td><span><a  href=\"toborrowUserApprrove1_info.do?id="+ data[i].id+"\" >查看</a></span><span"+" class="+"quespan"+">确定审核人员</span></td>" +
 
                                         "</tr>";
                                 }

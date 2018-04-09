@@ -10,7 +10,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.guanyitong.service.IFileService;
 import util.JsonResult;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping("/api")
 public class FileController {
@@ -20,12 +19,11 @@ public class FileController {
     /**
      * 文件上传(头像上传，图片上传)
      * @param request
-     * @param response
      * @return
      */
     @RequestMapping("/upload")
     @ResponseBody
-    public JsonResult upload(HttpServletRequest request, HttpServletResponse response) {
+    public JsonResult upload(HttpServletRequest request) {
         JsonResult result = new JsonResult();
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         MultipartFile file = multipartRequest.getFile("file");

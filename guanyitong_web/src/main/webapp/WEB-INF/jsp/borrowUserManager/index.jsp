@@ -56,7 +56,7 @@
 
             <li>
 
-                <div class="link"><i class="fa fa-paint-brush"></i>员工管理<i class="fa fa-chevron-down"></i></div>
+                <div class="link"><i class="fa fa-paint-brush"></i>用户管理<i class="fa fa-chevron-down"></i></div>
 
                 <ul class="submenu">
 
