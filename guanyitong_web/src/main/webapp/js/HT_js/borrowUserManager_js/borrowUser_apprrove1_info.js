@@ -37,27 +37,125 @@ function init(){
         },
         success: function (msg) {
             var data = msg.data;
+            console.log(msg)
           if(msg.data!=null){
-              $("#companyName").html(data.companyName);
-              $("#createTime").html(data.createTime);
-              $("#charterNum").html(data.charterNum);
-              $("#registerMoney").html(data.registerMoney);
-              $("#registerAddress").html(data.registerAddress);
-              $("#borrowMoney").html(data.borrowMoney);
-              $("#legalPhone").html(data.legalPhone);
-              $("#legalPersonName").html(data.legalPersonName);
-              //$("#charterImage").html(data.charterImage);
-              $("#apprroveName").html(data.apprroveName);
-              $("#legalIDCard").html(data.legalIDCard);
-              //$("#legalIDCardImageZ").html(data.legalIDCardImageZ);
-              //$("#legalIDCardImageF").html(data.legalIDCardImageF);
-              $("#XYJF").html(data.XYJF);
-              $("#XYJFDescribe").html(data.XYJFDescribe);
-              $("#address").html(data.address);
-              $("#companyDescribe").html(data.companyDescribe);
-              $("#borrowUse").html(data.borrowUse);
-              $("#moneyInfo").html(data.moneyInfo);
-              $("#ensureInfo").html(data.ensureInfo);
+              $("#id").html(id);
+              if(data.companyName !=null && data.charterImage !=''){
+                  $("#companyName").html(data.companyName);
+              }else{
+                  $("#companyName").html("暂无数据");
+              }
+
+              if(data.createTime !=null ){
+                  $("#createTime").html(data.createTime);
+              }else{
+                  $("#createTime").html("暂无数据");
+              }
+
+              if(data.charterNum !=null ){
+                  $("#charterNum").html(data.charterNum);
+              }else{
+                  $("#charterNum").html("暂无数据");
+              }
+
+              if(data.registerMoney !=null ){
+                  $("#registerMoney").html(data.registerMoney);
+              }else{
+                  $("#registerMoney").html("暂无数据");
+              }
+
+              if(data.registerAddress !=null ){
+                  $("#registerAddress").html(data.registerAddress);
+              }else{
+                  $("#registerAddress").html("暂无数据");
+              }
+
+              if(data.borrowMoney !=null ){
+                  $("#borrowMoney").html(data.borrowMoney);
+              }else{
+                  $("#borrowMoney").html("暂无数据");
+              }
+
+              if(data.legalPhone !=null ){
+                  $("#legalPhone").html(data.legalPhone);
+              }else{
+                  $("#legalPhone").html("暂无数据");
+              }
+
+              if(data.legalPersonName !=null ){
+                  $("#legalPersonName").html(data.legalPersonName);
+              }else{
+                  $("#legalPersonName").html("暂无数据");
+              }
+
+              if(data.charterImage !=null && data.charterImage !=''){
+                  $('#charterImage').show();
+                  $('#charterImage').attr('src', "http://127.0.0.1"+data.charterImage);
+              }
+
+              if(data.apprroveName !=null ){
+                  $("#apprroveName").html(data.apprroveName);
+              }else{
+                  $("#apprroveName").html("暂无数据");
+              }
+
+              if(data.legalIDCard !=null ){
+                  $("#legalIDCard").html(data.legalIDCard);
+              }else{
+                  $("#legalIDCard").html("暂无数据");
+              }
+
+              if(data.legalIDCardImageZ !=null && data.legalIDCardImageZ !=''){
+                  $('#legalIDCardImageZ').show();
+                  $('#legalIDCardImageZ').attr('src', "http://127.0.0.1"+data.legalIDCardImageZ);
+              }
+              if(data.legalIDCardImageF !=null && data.legalIDCardImageF !=''){
+                  $('#legalIDCardImageF').show();
+                  $('#legalIDCardImageF').attr('src', "http://127.0.0.1"+data.legalIDCardImageF);
+              }
+
+              if(data.XYJF !=null ){
+                  $("#XYJF").html(data.XYJF);
+              }else{
+                  $("#XYJF").html("暂无数据");
+              }
+
+              if(data.XYJFDescribe !=null ){
+                  $("#XYJFDescribe").html(data.XYJFDescribe);
+              }else{
+                  $("#XYJFDescribe").html("暂无数据");
+              }
+
+              if(data.address !=null ){
+                  $("#address").html(data.address);
+              }else{
+                  $("#address").html("暂无数据");
+              }
+
+              if(data.companyDescribe !=null ){
+                  $("#companyDescribe").html(data.companyDescribe);
+              }else{
+                  $("#companyDescribe").html("暂无数据");
+              }
+
+              if(data.borrowUse !=null ){
+                  $("#borrowUse").html(data.borrowUse);
+              }else{
+                  $("#borrowUse").html("暂无数据");
+              }
+
+              if(data.moneyInfo !=null ){
+                  $("#moneyInfo").html(data.moneyInfo);
+              }else{
+                  $("#moneyInfo").html("暂无数据");
+              }
+
+              if(data.ensureInfo !=null ){
+                  $("#ensureInfo").html(data.ensureInfo);
+              }else{
+                  $("#ensureInfo").html("暂无数据");
+              }
+
           }else{
               alert("网络错误");
           }

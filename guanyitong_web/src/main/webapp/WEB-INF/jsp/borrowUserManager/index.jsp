@@ -64,7 +64,7 @@
 
                     <li onclick="liClick(this)" url="<%=basePath%>toJsp/toborrowUserApprrove1.do">借款人认证资料审核</li>
 
-                    <li onclick="liClick(this)" url="iframe_c.html">借款额度申请审核</li>
+                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/toborrowUserApprrove2.do">借款额度申请审核</li>
 
                     <li onclick="liClick(this)" url="iframe_d.html">合同管理</li>
 

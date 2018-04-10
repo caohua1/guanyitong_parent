@@ -34,47 +34,47 @@
 <div class="iframe_acont">
     <div class="acont-nav">借款人资料：</div>
 
-    <div class="bbyong"><span>用户ID</span><span>001</span></div>
+    <div class="bbyong"><span>用户ID : </span><span id="id"></span></div>
 
     <div class="bbifra">
         <div>
             <span>企业名称：</span>
-            <span id="companyName">xxxxxxxxxxx</span>
+            <span id="companyName"></span>
         </div>
         <div>
             <span>成立时间：</span>
-            <span id="createTime">xxxxxxxxxxx</span>
+            <span id="createTime"></span>
         </div>
         <div>
             <span>营业执照号：</span>
-            <span id="charterNum">xxxxxxxxxxx</span>
+            <span id="charterNum"></span>
         </div>
         <div>
             <span>注册资本：</span>
-            <span id="registerMoney">xxxxxxxxxxx</span>
+            <span id="registerMoney"></span>
         </div>
         <div>
             <span>注册地址：</span>
-            <span id="registerAddress">xxxxxxxxxxx</span>
+            <span id="registerAddress"></span>
         </div>
 
         <div>
             <span>借款金额：</span>
-            <span id="borrowMoney">xxxxxxxxxxx</span>
+            <span id="borrowMoney"></span>
         </div>
 
         <div>
             <span>法人手机号：</span>
-            <span id="legalPhone">xxxxxxxxxxx</span>
+            <span id="legalPhone"></span>
         </div>
         <div>
             <span>法人姓名：</span>
-            <span id="legalPersonName">xxxxxxxxxxx</span>
+            <span id="legalPersonName"></span>
         </div>
 
         <div>
             <span>营业执照图片：</span>
-            <span id="charterImage"><img src="<%=path%>/img/2016012016231516.png"></span>
+            <span ><img id="charterImage" src="" style="display: none;width: 100px;height: 100px;margin-left: 15px;"></span>
         </div>
 
     </div>
@@ -83,18 +83,18 @@
     <div class="bbifra">
         <div>
             <span>真实姓名：</span>
-            <span id="apprroveName">xxxxxxxxxxx</span>
+            <span id="apprroveName"></span>
         </div>
         <div>
             <span>法人身份证号：</span>
-            <span id="legalIDCard">xxxxxxxxxxx</span>
+            <span id="legalIDCard"></span>
         </div>
         <div style="width: 80%;" class="faren">
             <div>法人身份证图片：</div>
-            <div id="legalIDCardImageZ"><img src="<%=path%>/img/2016012016231516.png">
+            <div><img id="legalIDCardImageZ" src="" style="display: none;width: 100px;height: 100px;margin-left: 15px;">
                 <p>正面</p>
             </div>
-            <div id="legalIDCardImageF"><img src="<%=path%>/img/2016012016231516.png">
+            <div><img id="legalIDCardImageF" src="" style="display: none;width: 100px;height: 100px;margin-left: 15px;">
                 <p>背面</p>
             </div>
         </div>
@@ -105,11 +105,11 @@
     <div class="bbifra">
         <div>
             <span>征信积分：</span>
-            <span id="XYJF">xxxxxxxxxxx</span>
+            <span id="XYJF"></span>
         </div>
         <div>
             <span>征信备注：</span>
-            <span id="XYJFDescribe">xxxxxxxxxxx</span>
+            <span id="XYJFDescribe"></span>
         </div>
     </div>
 
@@ -118,41 +118,29 @@
     <div class="bbifra">
         <div>
             <span>居住地：</span>
-            <span id="address">xxxxxxxxxxx</span>
+            <span id="address"></span>
         </div>
 
     </div>
 
     <div class="acont-nav">企业简介：</div>
     <div class="bbjianjie" id="companyDescribe">
-        xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
     </div>
 
     <div class="acont-nav">借款用途：</div>
     <div class="bbjianjie" id="borrowUse">
-        xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
     </div>
 
     <div class="acont-nav">资产信息：</div>
     <div class="bbjianjie" id="moneyInfo">
-        xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
     </div>
 
     <div class="acont-nav">保证信息：</div>
     <div class="bbjianjie" id="ensureInfo">
-        xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
     </div>
 
     <div class="aatj">

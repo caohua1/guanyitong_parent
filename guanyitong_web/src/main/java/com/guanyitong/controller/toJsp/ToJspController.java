@@ -40,6 +40,15 @@ public class ToJspController {
     }
 
     /**
+     * 跳转到借款人借款额度审核
+     * @return
+     */
+    @RequestMapping("/toborrowUserApprrove2")
+    public String toborrowUserApprrove2(){
+        return "borrowUserManager/borrowUser_apprrove2";
+    }
+
+    /**
      * 跳转到资料审核的详情查看页面
      * @param id
      * @param model
@@ -50,6 +59,7 @@ public class ToJspController {
         model.addAttribute("id",id);
         return "borrowUserManager/borrowUser_apprrove1_info";
     }
+
 
 
     //============================借款人(财务管理)
