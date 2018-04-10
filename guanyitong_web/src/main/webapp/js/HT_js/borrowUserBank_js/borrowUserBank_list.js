@@ -42,7 +42,7 @@ function createTBody() {
             lastDate:lastDate
         },
         success: function(msg){
-            var str = "";
+            var str="" ;
             var data = msg.data.list;
             console.log(msg);
             var j=1;
@@ -52,15 +52,15 @@ function createTBody() {
                     "<td>" + (j++) + "</td>"+
                     "<td>" + data[i].borrowMoneyUserId + "</td>"+
                     "<td>" + data[i].realName + "</td>"+
-                    "<td>" + data[i].IDCardNumber + "</td>"+
+                    "<td>" + data[i].idcardNumber + "</td>"+
                     "<td>" + data[i].bankName + "</td>"+
                     "<td>" + data[i].cardNo + "</td>"+
                     "<td>" + data[i].YN + "</td>"+
                     "<td>" + data[i].submitTime + "</td>"+
-                    "<td><span><a href="+basePath+"BankCardManagementr/selectUserBankcardById.do?userId="+data[i].borrowMoneyUserId+">查看</a></span>"+
+                    "<td><span><a href="+basePath+"BankCardManagementr/selectUserBankcardById.do?userId="+data[i].borrowMoneyUserId+">查看</a></span></td>"+
                     "</tr>";
             }
-            tbody.innerHTML = str;
+            result.innerHTML=str;
         },
         error: function () {
             alert("查询失败")

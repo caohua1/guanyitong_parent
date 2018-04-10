@@ -35,7 +35,7 @@
     <insert id="insertUserBankcardDao" parameterType="com.guanyitong.model.UserBankcard">
        INSERT INTO user_bankcard (borrowMoneyUserId,realName,IDCardNumber,cardNo,bankName,openAccountRegion,phone,YN)
        VALUES
-       (#{borrowMoneyUserId},#{userName},#{realName},#{IDCardNumber},#{cardNo},#{bankName},#{openAccountRegion},#{phone},#{YN})
+       (#{borrowMoneyUserId},#{realName},#{IDCardNumber},#{cardNo},#{bankName},#{openAccountRegion},#{phone},#{YN})
     </insert>
 
     <!--根据主键id查看详情-->

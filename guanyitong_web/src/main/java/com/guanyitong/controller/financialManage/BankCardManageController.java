@@ -34,10 +34,14 @@ public class BankCardManageController {
     @RequestMapping("/addUserBankcard")
     @ResponseBody
     public JsonResult addUserBankcard(UserBankcard userBankcard){
+        System.out.println(userBankcard.getBorrowMoneyUserId()+"----"+userBankcard.getRealName()+"----"+
+                userBankcard.getBankName()+"---"+userBankcard.getIDCardNumber()+"-----"+userBankcard.getOpenAccountRegion()+"---"+userBankcard.getCardNo()+"----"+userBankcard.getYN());
         JsonResult result = new JsonResult();
         try{
             int i = userBankcardService.insertUserBankcardDao(userBankcard);
             if(i>0){
+                System.out.println("返回数据");
+                result.setData(i);
                 result.setState(JsonResult.SUCCESS);
                 result.setMessage("返回数据成功");
             }else {
