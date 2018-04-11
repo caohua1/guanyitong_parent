@@ -7,7 +7,7 @@ import java.io.Serializable;
 //出借人银行卡信息
 public class LenderManagementVo extends AccountManager implements Serializable {
 
-    private  String username;
+    private  String username;//出借人账号（用户手机号）
 
     public String getUsername() {
         return username;

@@ -118,4 +118,9 @@
     <select id="selectBorrowMoneyUser" parameterType="java.lang.Long" resultType="com.guanyitong.model.BorrowMoneyUser">
         SELECT * from borrowmoney_user WHERE  id=#{id}
     </select>
+
+    <!-- 模糊查询id-->
+    <select id="selectDimId" parameterType="Long" resultType="com.guanyitong.model.BorrowMoneyUser">
+        select * from borrowmoney_user where id LIKE CONCAT("%",#{dimId},"%")
+    </select>
 </mapper>

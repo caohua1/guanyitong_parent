@@ -1,7 +1,9 @@
 package com.guanyitong.controller.financialManage;
 
 import com.github.pagehelper.PageInfo;
+import com.guanyitong.model.BorrowMoneyUser;
 import com.guanyitong.model.UserBankcard;
+import com.guanyitong.service.BorrowMoneyUserService;
 import com.guanyitong.service.UserBankcardService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +30,8 @@ public class BankCardManageController {
     @Autowired
     private UserBankcardService userBankcardService;
 
+    @Autowired
+    private BorrowMoneyUserService borrowMoneyUserService;
     /**
      * 绑定借款人用户银行卡（添加数据）
      */
@@ -71,7 +75,6 @@ public class BankCardManageController {
         if(last!=null&&last!=""){
             lastDate = dateAndTimeUtil.convert(last);
         }
-        System.out.println("字符串转换时间类型--------"+lastDate);
         try{
             Map<Object, Object> conditionMap = new HashMap<Object, Object>();
             if(userBankcard!=null){
@@ -136,7 +139,11 @@ public class BankCardManageController {
         JsonResult result = new JsonResult();
         try{
             Long dimId= Long.valueOf(borrowMoneyUserId);
-            List<UserBankcard> userBankcards = userBankcardService.selectDimId(dimId);
+            List<BorrowMoneyUser> userBankcards = borrowMoneyUserService.selectDimId(dimId);
+            for (BorrowMoneyUser qq:
+                 userBankcards) {
+                System.out.println(qq.getId()+"---"+qq.getApprroveName()+"---"+qq.getLegalIDCard());
+            }
             result.setData(userBankcards);
             result.setState(JsonResult.SUCCESS);
             result.setMessage("返回数据成功");

@@ -70,5 +70,11 @@ public class BorrowMoneyUserServiceImpl implements BorrowMoneyUserService {
         return borrowMoneyUserDao.selectCount(map);
     }
 
+    /**
+     * 模糊查询借款人id
+     */
+    public List<BorrowMoneyUser> selectDimId(Long dimId){
+        return borrowMoneyUserDao.selectDimId(dimId);
+    }
 
 }

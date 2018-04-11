@@ -47,5 +47,4 @@
     <select id="selectDimId" parameterType="Long" resultType="com.guanyitong.model.UserBankcard">
         select * from user_bankcard where borrowMoneyUserId LIKE CONCAT("%",#{borrowMoneyUserId},"%")
     </select>
-
 </mapper>

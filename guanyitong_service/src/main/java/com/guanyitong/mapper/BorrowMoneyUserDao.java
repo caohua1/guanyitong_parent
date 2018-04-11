@@ -12,5 +12,6 @@ public interface BorrowMoneyUserDao {
     public BorrowMoneyUser selectAllBorrowUser_before(Map map);
     public Integer updateStatus(Map map);
     public int selectCount(Map map);
+    public List<BorrowMoneyUser> selectDimId(Long dimId);
 
 }

@@ -7,15 +7,15 @@ import java.util.Date;
 //用户账户管理的重要信息
 public class AccountManager implements Serializable {
     private Long id;
-    private Long userId;
-    private String realName;
-    private String idCard;
-    private String bankName;
-    private String bankNum;
-    private Double yuE;
-    private String bankAddress;
-    private Date createTime;
-    private Integer status;
+    private Long userId;//出借人id
+    private String realName;//出借人真实姓名
+    private String idCard;//出借人身份证号
+    private String bankName;//出借人开户银行名称
+    private String bankNum;//出借人银行卡号
+    private Double yuE;//出借人平台余额
+    private String bankAddress;//出借人开户地址
+    private Date createTime;//绑定时间
+    private Integer status;//绑定状态
 
     public Long getId() {
         return id;

@@ -7,7 +7,7 @@ import java.util.Date;
 //借款主体信息实体类
 public class BorrowMoneyUser implements Serializable {
 
-    /* `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+            /* `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
             `companyName` varchar(100) DEFAULT NULL COMMENT '公司名称',
             `charterNum` varchar(50) DEFAULT NULL COMMENT '营业执照号',
             `charterImage` varchar(100) DEFAULT NULL COMMENT '营业执照图片路径',

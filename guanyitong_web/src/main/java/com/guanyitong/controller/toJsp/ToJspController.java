@@ -127,4 +127,16 @@ public class ToJspController {
     @RequestMapping("/toAddBankCard")
     public String toAddBankCard(){return "borrowUserBankManager/borrowUserBank_add";}
 
+
+    //============================出借人银行卡管理
+
+    /**
+     * 跳转到出借人银行卡管理页面
+     * @return
+     */
+    @RequestMapping("/toLenderManageMent")
+    public String toLenderManageMent(){
+        return "borrowUserBankManager/lenderManageMent";
+    }
+
 }
