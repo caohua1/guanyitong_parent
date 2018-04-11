@@ -57,7 +57,7 @@ function createTBody() {
                     "<td>" + data[i].cardNo + "</td>"+
                     "<td>" + data[i].YN + "</td>"+
                     "<td>" + data[i].submitTime + "</td>"+
-                    "<td><span><a href="+basePath+"BankCardManagementr/selectUserBankcardById.do?userId="+data[i].borrowMoneyUserId+">查看</a></span></td>"+
+                    "<td><span><a href="+basePath+"BankCardManagementr/selectUserBankcardById.do?userId="+data[i]+">查看</a></span></td>"+
                     "</tr>";
             }
             result.innerHTML=str;

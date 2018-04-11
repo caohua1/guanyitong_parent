@@ -1,10 +1,10 @@
 $(function () {
     $("ul#lists").on("click","li",function(){
 for (var item in UserBankcardList){
-    if($(this).text()==UserBankcardList[item].borrowMoneyUserId){
-    $("#btnShow").val(UserBankcardList[item].borrowMoneyUserId);
-    $("#realName").val(UserBankcardList[item].realName);
-    $("#IDCardNumber").val(UserBankcardList[item].IDCardNumber);
+    if($(this).text()==UserBankcardList[item].id){
+    $("#btnShow").val(UserBankcardList[item].id);
+    $("#realName").val(UserBankcardList[item].apprroveName);
+    $("#IDCardNumber").val(UserBankcardList[item].legalIDCard);
     }
 }
     })
@@ -31,9 +31,10 @@ function dim(userId,event) {
             var result = msg.data;
             console.log(msg);
             for( i in result){
-                var str = '<li class="text">'+ result[i].borrowMoneyUserId +'</li>';
+                var str = '<li class="text">'+ result[i].id +'</li>';
                 $(str).appendTo("#lists");
-                listArry(new person(result[i].borrowMoneyUserId,result[i].realName,result[i].idcardNumber));
+                alert("用户身份证--"+result[i].legalIDCard);
+                listArry(new person(result[i].id,result[i].apprroveName,result[i].legalIDCard));
             }
         },
         error:function(){
@@ -49,11 +50,11 @@ $(document).click(function(){
 $(".dianbot").click(function(){
     $(this).hide();
 })
-function person(borrowMoneyUserId,realName,IDCardNumber)
+function person(id,apprroveName,legalIDCard)
 {
-    this.borrowMoneyUserId=borrowMoneyUserId;
-    this.realName=realName;
-    this.IDCardNumber=IDCardNumber;
+    this.id=id;
+    this.apprroveName=apprroveName;
+    this.legalIDCard=legalIDCard;
 }
 var UserBankcardList=new Array()
 function listArry(userBankcard) {
