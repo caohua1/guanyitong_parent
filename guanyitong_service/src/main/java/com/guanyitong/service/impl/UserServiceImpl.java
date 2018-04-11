@@ -201,4 +201,29 @@ public class UserServiceImpl implements UserService {
 		return accountManager;
 	}
 
+	/**
+	 * 分页，条件，模糊查询所有出借的注册用户
+	 * @param map
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@Override
+	public PageInfo<User> selectAllUser(Map map, Integer pageNum, Integer pageSize) {
+		PageHelper.startPage(pageNum,pageSize);
+        List<User> users = userDAO.selectAllUser(map);
+        PageInfo<User> pageInfo = new PageInfo<User>(users);
+        return pageInfo;
+	}
+
+    /**
+     * 条件查询总数
+     * @param map
+     * @return
+     */
+    @Override
+    public Integer selectCount(Map map) {
+        return userDAO.selectCount(map);
+    }
+
 }

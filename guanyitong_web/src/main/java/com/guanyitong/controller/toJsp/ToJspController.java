@@ -49,7 +49,34 @@ public class ToJspController {
     }
 
     /**
-     * 跳转到资料审核的详情查看页面
+     * 跳转到合同管理
+     * @return
+     */
+    @RequestMapping("/toborrowUserApprrove3")
+    public String toborrowUserApprrove3(){
+        return "borrowUserManager/borrowUser_apprrove3";
+    }
+
+    /**
+     * 跳转到借款用户统计
+     * @return
+     */
+    @RequestMapping("/toborrowUserStatistics")
+    public String totoborrowUserStatistics(){
+        return "borrowUserManager/borrowUser_statistics";
+    }
+
+    /**
+     * 跳转到出借用户注册统计
+     * @return
+     */
+    @RequestMapping("/todealUserStatistics")
+    public String dealUserStatistics(){
+        return "borrowUserManager/dealUser_statistics";
+    }
+
+    /**
+     * 跳转到资料审核的详情（查看）
      * @param id
      * @param model
      * @return
@@ -60,6 +87,29 @@ public class ToJspController {
         return "borrowUserManager/borrowUser_apprrove1_info";
     }
 
+    /**
+     * 跳转到额度申请的详情（查看）
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping("/toborrowUserApprrove2_info")
+    public String toborrowUserApprrove2_info(Long id,Model model){
+        model.addAttribute("id",id);
+        return "borrowUserManager/borrowUser_apprrove2_info";
+    }
+
+    /**
+     * 跳转到合同管理（查看）
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping("/toborrowUserApprrove3_info")
+    public String toborrowUserApprrove3_info(Long id,Model model){
+        model.addAttribute("id",id);
+        return "borrowUserManager/borrowUser_apprrove3_info";
+    }
 
 
     //============================借款人(财务管理)

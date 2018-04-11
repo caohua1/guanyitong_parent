@@ -9,6 +9,7 @@ public interface BorrowMoneyUserDao {
     public Integer insertUser(BorrowMoneyUser borrowMoneyUser);
     public BorrowMoneyUser selectBorrowMoneyUser(Long id);
     public List<BorrowMoneyUser> selectAllBorrowUser(Map map);
+    public BorrowMoneyUser selectAllBorrowUser_before(Map map);
     public Integer updateStatus(Map map);
     public int selectCount(Map map);
 

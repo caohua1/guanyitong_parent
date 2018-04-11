@@ -126,4 +126,18 @@ public interface UserDAO {
 	 */
 	public AccountManager selectAccountManagerById(Long id);
 
+	/**
+	 * 分页，条件，模糊查询所有注册的出借用户
+	 * @param map
+	 * @return
+	 */
+	public List<User> selectAllUser(Map map);
+
+	/**
+	 * 条件查询，查询总数
+	 * @param map
+	 * @return
+	 */
+	public Integer selectCount(Map map);
+
 }

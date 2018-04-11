@@ -15,16 +15,16 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>借款人认证资料</title>
+    <title>借款人额度审核</title>
     <link rel="stylesheet" href="<%=path%>/css/common_css/base.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/style.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/css.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/page.css" />
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="<%=path%>/css/common_css/page.css">
+   <%-- <link rel="stylesheet" type="text/css" href="<%=path%>/css/common_css/page.css">--%>
     <script src="<%=path%>/js/common_js/mydate.js"></script>
     <script src="<%=path%>/js/common_js/page.js"></script>
-    <script  src="${ctx}/js/HT_js/borrowUserManager_js/borrowUser_apprrove1.js"></script>
+    <script  src="${ctx}/js/HT_js/borrowUserManager_js/borrowUser_apprrove2.js"></script>
     <style>
         .acon-table{
             display: none;
@@ -55,14 +55,14 @@
 							<option>ccc</option>
 						</select></span>
         </div>
-        <div><span>审核状态:</span>
+       <%-- <div><span>审核状态:</span>
             <span><select>
 							<option>==请选择</option>
 							<option>审核通过</option>
 							<option>待审核</option>
 							<option>审核不通过</option>
 						</select></span>
-        </div>
+        </div>--%>
 
         <div class="soua"><button id="select">搜索</button></div>
 
@@ -77,6 +77,7 @@
             <li class="menlili" value="1">审核未通过</li>
             <li class="menlili" value="2">审核通过</li>
         </ul>
+
     </div>
 
 

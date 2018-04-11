@@ -40,6 +40,26 @@ function init(){
             console.log(msg)
           if(msg.data!=null){
               $("#id").html(id);
+              //0 认证信息待审核  1 认证审核失败 2 认证信息审核成功，借款额度待审核  3 借款额度审核失败
+              // 4 借款额度审核成功，合同待确认  5 合同确认失败  6 合同确认成功，产品待审核
+              // 7 待还款 8 还款中 9 已还款
+              if(data.status ==0){
+                 $("#status1").html("待审核");
+                 $("#status2").html("待还款");
+              }else if(data.status==1){
+                  $("#status1").html("认证审核失败");
+                  $("#status2").html("待还款");
+              }else if(data.status==8){
+                  $("#status1").html("审核成功");
+                  $("#status2").html("还款中");
+              }else if(data.status==9){
+                  $("#status1").html("审核成功");
+                  $("#status2").html("已还款完成");
+              }else{
+                  $("#status1").html("审核成功");
+                  $("#status2").html("待还款");
+              }
+
               if(data.companyName !=null && data.charterImage !=''){
                   $("#companyName").html(data.companyName);
               }else{
@@ -47,9 +67,9 @@ function init(){
               }
 
               if(data.createTime !=null ){
-                  $("#companyCreateTime").html(data.companyCreateTime);
+                  $("#createTime").html(data.createTime);
               }else{
-                  $("#companyCreateTime").html("暂无数据");
+                  $("#createTime").html("暂无数据");
               }
 
               if(data.charterNum !=null ){

@@ -32,7 +32,7 @@ public class SendCodeController {
         JsonResult result = new JsonResult();
         try{
             String message = "发送成功";
-            String phone=u.getUserName(); //获取到客户端发来的手机号,用户名就是手机号
+            String phone=u.getUsername(); //获取到客户端发来的手机号,用户名就是手机号
             User user = userService.selectUserName(u);
             if (user == null) {
                 message = "该手机号未被注册";
@@ -76,7 +76,7 @@ public class SendCodeController {
         JsonResult result = new JsonResult();
         try{
             String message = "发送成功";
-            String phone=u.getUserName(); //获取到客户端发来的手机号,用户名就是手机号
+            String phone=u.getUsername(); //获取到客户端发来的手机号,用户名就是手机号
             User user = userService.selectUserName(u);
             if (user == null) {
                 message = "该手机号未被注册";

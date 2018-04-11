@@ -16,15 +16,17 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>借款人认证资料审核</title>
+    <title>借款用户统计</title>
+
+
     <link rel="stylesheet" href="<%=path%>/css/common_css/base.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/style.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/css.css" />
-    <link rel="stylesheet" href="<%=path%>/css/common_css/page.css" />
+    <link rel="stylesheet" type="text/css" href="<%=path%>/css/common_css/page.css">
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
     <script src="<%=path%>/js/common_js/mydate.js"></script>
     <script src="<%=path%>/js/common_js/page.js"></script>
-    <script  src="${ctx}/js/HT_js/borrowUserManager_js/borrowUser_apprrove1.js"></script>
+    <script  src="${ctx}/js/HT_js/borrowUserManager_js/borrowUser_statistics.js"></script>
     <style>
         .acon-table{
             display: none;
@@ -38,23 +40,42 @@
 
 
 
-    <div class="acont-nav">借款人认证资料审核列表：</div>
+    <div class="acont-nav">信用额度申请审核：</div>
     <!--<div class="acont-ahref"><a href="iframe_acon.html">添加新用户</a></div>-->
     <div class="acon-input">
         <div><span>用户ID:</span><span><input type="text" id="borrowMoneyUserId"></span></div>
         <div><span>真实姓名:</span><span><input type="text" id="apprroveName"></span></div>
-        <div><span>身份证号:</span><span><input type="text" id="legalIDCard"></span></div>
+        <!--<div><span>身份证号:</span><span><input type="text"></span></div>-->
         <div><span>企业名称:</span><span><input type="text" id="companyName"></span></div>
-        <div class="tjiaoP_a"><span>提交时间:</span><span><input type="text" id="startTime" onfocus="MyCalendar.SetDate(this)" class="input-text"></span>
-            <span>至</span><span><input type="text" id="endTime" onfocus="MyCalendar.SetDate(this)" class="input-text"></span></div>
-
-        <%--<div><span>分配状态:</span>
+        <div class="tjiaoP_a"><span>提交时间:</span>
+            <span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="startTime"></span>
+            <span>至</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="endTime"></span>
+        </div>
+        <%--状态（0 认证信息待审核  1 认证审核失败 2 认证信息审核成功，借款额度待审核  3 借款额度审核失败
+        4 借款额度审核成功，合同待确认  5 合同确认失败  6 合同确认成功，产品待审核 7待还款  8还款中 9还款完成  --%>
+        <div><span>跟踪人员:</span>
             <span><select>
 							<option>==请选择</option>
-							<option>==请选择1</option>
-							<option>==请选择2</option>
+							<option>aaa</option>
+							<option>bbb</option>
+							<option>ccc</option>
 						</select></span>
-        </div>--%>
+        </div>
+
+
+        <div><span>状态:</span>
+            <span><select id="select_id">
+							<option id="selected" value="-1">==请选择</option>
+							<option value="0">认证信息待审核</option>
+							<option value="1">认证审核失败</option>
+                            <option value="2">认证信息审核成功，借款额度待审核</option>
+							<option value="3">借款额度审核失败</option>
+                            <option value="4">借款额度审核成功，合同待确认</option>
+							<option value="5">合同确认失败</option>
+                            <option value="6">合同确认成功，产品待审核</option>
+
+						</select></span>
+        </div>
 
         <div class="soua"><button id="select">搜索</button></div>
 
@@ -62,87 +83,36 @@
     </div>
 
 
-    <!--审核未通过状态，再修改就是待审核状态-->
-    <div class="menli">
-        <ul>
-            <li class="menlili" value="0">待审核</li>
-            <li class="menlili" value="1">审核未通过</li>
-            <li class="menlili" value="2">审核通过</li>
-        </ul>
-
-
-    </div>
 
     <!--待审核-->
     <div class="acon-table">
         <table border="1"  border="0" cellspacing="0" cellpadding="0" >
-            <thead id="thead_1">
+            <thead>
             <tr>
                 <th>序号</th>
                 <th>用户ID</th>
-                <th>真实姓名</th>
-                <th>身份证号</th>
-                <th>企业名称</th>
-                <th>营业执照号</th>
-                <th>待审核资料</th>
-                <th>提交时间</th>
-                <th>状态</th>
-                <th>分配人</th>
+                <th> 真实姓名 </th>
+                <th> 企业名称 </th>
+                <th> 申请额度 </th>
+                <th> 申请时间 </th>
+                <th> 跟踪人员 </th>
+                <th> 认证状态 </th>
+                <th> 额度申请状态 </th>
+                <th> 合同状态 </th>
                 <th>操作</th>
             </tr>
             </thead>
-            <tbody id="tbody-result1">
-            </tbody>
-        </table>
-    </div>
-    <!--审核未通过-->
-    <div class="acon-table">
-        <table border="1"  border="0" cellspacing="0" cellpadding="0" >
-            <thead id="thead2">
-            <tr>
-                <th>序号</th>
-                <th>用户ID</th>
-                <th>真实姓名</th>
-                <th>身份证号</th>
-                <th>企业名称</th>
-                <th>营业执照号</th>
-                <th>提交时间</th>
-                <th>状态</th>
-                <th>分配人</th>
-                <th>审核失败原因</th>
-                <th>操作</th>
-            </tr>
-            </thead>
-            <tbody id="tbody-result2">
+            <tbody id="tbody-result">
 
             </tbody>
         </table>
     </div>
 
-    <!--审核通过-->
-    <div class="acon-table">
-        <table border="1"  border="0" cellspacing="0" cellpadding="0" >
-            <thead id="thead3">
-            <tr>
-                <th>序号</th>
-                <th>用户ID</th>
-                <th>真实姓名</th>
-                <th>身份证号</th>
-                <th>企业名称</th>
-                <th>营业执照号</th>
-                <th>提交时间</th>
-                <th>状态</th>
-                <th>分配人</th>
-                <th>操作</th>
-            </tr>
-            </thead>
-            <tbody id="tbody-result3">
 
-            </tbody>
-        </table>
-    </div>
+
+
     <div class="acon-yong">
-        <span>用户总数：</span><span id="count">0</span>
+        <span>统计：</span><span id="count">0</span><span>条</span>
     </div>
     <%--分页--%>
     <div class="fenye">
@@ -153,13 +123,15 @@
         </div>
     </div>
 
-
     <div class="showhide">
         <div class="showhideng">
             <span>✖</span>
-            <p>确定是审核人员？</p>
+            <p>请确定合同是否已签订？？</p>
+
+            <p><span>可选择上传合同照片：</span><span class="dbtn" >点击上传图片</span></p>
+
             <div class="quex">
-                <div><span>确定</span></div>
+                <div><span>确定已签合同</span></div>
                 <div><span>取消</span></div>
             </div>
         </div>
@@ -172,7 +144,12 @@
 </html>
 <script>
     $(function(){
-        $('.menlili').css({'background':'#f3f3f3','width':'150px'});
+
+        $('.quex>div>span').css({'width':'110px'});
+        $('.showhideng>p').eq(0).css({'top':'30%','width':'100%','text-align':'center'});
+        $('.showhideng>p').eq(1).css({'top':'45%','width':'100%','text-align':'center'});
+        $('.showhideng>p').eq(1).find('.dbtn').css({'color':'#08b1f8'});
+        $('.menlili').css({'background':'#f3f3f3'});
         $('.menlili').eq(0).css({'color':'red','transform':'scale(1)','-webkit-transform':'scale(1)','font-weight':'800'});
         $('.menlili').click(function(){
             $('.menlili').css({'color':'#434343','transform':'scale(1)','-webkit-transform':'scale(1)','font-weight':'100'});
@@ -180,7 +157,7 @@
         })
         $('.acon-table').eq(0).show();
         $('.tjiaoP_a>span').find('input').css({'width':'91px','height':'30px'});
-        $('.quespan').click(function(){
+        $('.hetong').click(function(){
             $('.showhide').show();
         })
         $('.showhideng>span').click(function(){
@@ -195,11 +172,11 @@
     window.onload=function(){
         var obtn=document.getElementsByClassName('menlili');
         var odivo=document.getElementsByClassName('acon-table');
-//			console.log(odivo);
+
         for(var i=0;i<obtn.length;i++){
             obtn[i].index=i;
             obtn[i].onclick=function(){
-//					alert('ok');
+
                 for(var i=0;i<obtn.length;i++){
                     odivo[i].style.display='none';
                 }
@@ -208,15 +185,4 @@
         }
     }
 </script>
-<%--
-<script>
-    $(function(){
-        var pageCount = $('#pageCount').text();
-        var pageNum = $('#pageNum').text();
-        $('.pageTest').page({
-            leng:pageCount,
-            nowPage:pageNum,
-            activeClass: 'activP'  //active 类样式定义
-        });
-    });
-</script>--%>
+

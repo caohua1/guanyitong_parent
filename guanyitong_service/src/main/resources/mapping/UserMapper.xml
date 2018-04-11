@@ -120,4 +120,44 @@
     <select id="selectAccountManagerById" parameterType="Long" resultType="com.guanyitong.model.AccountManager">
         select * from account_manager where userId = #{id}
     </select>
+
+    <!--分页查询所有注册的出借用户（条件，分页,模糊查询）-->
+    <select id="selectAllUser" parameterType="java.util.Map" resultType="com.guanyitong.model.User">
+        select * from user_info where 1=1
+        <if test="username !=null and username !=''">
+            and username LIKE CONCAT("%",#{username},"%")
+        </if>
+        <if test="startTime !=null and endTime ==null">
+            and registTime &gt;= #{startTime}
+        </if>
+        <if test="startTime ==null and endTime !=null">
+            and registTime &lt;= #{endTime}
+        </if>
+        <if test="startTime !=null and endTime !=null">
+            and registTime BETWEEN #{startTime} AND  #{endTime}
+        </if>
+        <if test="status !=null">
+            and status = #{status}
+        </if>
+    </select>
+
+    <!--查询总数count-->
+    <select id="selectCount" parameterType="java.util.Map" resultType="Integer">
+        select count(*) from user_info where 1=1
+        <if test="username !=null and username !=''">
+            and username LIKE CONCAT("%",#{username},"%")
+        </if>
+        <if test="startTime !=null and endTime ==null">
+            and registTime &gt;= #{startTime}
+        </if>
+        <if test="startTime ==null and endTime !=null">
+            and registTime &lt;= #{endTime}
+        </if>
+        <if test="startTime !=null and endTime !=null">
+            and registTime BETWEEN #{startTime} AND  #{endTime}
+        </if>
+        <if test="status !=null">
+            and status = #{status}
+        </if>
+    </select>
 </mapper>

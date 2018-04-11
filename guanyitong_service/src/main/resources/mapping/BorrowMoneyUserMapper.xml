@@ -43,7 +43,19 @@
         <if test="auditUserName !=null and auditUserName !=''">
             and auditUserName = #{auditUserName}
         </if>
-        <if test="status != null">
+        <if test="type !=null and type == 1 and status ==2 ">
+            and status &gt;= #{status}
+        </if>
+        <if test="type !=null and type ==2 and status ==2">
+            and status &gt;= #{status}
+        </if>
+        <if test="type !=null and type ==3 and status ==6">
+            and status &gt;= #{status}
+        </if>
+        <if test="status != null and type ==null">
+            and status = #{status}
+        </if>
+        <if test="status !=null and type !=null and status !=2 and status !=6">
             and status = #{status}
         </if>
     </select>
@@ -74,7 +86,19 @@
         <if test="auditUserName !=null and auditUserName !=''">
             and auditUserName = #{auditUserName}
         </if>
-        <if test="status != null">
+        <if test="type !=null and type == 1 and status ==2 ">
+            and status &gt;= #{status}
+        </if>
+        <if test="type !=null and type ==2 and status ==2">
+            and status &gt;= #{status}
+        </if>
+        <if test="type !=null and type ==3 and status ==6">
+            and status &gt;= #{status}
+        </if>
+        <if test="status != null and type ==null">
+            and status = #{status}
+        </if>
+        <if test="status !=null and type !=null and status !=2 and status !=6">
             and status = #{status}
         </if>
     </select>

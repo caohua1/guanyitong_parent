@@ -27,7 +27,7 @@
 <!--公共的外层-->
 <div class="iframe_acont">
 
-    <div class="acont-nav">借款人资料：</div>
+    <div class="acont-nav">添加借款人：</div>
     <form>
         <div class="angcon">
             <p><span>企业名称：</span><span><input type="text" id="companyName"></span></p>

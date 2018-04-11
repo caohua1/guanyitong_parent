@@ -1,7 +1,9 @@
 package com.guanyitong.controller.UserApproveManage;
 import com.github.pagehelper.PageInfo;
 import com.guanyitong.model.BorrowMoneyUser;
+import com.guanyitong.model.User;
 import com.guanyitong.service.BorrowMoneyUserService;
+import com.guanyitong.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,8 @@ import java.util.Map;
 public class BorrowMoneyUserController {
     @Autowired
     private BorrowMoneyUserService borrowMoneyUserService;
+    @Autowired
+    private UserService userService;
 
     /**
      * 借款主体的新用户添加
@@ -60,7 +64,7 @@ public class BorrowMoneyUserController {
 
     @RequestMapping(value="/selectAllBorrowUser",method= RequestMethod.POST)
     @ResponseBody
-    public JsonResult selectAllBorrowUser( BorrowMoneyUser borrowMoneyUser, String startTime,  String endTime, Integer pageNum, Integer pageSize){
+    public JsonResult selectAllBorrowUser( BorrowMoneyUser borrowMoneyUser, String startTime,  String endTime, Integer pageNum, Integer pageSize,Integer type){
         JsonResult result = new JsonResult();
         try{
             Map map = new HashMap();
@@ -82,6 +86,9 @@ public class BorrowMoneyUserController {
                 }
                 if(borrowMoneyUser.getStatus()!=null && borrowMoneyUser.getStatus()>=0){
                     map.put("status",borrowMoneyUser.getStatus());
+                }
+                if(type !=null){
+                    map.put("type",type);
                 }
             }
             if(startTime !=null && !("").equals(startTime)){
@@ -168,4 +175,49 @@ public class BorrowMoneyUserController {
         }
         return result;
     }
+
+    /**
+     * 查询所有注册的出借用户（分页，条件，模糊）
+     * @param user
+     * @param startTime
+     * @param endTime
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @RequestMapping("/selectAllUser")
+    @ResponseBody
+   public JsonResult selectAllUser(User user, String startTime,String endTime,Integer pageNum,Integer pageSize){
+        JsonResult result = new JsonResult();
+        try{
+            Map map = new HashMap();
+            if(user !=null){
+                if(user.getUsername()!=null && !("").equals(user.getUsername())){
+                    map.put("username",user.getUsername());
+                }
+                if(user.getStatus()!=null && user.getStatus()>0){
+                    map.put("status",user.getStatus());
+                }
+            }
+            if(startTime!=null && !("").equals(startTime)){
+                map.put("startTime",DateAndTimeUtil.convert(startTime));
+            }
+            if(endTime!=null && !("").equals(endTime)){
+                map.put("endTime",DateAndTimeUtil.convert(endTime));
+            }
+            PageInfo<User> pageInfo = userService.selectAllUser(map, pageNum, pageSize);
+            Integer count = userService.selectCount(map);
+            Map data = new HashMap();
+            data.put("count",count);
+            data.put("pageInfo",pageInfo);
+            result.setState(JsonResult.SUCCESS);
+            result.setData(data);
+            result.setMessage("返回数据成功");
+        }catch(Exception e){
+            e.printStackTrace();
+            result.setState(JsonResult.ERROR);
+            result.setMessage("返回数据失败");
+        }
+        return result;
+   }
 }

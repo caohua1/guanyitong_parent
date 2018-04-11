@@ -20,6 +20,7 @@ $(function(){
         toupdate(status);
     });
 
+
 });
 
 //初始化页面
@@ -40,13 +41,53 @@ function init(){
             console.log(msg)
           if(msg.data!=null){
               $("#id").html(id);
+              //0 认证信息待审核  1 认证审核失败 2 认证信息审核成功，借款额度待审核  3 借款额度审核失败
+              // 4 借款额度审核成功，合同待确认  5 合同确认失败  6 合同确认成功，产品待审核
+              // 7 待还款 8 还款中 9 已还款
+
+         /* <div><span>✔</span>  <span>认证资料审核：</span><span id="status">已通过</span></div>
+              <div><span>✔</span>  <span>额度申请审核：</span><span id="status_money">已通过</span></div>
+              <div><span>✔</span>  <span>合约</span><span id="status_heto">已签约</span></div>*/
+              if(data.status ==0){
+                 $("#status").html("待审核");
+                 $("#status_money").html("待审核");
+                 $("#status_heto").html("待签约");
+              }else if(data.status==1){
+                  $("#status").html("未通过");
+                  $("#status_money").html("待审核");
+                  $("#status_heto").html("待签约");
+              }else if(data.status==3){
+                  $("#status").html("已通过");
+                  $("#status_money").html("未通过");
+                  $("#status_heto").html("待签约");
+              }else if(data.status==4){
+                  $("#status").html("已通过");
+                  $("#status_money").html("已通过");
+                  $("#status_heto").html("待签约");
+              }else if(data.status==5){
+                  $("#status").html("已通过");
+                  $("#status_money").html("已通过");
+                  $("#status_heto").html("合同确认失败");
+              }else {
+                  $("#status").html("已通过");
+                  $("#status_money").html("已通过");
+                  $("#status_heto").html("已签约");
+              }
+
+              if(data.contractImage !=null && data.contractImage!=''){
+                  $('#contractImage').show();
+                  $('#contractImage').attr('src', "http://127.0.0.1"+data.contractImage);
+              }else{
+                  $("#img1").html("暂无图片");
+              }
+
               if(data.companyName !=null && data.charterImage !=''){
                   $("#companyName").html(data.companyName);
               }else{
                   $("#companyName").html("暂无数据");
               }
 
-              if(data.createTime !=null ){
+              if(data.companyCreateTime !=null ){
                   $("#companyCreateTime").html(data.companyCreateTime);
               }else{
                   $("#companyCreateTime").html("暂无数据");
@@ -91,6 +132,8 @@ function init(){
               if(data.charterImage !=null && data.charterImage !=''){
                   $('#charterImage').show();
                   $('#charterImage').attr('src', "http://127.0.0.1"+data.charterImage);
+              }else{
+                  $("#img2").html("暂无图片");
               }
 
               if(data.apprroveName !=null ){
@@ -108,10 +151,14 @@ function init(){
               if(data.legalIDCardImageZ !=null && data.legalIDCardImageZ !=''){
                   $('#legalIDCardImageZ').show();
                   $('#legalIDCardImageZ').attr('src', "http://127.0.0.1"+data.legalIDCardImageZ);
+              }else{
+                  $("#img3").html("正面：暂无图片");
               }
               if(data.legalIDCardImageF !=null && data.legalIDCardImageF !=''){
                   $('#legalIDCardImageF').show();
                   $('#legalIDCardImageF').attr('src', "http://127.0.0.1"+data.legalIDCardImageF);
+              }else{
+                  $("#img4").html("反面：暂无图片");
               }
 
               if(data.XYJF !=null ){

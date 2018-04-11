@@ -40,9 +40,9 @@
 
 
     <div class="acont-nav">借款人列表：</div>
-    <div class="acont-ahref"><a href="<%=basePath%>toJsp/toAddBorrowUser.do">添加新用户</a></div>
+    <div class="acont-ahref"><a href="<%=basePath%>toJsp/toAddBorrowUser.do">添加借款人</a></div>
     <div class="acon-input">
-        <div><span>用户ID:</span><span><input type="text" id="borrowMoneyUserId"></span></div>
+        <div><span>用户借款ID:</span><span><input type="text" id="borrowMoneyUserId"></span></div>
         <div><span>真实姓名:</span><span><input type="text" id="apprroveName"></span></div>
         <div><span>身份证号:</span><span><input type="text" id="legalIDCard"></span></div>
         <div><span>企业名称:</span><span><input type="text" id="companyName"></span></div>
