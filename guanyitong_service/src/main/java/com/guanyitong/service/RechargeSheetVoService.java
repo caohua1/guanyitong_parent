@@ -16,5 +16,7 @@ public interface RechargeSheetVoService {
 
     public Integer updateRechargeMoney(Long id);
 
+    public List<RechargeSheetVo> selectByrid(Long rid);
+
 
 }

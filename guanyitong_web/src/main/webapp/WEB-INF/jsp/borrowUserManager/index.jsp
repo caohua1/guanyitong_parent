@@ -22,7 +22,6 @@
     <link rel="stylesheet" href="<%=path%>/css/common_css/style.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/css.css" />
     <link rel="shortcut icon" href="<%=path%>/img/e.png" />
-
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
     <script src="<%=path%>/js/common_js/index.js"></script>
     <script src="<%=path%>/js/common_js/jquery.js"></script>
@@ -110,7 +109,7 @@
 
                     <li onclick="liClick(this)" url="iframe_n.html">还款管理</li>
 
-                    <li onclick="liClick(this)" url="iframe_o.html">充值记录</li>
+                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/toRechargeManagement.do">充值记录</li>
 
                     <li onclick="liClick(this)" url="iframe_p.html">提现管理</li>
 

@@ -89,4 +89,14 @@ public class ToJspController {
         return "borrowUserBankManager/lenderManageMent";
     }
 
+
+    /**
+     * 跳转到充值记录管理页面
+     * @return
+     */
+    @RequestMapping("/toRechargeManagement")
+    public String toRechargeManagement(){
+        return "reCharge/rechargeManagement";
+    }
+
 }

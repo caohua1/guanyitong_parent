@@ -7,12 +7,15 @@ import com.guanyitong.model.vo.RechargeSheetVo;
 import com.guanyitong.service.RechargeSheetVoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import util.DateAndTimeUtil;
 import util.JsonResult;
 
 import javax.xml.crypto.Data;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,13 +41,30 @@ public class RechargeSheetVoController {
     @RequestMapping("/selectRechargeSheetVo")
     @ResponseBody
     public JsonResult selectRechargeSheetVo(Integer pageNum, Integer pageSize,
-                                            @RequestParam(required=false)RechargeSheetVo rechargeSheetVo,
+                                           RechargeSheetVo rechargeSheetVo,
                                             @RequestParam(required=false)String firstMoney, @RequestParam(required=false)String lastMoney,
-                                            @RequestParam(required=false)Data firstDate, @RequestParam(required=false)Data lastDate){
+                                            @RequestParam(required=false)String firstDate, @RequestParam(required=false)String lastDate){
+
         JsonResult result = new JsonResult();
         Map<Object, Object> demandMap = new HashMap<Object, Object>();
+        DateAndTimeUtil dateAndTimeUtil = new DateAndTimeUtil();
+        Date firDate=null;
+        Date lasDate =null;
+        if(firstDate!=null&&firstDate!=""){
+            firDate = dateAndTimeUtil.convert(firstDate);
+        }
+        if(lastDate!=null&&lastDate!=""){
+            lasDate = dateAndTimeUtil.convert(lastDate);
+        }
         try{
             if(rechargeSheetVo!=null){
+                if(rechargeSheetVo.getUserId()!=null && ("").equals(rechargeSheetVo.getUserId())){
+                    demandMap.put("userId",rechargeSheetVo.getUserId());
+                }
+                if(rechargeSheetVo.getUsername()!=null && !("").equals(rechargeSheetVo.getUsername())){
+
+                    demandMap.put("phone",rechargeSheetVo.getUsername());
+                }
                 if(rechargeSheetVo.getSerial()!=null && !("").equals(rechargeSheetVo.getSerial())){
                     demandMap.put("serial",rechargeSheetVo.getSerial());
                 }
@@ -64,11 +84,11 @@ public class RechargeSheetVoController {
             if(lastMoney!=null && lastMoney!=""){
                 demandMap.put("lastMoney",lastMoney);
             }
-            if(firstDate!=null){
-                demandMap.put("firstDate",firstDate);
+            if(firDate!=null){
+                demandMap.put("firstDate",firDate);
             }
-            if(lastDate!=null){
-                demandMap.put("lastDate",lastDate);
+            if(lasDate!=null){
+                demandMap.put("lastDate",lasDate);
             }
             PageInfo<RechargeSheetVo> rechargeSheetVoPageInfo = rechargeSheetVoService.listRechargeSheetVo(pageNum, pageSize, demandMap);
             result.setData(rechargeSheetVoPageInfo);
@@ -82,4 +102,11 @@ public class RechargeSheetVoController {
         return result;
     }
 
+@RequestMapping("/selectByrid")
+    public String selectByUserId(String id, Model model){
+    Long rid= Long.valueOf(id);
+    List<RechargeSheetVo> rechargeSheetVos = rechargeSheetVoService.selectByrid(rid);
+    model.addAttribute("rechargeSheet",rechargeSheetVos);
+    return "reCharge/rechargeManagement_select";
+}
 }

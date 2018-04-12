@@ -6,12 +6,25 @@
 
     <!--查询充值记录（分页查询，条件查询）-->
     <select id="listRechargeSheetVo" parameterType="java.util.Map" resultType="com.guanyitong.model.vo.RechargeSheetVo">
-      SELECT
-            r.*,a.bankAddress,a.bankName,a.bankNum,a.createTime,a.idCard,a.realName
-            FROM
-	        recharge_money r
-            LEFT JOIN account_manager a ON r.userId = a.userId
+        SELECT
+        r.*, a.bankAddress,
+        a.bankName,
+        a.bankNum,
+        a.createTime,
+        a.idCard,
+        a.realName,
+        u.username
+        FROM
+        recharge_money r
+        LEFT JOIN account_manager a ON r.userId = a.userId
+        LEFT JOIN user_info u ON r.userId=u.id
             WHERE 1=1
+            <if test="rid!=null and rid!=''">
+                AND r.id=#{rid}
+            </if>
+            <if test="phone!=null and phone!=''">
+                AND  u.username =#{phone}
+            </if>
             <if test="serial!=null and serial!=''">
 	              AND r.serial =#{serial}
             </if>
@@ -72,4 +85,6 @@
     <update id="updateRechargeMoney"  parameterType="java.lang.Long">
         UPDATE recharge_money SET status=1 WHERE id=#{id}
     </update>
+
+
 </mapper>
