@@ -131,4 +131,17 @@ public interface UserService {
 	 * @return
 	 */
 	public AccountManager selectAccountManagerById(Long id);
+
+	/**
+	 * 分页，条件，模糊查询所有注册的出借用户
+	 * @param map
+	 * @return
+	 */
+	public PageInfo<User> selectAllUser(Map map,Integer pageNum,Integer pageSize);
+	/**
+	 * 条件查询，查询总数
+	 * @param map
+	 * @return
+	 */
+	public Integer selectCount(Map map);
 }

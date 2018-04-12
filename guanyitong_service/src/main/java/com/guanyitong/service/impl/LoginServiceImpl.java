@@ -23,17 +23,17 @@ public class LoginServiceImpl {
     public static Map<String, User> loginUserMap= new HashMap<String, User>();
     /**
      * 客户登录（同步）
-     * @param userName
+     * @param username
      * @param password
      * @return
      */
-    public String login(String userName,String password){
+    public String login(String username,String password){
         /**
          * 先判断用户是否存在
          */
         User user= new User();
-        if(userName!=null && password!=null){
-            user.setUserName(userName);
+        if(username!=null && password!=null){
+            user.setUsername(username);
             user.setPassword(MD5Util.MD5(password));
             System.out.println(MD5Util.MD5(password));
         }
@@ -53,7 +53,7 @@ public class LoginServiceImpl {
          */
         String token=tokenMap.get("userName");
         if(token==null){
-            user.setUserName(userName);
+            user.setUsername(username);
             user.setPassword(password);
             System.out.println("新用户登录");
         }else{
@@ -62,9 +62,9 @@ public class LoginServiceImpl {
             System.out.println("更新用户登录的token");
         }
         //更新token
-        token = MD5Util.MD5("userName:"+userName+",password:"+password+",time:"+new Date().getTime());
+        token = MD5Util.MD5("userName:"+username+",password:"+password+",time:"+new Date().getTime());
         loginUserMap.put(token,user);
-        tokenMap.put(userName,token);
+        tokenMap.put(username,token);
         System.out.println("目前有"+tokenMap.size()+"个用户");
         return token;
     }

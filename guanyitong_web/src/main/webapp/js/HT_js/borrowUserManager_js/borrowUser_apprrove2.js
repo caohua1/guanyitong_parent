@@ -9,7 +9,7 @@ $(function(){
     $("li").click(function(){ //从第一页开始
         if( $(this).val()==0){//待审核
             status = 0;
-        }else if($(this).val()==1){//审核失败
+        }else if($(this).val()==1){//审核未通过
             status = 1;
         }else if($(this).val()==2){//审核成功
             status = 2;
@@ -22,13 +22,7 @@ $(function(){
         $("#pageNum").text(1);
         initlist(status);
     });
-    //点击查看
-    $("#select").on('click', function (){
-        //单机后要执行的操作
-        var id = $(this).val();
-        location.href=basePath +"toJsp/toborrowUserApprrove1_info?id =" +id;
 
-    });
 });
 
 //初始化列表
@@ -65,7 +59,8 @@ function initlist(status){
             companyName:companyName,
             status:status,
             startTime:startTime,
-            endTime:endTime
+            endTime:endTime,
+            type:2
         },
         success: function (msg) {
             var str = "";
@@ -96,13 +91,15 @@ function initlist(status){
                             str +="<td>" + "审核失败" + "</td>"
                         }else if(data[i].status ==2){
                             str +="<td>" + "审核成功" + "</td>"
+                        }else{
+                            str +="<td>" + "审核成功" + "</td>"
                         }
 
                         str += "<td>" + data[i].auditUserName + "</td>"
                         if(status==1){
                         str+="<td>" + data[i].causeBy + "</td>"
                         }
-                        str += "<td><span><a  href=\"toborrowUserApprrove1_info.do?id="+ data[i].id+"\" >查看</a></span></td>" +
+                        str += "<td><span><a href=\"toborrowUserApprrove2_info.do?id="+ data[i].id+"\" >查看</a></span></td>" +
                         "</tr>";
                     }
                     tbody.innerHTML = str;

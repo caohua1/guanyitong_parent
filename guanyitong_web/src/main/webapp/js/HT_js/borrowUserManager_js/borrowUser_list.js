@@ -67,6 +67,7 @@ function createTBody(){
                                       "<td>" + data[i].legalIDCard + "</td>" +
                                       "<td>" + data[i].companyName + "</td>" +
                                       "<td>" + data[i].charterNum + "</td>" +
+                                          //待审核资料
                                       "<td>" + data[i].legalIDCard + "</td>" +
                                       "<td>" + data[i].createTime + "</td>"
                                     if(data[i].status == 0){
@@ -81,7 +82,7 @@ function createTBody(){
                                     }else if(data[i].status ==3){
                                         str +="<td>" + "审核成功" + "</td>"+
                                             "<td>" + "审核失败" + "</td>"
-                                    }else if(data[i].status ==4){
+                                    }else{
                                         str +="<td>" + "审核成功" + "</td>"+
                                             "<td>" + "审核成功" + "</td>"
                                     }

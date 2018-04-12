@@ -65,11 +65,11 @@
 
                     <li onclick="liClick(this)" url="<%=basePath%>toJsp/toborrowUserApprrove2.do">借款额度申请审核</li>
 
-                    <li onclick="liClick(this)" url="iframe_d.html">合同管理</li>
+                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/toborrowUserApprrove3.do">合同管理</li>
 
-                    <li onclick="liClick(this)" url="iframe_f.html">借款用户统计</li>
+                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/toborrowUserStatistics.do">借款用户统计</li>
 
-                    <li onclick="liClick(this)" url="iframe_e.html">出借注册用户统计</li>
+                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/todealUserStatistics.do">出借注册用户统计</li>
 
                 </ul>
 

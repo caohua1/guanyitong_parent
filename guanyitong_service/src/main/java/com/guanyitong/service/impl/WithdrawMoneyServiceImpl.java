@@ -2,10 +2,7 @@ package com.guanyitong.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.guanyitong.mapper.AccountManagerDao;
-import com.guanyitong.mapper.BackMoneyDao;
-import com.guanyitong.mapper.ProductDao;
-import com.guanyitong.mapper.WithdrawMoneyDao;
+import com.guanyitong.mapper.*;
 import com.guanyitong.model.BackMoney;
 import com.guanyitong.model.ProductInfo;
 import com.guanyitong.model.WithdrawalMoney;
@@ -33,6 +30,8 @@ public class WithdrawMoneyServiceImpl implements WithdrawMoneyService{
     private ProductDao productDao;
     @Autowired
     private BackMoneyDao backMoneyDao;
+    @Autowired
+    private BorrowMoneyUserDao borrowMoneyUserDao;
 
     /**
      * 提现（修改体现表的状态，同时修改标（productinfo）的状态），添加数据
@@ -73,6 +72,7 @@ public class WithdrawMoneyServiceImpl implements WithdrawMoneyService{
         Integer i = withdrawMoneyDao.updateStatus(map);
         Integer j = 0;
         Integer n = 0;
+        Integer p = 0;
         if(map.get("borrowMoneyUserId")!=null && !("").equals(map.get("borrowMoneyUserId")) ){
             Map map1 = new HashMap();
             map1.put("borrowMoneyUserId",map.get("borrowMoneyUserId"));
@@ -102,7 +102,12 @@ public class WithdrawMoneyServiceImpl implements WithdrawMoneyService{
                     }
                      n = backMoneyDao.insertBatchBackMoney(backMoneyList);
                 }
-                return i>0 && j>0 && n>0;
+                //提现成功后，修改表 borrowmoney_user 表的状态为 待还款 状态
+                Map map3 = new HashMap();
+                map3.put("id",map.get("borrowMoneyUserId"));
+                map3.put("status",7);
+                p = borrowMoneyUserDao.updateStatus(map3);
+                return i>0 && j>0 && n>0 && p>0;
             }else{
                 return i>0 && j>0;
             }

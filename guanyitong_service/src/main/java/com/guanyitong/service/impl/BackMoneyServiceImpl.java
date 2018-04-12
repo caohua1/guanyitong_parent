@@ -30,6 +30,8 @@ public class BackMoneyServiceImpl implements BackMoneyService {
     private AccountManagerDao accountManagerDao;
     @Autowired
     private UserBackMoneyRecordDAO userBackMoneyRecordDAO;
+    @Autowired
+    private BorrowMoneyUserDao borrowMoneyUserDao;
     /**
      * 批量插入数据（还款计划）
      * @param list
@@ -106,6 +108,7 @@ public class BackMoneyServiceImpl implements BackMoneyService {
         Integer k = 0;
         Integer m = 0;
         Integer n = 0;
+        Integer p = 0;
         Integer count =  backMoney.getCount();
         if(userDealMonies!=null&&userDealMonies.size()>0){
             for(UserDealMoney userDealMoney : userDealMonies){
@@ -132,15 +135,19 @@ public class BackMoneyServiceImpl implements BackMoneyService {
             //============修改标（productinfo）的状态 第一次还款status=13 最后一次还款status=14
             Map map1= new HashMap();
             Map map2 = new HashMap();
+            Map map3 = new HashMap();
             if(count == 1){//如果是第一个月还款就是改为还款中
                 map1.put("status",3);
                 map2.put("status",13);
                 map2.put("updateTime",new Date());
                 map1.put("productInfoId",backMoney.getProductInfoId());
                 map2.put("id",backMoney.getProductInfoId());
+                map3.put("id",backMoney.getBorrowMoneyUserId());
+                map3.put("status",8);//把borrowmoney_user表的状态改为还款中
                 m = userDealDao.updateUserDealMoneyStatus(map1);
                 n = productDao.updateStatus(map2);
-                return j==userDealMonies.size() && k==userDealMonies.size()  && m>0 && n>0 ;
+                p = borrowMoneyUserDao.updateStatus(map3);
+                return j==userDealMonies.size() && k==userDealMonies.size()  && m>0 && n>0 && p>0 ;
             }
             if(count == productInfos.get(0).getMonthNum()){//如果是最后一次，就是还款完成
                 map1.put("status",4);
@@ -148,9 +155,12 @@ public class BackMoneyServiceImpl implements BackMoneyService {
                 map2.put("updateTime",new Date());
                 map1.put("productInfoId",backMoney.getProductInfoId());
                 map2.put("id",backMoney.getProductInfoId());
+                map3.put("id",backMoney.getBorrowMoneyUserId());
+                map3.put("status",9);//把borrowmoney_user表的状态改为已还款完成
                 m = userDealDao.updateUserDealMoneyStatus(map1);
                 n = productDao.updateStatus(map2);
-                return j==userDealMonies.size() && k==userDealMonies.size()  && m>0 && n>0 ;
+                p = borrowMoneyUserDao.updateStatus(map3);
+                return j==userDealMonies.size() && k==userDealMonies.size()  && m>0 && n>0 && p>0;
             }
 
         }
@@ -165,6 +175,7 @@ public class BackMoneyServiceImpl implements BackMoneyService {
         Integer k = 0;
         Integer m = 0;
         Integer n = 0;
+        Integer p = 0;
         Integer count =  backMoney.getCount();
         if(userDealMonies!=null&&userDealMonies.size()>0){
             for(UserDealMoney userDealMoney : userDealMonies){
@@ -200,15 +211,19 @@ public class BackMoneyServiceImpl implements BackMoneyService {
             //============修改标（productinfo）的状态 第一次还款status=13 最后一次还款status=14
             Map map1= new HashMap();
             Map map2 = new HashMap();
+            Map map3 = new HashMap();
             if(count == 1){//如果是第一个月还款就是改为还款中
                 map1.put("status",3);
                 map2.put("status",13);
                 map2.put("updateTime",new Date());
                 map1.put("productInfoId",backMoney.getProductInfoId());
                 map2.put("id",backMoney.getProductInfoId());
+                map3.put("id",backMoney.getBorrowMoneyUserId());
+                map3.put("status",8);//把borrowmoney_user表的状态改为还款中
+                p = borrowMoneyUserDao.updateStatus(map3);
                 m = userDealDao.updateUserDealMoneyStatus(map1);
                 n = productDao.updateStatus(map2);
-                return j==userDealMonies.size() && k==userDealMonies.size()  && m>0 && n>0;
+                return j==userDealMonies.size() && k==userDealMonies.size()  && m>0 && n>0 && p>0;
             }
             if(count == productInfos.get(0).getMonthNum()){//如果是最后一次，就是还款完成
                 map1.put("status",4);
@@ -216,9 +231,12 @@ public class BackMoneyServiceImpl implements BackMoneyService {
                 map2.put("updateTime",new Date());
                 map1.put("productInfoId",backMoney.getProductInfoId());
                 map2.put("id",backMoney.getProductInfoId());
+                map3.put("id",backMoney.getBorrowMoneyUserId());
+                map3.put("status",9);//把borrowmoney_user表的状态改为还款完成
+                p = borrowMoneyUserDao.updateStatus(map3);
                 m = userDealDao.updateUserDealMoneyStatus(map1);
                 n = productDao.updateStatus(map2);
-                return j==userDealMonies.size() && k==userDealMonies.size()  && m>0 && n>0;
+                return j==userDealMonies.size() && k==userDealMonies.size()  && m>0 && n>0 && p>0;
             }
 
 
@@ -234,6 +252,7 @@ public class BackMoneyServiceImpl implements BackMoneyService {
          Integer k = 0;
          Integer m = 0;
          Integer n = 0;
+         Integer p = 0;
          if(userDealMonies!=null&&userDealMonies.size()>0){
              for(UserDealMoney userDealMoney : userDealMonies){
                  double bj = userDealMoney.getDealMoney();//用户投标的本金
@@ -257,15 +276,19 @@ public class BackMoneyServiceImpl implements BackMoneyService {
              }
              Map map1= new HashMap();
              Map map2 = new HashMap();
+             Map map3 = new HashMap();
              map1.put("status",4);//一次性还款完成
              map2.put("status",14);
              map1.put("productInfoId",backMoney.getProductInfoId());
              map2.put("id",backMoney.getProductInfoId());
              map2.put("updateTime",new Date());
+             map3.put("id",backMoney.getBorrowMoneyUserId());
+             map3.put("status",9);//把borrowmoney_user表的状态改为还款完成
+             p = borrowMoneyUserDao.updateStatus(map3);
              m = userDealDao.updateUserDealMoneyStatus(map1);
              n = productDao.updateStatus(map2);
          }
-        return j==userDealMonies.size() && k==userDealMonies.size()  && m>0 && n>0;
+        return j==userDealMonies.size() && k==userDealMonies.size()  && m>0 && n>0 && p>0;
      }
 
     //保留两位有效数字

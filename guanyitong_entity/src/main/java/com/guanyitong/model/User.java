@@ -12,11 +12,11 @@ import java.util.Date;
 public class User implements Serializable{
 
 	private Long id;
-	private String userName;
+	private String username;
 	private String password;
 	private Date registTime;
 	private Date updateTime;
-    private int status;
+    private Integer status;
 
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 	public Date getRegistTime() {
@@ -36,11 +36,11 @@ public class User implements Serializable{
         this.updateTime = updateTime;
     }
 
-	public int getStatus() {
+	public Integer getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 
@@ -52,12 +52,12 @@ public class User implements Serializable{
 		this.id = id;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {

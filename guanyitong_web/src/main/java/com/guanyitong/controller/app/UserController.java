@@ -93,7 +93,7 @@ public class UserController {
     public  JsonResult login(User user){
         JsonResult result = new JsonResult();
         try{
-            String userName = user.getUserName();
+            String userName = user.getUsername();
             String password = user.getPassword();
             String token = loginService.login(userName, password);
             if(token!=null) {//登陆成功
