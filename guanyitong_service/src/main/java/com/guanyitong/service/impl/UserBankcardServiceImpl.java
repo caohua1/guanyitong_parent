@@ -49,12 +49,12 @@ public class UserBankcardServiceImpl implements UserBankcardService{
 
     /**
      * 根据id查看详情
-     * @param id
+     * @param borrowMoneyUserId
      * @return
      */
     @Override
-    public UserBankcard selectUserBankcardById(Long id) {
-        return userBankcardDao.selectUserBankcardById(id);
+    public UserBankcard selectUserBankcardById(Long borrowMoneyUserId) {
+        return userBankcardDao.selectUserBankcardById(borrowMoneyUserId);
     }
 
 
