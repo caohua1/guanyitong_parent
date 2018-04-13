@@ -27,8 +27,10 @@
     <link rel="stylesheet" href="<%=path%>/css/common_css/base.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/style.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/css.css" />
+    <link rel="stylesheet" href="<%=path%>/css/common_css/page.css" />
     <script src="<%=path%>/js/common_js/mydate.js"></script>
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
+    <script src="<%=path%>/js/common_js/page.js"></script>
     <script  src="${ctx}/js/HT_js/capitalAccount_js/capitalAccount.js"></script>
 </head>
 <body>
@@ -57,6 +59,7 @@
 
     <div class="acon-table">
         <table border="1"  border="0" cellspacing="0" cellpadding="0" >
+            <thead>
             <tr>
                 <th>序号</th>
                 <th>手机号</th>
@@ -71,14 +74,19 @@
                 <th>开通时间</th>
                 <th>操作</th>
             </tr>
-            <tbody id="table"></tbody>
+            </thead>
+            <tbody id="table">
+
+            </tbody>
         </table>
-        <!--分页-->
-        <div class="fenye">
-            <div class="pageTest"></div>
-        </div>
+
     </div>
 
+
+
+    <div class="acon-yong">
+        <span>用户总数：</span><span id = "count">0</span>
+    </div>
 
 
     <div class="showhide">
@@ -91,19 +99,17 @@
             </div>
         </div>
     </div>
+    <%--分页--%>
+    <div class="fenye">
+        <div class="pageTest">
+        </div>
+        <div class="acon-yong">
+            <span>第</span><span id="pageNum">1</span><span>页</span><span>/</span><span>总</span><span id="pageCount">1</span><span>页</span>/<span>每页显示</span><span id="pageSize">3</span><span>条</span>
+        </div>
+    </div>
 
 
 </div>
 </body>
 </html>
-<script type="text/javascript" src="js/page.js"></script>
-<script type="text/javascript">
-    $('.pageTest').page({
-        leng: 66,//分页总数
-        activeClass: 'activP' , //active 类样式定义
-        clickBack:function(page){
-            console.log(page)
-        }
-    })
-    // $('.pageTest').setLength(10)
-</script>
+

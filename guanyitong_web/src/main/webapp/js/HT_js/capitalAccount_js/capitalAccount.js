@@ -10,9 +10,12 @@ $(function(){
     })
     //点击搜索
     $("#select").click(function(){
+        bBtn = true;
         createData();
     });
 })
+
+var bBtn = true;
 function createData() {
     var startTime=$("#startTime").val();
     var endTime=$("#endTime").val();
@@ -21,6 +24,8 @@ function createData() {
     var minLJSY=$("#minLJSY").val();
     var maxLJSY=$("#maxLJSY").val();
     var tbody=window.document.getElementById("table");
+    var pageSize = $("#pageSize").text();
+    var pageNum = $("#pageNum").text();
     //获取当前页面的url
     var local = window.location;
     var basePath = local.protocol+"//"+local.host+"/";
@@ -29,8 +34,8 @@ function createData() {
         dataType:"json",
         url:basePath+"moneyManage/selectUserMoney.do",
         data:{
-            pageNum:1,
-            pageSize:6,
+            pageNum:pageNum,
+            pageSize:pageSize,
             startTime:startTime,
             endTime:endTime,
             minyuE:minyuE,
@@ -40,27 +45,52 @@ function createData() {
         },
         success:function (msg) {
             var str="" ;
-            var data = msg.data.list;
-            console.log(msg);
+            var count = msg.data.count;
+            var j = (pageNum-1)*pageSize+1;
+            $('#count').text(count);
+            var data = msg.data.pageInfo.list;
+            if(data !=null && data.length>0){
+                $("#pageCount").text(Math.ceil(count/pageSize));
+                if(j<=count || (j == 1 && count == 1)){
 
-            var j=1;
-            for(var i in data){
-                str+="<tr>"+
-                    "<td>"+(j++)+"</td>"+
-                    "<td>"+data[i].username+"</td>"+
-                    "<td>"+data[i].bankNum+"</td>"+
-                    "<td>"+data[i].realName+"</td>"+
-                    "<td>"+data[i].zmoney+"</td>"+
-                    "<td>"+data[i].yuE+"</td>"+
-                    "<td>"+data[i].bhmoney+"</td>"+
-                    "<td>"+data[i].tqzmoney+"</td>"+
-                    "<td>"+data[i].dhkmoney+"</td>"+
-                    "<td>"+data[i].ljsy+"</td>"+
-                    "<td>"+data[i].createTime+"</td>"+
-                    "<td><span><a href="+basePath+"RechargeSheetVo/selectByrid.do?id="+data[i].userId+">查看明细</a></span></td>"+
-                    "</tr>"
+                    for(var i in data){
+                    str+="<tr>"+
+                        "<td>"+(j++)+"</td>"+
+                        "<td>"+data[i].username+"</td>"+
+                        "<td>"+data[i].bankNum+"</td>"+
+                        "<td>"+data[i].realName+"</td>"+
+                        "<td>"+data[i].zmoney+"</td>"+
+                        "<td>"+data[i].yuE+"</td>"+
+                        "<td>"+data[i].bhmoney+"</td>"+
+                        "<td>"+data[i].tqzmoney+"</td>"+
+                        "<td>"+data[i].dhkmoney+"</td>"+
+                        "<td>"+data[i].ljsy+"</td>"+
+                        "<td>"+data[i].createTime+"</td>"+
+                        "<td><span><a href="+basePath+"RechargeSheetVo/selectByrid.do?id="+data[i].userId+">查看明细</a></span></td>"+
+                        "</tr>"
+                }
+                tbody.innerHTML=str;
+                if(bBtn){
+                    $('.pageTest').page({
+                        leng:Math.ceil(count/pageSize),
+                        activeClass: 'activP',
+                        clickBack: function (pageNum) {
+                            $(this)[0].leng = Math.ceil(count / pageSize);
+                            $("#pageNum").text(pageNum);
+                            createTBody();
+                        }
+                    });
+                }
+                bBtn = false;
+                }else{//点击下一页没有数据
+                    tbody.innerHTML = "此页暂无数据";
+                }
+            }else{
+                tbody.innerHTML = "暂无数据";
             }
-            tbody.innerHTML=str;
+        },
+        error: function () {
+            alert("查询失败")
         }
-    })
+    });
 }

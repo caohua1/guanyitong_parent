@@ -196,7 +196,7 @@ public class ToJspController {
      */
     @RequestMapping("/toCapitalAccount")
     public String toCapitalAccount(){
-        return "capitalAcount/capitalAccount";
+        return "capitalAccount/capitalAccount";
     }
 
 }

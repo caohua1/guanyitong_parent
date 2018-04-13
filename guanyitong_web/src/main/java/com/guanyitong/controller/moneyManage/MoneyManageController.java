@@ -50,6 +50,7 @@ public class MoneyManageController {
                 map.put("maxyuE",maxyuE);
             }
             PageInfo<MoneyManageVo> pageInfo = moneyManageService.moneyManage(map, pageNum, pageSize);
+            Integer count = moneyManageService.selectAllAcountManagerCount(map);
             if(minLJSY !=null || maxLJSY !=null){
                 List<MoneyManageVo> list = pageInfo.getList();
                 List<MoneyManageVo> list1 = new ArrayList<MoneyManageVo>();
@@ -74,14 +75,12 @@ public class MoneyManageController {
                 }
                 pageInfo.setList(list1);//把集合重新set进去
             }
-            if(pageInfo.getList().size()>0){
-                    result.setState(JsonResult.SUCCESS);
-                    result.setData(pageInfo);
-                    result.setMessage("返回数据成功");
-            }else{
-                    result.setState(JsonResult.ERROR);
-                    result.setMessage("暂无数据");
-                }
+            Map map1= new HashMap();
+            map1.put("count",count);
+            map1.put("pageInfo",pageInfo);
+            result.setState(JsonResult.SUCCESS);
+            result.setData(map1);
+            result.setMessage("返回数据成功");
         }catch(Exception e){
             e.printStackTrace();
             result.setState(JsonResult.ERROR);

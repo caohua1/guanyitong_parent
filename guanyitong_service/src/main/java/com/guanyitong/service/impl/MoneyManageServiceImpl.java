@@ -98,6 +98,16 @@ public class MoneyManageServiceImpl implements MoneyManageService {
         return pageInfo;
     }
 
+    /**
+     * 查询所有绑定银行卡出借用户的总数量
+     * @param map
+     * @return
+     */
+    @Override
+    public Integer selectAllAcountManagerCount(Map map) {
+        return accountManagerDao.selectAllAcountManagerCount(map);
+    }
+
 
     //==========================================
     //如果是按月还本还息
