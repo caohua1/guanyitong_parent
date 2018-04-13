@@ -8,9 +8,12 @@ $(function(){
     $('.showhideng>span').click(function(){
         $('.showhide').hide();
     })
+    //点击搜索
+    $("#select").click(function(){
+        createData();
+    });
 })
 function createData() {
-
     var startTime=$("#startTime").val();
     var endTime=$("#endTime").val();
     var minyuE=$("#minyuE").val();
@@ -21,7 +24,6 @@ function createData() {
     //获取当前页面的url
     var local = window.location;
     var basePath = local.protocol+"//"+local.host+"/";
-    alert("开始");
     $.ajax({
         type:"post",
         dataType:"json",
@@ -29,8 +31,8 @@ function createData() {
         data:{
             pageNum:1,
             pageSize:6,
-            staTime:startTime,
-            enTime:endTime,
+            startTime:startTime,
+            endTime:endTime,
             minyuE:minyuE,
             maxyuE:maxyuE,
             minLJSY:minLJSY,
@@ -40,6 +42,7 @@ function createData() {
             var str="" ;
             var data = msg.data.list;
             console.log(msg);
+
             var j=1;
             for(var i in data){
                 str+="<tr>"+
@@ -47,16 +50,17 @@ function createData() {
                     "<td>"+data[i].username+"</td>"+
                     "<td>"+data[i].bankNum+"</td>"+
                     "<td>"+data[i].realName+"</td>"+
-                    "<td>"+data[i].ZMoney+"</td>"+
+                    "<td>"+data[i].zmoney+"</td>"+
                     "<td>"+data[i].yuE+"</td>"+
-                    "<td>"+data[i].BHMoney+"</td>"+
-                    "<td>"+data[i].TQZMoney+"</td>"+
-                    "<td>"+data[i].DHKMoney+"</td>"+
-                    "<td>"+data[i].LJSY+"</td>"+
+                    "<td>"+data[i].bhmoney+"</td>"+
+                    "<td>"+data[i].tqzmoney+"</td>"+
+                    "<td>"+data[i].dhkmoney+"</td>"+
+                    "<td>"+data[i].ljsy+"</td>"+
                     "<td>"+data[i].createTime+"</td>"+
                     "<td><span><a href="+basePath+"RechargeSheetVo/selectByrid.do?id="+data[i].userId+">查看明细</a></span></td>"+
                     "</tr>"
             }
+            tbody.innerHTML=str;
         }
     })
 }
