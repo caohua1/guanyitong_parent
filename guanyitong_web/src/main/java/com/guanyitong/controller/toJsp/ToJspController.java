@@ -190,4 +190,13 @@ public class ToJspController {
         return "reCharge/rechargeManagement";
     }
 
+    /**
+     * 跳转到资金管理页面
+     * @return
+     */
+    @RequestMapping("/toCapitalAccount")
+    public String toCapitalAccount(){
+        return "capitalAcount/capitalAccount";
+    }
+
 }
