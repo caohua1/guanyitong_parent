@@ -10,4 +10,11 @@ public interface MoneyManageService {
      * @return
      */
     public PageInfo<MoneyManageVo> moneyManage(Map map, Integer pageNum, Integer pageSize);
+
+    /**
+     * 查询所有绑定银行卡的用户总数量
+     * @param map
+     * @return
+     */
+    public Integer selectAllAcountManagerCount(Map map);
 }

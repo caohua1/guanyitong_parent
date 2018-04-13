@@ -13,6 +13,13 @@ public interface AccountManagerDao {
      * @return
      */
     public List<MoneyManageVo> selectAllAcountManager(Map map);
+
+    /**
+     * 查询所有绑定银行卡的用户总数量
+     * @param map
+     * @return
+     */
+    public Integer selectAllAcountManagerCount(Map map);
     /**
      * 用户开户
      * @param accountManager
