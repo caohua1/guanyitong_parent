@@ -81,11 +81,11 @@
 
                 <ul class="submenu">
 
-                    <li onclick="liClick(this)" url="iframe_g.html">标种管理</li>
+                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/toproductType_list.do">标种管理</li>
 
-                    <li onclick="liClick(this)" url="iframe_h.html">投标管理</li>
+                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/toproductInfo_manage_list.do">投标管理</li>
 
-                    <li onclick="liClick(this)" url="iframe_i.html">投标审核管理</li>
+                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/toproductInfo_apprrove_manage.do">投标审核管理</li>
 
                     <li onclick="liClick(this)" url="iframe_j.html">借款管理</li>
 
