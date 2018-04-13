@@ -78,8 +78,9 @@ public class BankCardManageController {
         try{
             Map<Object, Object> conditionMap = new HashMap<Object, Object>();
             if(userBankcard!=null){
-                if(userBankcard.getUserName()!=null && !("").equals(userBankcard.getUserName())){
-                    conditionMap.put("borrowMoneyUserId",userBankcard.getUserName());
+
+                if(userBankcard.getBorrowMoneyUserId()!=null && !("").equals(userBankcard.getBorrowMoneyUserId())){
+                    conditionMap.put("borrowMoneyUserId",userBankcard.getBorrowMoneyUserId());
                 }
                if(userBankcard.getRealName()!=null && !("").equals(userBankcard.getRealName())){
                    conditionMap.put("realName",userBankcard.getRealName());
@@ -111,14 +112,14 @@ public class BankCardManageController {
 
     /**
      * 根据主键查询详情
-     * @param userId
+     * @param borrowMoneyUserId
      * @return
      */
     @RequestMapping("/selectUserBankcardById")
-    public String selectUserBankcardById(String userId, Model model){
-        Long id= Long.valueOf(userId);
+    public String selectUserBankcardById(Long borrowMoneyUserId, Model model){
+
         try{
-            UserBankcard userBankcard = userBankcardService.selectUserBankcardById(id);
+            UserBankcard userBankcard = userBankcardService.selectUserBankcardById(borrowMoneyUserId);
             if(userBankcard!=null){
                 model.addAttribute("userBankcard",userBankcard);
             }

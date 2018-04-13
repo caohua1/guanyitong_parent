@@ -11,11 +11,16 @@ $(function () {
     $("#select").click(function(){
         createTBody();
     });
+
+    $("#fhui").click(function(){
+        window.history.back(-1);
+    });
 });
 //初始化列表
 function createTBody() {
     //根据标签id获取input的值
     var borrowMoneyUserId=$("#borrowMoneyUserId").val();
+    alert("------"+borrowMoneyUserId);
     var realName=$("#realName").val();
     var IDCardNumber=$("#IDCardNumber").val();
     var cardNo=$("#cardNo").val();
@@ -57,7 +62,7 @@ function createTBody() {
                     "<td>" + data[i].cardNo + "</td>"+
                     "<td>" + data[i].YN + "</td>"+
                     "<td>" + data[i].submitTime + "</td>"+
-                    "<td><span><a href="+basePath+"BankCardManagementr/selectUserBankcardById.do?userId="+data[i]+">查看</a></span></td>"+
+                    "<td><span><a href="+basePath+"BankCardManagementr/selectUserBankcardById.do?borrowMoneyUserId="+data[i].borrowMoneyUserId+">查看</a></span></td>"+
                     "</tr>";
             }
             result.innerHTML=str;

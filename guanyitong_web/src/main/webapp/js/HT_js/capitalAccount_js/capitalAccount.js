@@ -57,7 +57,7 @@ function createData() {
                     "<td>"+data[i].dhkmoney+"</td>"+
                     "<td>"+data[i].ljsy+"</td>"+
                     "<td>"+data[i].createTime+"</td>"+
-                    "<td><span><a href="+basePath+"RechargeSheetVo/selectByrid.do?id="+data[i].userId+">查看明细</a></span></td>"+
+                    "<td><span><a href="+basePath+"moneyManage/selectUserMoney.do?id="+data[i].userId+">查看明细</a></span></td>"+
                     "</tr>"
             }
             tbody.innerHTML=str;
