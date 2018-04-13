@@ -19,7 +19,7 @@ public class UserBankcard implements Serializable {
     private Data submitTime;//用户提交时间
     private String openAccountRegion;//用户开户行地区
     private String userName;//用户名（唯一标识）
-    private Integer phone;//借款人可联系手机号
+    private String phone;//借款人可联系手机号
     private String YN;//是否作为还款银行卡
 
     public Long getId() {
@@ -95,11 +95,11 @@ public class UserBankcard implements Serializable {
         this.userName = userName;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

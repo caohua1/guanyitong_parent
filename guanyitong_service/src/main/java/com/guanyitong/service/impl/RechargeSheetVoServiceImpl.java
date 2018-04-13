@@ -62,4 +62,17 @@ public class RechargeSheetVoServiceImpl implements RechargeSheetVoService {
     public Integer updateRechargeMoney(Long id) {
         return rechargeMoneyDao.updateRechargeMoney(id);
     }
+
+
+    /**
+     * 根据userId查询
+     * @param
+     * @return
+     */
+    @Override
+    public List<RechargeSheetVo> selectByrid(Long rid) {
+        Map<Object, Object> demandMap = new HashMap<Object, Object>();
+        demandMap.put("rid",rid);
+        return rechargeMoneyDao.listRechargeSheetVo(demandMap);
+    }
 }

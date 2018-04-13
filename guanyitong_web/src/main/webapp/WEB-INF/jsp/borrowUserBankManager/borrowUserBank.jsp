@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="<%=path%>/css/common_css/css.css" />
     <script src="<%=path%>/js/common_js/mydate.js"></script>
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
-    <script  src="${ctx}/js/HT_js/borrowUserBank_js/borrowUserBank_list.js"></script>
+    <script src="${ctx}/js/HT_js/borrowUserBank_js/borrowUserBank_list.js"></script>
     <style type="text/css">
         .pageTest{ width: 1000px; height: 50px; margin-top: 100px;}
         .activP{
@@ -40,8 +40,7 @@
 </head>
 <body>
 <!--公共的外层-->
-<div class="iframe_acont">
-
+    <div class="iframe_acont">
     <div class="acont-nav">银行卡管理：</div>
     <div class="acont-ahref"><a href="${ctx}/toJsp/toAddBankCard.do">添加用户银行卡</a></div>
     <div class="acon-input">

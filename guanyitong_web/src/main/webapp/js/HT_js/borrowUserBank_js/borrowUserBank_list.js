@@ -33,7 +33,7 @@ function createTBody() {
         url:basePath+"BankCardManagementr/selectByUserBankcard.do",
         data:{
             pageNum:1,
-            pageSize:2,
+            pageSize:9,
             borrowMoneyUserId:borrowMoneyUserId,
             realName:realName,
             IDCardNumber:IDCardNumber,

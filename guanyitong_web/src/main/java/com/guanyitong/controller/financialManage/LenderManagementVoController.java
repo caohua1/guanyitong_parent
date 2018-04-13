@@ -94,7 +94,6 @@ public class LenderManagementVoController {
 
         JsonResult result = new JsonResult();
         Long Id= Long.valueOf(userId);
-        System.out.println("id传值为----"+Id);
         try{
             if(Id !=null){
                 LenderManagementVo lenderManagementVo = lenderManagementVoService.selectByID(Id);

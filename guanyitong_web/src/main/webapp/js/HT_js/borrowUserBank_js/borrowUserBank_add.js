@@ -33,7 +33,6 @@ function dim(userId,event) {
             for( i in result){
                 var str = '<li class="text">'+ result[i].id +'</li>';
                 $(str).appendTo("#lists");
-                alert("用户身份证--"+result[i].legalIDCard);
                 listArry(new person(result[i].id,result[i].apprroveName,result[i].legalIDCard));
             }
         },
@@ -43,10 +42,8 @@ function dim(userId,event) {
     })
 }
 $(document).click(function(){
-
     $(".dianbot").slideUp('slow');
 })
-
 $(".dianbot").click(function(){
     $(this).hide();
 })
@@ -60,8 +57,6 @@ var UserBankcardList=new Array()
 function listArry(userBankcard) {
     UserBankcardList.push(userBankcard);
 }
-
-
 function addUserBank() {
     //获取当前页面的url
     var local = window.location;
@@ -89,8 +84,8 @@ function addUserBank() {
         success:function(msg){
             var result = msg.data;
             console.log(msg);
-            if(result==0){
-
+            if(result==1){
+                alert("添加成功");
             }
         },
         error:function(){
