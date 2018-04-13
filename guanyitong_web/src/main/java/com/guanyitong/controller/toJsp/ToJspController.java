@@ -111,7 +111,38 @@ public class ToJspController {
         return "borrowUserManager/borrowUser_apprrove3_info";
     }
 
+    /**
+     * 跳转到标种管理页面
+     * @return
+     */
+    @RequestMapping("/toproductType_list")
+    public String toproductType_list(){
+        return "borrowUserManager/productType_list";
+    }
 
+    /**
+     * 跳转到投标管理页面
+     * @return
+     */
+    @RequestMapping("/toproductInfo_manage_list")
+    public String toproductInfo_manage_list(){
+        return "borrowUserManager/productInfo_manage_list";
+    }
+
+    /**
+     * 跳转投标审核管理页面
+     * @return
+     */
+    @RequestMapping("/toproductInfo_apprrove_manage")
+    public String toproductInfo_apprrove_manage(){
+        return "borrowUserManager/productInfo_apprrove_manage";
+    }
+
+    @RequestMapping("/productinfo_manage_info")
+    public String productinfo_manage_info(Long id,Model model){
+        model.addAttribute("id",id);
+        return "borrowUserManager/productinfo_manage_info";
+    }
     //============================借款人(财务管理)
     /**
      * 跳转到借款人银行卡管理
@@ -149,11 +180,4 @@ public class ToJspController {
         return "reCharge/rechargeManagement";
     }
 
-
-
-    //===========================================资金账户管理
-    @RequestMapping("/toCapitalAccount")
-    public String toCapitalAccount(){
-        return "capitalAccount/capitalAccount";
-    }
 }
