@@ -46,7 +46,7 @@ function init(){
                   $("#companyName").html("暂无数据");
               }
 
-              if(data.createTime !=null ){
+              if(data.companyCreateTime !=null ){
                   $("#companyCreateTime").html(data.companyCreateTime);
               }else{
                   $("#companyCreateTime").html("暂无数据");

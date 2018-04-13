@@ -12,6 +12,7 @@ $(function(){
     });
     //点击搜索
     $("#select").click(function(){
+        bBtn = true;
         $("#pageNum").text(1);
          createTBody();
 
@@ -20,6 +21,7 @@ $(function(){
 
 });
 
+var bBtn = true;
 //初始化列表
 function createTBody(){
     var id = $("#borrowMoneyUserId").val();
@@ -57,7 +59,7 @@ function createTBody(){
                 var data = msg.data.pageInfo.list;
                     if(data !=null && data.length>0){
                         $("#pageCount").text(Math.ceil(count/pageSize));
-                        if(j<count || (j == 1 && count == 1)){
+                        if(j<=count || (j == 1 && count == 1)){
 
                            for (i in data) {
                                       str += "<tr>"+
@@ -93,14 +95,20 @@ function createTBody(){
                                         "</tr>";
                                 }
                                    tbody.innerHTML = str;
-                                   $('.pageTest').page({
-                                     leng:Math.ceil(count/pageSize),
-                                     activeClass: 'activP' , //active 类样式定义
-                                     clickBack :function(page) {
-                                         $("#pageNum").text(page);
-                                         createTBody();
-                                     }
-                                   });
+
+                            if(bBtn){
+                                $('.pageTest').page({
+                                    leng:Math.ceil(count/pageSize),
+                                    activeClass: 'activP',
+                                    clickBack: function (pageNum) {
+                                        $(this)[0].leng = Math.ceil(count / pageSize);
+                                        $("#pageNum").text(pageNum);
+                                        createTBody();
+                                    }
+                                });
+                            }
+
+                            bBtn = false;
 
                         }else{//点击下一页没有数据
                             tbody.innerHTML = "此页暂无数据";

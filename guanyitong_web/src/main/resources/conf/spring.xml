@@ -44,4 +44,28 @@
         </property>
     </bean>
 
+
+    <!--<bean id="jobBean2" class="com.guanyitong.quartz.RaiseQuartz" />
+    &lt;!&ndash; 定义调用对象和调用对象的方法 &ndash;&gt;
+    <bean id="jobDetail2" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="jobBean" />
+        <property name="targetMethod" value="execute" />
+        &lt;!&ndash;将并发设置为false&ndash;&gt;
+        <property name="concurrent" value="false" />
+    </bean>
+    &lt;!&ndash; 定义触发时间 &ndash;&gt;
+    <bean id="trigger2" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobDetail2" />
+        &lt;!&ndash;表达式，我的是每个月1号凌晨0点执行一次&ndash;&gt;
+        <property name="cronExpression" value="* * * * * ?" />
+    </bean>
+    &lt;!&ndash;  总管理类如果将lazy-init='false'那么容器启动就会执行调度程序   &ndash;&gt;
+    <bean id="startQuertz2" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" lazy-init="false" >
+        <property name="triggers">
+            <list>
+                &lt;!&ndash;作业调度器,list下可加入其他的调度器&ndash;&gt;
+                <ref bean="trigger2" />
+            </list>
+        </property>
+    </bean>-->
 </beans>

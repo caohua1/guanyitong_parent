@@ -40,10 +40,15 @@ public interface ProductService {
 
     /**
      * 查询所有的产品分页
-     * @param product
      * @return
      */
-    public PageInfo<Product> selectAllProducts(Product product,Integer pageNum,Integer pageSize);
+    public PageInfo<Product> selectAllProducts(Integer pageNum,Integer pageSize);
+
+    /**
+     * 查询标种的总数
+     * @return
+     */
+    public Integer selectProductCount();
 
     /**
      * 根据id查询某一种产品，编辑页面，回显数据
@@ -104,6 +109,14 @@ public interface ProductService {
      * @return
      */
     public PageInfo<UserProductInfoVo> selectBorrowInfo(Map map,Integer pageNum,Integer pageSize);
+
+    /**
+     * 查询借款列表总数量（分页，条件查询）
+     * @param map
+     * @return
+     */
+    public Integer selectBorrowInfoCount(Map map);
+
     /**
      * 根据id查询借款明细
      * @param id

@@ -1,10 +1,16 @@
 var param = {
     pageNum : null,
     pageSize : null,
-    username : null,
+    type : 0,
+    borrowMoneyUserId : null,
+    NO : null,
+    startBorrowTi : null,
+    endBorrowTi : null,
     startTime : null,
     endTime : null,
+    backMoneyType : null,
     status : null
+
 }
 $(function(){
       createTBody();
@@ -22,10 +28,23 @@ var bBtn = true;
 function createTBody(){
     param.pageNum = $("#pageNum").html();
     param.pageSize = $("#pageSize").html();
-    param.username = $("#username").val();
-    param.endTime = $("#endTime").val();
+    param.borrowMoneyUserId = $("#borrowMoneyUserId").val();
+    param.NO = $("#NO").val();
+    param.startBorrowTi = $("#startBorrowTime").val();
+    param.endBorrowTi = $("#endBorrowTime").val();
     param.startTime = $("#startTime").val();
+    param.endTime = $("#endTime").val();
+    param.backMoneyType = $("#backMoneyType").val();
     param.status = $("#select_id").val();
+    if($("#backMoneyType").val()==0){
+        param.backMoneyType = "按月还本还息";
+    }else if($("#backMoneyType").val() ==1){
+        param.backMoneyType = "先息后本";
+    }else if($("#backMoneyType").val() ==2){
+        param.backMoneyType = "一次性还本付息";
+    }else{
+        param.backMoneyType = null;
+    }
     var pageSize = $("#pageSize").text();
     var pageNum = $("#pageNum").text();
     var tbody=window.document.getElementById("tbody-result");
@@ -34,10 +53,10 @@ function createTBody(){
     $.ajax({
         type: "post",
         dataType: "json",
-        url: basePath+"BorrowMoneyUser/selectAllUser.do",
+        url: basePath+"product/selectProductInfoVo.do",
         data: param,
         success: function (msg) {
-            console.log(msg)
+            console.log(msg);
             var str = "";
             var count = msg.data.count;
             var j = (pageNum-1)*pageSize+1;
@@ -49,18 +68,29 @@ function createTBody(){
                     for (i in data) {
                         str += "<tr>"+
                             "<td>" +(j++) + "</td>"+
-                            "<td>" + data[i].username + "</td>" +
-                            "<td>" + data[i].registTime + "</td>"
+                            "<td>" + data[i].borrowMoneyUserId + "</td>"+
+                            "<td>" + data[i].no + "</td>"+
+                            "<td>" + data[i].name + "</td>"+
+                            "<td>" +data[i].zmoney+ "</td>"+
+                            "<td>" + data[i].yield + "</td>"+
+                            "<td>" +data[i].startRaiseTime +"-" +data[i].endRaiseTime + "</td>"+
+                            "<td>" + data[i].startBorrowTime +"-" +data[i].endBorrowTime+ "</td>"+
+                            "<td>" + data[i].backMoneyType  + "</td>"+
+                            "<td>" + data[i].createTime + "</td>"
+                        if(data[i].status == 0){
+                            str +=  "<td>" + "待审核" + "</td>"+
+                           "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span></td>"
 
-                        if(data[i].status == 1){
-                            str +="<td>" + "否" + "</td>"
-
-                        }else if(data[i].status ==2){
-                            str +="<td>" + "是" + "</td>"
-
+                        }else if(data[i].status ==1){
+                            str +="<td>" + "审核未通过" + "</td>"+
+                                "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span><span><a  href='' >修改</a></span></td>"
+                        }else {
+                            str +="<td>" + "审核通过" + "</td>"+
+                                "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span><span><a  href='' >修改</a></span></td>"
                         }
                     }
                     tbody.innerHTML = str;
+
                     if(bBtn) {
                         $('.pageTest').page({
                             leng: Math.ceil(count / pageSize),

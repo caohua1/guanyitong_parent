@@ -1,10 +1,7 @@
 var param = {
     pageNum : null,
-    pageSize : null,
-    username : null,
-    startTime : null,
-    endTime : null,
-    status : null
+    pageSize : null
+
 }
 $(function(){
       createTBody();
@@ -22,10 +19,6 @@ var bBtn = true;
 function createTBody(){
     param.pageNum = $("#pageNum").html();
     param.pageSize = $("#pageSize").html();
-    param.username = $("#username").val();
-    param.endTime = $("#endTime").val();
-    param.startTime = $("#startTime").val();
-    param.status = $("#select_id").val();
     var pageSize = $("#pageSize").text();
     var pageNum = $("#pageNum").text();
     var tbody=window.document.getElementById("tbody-result");
@@ -34,10 +27,10 @@ function createTBody(){
     $.ajax({
         type: "post",
         dataType: "json",
-        url: basePath+"BorrowMoneyUser/selectAllUser.do",
+        url: basePath+"product/selectAllProducts.do",
         data: param,
         success: function (msg) {
-            console.log(msg)
+            console.log(msg);
             var str = "";
             var count = msg.data.count;
             var j = (pageNum-1)*pageSize+1;
@@ -49,16 +42,17 @@ function createTBody(){
                     for (i in data) {
                         str += "<tr>"+
                             "<td>" +(j++) + "</td>"+
-                            "<td>" + data[i].username + "</td>" +
-                            "<td>" + data[i].registTime + "</td>"
+                            "<td>" + data[i].name + "</td>"
 
-                        if(data[i].status == 1){
-                            str +="<td>" + "否" + "</td>"
+                        if(data[i].status == 0){
+                            str +="<td>" + "停用" + "</td>"+
+                            "<td><span><a  href=\"toborrowUserApprrove3_info.do?id="+ data[i].id+"\" >查看</a></span></td>"
 
-                        }else if(data[i].status ==2){
-                            str +="<td>" + "是" + "</td>"
-
+                        }else if(data[i].status ==1){
+                            str +="<td>" + "可用" + "</td>"+
+                                "<td><span><a  href='' >查看</a></span><span><a  href=\"/product/updateProduct.do?id="+ data[i].id+"\&status=0\" >停用</a></span></td>"
                         }
+
                     }
                     tbody.innerHTML = str;
                     if(bBtn) {
@@ -72,8 +66,8 @@ function createTBody(){
                             }
                         });
                     }
-
                     bBtn = false;
+
                 }else{//点击下一页没有数据
                     tbody.innerHTML = "此页暂无数据";
                 }

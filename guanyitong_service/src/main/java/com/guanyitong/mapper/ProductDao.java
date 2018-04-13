@@ -30,10 +30,15 @@ public interface ProductDao {
 
     /**
      * 查询所有的产品分页
-     * @param product
      * @return
      */
-    public List<Product> selectAllProducts(Product product);
+    public List<Product> selectAllProducts();
+
+    /**
+     * 查询总数
+     * @return
+     */
+    public Integer selectProductCount();
 
     /**
      * 根据id查询某一种产品，编辑页面，回显数据
@@ -102,6 +107,13 @@ public interface ProductDao {
      * @return
      */
     public List<UserProductInfoVo> selectBorrowInfo(Map map);
+
+    /**
+     * 查询借款列表总数量（分页，条件查询）
+     * @param map
+     * @return
+     */
+    public Integer selectBorrowInfoCount(Map map);
 
     /**
      * 根据id查询借款明细

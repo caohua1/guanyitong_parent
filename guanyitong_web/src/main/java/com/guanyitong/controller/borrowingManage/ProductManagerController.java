@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import util.DateAndTimeUtil;
 import util.JsonResult;
 
 import java.util.Date;
@@ -55,20 +57,23 @@ public class ProductManagerController {
 
     /**
      * 分页查询所有的标种（产品）
-     * @param product
      * @param pageNum
      * @param pageSize
      * @return
      */
     @RequestMapping("/selectAllProducts")
     @ResponseBody
-    public JsonResult selectAllProducts(Product product,Integer pageNum,Integer pageSize){
+    public JsonResult selectAllProducts(Integer pageNum,Integer pageSize){
         JsonResult result = new JsonResult();
         try{
             if(pageNum !=null && pageSize !=null){
-                PageInfo<Product> productPageInfo = productService.selectAllProducts(product, pageNum, pageSize);
+                PageInfo<Product> productPageInfo = productService.selectAllProducts( pageNum, pageSize);
+                Integer count = productService.selectProductCount();
+                Map map = new HashMap();
+                map.put("pageInfo",productPageInfo);
+                map.put("count",count);
                 result.setState(JsonResult.SUCCESS);
-                result.setData(productPageInfo);
+                result.setData(map);
                 result.setMessage("返回数据成功");
             }
         }catch(Exception e){
@@ -102,25 +107,17 @@ public class ProductManagerController {
      * @return
      */
     @RequestMapping("/updateProduct")
-    @ResponseBody
-    public JsonResult updateProduct(Product product){
-        JsonResult result = new JsonResult();
+    public String updateProduct(Product product){
         try{
             product.setUpdateTime(new Date());
             Integer i = productService.updateProduct(product);
             if(i>0){
-                result.setState(JsonResult.SUCCESS);
-                result.setMessage("修改成功");
-            }else{
-                result.setState(JsonResult.ERROR);
-                result.setMessage("修改失败");
+               return "borrowManager/productType_list";
             }
         }catch(Exception e){
             e.printStackTrace();
-            result.setState(JsonResult.ERROR);
-            result.setMessage("修改失败");
         }
-        return result;
+        return"修改失败";
     }
 
     /**
@@ -187,15 +184,15 @@ public class ProductManagerController {
      * @param productInfo
      * @param startTime
      * @param endTime
-     * @param startBorrowTime
-     * @param endBorrowTime
+     * @param startBorrowTi
+     * @param endBorrowTi
      * @param pageNum
      * @param pageSize
      * @return
      */
     @RequestMapping("/selectProductInfoVo")
     @ResponseBody
-    public JsonResult selectBorrowInfo(ProductInfo productInfo,Date startTime,Date endTime,Date startBorrowTime,Date endBorrowTime,Integer pageNum,Integer pageSize){
+    public JsonResult selectBorrowInfo(ProductInfo productInfo, String startTime, String endTime, String startBorrowTi, String endBorrowTi, Integer pageNum, Integer pageSize, Integer type){
           JsonResult result = new JsonResult();
           try{
               Map map = new HashMap();
@@ -209,25 +206,32 @@ public class ProductManagerController {
                   if(productInfo.getBackMoneyType()!=null && !("".equals(productInfo.getBackMoneyType()))){
                       map.put("backMoneyType",productInfo.getBackMoneyType());
                   }
-                  if(productInfo.getStatus()!=null){
+                  if(productInfo.getStatus()!=null && productInfo.getStatus()>=0){
                       map.put("status",productInfo.getStatus());
                   }
               }
-              if(startTime!=null){
-                  map.put("startTime",startTime);
+              if(type !=null){
+                  map.put("type",type);
               }
-              if(endTime!=null){
-                  map.put("endTime",endTime);
+              if(startTime!=null && !("").equals(startTime)){
+                  map.put("startTime", DateAndTimeUtil.convert(startTime));
               }
-              if(startBorrowTime!=null){
-                  map.put("startBorrowTime",startBorrowTime);
+              if(endTime!=null && !("").equals(endTime)){
+                  map.put("endTime",DateAndTimeUtil.convert(endTime));
               }
-              if(endBorrowTime!=null){
-                  map.put("endBorrowTime",endBorrowTime);
+              if(startBorrowTi!=null && !("").equals(startBorrowTi)){
+                  map.put("startBorrowTime",DateAndTimeUtil.convert(startBorrowTi));
+              }
+              if(endBorrowTi!=null && !("").equals(endBorrowTi)){
+                  map.put("endBorrowTime",DateAndTimeUtil.convert(endBorrowTi));
               }
               PageInfo<UserProductInfoVo> productInfoVoPageInfo = productService.selectBorrowInfo(map, pageNum, pageSize);
+              Integer count = productService.selectBorrowInfoCount(map);
+              Map map1 = new HashMap();
+              map1.put("count",count);
+              map1.put("pageInfo",productInfoVoPageInfo);
               result.setState(JsonResult.SUCCESS);
-              result.setData(productInfoVoPageInfo);
+              result.setData(map1);
               result.setMessage("返回数据成功");
           }catch(Exception e){
               e.printStackTrace();

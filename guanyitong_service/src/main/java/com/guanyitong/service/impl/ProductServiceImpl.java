@@ -77,16 +77,25 @@ public class ProductServiceImpl implements ProductService{
 
     /**
      * 查询所有的产品分页
-     * @param product
      * @return
      */
     @Override
-    public PageInfo<Product> selectAllProducts(Product product, Integer pageNum, Integer pageSize) {
+    public PageInfo<Product> selectAllProducts(Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum,pageSize);
-        List<Product> products = productDao.selectAllProducts(product);
+        List<Product> products = productDao.selectAllProducts();
         PageInfo<Product> productPageInfo = new PageInfo<Product>(products);
         return productPageInfo;
     }
+
+    /**
+     * 查询标种的总数
+     * @return
+     */
+    @Override
+    public Integer selectProductCount() {
+        return productDao.selectProductCount();
+    }
+
 
     /**
      * 根据id查询某一种产品，编辑页面，回显数据
@@ -188,6 +197,16 @@ public class ProductServiceImpl implements ProductService{
         List<UserProductInfoVo> userProductInfoVos = productDao.selectBorrowInfo(map);
         PageInfo<UserProductInfoVo> productInfoVoPageInfo = new PageInfo<UserProductInfoVo>(userProductInfoVos);
         return productInfoVoPageInfo;
+    }
+
+    /**
+     * 分页查询借款列表总数量（条件查询）
+     * @param map
+     * @return
+     */
+    @Override
+    public Integer selectBorrowInfoCount(Map map) {
+        return productDao.selectBorrowInfoCount(map);
     }
 
     /**

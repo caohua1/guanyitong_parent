@@ -34,12 +34,13 @@
           insert into product (name,createTime) values(#{name},#{createTime})
      </insert>
      <!--查询列表（分页）-->
-     <select id="selectAllProducts" parameterType="com.guanyitong.model.Product" resultType="com.guanyitong.model.Product">
-          select * from product where status = 1
-          <if test="name !=null and name !=''">
-               and name LIKE CONCAT("%",#{name},"%")
-          </if>
+     <select id="selectAllProducts"  resultType="com.guanyitong.model.Product">
+          select * from product
      </select>
+    <!--查询总数-->
+    <select id="selectProductCount" resultType="Integer">
+         select count(*) from product
+    </select>
      <!--根据id查询某一产品，编辑页面回显数据-->
      <select id="selectProductById" parameterType="Long" resultType="com.guanyitong.model.Product">
           select * from product where id = #{id}
@@ -49,6 +50,9 @@
           update product SET
           <if test="name !=null and name!=''">
                name = #{name},
+          </if>
+          <if test="status !=null">
+             status = #{status},
           </if>
           <if test="updateTime !=null ">
                updateTime = #{updateTime}
@@ -64,10 +68,10 @@
      <insert id="insertProductInfo" parameterType="com.guanyitong.model.ProductInfo">
           insert into productinfo(productId,borrowMoneyUserId,NO,backMoneyType,
           monthNum,raiseMoneyMonth,ZMoney,SYMoney,yield,createTime,startRaiseTime,
-          endRaiseTime,startBorrowTime,endBorrowTime,coverImage)
+          endRaiseTime,startBorrowTime,endBorrowTime,coverImage,YesNo,moneyUse,QSUse)
           values(#{productId},#{borrowMoneyUserId},#{NO},#{backMoneyType},
           #{monthNum},#{raiseMoneyMonth},#{ZMoney},#{SYMoney},#{yield},#{createTime},
-          #{startRaiseTime},#{endRaiseTime},#{startBorrowTime},#{endBorrowTime},#{coverImage})
+          #{startRaiseTime},#{endRaiseTime},#{startBorrowTime},#{endBorrowTime},#{coverImage},#{YesNo},#{moneyUse},#{QSUse})
      </insert>
      <!--（条件查询根据产品id）分页查询所有的此产品下的所有的投标-->
      <select id="selectAllProductinfo" parameterType="com.guanyitong.model.ProductInfo" resultType="com.guanyitong.model.ProductInfo">
@@ -146,13 +150,13 @@
                and NO = #{NO}
           </if>
           <if test="startTime !=null and endTime !=null">
-               and createTime BETWEEN #{startTime} and #{endTime}
+               and productinfo.createTime BETWEEN #{startTime} and #{endTime}
           </if>
          <if test="startTime !=null and endTime ==null">
-             and createTime &gt;= #{startTime}
+             and productinfo.createTime &gt;= #{startTime}
          </if>
          <if test="startTime ==null and endTime !=null">
-             and createTime &lt;= #{endTime}
+             and productinfo.createTime &lt;= #{endTime}
          </if>
           <if test="startBorrowTime !=null and endBorrowTime !=null">
              and startBorrowTime &gt;= #{startBorrowTime} and endBorrowTime &lt;= #{endBorrowTime}
@@ -166,10 +170,58 @@
           <if test="backMoneyType !=null and backMoneyType !=''">
                and backMoneyType = #{backMoneyType}
           </if>
-          <if test="status !=null">
-               and status = #{status}
-          </if>
+         <if test="type !=null and type == 0 and status == 2">
+             and productinfo.status &gt;= #{status}
+         </if>
+         <if test="status !=null and type ==0 and status !=2 ">
+             and productinfo.status = #{status}
+         </if>
+         <if test="status !=null and type ==null">
+             and productinfo.status = #{status}
+         </if>
      </select>
+     <!--查询总数-->
+    <select id="selectBorrowInfoCount" parameterType="java.util.Map" resultType="Integer">
+        select count(productinfo.id) from productinfo
+        left join product on product.id = productinfo.productId
+        where 1=1
+        <if test="borrowMoneyUserId !=null and borrowMoneyUserId !=''">
+            and borrowMoneyUserId = #{borrowMoneyUserId}
+        </if>
+        <if test="NO !=null and NO !=''">
+            and NO = #{NO}
+        </if>
+        <if test="startTime !=null and endTime !=null">
+            and productinfo.createTime BETWEEN #{startTime} and #{endTime}
+        </if>
+        <if test="startTime !=null and endTime ==null">
+            and productinfo.createTime &gt;= #{startTime}
+        </if>
+        <if test="startTime ==null and endTime !=null">
+            and productinfo.createTime &lt;= #{endTime}
+        </if>
+        <if test="startBorrowTime !=null and endBorrowTime !=null">
+            and startBorrowTime &gt;= #{startBorrowTime} and endBorrowTime &lt;= #{endBorrowTime}
+        </if>
+        <if test="startBorrowTime !=null and endBorrowTime ==null">
+            and startBorrowTime &gt;= #{startBorrowTime}
+        </if>
+        <if test="startBorrowTime ==null and endBorrowTime !=null">
+            and endBorrowTime &lt;= #{endBorrowTime}
+        </if>
+        <if test="backMoneyType !=null and backMoneyType !=''">
+            and backMoneyType = #{backMoneyType}
+        </if>
+        <if test="type !=null and type == 0 and status == 2">
+            and productinfo.status &gt;= #{status}
+        </if>
+        <if test="status !=null and type ==0 and status !=2">
+            and productinfo.status = #{status}
+        </if>
+        <if test="status !=null and type ==null">
+            and productinfo.status = #{status}
+        </if>
+    </select>
     <!--查询一条数据（根据borrowMoneyUserId 和 status）-->
     <select id="selectProductInfoByStAndBUId" parameterType="java.util.Map" resultType="com.guanyitong.model.ProductInfo">
         select * from productinfo where 1=1

@@ -14,16 +14,20 @@ $(function(){
         }else if($(this).val()==2){//审核成功
             status = 2;
         }
+        bBtn = true;
         $("#pageNum").text(1);
         initlist(status);
     });
     //点击搜索
     $("#select").click(function(){//搜索从第一页开始
+        bBtn = true;
         $("#pageNum").text(1);
         initlist(status);
     });
 
 });
+
+var bBtn = true;
 
 //初始化列表
 function initlist(status){
@@ -70,7 +74,7 @@ function initlist(status){
             var data = msg.data.pageInfo.list;
             if(data !=null && data.length>0){
                 $("#pageCount").text(Math.ceil(count/pageSize));
-                if(j<count || (count == 1 && j == 1)){
+                if(j<=count || (count == 1 && j == 1)){
                     console.log(msg);
                    for (i in data) {
                         str += "<tr>" +
@@ -103,14 +107,18 @@ function initlist(status){
                         "</tr>";
                     }
                     tbody.innerHTML = str;
-                    $('.pageTest').page({
-                        leng:Math.ceil(count/pageSize),
-                        activeClass: 'activP',
-                        clickBack: function (pageNum) {
-                            $("#pageNum").text(pageNum);
-                            initlist(status);
-                        }
-                    });
+                    if(bBtn) {
+                        $('.pageTest').page({
+                            leng: Math.ceil(count / pageSize),
+                            activeClass: 'activP',
+                            clickBack: function (pageNum) {
+                                $(this)[0].leng = Math.ceil(count / pageSize);
+                                $("#pageNum").text(pageNum);
+                                initlist(status);
+                            }
+                        });
+                    }
+                    bBtn = false;
                 }else{//点击下一页没有数据
                     tbody.innerHTML = "此页暂无数据";
                 }

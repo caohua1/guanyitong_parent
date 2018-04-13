@@ -41,7 +41,7 @@ public class BorrowMoneyUserController {
             if(i>0){
                 result.setState(JsonResult.SUCCESS);
                 result.setMessage("返回数据成功");
-                result.setData(null);
+                result.setData(borrowMoneyUser);
             }else {
                 result.setState(JsonResult.ERROR);
                 result.setMessage("返回数据失败");
