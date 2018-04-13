@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import util.DateAndTimeUtil;
 import util.JsonResult;
 import java.util.*;
 
@@ -28,7 +29,7 @@ public class MoneyManageController {
      */
     @RequestMapping("/selectUserMoney")
     @ResponseBody
-    public JsonResult moneyManage(String username, Date startTime,Date endTime,Double minyuE,
+    public JsonResult moneyManage(String username, String startTime,String endTime,Double minyuE,
                                   Double maxyuE,Double minLJSY,Double maxLJSY,Integer pageNum,Integer pageSize){
         JsonResult result = new JsonResult();
         try{
@@ -36,11 +37,11 @@ public class MoneyManageController {
             if(username !=null && !("").equals(username)){
                 map.put("username",username);
             }
-            if(startTime !=null){
-                map.put("startTime",startTime);
+            if(startTime !=null && !("").equals(startTime)){
+                map.put("startTime", DateAndTimeUtil.convert(startTime));
             }
-            if(endTime !=null){
-                map.put("endTime",endTime);
+            if(endTime !=null && !("").equals(endTime)){
+                map.put("endTime",DateAndTimeUtil.convert(endTime));
             }
             if(minyuE !=null){
                 map.put("minyuE",minyuE);
