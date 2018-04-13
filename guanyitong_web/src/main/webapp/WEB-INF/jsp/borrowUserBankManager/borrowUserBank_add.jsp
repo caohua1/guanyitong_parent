@@ -94,7 +94,7 @@
 
     <div class="aatj">
         <div><input type="button" onclick="addUserBank()" value="确定绑定"></div>
-        <div><button>取消</button></div>
+        <div><button id="qXiao">取消</button></div>
     </div>
 </div>
 </body>

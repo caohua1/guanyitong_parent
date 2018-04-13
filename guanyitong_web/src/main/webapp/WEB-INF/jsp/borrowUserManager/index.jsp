@@ -102,7 +102,6 @@
                 <div class="link"><i class="fa fa-mobile"></i>财务管理<i class="fa fa-chevron-down"></i></div>
 
                 <ul class="submenu">
-
                     <li onclick="liClick(this)" url="<%=basePath%>toJsp/toBankCardManage.do">借款人银行卡管理</li>
 
                     <li onclick="liClick(this)" url="<%=basePath%>toJsp/toLenderManageMent.do">出借人银行卡管理</li>
@@ -113,16 +112,9 @@
 
                     <li onclick="liClick(this)" url="iframe_p.html">提现管理</li>
 
-                    <li onclick="liClick(this)" url="irame_q.html">资金账户管理</li>
-
-
-
+                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/toCapitalAccount.do">资金账户管理</li>
                 </ul>
-
             </li>
-
-
-
         </ul>
 
     </div>

@@ -8,6 +8,10 @@ for (var item in UserBankcardList){
     }
 }
     })
+
+    $("#qXiao").click(function(){
+        window.history.back(-1);
+    });
 })
 function dim(userId,event) {
     //获取当前页面的url
