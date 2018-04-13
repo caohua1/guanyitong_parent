@@ -222,6 +222,10 @@
             and productinfo.status = #{status}
         </if>
     </select>
+    <!--查询所有的投标-->
+    <select id="selectAllBorrowInfo" resultType="com.guanyitong.model.vo.UserProductInfoVo">
+           select * from productinfo
+    </select>
     <!--查询一条数据（根据borrowMoneyUserId 和 status）-->
     <select id="selectProductInfoByStAndBUId" parameterType="java.util.Map" resultType="com.guanyitong.model.ProductInfo">
         select * from productinfo where 1=1

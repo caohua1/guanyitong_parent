@@ -29,7 +29,7 @@ public class UserDealMoneyController {
         JsonResult result = new JsonResult();
         try{
             userDealMoney.setCreateTime(new Date());
-            if(SYMoney!=null && (SYMoney - userDealMoney.getDealMoney()>0)){
+            if(SYMoney!=null && (SYMoney - userDealMoney.getDealMoney()>=0)){
                 Boolean b = userDealService.insertUserDealMoney(userDealMoney, SYMoney - userDealMoney.getDealMoney());//用户出借，产品的出借金额减少
                 if(b==true){
                     result.setState(JsonResult.SUCCESS);

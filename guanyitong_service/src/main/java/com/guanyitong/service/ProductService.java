@@ -118,6 +118,12 @@ public interface ProductService {
     public Integer selectBorrowInfoCount(Map map);
 
     /**
+     *查询所有的投标，定时器监听，是否开始筹钱
+     * @return
+     */
+    public List<UserProductInfoVo> selectAllBorrowInfo();
+
+    /**
      * 根据id查询借款明细
      * @param id
      * @return

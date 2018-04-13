@@ -51,7 +51,7 @@ public class BorrowMoneyController {
      * @param endTime
      * @return
      */
-    @RequestMapping("/selectBorrowInfo")
+  /*  @RequestMapping("/selectBorrowInfo")
     @ResponseBody
     public JsonResult selectBorrowInfo(@RequestParam(required=false)UserProductInfoVo userProductInfoVo, @RequestParam(required=false)Date startTime,
                                        @RequestParam(required=false)Date endTime, Integer pageNum, Integer pageSize){
@@ -95,7 +95,7 @@ public class BorrowMoneyController {
         }
         return result;
     }
-
+*/
     /**
      * 投标审核管理（审核）
      * 修改标的状态0待审核 1审核完成 2审核失败 3未开始 4筹集中 5筹集完成，待提现 6筹集失败 7上架 8下架 9放弃

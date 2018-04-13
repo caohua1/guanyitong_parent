@@ -68,7 +68,7 @@
             <thead>
             <tr>
                 <th>序号</th>
-                <th>用户ID</th>
+                <th>用户借款ID</th>
                 <th>产品名称</th>
                 <th>类型</th>
                 <th>借款金额</th>
