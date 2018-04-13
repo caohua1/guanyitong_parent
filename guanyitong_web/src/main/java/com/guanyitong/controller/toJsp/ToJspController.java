@@ -147,12 +147,26 @@ public class ToJspController {
         return "borrowManager/productInfo_apprrove_manage";
     }
 
+    /**
+     * 查看投标详情
+     * @param id
+     * @param model
+     * @return
+     */
     @RequestMapping("/productinfo_manage_info")
     public String productinfo_manage_info(Long id,Model model){
         model.addAttribute("id",id);
         return "borrowManager/productinfo_manage_info";
     }
 
+    /**
+     * 跳转到借款管理页面
+     * @return
+     */
+    @RequestMapping("/toborrowMoney_manage")
+    public String toborrowMoney_manage(){
+        return "borrowManager/borrowMoney_manage";
+    }
     //============================借款人(财务管理)
     /**
      * 跳转到借款人银行卡管理
