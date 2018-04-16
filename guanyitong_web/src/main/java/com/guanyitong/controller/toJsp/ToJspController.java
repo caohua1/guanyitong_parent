@@ -1,13 +1,20 @@
 package com.guanyitong.controller.toJsp;
 
+import com.guanyitong.mapper.ProductDao;
+import com.guanyitong.model.Product;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @RequestMapping("/toJsp")
 @Controller
 public class ToJspController {
 
+    @Autowired
+    private ProductDao productDao;
     //==================================借款人（用户管理模块）
 
     /**
@@ -166,6 +173,19 @@ public class ToJspController {
     @RequestMapping("/toborrowMoney_manage")
     public String toborrowMoney_manage(){
         return "borrowManager/borrowMoney_manage";
+    }
+
+    /**
+     * 修改产品（productInfo）
+     * @return
+     */
+    @RequestMapping("/toUpdateProductInfo")
+    public String toUpdateProductInfo(Long id,Model model){
+        model.addAttribute("id",id);
+        //查询所有的标种
+        List<Product> products = productDao.selectAllProducts();
+        model.addAttribute("products",products);
+        return "";
     }
     //============================借款人(财务管理)
     /**
