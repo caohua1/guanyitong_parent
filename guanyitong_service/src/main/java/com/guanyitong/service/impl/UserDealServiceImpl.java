@@ -63,6 +63,16 @@ public class UserDealServiceImpl implements UserDealService {
     }
 
     /**
+     * 查询所有用户的出借数量
+     * @param map
+     * @return
+     */
+    @Override
+    public Integer selectAllUserDealCount(Map map) {
+        return userDealDao.selectAllUserDealCount(map);
+    }
+
+    /**
      * 统计某标的出借人数
      * @param productInfoId
      * @return

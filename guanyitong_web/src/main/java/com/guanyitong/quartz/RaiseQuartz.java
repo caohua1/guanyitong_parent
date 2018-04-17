@@ -37,7 +37,7 @@ public class RaiseQuartz {
                     if(startRaiseTime!=null){
                         if(simpleDateFormat.format(startRaiseTime).equals(simpleDateFormat.format(date))){
                            Map map = new HashMap();
-                           map.put("status",3);
+                           map.put("status",4);//筹集中
                            map.put("status1",2);
                            map.put("id",userProductInfoVo.getId());
                            map.put("updateTime",new Date());

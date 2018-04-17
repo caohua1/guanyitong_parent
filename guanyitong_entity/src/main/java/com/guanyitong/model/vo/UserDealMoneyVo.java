@@ -1,17 +1,22 @@
 package com.guanyitong.model.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.guanyitong.model.UserDealMoney;
 
 import java.io.Serializable;
+import java.util.Date;
+
 //出借用户统计
 public class UserDealMoneyVo extends UserDealMoney implements Serializable{
     private String username;
     private String realName;
     private String name;//产品的类型
-    private String NO;//标的编号
+    private String NO;//产品的名称
     private Integer yield;//利率
     private Integer Zmoney;
     private String idCard;
+    private Date pCreateTime;//产品发布时间
+    private Integer pStatus;
 
 
 
@@ -70,5 +75,22 @@ public class UserDealMoneyVo extends UserDealMoney implements Serializable{
 
     public void setIdCard(String idCard) {
         this.idCard = idCard;
+    }
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    public Date getpCreateTime() {
+        return pCreateTime;
+    }
+
+    public void setpCreateTime(Date pCreateTime) {
+        this.pCreateTime = pCreateTime;
+    }
+
+    public Integer getpStatus() {
+        return pStatus;
+    }
+
+    public void setpStatus(Integer pStatus) {
+        this.pStatus = pStatus;
     }
 }

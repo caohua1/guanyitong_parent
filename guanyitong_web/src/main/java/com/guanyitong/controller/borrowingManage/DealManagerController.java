@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import util.DateAndTimeUtil;
 import util.JsonResult;
 
 import java.util.Date;
@@ -31,9 +32,7 @@ public class DealManagerController {
      */
     @RequestMapping("/selectAllUserDeal")
     @ResponseBody
-    public JsonResult selectAllUserDeal(UserDealMoneyVo userDealMoneyVo, @RequestParam(required=false)Date startTime,
-                                        @RequestParam(required=false)Date endTime,@RequestParam(required=false)Integer minMoney,
-                                        @RequestParam(required=false)Integer maxMoney,Integer pageNum, Integer pageSize){
+    public JsonResult selectAllUserDeal(UserDealMoneyVo userDealMoneyVo, String startTime, String endTime,Integer minMoney, Integer maxMoney,Integer pageNum, Integer pageSize){
         JsonResult result = new JsonResult();
         try{
             Map map = new HashMap();
@@ -47,11 +46,11 @@ public class DealManagerController {
                 if(userDealMoneyVo.getIdCard()!=null &&!("").equals(userDealMoneyVo.getIdCard())){
                     map.put("idCard",userDealMoneyVo.getIdCard());
                 }
-                if(startTime !=null){
-                    map.put("startTime",startTime);
+                if(startTime !=null && !("").equals(startTime)){
+                    map.put("startTime", DateAndTimeUtil.convert(startTime));
                 }
-                if(endTime !=null){
-                    map.put("endTime",endTime);
+                if(endTime !=null &&  !("").equals(endTime)){
+                    map.put("endTime",DateAndTimeUtil.convert(endTime));
                 }
                 if(minMoney !=null){
                     map.put("minMoney",minMoney);
@@ -61,8 +60,11 @@ public class DealManagerController {
                 }
             }
             PageInfo<UserDealMoneyVo> pageInfo = userDealService.selectAllUserDeal(map, pageNum, pageSize);
+            Integer count = userDealService.selectAllUserDealCount(map);
+            map.put("count",count);
+            map.put("pageInfo",pageInfo);
             result.setState(JsonResult.SUCCESS);
-            result.setData(pageInfo);
+            result.setData(map);
             result.setMessage("返回数据成功");
         }catch(Exception e){
             e.printStackTrace();

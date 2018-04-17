@@ -7,8 +7,7 @@ var param = {
     startTime : null,
     endTime : null,
     auditUserName : null,
-    status : null,
-    type : 3
+    Sta : null
 }
 $(function(){
       createTBody();
@@ -32,7 +31,10 @@ function createTBody(){
     param.endTime = $("#endTime").val();
     param.startTime = $("#startTime").val();
     //param.auditUserName = $("#auditUserName").val();
-    param.status = $("#select_id").val();
+     param.Sta = $("#select_id").val();
+    if(param.Sta == -1){
+        param.Sta = "4,5,6";
+    }
     var tbody=window.document.getElementById("tbody-result");
     var local = window.location;
     var basePath = local.protocol+"//"+local.host+"/";
@@ -44,6 +46,7 @@ function createTBody(){
         url: basePath+"BorrowMoneyUser/selectAllBorrowUser.do",
         data: param,
         success: function (msg) {
+            console.log(msg)
             var str = "";
             var count = msg.data.count;
             var j = (pageNum-1)*pageSize+1;
@@ -52,67 +55,37 @@ function createTBody(){
             if(data !=null && data.length>0){
                 $("#pageCount").text(Math.ceil(count/pageSize));
                 if(j<=count || (j == 1 && count == 1)){
-
-               /* <th>序号</th>
-                    <th>用户ID</th>
-                    <th>真实姓名</th>
-                    <th>企业名称</th>
-                    <th>申请额度</th>
-                    <th>跟踪人员</th>
-                    <th>认证状态</th>
-
-                    <th>合同状态</th>
- <th>提交时间</th>
-                    <th>额度申请状态</th>
-                    <th>操作</th>*/
                     for (i in data) {
-                        str += "<tr>"+
-                            "<td>" +(j++) + "</td>"+
-                            "<td>" + data[i].id + "</td>" +
-                            "<td>" + data[i].apprroveName + "</td>" +
-                            "<td>" + data[i].companyName + "</td>" +
-                            "<td>" + data[i].borrowMoney + "</td>" +
-                            "<td>" + data[i].auditUserName + "</td>"
-                        if(data[i].status == 0){
-                            str +="<td>" + "资料待审核" + "</td>"+
-                                "<td>" + "----------" + "</td>"+
-                                "<td>" + "----------" + "</td>"
-                        }else if(data[i].status ==1){
-                            str +="<td>" + "资料审核失败" + "</td>"+
-                                "<td>" + "----------" + "</td>"+
-                                "<td>" + "----------" + "</td>"
-                        }else if(data[i].status ==2){
-                            str +="<td>" + "资料审核成功" + "</td>"+
-                                "<td>" + "额度待审核" + "</td>"+
-                                "<td>" + "----------" + "</td>"
+                            str += "<tr>"+
+                                "<td>" +(j++) + "</td>"+
+                                "<td>" + data[i].id + "</td>" +
+                                "<td>" + data[i].apprroveName + "</td>" +
+                                "<td>" + data[i].companyName + "</td>" +
+                                "<td>" + data[i].borrowMoney + "</td>" +
+                                "<td>" + data[i].auditUserName + "</td>"
+                           if(data[i].status ==4){
+                                str +="<td>" + "资料审核成功" + "</td>"+
+                                    "<td>" + "额度审核成功" + "</td>"+
+                                    "<td>" + "合同待审核" + "</td>"
 
-                        } else if(data[i].status ==3){
-                            str +="<td>" + "资料审核成功" + "</td>"+
-                                "<td>" + "额度审核失败" + "</td>"+
-                                "<td>" + "----------" + "</td>"
+                            }else if(data[i].status ==5){
+                                str +="<td>" + "资料审核成功" + "</td>"+
+                                    "<td>" + "额度审核成功" + "</td>"+
+                                    "<td>" + "合同确认失败" + "</td>"
 
-                        } else if(data[i].status ==4){
-                            str +="<td>" + "资料审核成功" + "</td>"+
-                                "<td>" + "额度审核成功" + "</td>"+
-                                "<td>" + "合同待审核" + "</td>"
+                            }else if(data[i].status == 6){
+                                str +="<td>" + "资料审核成功" + "</td>"+
+                                    "<td>" + "额度审核成功" + "</td>"+
+                                    "<td>" + "合同确认成功" + "</td>"
 
-                        }else if(data[i].status ==5){
-                            str +="<td>" + "资料审核成功" + "</td>"+
-                                "<td>" + "额度审核成功" + "</td>"+
-                                "<td>" + "合同确认失败" + "</td>"
+                            }
 
-                        }else{
-                            str +="<td>" + "资料审核成功" + "</td>"+
-                                "<td>" + "额度审核成功" + "</td>"+
-                                "<td>" + "合同确认成功" + "</td>"
+                            str +=   "<td>" + data[i].createTime + "</td>"+
 
-                        }
+                                "<td><span><a  href=\"toborrowUserApprrove3_info.do?id="+ data[i].id+"\" >查看</a></span><span"+" class="+"quespan"+">确定审核人员</span></td>" +
 
-                        str +=   "<td>" + data[i].createTime + "</td>"+
+                                "</tr>";
 
-                                 "<td><span><a  href=\"toborrowUserApprrove3_info.do?id="+ data[i].id+"\" >查看</a></span><span"+" class="+"quespan"+">确定审核人员</span></td>" +
-
-                                 "</tr>";
                     }
                     tbody.innerHTML = str;
                     if(bBtn) {

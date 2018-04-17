@@ -9,7 +9,7 @@ var param = {
     startTime : null,
     endTime : null,
     backMoneyType : null,
-    status : null
+    Sta : null
 
 }
 $(function(){
@@ -35,7 +35,10 @@ function createTBody(){
     param.startTime = $("#startTime").val();
     param.endTime = $("#endTime").val();
     param.backMoneyType = $("#backMoneyType").val();
-    param.status = $("#select_id").val();
+    param.Sta = $("#select_id").val();
+    if(param.Sta ==-1){
+        param.Sta = "0,1,2";
+    }
     if($("#backMoneyType").val()==0){
         param.backMoneyType = "按月还本还息";
     }else if($("#backMoneyType").val() ==1){
@@ -66,28 +69,29 @@ function createTBody(){
                 $("#pageCount").text(Math.ceil(count/pageSize));
                 if(j<=count || (j == 1 && count == 1)){
                     for (i in data) {
-                        str += "<tr>"+
-                            "<td>" +(j++) + "</td>"+
-                            "<td>" + data[i].borrowMoneyUserId + "</td>"+
-                            "<td>" + data[i].no + "</td>"+
-                            "<td>" + data[i].name + "</td>"+
-                            "<td>" +data[i].zmoney+ "</td>"+
-                            "<td>" + data[i].yield + "</td>"+
-                            "<td>" +data[i].startRaiseTime +"-" +data[i].endRaiseTime + "</td>"+
-                            "<td>" + data[i].startBorrowTime +"-" +data[i].endBorrowTime+ "</td>"+
-                            "<td>" + data[i].backMoneyType  + "</td>"+
-                            "<td>" + data[i].createTime + "</td>"
-                        if(data[i].status == 0){
-                            str +=  "<td>" + "待审核" + "</td>"+
-                           "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span><span><a  href='' >审核</a></span></td>"
+                        //0待审核  1审核未通过 2审核通过，未开始筹集
+                            str += "<tr>"+
+                                "<td>" +(j++) + "</td>"+
+                                "<td>" + data[i].borrowMoneyUserId + "</td>"+
+                                "<td>" + data[i].no + "</td>"+
+                                "<td>" + data[i].name + "</td>"+
+                                "<td>" +data[i].zmoney+ "</td>"+
+                                "<td>" + data[i].yield + "</td>"+
+                                "<td>" +data[i].startRaiseTime +"-" +data[i].endRaiseTime + "</td>"+
+                                "<td>" + data[i].startBorrowTime +"-" +data[i].endBorrowTime+ "</td>"+
+                                "<td>" + data[i].backMoneyType  + "</td>"+
+                                "<td>" + data[i].createTime + "</td>"
+                            if(data[i].status == 0){
+                                str +=  "<td>" + "待审核" + "</td>"+
+                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span><span><a  href='' >审核</a></span></td>"
 
-                        }else if(data[i].status ==1){
-                            str +="<td>" + "审核未通过" + "</td>"+
-                                "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span><span><a  href='' >审核</a></span></td>"
-                        }else {
-                            str +="<td>" + "审核通过" + "</td>"+
-                                "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></td>"
-                        }
+                            }else if(data[i].status ==1){
+                                str +="<td>" + "审核未通过" + "</td>"+
+                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span><span><a  href='' >审核</a></span></td>"
+                            }else if(data[i].status ==2){
+                                str +="<td>" + "审核通过，未开始筹集" + "</td>"+
+                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></td>"
+                            }
                     }
                     tbody.innerHTML = str;
 

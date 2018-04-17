@@ -127,16 +127,6 @@ function upload2(fileObj){
     formFile.append("action", "UploadVMKImagePath");
     formFile.append("file", fileObj[0]); //加入文件对象
 
-    //第一种  XMLHttpRequest 对象
-    //var xhr = new XMLHttpRequest();
-    //xhr.open("post", "/Admin/Ajax/VMKHandler.ashx", true);
-    //xhr.onload = function () {
-    //    alert("上传完成!");
-    //};
-    //xhr.send(formFile);
-
-    //第二种 ajax 提交
-
     var data = formFile;
     var local = window.location;
     var basePath = local.protocol+"//"+local.host+"/";

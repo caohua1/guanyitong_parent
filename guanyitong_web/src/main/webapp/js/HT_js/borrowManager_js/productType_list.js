@@ -17,8 +17,8 @@ $(function(){
 var bBtn = true;
 //初始化列表
 function createTBody(){
-    param.pageNum = $("#pageNum").html();
-    param.pageSize = $("#pageSize").html();
+    param.pageNum = $("#pageNum").text();
+    param.pageSize = $("#pageSize").text();
     var pageSize = $("#pageSize").text();
     var pageNum = $("#pageNum").text();
     var tbody=window.document.getElementById("tbody-result");

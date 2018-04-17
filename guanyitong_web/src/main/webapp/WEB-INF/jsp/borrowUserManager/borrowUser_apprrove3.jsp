@@ -35,16 +35,6 @@
 <body>
 <!--公共的外层-->
 <div class="iframe_acont">
-  <%--pageNum : null,
-    pageSize : null,
-    id : null,
-    apprroveName : null,
-    companyName : null,
-    startTime : null,
-    endTime : null,
-    auditUserName : null,
-    status : null--%>
-
 
     <div class="acont-nav">合同审核：</div>
     <!--<div class="acont-ahref"><a href="iframe_acon.html">添加新用户</a></div>-->
