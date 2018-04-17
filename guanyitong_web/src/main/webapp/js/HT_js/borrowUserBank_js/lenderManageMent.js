@@ -14,6 +14,7 @@ $(function () {
         creatTable();
     });
 });
+var bBtn = true;
 function creatTable() {
     var phone=$("#phone").val();
     var realName=$("#realName").val();
@@ -21,6 +22,8 @@ function creatTable() {
     var bankNum=$("#bankNum").val();
     var firstDate=$("#firstDate").val();
     var lastDate=$("#lastDate").val();
+    var pageSize = $("#pageSize").text();
+    var pageNum = $("#pageNum").text();
     var tbody=window.document.getElementById("tbody-result");
     //获取当前页面的url
     var local = window.location;
@@ -30,8 +33,8 @@ function creatTable() {
         dataType:"json",
         url:basePath+"LenderManagement/selectLenderManagement.do",
         data:{
-            pageNum:1,
-            pageSize:2,
+            pageNum:pageNum,
+            pageSize:pageSize,
             username:phone,
             realName:realName,
             idCard:idCard,
@@ -40,23 +43,47 @@ function creatTable() {
             last:lastDate,
         },
         success:function (msg) {
-            var str="" ;
-            var data = msg.data.list;
             console.log(msg);
-            var j=1;
-            for (var i in data){
-                str+="<tr>"+
-                    "<td>"+ (j++) +"</td>"+
-                    "<td>"+data[i].username+"</td>"+
-                    "<td>"+data[i].realName+"</td>"+
-                    "<td>"+data[i].idCard+"</td>"+
-                    "<td>"+data[i].bankName+"</td>"+
-                    "<td>"+data[i].bankNum+"</td>"+
-                    "<td>"+data[i].createTime+"</td>"+
-                    "<td><span><a href="+basePath+"LenderManagement/selectById.do?userId="+data[i].userId+">查看</a></span></td>"+
-                    "</tr>";
+            var str="" ;
+            var count = msg.data.acount;
+            alert("总数量"+count)
+            $('#count').text(count);
+            var j = (pageNum-1)*pageSize+1;
+            var data = msg.data.PageInfo.list;
+            if(data !=null && data.length>0) {
+                $("#pageCount").text(Math.ceil(count/pageSize));
+                if(j<=count || (j == 1 && count == 1)) {
+                    for (var i in data) {
+                        str += "<tr>" +
+                            "<td>" + (j++) + "</td>" +
+                            "<td>" + data[i].username + "</td>" +
+                            "<td>" + data[i].realName + "</td>" +
+                            "<td>" + data[i].idCard + "</td>" +
+                            "<td>" + data[i].bankName + "</td>" +
+                            "<td>" + data[i].bankNum + "</td>" +
+                            "<td>" + data[i].createTime + "</td>" +
+                            "<td><span><a href=" + basePath + "LenderManagement/selectById.do?userId=" + data[i].userId + ">查看</a></span></td>" +
+                            "</tr>";
+                    }
+                    tbody.innerHTML = str;
+                    if(bBtn){
+                        $('.pageTest').page({
+                            leng:Math.ceil(count/pageSize),
+                            activeClass: 'activP',
+                            clickBack: function (pageNum) {
+                                $(this)[0].leng = Math.ceil(count / pageSize);
+                                $("#pageNum").text(pageNum);
+                                createTBody();
+                            }
+                        });
+                    }
+                    bBtn = false;
+                }else{//点击下一页没有数据
+                    tbody.innerHTML = "此页暂无数据";
+                }
+            }else{
+                tbody.innerHTML = "暂无数据";
             }
-            tbody.innerHTML=str;
         },
         error: function () {
             alert("查询失败")

@@ -15,6 +15,13 @@ public interface UserBankcardDao {
      */
     public List<UserBankcard> selectByUserBankcard(Map conditionMap);
 
+    /**
+     * 分页查询借款人总数量
+     * @param map
+     * @return
+     */
+    public Integer selectUserBankcardAcount(Map map);
+
 
     /**
      * 用户添加银行卡信息

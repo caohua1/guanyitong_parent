@@ -37,4 +37,13 @@ public class LenderManagementVoServiceImpl implements LenderManagementVoService 
     public LenderManagementVo selectByID(Long id) {
         return lenderManagementVoDao.selectByID(id);
     }
+
+    /**
+     * 分页查询出借人总数量
+     * @param needsMap
+     * @return
+     */
+    public Integer selectAllLenderAcount(Map needsMap){
+        return lenderManagementVoDao.selectAllLenderAcount(needsMap);
+    }
 }

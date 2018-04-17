@@ -43,4 +43,34 @@
             ON a.userId=u.id
             WHERE a.userId=#{id}
     </select>
+
+    <!--分页查询出借人银行卡总数量-->
+    <select id="selectAllLenderAcount" parameterType="java.util.Map" resultType="Integer">
+        SELECT count(a.id)
+        FROM account_manager a
+        LEFT JOIN user_info u
+        ON a.userId=u.id
+        WHERE 1=1
+        <if test="username !=null and username !=''">
+            and u.username=#{username}
+        </if>
+        <if test="realName!=null and realName !=''">
+            and a.realName=#{realName}
+        </if>
+        <if test="idCard!=null and idCard!=''">
+            and a.idCard=#{idCard}
+        </if>
+        <if test="bankNum!=null and bankNum!=''">
+            and a.bankNum=#{bankNum}
+        </if>
+        <if test="firstDate !=null and lastDate ==null">
+            and a.createTime &gt;= #{firstDate}
+        </if>
+        <if test="firstDate ==null and lastDate !=null">
+            and a.createTime &lt;= #{lastDate}
+        </if>
+        <if test="firstDate !=null and lastDate !=null">
+            and createTime BETWEEN #{firstDate} and #{lastDate}
+        </if>
+    </select>
 </mapper>

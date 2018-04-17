@@ -16,11 +16,13 @@ $(function () {
         window.history.back(-1);
     });
 });
+var bBtn = true;
 //初始化列表
 function createTBody() {
     //根据标签id获取input的值
+    var pageSize = $("#pageSize").text();
+    var pageNum = $("#pageNum").text();
     var borrowMoneyUserId=$("#borrowMoneyUserId").val();
-    alert("------"+borrowMoneyUserId);
     var realName=$("#realName").val();
     var IDCardNumber=$("#IDCardNumber").val();
     var cardNo=$("#cardNo").val();
@@ -37,8 +39,8 @@ function createTBody() {
         dataType:"json",
         url:basePath+"BankCardManagementr/selectByUserBankcard.do",
         data:{
-            pageNum:1,
-            pageSize:9,
+            pageNum:pageNum,
+            pageSize:pageSize,
             borrowMoneyUserId:borrowMoneyUserId,
             realName:realName,
             IDCardNumber:IDCardNumber,
@@ -48,24 +50,46 @@ function createTBody() {
         },
         success: function(msg){
             var str="" ;
-            var data = msg.data.list;
+            var count=msg.data.count;
+            var j = (pageNum-1)*pageSize+1;
+            $('#count').text(count);
             console.log(msg);
-            var j=1;
-            //javaScript for循环遍历
-            for (var i in data){
-                str+="<tr>"+
-                    "<td>" + (j++) + "</td>"+
-                    "<td>" + data[i].borrowMoneyUserId + "</td>"+
-                    "<td>" + data[i].realName + "</td>"+
-                    "<td>" + data[i].idcardNumber + "</td>"+
-                    "<td>" + data[i].bankName + "</td>"+
-                    "<td>" + data[i].cardNo + "</td>"+
-                    "<td>" + data[i].YN + "</td>"+
-                    "<td>" + data[i].submitTime + "</td>"+
-                    "<td><span><a href="+basePath+"BankCardManagementr/selectUserBankcardById.do?borrowMoneyUserId="+data[i].borrowMoneyUserId+">查看</a></span></td>"+
-                    "</tr>";
+            var data = msg.data.pageInfo.list;
+            if(data !=null && data.length>0) {
+                $("#pageCount").text(Math.ceil(count/pageSize));
+                if (j <= count || (j == 1 && count == 1)) {
+                    for (var i in data) {
+                        str += "<tr>" +
+                            "<td>" + (j++) + "</td>" +
+                            "<td>" + data[i].borrowMoneyUserId + "</td>" +
+                            "<td>" + data[i].realName + "</td>" +
+                            "<td>" + data[i].idcardNumber + "</td>" +
+                            "<td>" + data[i].bankName + "</td>" +
+                            "<td>" + data[i].cardNo + "</td>" +
+                            "<td>" + data[i].YN + "</td>" +
+                            "<td>" + data[i].submitTime + "</td>" +
+                            "<td><span><a href=" + basePath + "BankCardManagementr/selectUserBankcardById.do?borrowMoneyUserId=" + data[i].borrowMoneyUserId + ">查看</a></span></td>" +
+                            "</tr>";
+                    }
+                    result.innerHTML = str;
+                    if(bBtn){
+                        $('.pageTest').page({
+                            leng:Math.ceil(count/pageSize),
+                            activeClass: 'activP',
+                            clickBack: function (pageNum) {
+                                $(this)[0].leng = Math.ceil(count / pageSize);
+                                $("#pageNum").text(pageNum);
+                                createTBody();
+                            }
+                        });
+                    }
+                bBtn = false;
+                }else{//点击下一页没有数据
+                    tbody.innerHTML = "此页暂无数据";
+                }
+            }else{
+                tbody.innerHTML = "暂无数据";
             }
-            result.innerHTML=str;
         },
         error: function () {
             alert("查询失败")

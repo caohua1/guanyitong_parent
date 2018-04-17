@@ -99,7 +99,11 @@ public class BankCardManageController {
                 }
             }
             PageInfo<UserBankcard> userBankcardPageInfo = userBankcardService.selectByUserBankcard(conditionMap, pageNum, pageSize);
-            result.setData(userBankcardPageInfo);
+            Integer count = userBankcardService.selectUserBankcardAcount(conditionMap);
+            HashMap<String, Object> dataMap = new HashMap<String, Object>();
+            dataMap.put("pageInfo",userBankcardPageInfo);
+            dataMap.put("count",count);
+            result.setData(dataMap);
             result.setState(JsonResult.SUCCESS);
             result.setMessage("返回数据成功");
         }catch (Exception e){

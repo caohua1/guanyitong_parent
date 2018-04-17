@@ -19,6 +19,13 @@ public interface UserBankcardService {
     public PageInfo<UserBankcard> selectByUserBankcard(Map map,Integer pageNum, Integer pageSize);
 
     /**
+     * 分页查询借款人银行卡管理总数量
+     * @param map
+     * @return
+     */
+    public Integer selectUserBankcardAcount(Map map);
+
+    /**
      * 添加借款人银行卡信息
      * @param userBankcard
      * @return
@@ -39,4 +46,5 @@ public interface UserBankcardService {
      * @return
      */
     public List<UserBankcard> selectDimId(Long dimId);
+
 }
