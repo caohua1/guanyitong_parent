@@ -23,6 +23,13 @@ public interface UserDealDao {
     public List<UserDealMoneyVo> selectAllUserDeal(Map map);
 
     /**
+     * (分页)查询所有出借用户的数量
+     * @param map
+     * @return
+     */
+    public Integer selectAllUserDealCount(Map map);
+
+    /**
      * 查询某放弃的标下的所有出借用户，退款
      * @param productInfoId
      * @return

@@ -24,9 +24,10 @@ public class ProductInfo implements Serializable {
     private String coverImage;//封面路径
     private Date updateTime;
     private Integer status;
-    private String YesNO;//筹标期间是否还息
+    private String YesNo;//筹标期间是否还息
     private String moneyUse;//资金用途
     private String QSUse;//起诉用途
+    private String fangqiCauseBy;//放弃原因
 
     public Long getId() {
         return id;
@@ -179,12 +180,12 @@ public class ProductInfo implements Serializable {
         this.status = status;
     }
 
-    public String getYesNO() {
-        return YesNO;
+    public String getYesNo() {
+        return YesNo;
     }
 
-    public void setYesNO(String yesNO) {
-        YesNO = yesNO;
+    public void setYesNo(String yesNo) {
+        YesNo = yesNo;
     }
 
     public String getMoneyUse() {
@@ -201,5 +202,13 @@ public class ProductInfo implements Serializable {
 
     public void setQSUse(String QSUse) {
         this.QSUse = QSUse;
+    }
+
+    public String getFangqiCauseBy() {
+        return fangqiCauseBy;
+    }
+
+    public void setFangqiCauseBy(String fangqiCauseBy) {
+        this.fangqiCauseBy = fangqiCauseBy;
     }
 }

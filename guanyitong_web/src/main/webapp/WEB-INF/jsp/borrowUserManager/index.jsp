@@ -87,11 +87,11 @@
 
                     <li onclick="liClick(this)" url="<%=basePath%>toJsp/toproductInfo_apprrove_manage.do">投标审核管理</li>
 
-                    <li onclick="liClick(this)" url="iframe_j.html">借款管理</li>
+                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/toborrowMoney_manage.do">借款管理</li>
 
-                    <li onclick="liClick(this)" url="iframe_k.html">提现收款管理</li>
+                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/towithdrawBackMoney_manage.do">提现收款管理</li>
 
-                    <li onclick="liClick(this)" url="iframe_kk.html">出借用户统计</li>
+                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/todealUserStatistics2.do">出借用户统计</li>
 
                 </ul>
 

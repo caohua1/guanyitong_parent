@@ -64,7 +64,7 @@ public class BorrowMoneyUserController {
 
     @RequestMapping(value="/selectAllBorrowUser",method= RequestMethod.POST)
     @ResponseBody
-    public JsonResult selectAllBorrowUser( BorrowMoneyUser borrowMoneyUser, String startTime,  String endTime, Integer pageNum, Integer pageSize,Integer type){
+    public JsonResult selectAllBorrowUser( BorrowMoneyUser borrowMoneyUser, String startTime,  String endTime, Integer pageNum, Integer pageSize,Integer type,String Sta){
         JsonResult result = new JsonResult();
         try{
             Map map = new HashMap();
@@ -90,6 +90,9 @@ public class BorrowMoneyUserController {
                 if(type !=null){
                     map.put("type",type);
                 }
+            }
+            if(Sta !=null && !("").equals(Sta)){
+                map.put("Status",Sta);
             }
             if(startTime !=null && !("").equals(startTime)){
                 map.put("startTime", DateAndTimeUtil.convert(startTime) );

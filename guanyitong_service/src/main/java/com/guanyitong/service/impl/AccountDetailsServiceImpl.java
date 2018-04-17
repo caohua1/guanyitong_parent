@@ -1,5 +1,7 @@
 package com.guanyitong.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.guanyitong.mapper.AccountDetailsDao;
 import com.guanyitong.model.RechargeMoney;
 import com.guanyitong.model.UserDealBackMoneyRecord;
@@ -22,8 +24,11 @@ public class AccountDetailsServiceImpl implements AccountDetailsService {
      * @return
      */
     @Override
-    public List<RechargeMoney> selectRechargeList(Map rechargeMap) {
-        return accountDetailsDao.selectRechargeList(rechargeMap);
+    public PageInfo<RechargeMoney> selectRechargeList(Map rechargeMap,Integer pageNum,Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<RechargeMoney> rechargeMonies = accountDetailsDao.selectRechargeList(rechargeMap);
+        PageInfo<RechargeMoney> pageInfo = new PageInfo<RechargeMoney>(rechargeMonies);
+        return pageInfo;
     }
 
     /**
@@ -32,8 +37,11 @@ public class AccountDetailsServiceImpl implements AccountDetailsService {
      * @return
      */
     @Override
-    public List<UserDealMoney> selectUserDealMoneyList(Map UserDealMoneyMap) {
-        return accountDetailsDao.selectUserDealMoneyList(UserDealMoneyMap);
+    public PageInfo<UserDealMoney> selectUserDealMoneyList(Map UserDealMoneyMap,Integer pageNum,Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<UserDealMoney> userDealMonies = accountDetailsDao.selectUserDealMoneyList(UserDealMoneyMap);
+        PageInfo<UserDealMoney> pageInfo = new PageInfo<UserDealMoney>(userDealMonies);
+        return pageInfo;
     }
 
     /**
@@ -42,7 +50,40 @@ public class AccountDetailsServiceImpl implements AccountDetailsService {
      * @return
      */
     @Override
-    public List<UserDealBackMoneyRecord> selectReturnedEarningsMoney(Map ReturnedEarningsMap) {
-        return accountDetailsDao.selectReturnedEarningsMoney(ReturnedEarningsMap);
+    public PageInfo<UserDealBackMoneyRecord> selectReturnedEarningsMoney(Map ReturnedEarningsMap,Integer pageNum,Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<UserDealBackMoneyRecord> userDealBackMoneyRecords = accountDetailsDao.selectReturnedEarningsMoney(ReturnedEarningsMap);
+        PageInfo<UserDealBackMoneyRecord> pageInfo = new PageInfo<UserDealBackMoneyRecord>(userDealBackMoneyRecords);
+        return pageInfo;
+    }
+
+    /**
+     * 充值记录总数量
+     * @param map
+     * @return
+     */
+    @Override
+    public Integer selectRechargeCount(Map map) {
+        return accountDetailsDao.selectRechargeCount(map);
+    }
+
+    /**
+     * 出借记录总数量
+     * @param map
+     * @return
+     */
+    @Override
+    public Integer selectUserDealMoneyCount(Map map) {
+        return accountDetailsDao.selectUserDealMoneyCount(map);
+    }
+
+    /**
+     * 回款记录总数量
+     * @param map
+     * @return
+     */
+    @Override
+    public Integer selectReturnedEarningsMoneyCount(Map map) {
+        return accountDetailsDao.selectReturnedEarningsMoneyCount(map);
     }
 }

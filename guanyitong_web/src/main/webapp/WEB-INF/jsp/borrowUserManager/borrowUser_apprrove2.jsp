@@ -73,9 +73,9 @@
     <!--审核未通过状态，再修改就是待审核状态-->
     <div class="menli">
         <ul>
-            <li class="menlili" value="0">待审核</li>
-            <li class="menlili" value="1">审核未通过</li>
-            <li class="menlili" value="2">审核通过</li>
+            <li class="menlili" value="2">额度待审核</li>
+            <li class="menlili" value="3">额度审核未通过</li>
+            <li class="menlili" value="4">额度审核通过</li>
         </ul>
 
     </div>

@@ -192,7 +192,7 @@ public class ProductManagerController {
      */
     @RequestMapping("/selectProductInfoVo")
     @ResponseBody
-    public JsonResult selectBorrowInfo(ProductInfo productInfo, String startTime, String endTime, String startBorrowTi, String endBorrowTi, Integer pageNum, Integer pageSize, Integer type){
+    public JsonResult selectBorrowInfo(ProductInfo productInfo, String startTime, String endTime, String startBorrowTi, String endBorrowTi, Integer pageNum, Integer pageSize, Integer minBorrowMoney,Integer maxBorrowMoney,String Sta){
           JsonResult result = new JsonResult();
           try{
               Map map = new HashMap();
@@ -210,8 +210,8 @@ public class ProductManagerController {
                       map.put("status",productInfo.getStatus());
                   }
               }
-              if(type !=null){
-                  map.put("type",type);
+              if(Sta !=null && !("").equals(Sta)){
+                  map.put("Status",Sta);
               }
               if(startTime!=null && !("").equals(startTime)){
                   map.put("startTime", DateAndTimeUtil.convert(startTime));
@@ -224,6 +224,12 @@ public class ProductManagerController {
               }
               if(endBorrowTi!=null && !("").equals(endBorrowTi)){
                   map.put("endBorrowTime",DateAndTimeUtil.convert(endBorrowTi));
+              }
+              if(minBorrowMoney!=null){
+                  map.put("minBorrowMoney",minBorrowMoney);
+              }
+              if(maxBorrowMoney !=null){
+                  map.put("maxBorrowMoney",maxBorrowMoney);
               }
               PageInfo<UserProductInfoVo> productInfoVoPageInfo = productService.selectBorrowInfo(map, pageNum, pageSize);
               Integer count = productService.selectBorrowInfoCount(map);

@@ -10,7 +10,7 @@ public class UserDealMoney implements Serializable {
     private Long userId;
     private  Long productInfoId;
     private Integer dealMoney;
-    private Date createTime;
+    private Date createTime;//出借时间
     private Date endTime;
     private Integer status;
     private ProductInfo productInfo;
@@ -63,6 +63,7 @@ public class UserDealMoney implements Serializable {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getEndTime() {

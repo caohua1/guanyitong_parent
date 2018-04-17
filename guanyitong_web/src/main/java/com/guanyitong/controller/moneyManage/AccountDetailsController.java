@@ -1,5 +1,6 @@
 package com.guanyitong.controller.moneyManage;
 
+import com.github.pagehelper.PageInfo;
 import com.guanyitong.model.AccountDetails;
 import com.guanyitong.model.RechargeMoney;
 import com.guanyitong.model.UserDealBackMoneyRecord;
@@ -13,11 +14,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.ResponseBody;
+import util.DateAndTimeUtil;
 import util.JsonResult;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/AccountDetails")
@@ -45,64 +48,87 @@ public class AccountDetailsController {
      * @param userId(出借人id)
      * @param //startTime（查询起始时间）
      * @param //endTime（查询结束时间）
-     * @param //PmenType（收支类型 0代表收入，1代表支出）
-     * @param //type（类型 C 代表充值类型，H 代表回款类型，J 代表出借类型）
+     * @param //type1（收支类型 0代表收入，1代表支出）
+     * @param //type2（类型 2代表充值类型，3 代表回款类型，4 代表出借类型）
      * @return
      */
     @RequestMapping("/checkDetails")
     @ResponseBody
-    public JsonResult checkDetails(Long userId,AccountDetails accountDetails){
+    public JsonResult checkDetails(Long userId,String startTime,String endTime,Integer type1,Integer type2,Integer pageNum,Integer pageSize){
         JsonResult result = new JsonResult();
-        HashMap<String, Object> accountDetailsMap = new HashMap<String, Object>();
-        HashMap<Object, Object> conditionMap = new HashMap<Object, Object>();
-        conditionMap.put("userId",userId);
+        Map map = new HashMap();
+        Map map1 = new HashMap();
         try{
             //判断是否是条件查询
-            if(0==accountDetails.getCondition()) {
-                if (accountDetails.getStartTime() != null || accountDetails.getEndTime() != null) {
-                    conditionMap.put("startTime", accountDetails.getStartTime());
-                    conditionMap.put("endTime", accountDetails.getEndTime());
-                }
-                //查询出借人充值记录
-                List<RechargeMoney> rechargeMoneyList = accountDetailsService.selectRechargeList(conditionMap);
+               if(userId!=null){
+                   map.put("userId",userId);
+               }
+               if(startTime!=null && !("").equals(startTime)){
+                   map.put("startTime", DateAndTimeUtil.convert(startTime));
+               }
+               if(endTime!=null && !("").equals(endTime)){
+                   map.put("startTime", DateAndTimeUtil.convert(endTime));
+               }
+               //收入：回款，充值------ 支出：出借
+                 //查询出借人充值记录
+                 PageInfo<RechargeMoney> rechargeMoneyPageInfo = accountDetailsService.selectRechargeList(map, pageNum, pageSize);
+                 Integer CZ_count = accountDetailsService.selectRechargeCount(map);
+                 //查询出借人回款记录
+                 PageInfo<UserDealBackMoneyRecord> userDealBackMoneyRecordPageInfo = accountDetailsService.selectReturnedEarningsMoney(map,pageNum,pageSize);
+                 Integer HK_count = accountDetailsService.selectReturnedEarningsMoneyCount(map);
                 //查询出借人出借记录
-                List<UserDealMoney> userDealMoneyList = accountDetailsService.selectUserDealMoneyList(conditionMap);
-                //查询出借人回款记录和收益记录
-                List<UserDealBackMoneyRecord> moneyRecordList = accountDetailsService.selectReturnedEarningsMoney(conditionMap);
-                //判断是否有收支类型的选择（收支类型 0代表收入，1代表支出）
-                if ("0".equals(accountDetails.getPmenType())) {
-                    //PmenType==0表示收入类型
-                    accountDetailsMap.put("CH", rechargeMoneyList);
-                    accountDetailsMap.put("HS", moneyRecordList);
-                } else if ("1".equals(accountDetails.getPmenType())){
-                    //PmenType==1表示支出类型
-                    accountDetailsMap.put("ZC", userDealMoneyList);
-                }
-                //判断是否有类型的选择（C 代表充值类型，H 代表回款类型，J 代表出借类型）
-                if ("C".equals(accountDetails.getType())) {
-                    //表示选择的是充值类型
-                    accountDetailsMap.put("CH", rechargeMoneyList);
-                } else if ("H".equals(accountDetails.getType())) {
-                    //表示选择的是回款类型
-                    ArrayList<String> BjMoney = new ArrayList<String>();
-                    for (UserDealBackMoneyRecord returnedMoney : moneyRecordList
-                            ) {
-                        BjMoney.add(returnedMoney.getBj());
-                    }
-                    accountDetailsMap.put("HS", BjMoney);
-                } else if ("J".equals(accountDetails.getType())){
-                    //表示选择的是出借类型
-                    accountDetailsMap.put("ZC", userDealMoneyList);
-                }
-            }else {
-                //查询出借人充值记录
-                accountDetailsMap.put("CH", accountDetailsService.selectRechargeList(conditionMap));
-                //查询出借人出借记录
-                accountDetailsMap.put("ZC",accountDetailsService.selectUserDealMoneyList(conditionMap));
-                //查询出借人回款记录和收益记录
-                accountDetailsMap.put("HS", accountDetailsService.selectReturnedEarningsMoney(conditionMap));
-            }
-            result.setData(accountDetailsMap);
+                PageInfo<UserDealMoney> userDealMoneyPageInfo = accountDetailsService.selectUserDealMoneyList(map, pageNum, pageSize);
+                Integer CJ_count = accountDetailsService.selectUserDealMoneyCount(map);
+                 Map map2 = new HashMap();
+                 if(type1==0 ){
+                     if(type2 !=-1 && type2 ==2){
+                         map1.put("pageInfo",rechargeMoneyPageInfo);
+                         map1.put("count",CZ_count);
+                     }else if(type2 !=-1 && type2 ==3){
+                         map1.put("pageInfo",userDealBackMoneyRecordPageInfo);
+                         map1.put("count",HK_count);
+                     }else if(type2 !=-1 && type2 ==4){
+                         map1.put("pageInfo",null);
+                         map1.put("count",0);
+                     }else {
+                         map2.put("rechargeMoneyPageInfo",rechargeMoneyPageInfo);
+                         map2.put("userDealBackMoneyRecordPageInfo",userDealBackMoneyRecordPageInfo);
+                         map1.put("pageInfo",map2);
+                         map1.put("count",CZ_count + HK_count);
+                     }
+                 }else if(type1==1){
+                     if(type2 !=-1 && type2 ==2){
+                         map1.put("pageInfo",null);
+                         map1.put("count",0);
+                     }else if(type2 !=-1 && type2 ==3){
+                         map1.put("pageInfo",null);
+                         map1.put("count",0);
+                     }else if(type2 !=-1 && type2 ==4){
+                         map1.put("pageInfo",userDealMoneyPageInfo);
+                         map1.put("count",CJ_count);
+                     }else{
+                         map1.put("pageInfo",userDealMoneyPageInfo);
+                         map1.put("count",CJ_count);
+                     }
+                 }else{
+                     if(type2 !=-1 && type2 ==2){
+                         map1.put("pageInfo",rechargeMoneyPageInfo);
+                         map1.put("count",CZ_count);
+                     }else if(type2 !=-1 && type2 ==3){
+                         map1.put("pageInfo",userDealBackMoneyRecordPageInfo);
+                         map1.put("count",HK_count);
+                     }else if(type2 !=-1 && type2 ==4){
+                         map1.put("pageInfo",userDealMoneyPageInfo);
+                         map1.put("count",CJ_count);
+                     }else {
+                         map2.put("rechargeMoneyPageInfo",rechargeMoneyPageInfo);
+                         map2.put("userDealBackMoneyRecordPageInfo",userDealBackMoneyRecordPageInfo);
+                         map2.put("userDealMoneyPageInfo",userDealMoneyPageInfo);
+                         map1.put("pageInfo",map2);
+                         map1.put("count",CZ_count + CJ_count + HK_count);
+                     }
+                 }
+            result.setData(map1);
             result.setState(JsonResult.SUCCESS);
             result.setMessage("返回数据成功");
         }catch (Exception e){

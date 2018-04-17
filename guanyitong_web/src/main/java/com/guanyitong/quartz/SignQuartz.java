@@ -35,7 +35,7 @@ public class SignQuartz {
                 }
             }
             userSignService.deleteUserSignCalc();
-            logger.info("执行了");
+            logger.info("执行了hahahah");
         }catch(Exception e){
             e.printStackTrace();
         }

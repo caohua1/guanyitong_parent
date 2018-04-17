@@ -1,28 +1,28 @@
 
 
 $(function(){
-    var status =0;
+    var Sta =2;
     //初始化
-     initlist(status);
+     initlist(Sta);
 
     //点击li按钮
     $("li").click(function(){ //从第一页开始
-        if( $(this).val()==0){//待审核
-            status = 0;
-        }else if($(this).val()==1){//审核未通过
-            status = 1;
-        }else if($(this).val()==2){//审核成功
-            status = 2;
+        if( $(this).val()==2){//待审核
+            Sta = 2;
+        }else if($(this).val()==3){//审核未通过
+            Sta = 3;
+        }else if($(this).val()==4){//审核成功
+            Sta = 4;
         }
         bBtn = true;
         $("#pageNum").text(1);
-        initlist(status);
+        initlist(Sta);
     });
     //点击搜索
     $("#select").click(function(){//搜索从第一页开始
         bBtn = true;
         $("#pageNum").text(1);
-        initlist(status);
+        initlist(Sta);
     });
 
 });
@@ -30,7 +30,7 @@ $(function(){
 var bBtn = true;
 
 //初始化列表
-function initlist(status){
+function initlist(Sta){
     var id = $("#borrowMoneyUserId").val();
     var apprroveName = $("#apprroveName").val();
     var legalIDCard = $("#legalIDCard").val();
@@ -40,11 +40,11 @@ function initlist(status){
     var pageSize = $("#pageSize").text();
     var pageNum = $("#pageNum").text();
     var tbody = "";
-    if(status ==0){
+    if(Sta ==2){
          tbody= window.document.getElementById("tbody-result1");
-    } else if(status==1){
+    } else if(Sta==3){
          tbody=window.document.getElementById("tbody-result2");
-    }else if(status==2){
+    }else if(Sta==4){
          tbody=window.document.getElementById("tbody-result3");
     }
     /**/
@@ -61,10 +61,9 @@ function initlist(status){
             apprroveName:apprroveName,
             legalIDCard:legalIDCard,
             companyName:companyName,
-            status:status,
+            Sta:Sta,
             startTime:startTime,
-            endTime:endTime,
-            type:2
+            endTime:endTime
         },
         success: function (msg) {
             var str = "";
@@ -77,35 +76,34 @@ function initlist(status){
                 if(j<=count || (count == 1 && j == 1)){
                     console.log(msg);
                    for (i in data) {
-                        str += "<tr>" +
-                        "<td>" + (j++) + "</td>" +
-                        "<td>" + data[i].id + "</td>" +
-                        "<td>" + data[i].apprroveName + "</td>" +
-                        "<td>" + data[i].legalIDCard + "</td>" +
-                        "<td>" + data[i].companyName + "</td>" +
-                        "<td>" + data[i].charterNum + "</td>"
-                        if(status ==0){
-                        str += "<td>" + "待审核资料：证书" + "</td>"
-                        }
-                        str +=  "<td>" + data[i].createTime + "</td>"
+                       str += "<tr>" +
+                           "<td>" + (j++) + "</td>" +
+                           "<td>" + data[i].id + "</td>" +
+                           "<td>" + data[i].apprroveName + "</td>" +
+                           "<td>" + data[i].legalIDCard + "</td>" +
+                           "<td>" + data[i].companyName + "</td>" +
+                           "<td>" + data[i].charterNum + "</td>"
+                       if(status ==2){
+                           str += "<td>" + "待审核资料：证书" + "</td>"
+                       }
+                       str +=  "<td>" + data[i].createTime + "</td>"
 
-                        if(data[i].status == 0){
-                            str +="<td>" + "待审核" + "</td>"
-                        }else if(data[i].status ==1){
-                            str +="<td>" + "审核失败" + "</td>"
-                        }else if(data[i].status ==2){
-                            str +="<td>" + "审核成功" + "</td>"
-                        }else{
-                            str +="<td>" + "审核成功" + "</td>"
-                        }
+                       if(data[i].status == 2){
+                           str +="<td>" + "额度待审核" + "</td>"
+                       }else if(data[i].status ==3){
+                           str +="<td>" + "额度审核失败" + "</td>"
+                       }else if(data[i].status ==4){
+                           str +="<td>" + "额度审核成功" + "</td>"
+                       }
 
-                        str += "<td>" + data[i].auditUserName + "</td>"
-                        if(status==1){
-                        str+="<td>" + data[i].causeBy + "</td>"
-                        }
-                        str += "<td><span><a href=\"toborrowUserApprrove2_info.do?id="+ data[i].id+"\" >查看</a></span></td>" +
-                        "</tr>";
-                    }
+                       str += "<td>" + data[i].auditUserName + "</td>"
+                       if(status==3){
+                           str+="<td>" + data[i].causeBy + "</td>"
+                       }
+                           str += "<td><span><a href=\"toborrowUserApprrove2_info.do?id="+ data[i].id+"\" >查看</a></span></td>" +
+                               "</tr>";
+                       }
+
                     tbody.innerHTML = str;
                     if(bBtn) {
                         $('.pageTest').page({

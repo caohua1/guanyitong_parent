@@ -30,7 +30,10 @@ function createTBody(){
     var companyName = $("#companyName").val();
     var startTime = $("#startTime").val();
     var endTime = $("#endTime").val();
-    var status = $("#select_id").val();
+    var Sta =  $("#select_id").val();
+    if(Sta == -1){
+        Sta = "0,1,2,3";
+    }
     var tbody=window.document.getElementById("tbody-result");
     var local = window.location;
     var basePath = local.protocol+"//"+local.host+"/";
@@ -47,7 +50,7 @@ function createTBody(){
                 apprroveName:apprroveName,
                 legalIDCard:legalIDCard,
                 companyName:companyName,
-                status:status,
+                Sta:Sta,
                 startTime:startTime,
                 endTime:endTime
             },
@@ -60,40 +63,38 @@ function createTBody(){
                     if(data !=null && data.length>0){
                         $("#pageCount").text(Math.ceil(count/pageSize));
                         if(j<=count || (j == 1 && count == 1)){
-
                            for (i in data) {
-                                      str += "<tr>"+
-                                      "<td>" +(j++) + "</td>"+
-                                      "<td>" + data[i].id + "</td>" +
-                                      "<td>" + data[i].apprroveName + "</td>" +
-                                      "<td>" + data[i].legalIDCard + "</td>" +
-                                      "<td>" + data[i].companyName + "</td>" +
-                                      "<td>" + data[i].charterNum + "</td>" +
-                                          //待审核资料
-                                      "<td>" + data[i].legalIDCard + "</td>" +
-                                      "<td>" + data[i].createTime + "</td>"
-                                    if(data[i].status == 0){
-                                        str +="<td>" + "待审核" + "</td>"+
-                                            "<td>" + "待审核" + "</td>"
-                                    }else if(data[i].status ==1){
-                                        str +="<td>" + "审核失败" + "</td>"+
-                                            "<td>" + "待审核" + "</td>"
-                                    }else if(data[i].status ==2){
-                                        str +="<td>" + "审核成功" + "</td>"+
-                                            "<td>" + "待审核" + "</td>"
-                                    }else if(data[i].status ==3){
-                                        str +="<td>" + "审核成功" + "</td>"+
-                                            "<td>" + "审核失败" + "</td>"
-                                    }else{
-                                        str +="<td>" + "审核成功" + "</td>"+
-                                            "<td>" + "审核成功" + "</td>"
-                                    }
-                                    str += "<td><select> <option>==请选择</option> <option>==请选择1</option> <option>==请选择2</option> </select></td>" +
+                                   console.log(data[i].status);
+                                   str += "<tr>"+
+                                       "<td>" +(j++) + "</td>"+
+                                       "<td>" + data[i].id + "</td>" +
+                                       "<td>" + data[i].apprroveName + "</td>" +
+                                       "<td>" + data[i].legalIDCard + "</td>" +
+                                       "<td>" + data[i].companyName + "</td>" +
+                                       "<td>" + data[i].charterNum + "</td>" +
+                                       //待审核资料
+                                       "<td>" + data[i].legalIDCard + "</td>" +
+                                       "<td>" + data[i].createTime + "</td>"
+                                   if(data[i].status == 0){
+                                       str +="<td>" + "待审核" + "</td>"+
+                                           "<td>" + "待审核" + "</td>"
+                                   }else if(data[i].status ==1){
+                                       str +="<td>" + "审核失败" + "</td>"+
+                                           "<td>" + "待审核" + "</td>"
+                                   }else if(data[i].status ==2){
+                                       str +="<td>" + "审核成功" + "</td>"+
+                                           "<td>" + "待审核" + "</td>"
+                                   }else if(data[i].status ==3){
+                                       str +="<td>" + "审核成功" + "</td>"+
+                                           "<td>" + "审核失败" + "</td>"
+                                   }
+                                   str += "<td><select> <option>==请选择</option> <option>==请选择1</option> <option>==请选择2</option> </select></td>" +
 
-                                        "<td><span><a  href=\"toborrowUserApprrove1_info.do?id="+ data[i].id+"\" >查看</a></span><span"+" class="+"quespan"+">确定审核人员</span></td>" +
+                                       "<td><span><a  href=\"toborrowUserApprrove1_info.do?id="+ data[i].id+"\" >查看</a></span><span"+"class="+"quespan"+">确定审核人员                                      </span></td>" +
 
-                                        "</tr>";
-                                }
+                                       "</tr>";
+                               }
+
                                    tbody.innerHTML = str;
 
                             if(bBtn){

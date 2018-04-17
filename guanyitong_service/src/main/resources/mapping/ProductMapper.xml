@@ -167,17 +167,24 @@
          <if test="startBorrowTime ==null and endBorrowTime !=null">
              and endBorrowTime &lt;= #{endBorrowTime}
          </if>
+         <if test="minBorrowMoney !=null and maxBorrowMoney ==null">
+             and ZMoney &gt;= #{minBorrowMoney}
+         </if>
+         <if test="minBorrowMoney ==null and maxBorrowMoney !=null">
+             and ZMoney &lt;= #{maxBorrowMoney}
+         </if>
+         <if test="minBorrowMoney !=null and maxBorrowMoney !=null">
+             and ZMoney BETWEEN #{minBorrowMoney} and #{maxBorrowMoney}
+         </if>
           <if test="backMoneyType !=null and backMoneyType !=''">
                and backMoneyType = #{backMoneyType}
           </if>
-         <if test="type !=null and type == 0 and status == 2">
-             and productinfo.status &gt;= #{status}
-         </if>
-         <if test="status !=null and type ==0 and status !=2 ">
+
+         <if test="status !=null">
              and productinfo.status = #{status}
          </if>
-         <if test="status !=null and type ==null">
-             and productinfo.status = #{status}
+         <if test="Status !=null and Status !=''">
+             and productinfo.status in(${Status})
          </if>
      </select>
      <!--查询总数-->
@@ -209,18 +216,28 @@
         <if test="startBorrowTime ==null and endBorrowTime !=null">
             and endBorrowTime &lt;= #{endBorrowTime}
         </if>
+        <if test="minBorrowMoney !=null and maxBorrowMoney ==null">
+            and ZMoney &gt;= #{minBorrowMoney}
+        </if>
+        <if test="minBorrowMoney ==null and maxBorrowMoney !=null">
+            and ZMoney &lt;= #{maxBorrowMoney}
+        </if>
+        <if test="minBorrowMoney !=null and maxBorrowMoney !=null">
+            and ZMoney BETWEEN #{minBorrowMoney} and #{maxBorrowMoney}
+        </if>
         <if test="backMoneyType !=null and backMoneyType !=''">
             and backMoneyType = #{backMoneyType}
         </if>
-        <if test="type !=null and type == 0 and status == 2">
-            and productinfo.status &gt;= #{status}
-        </if>
-        <if test="status !=null and type ==0 and status !=2">
+        <if test="status !=null ">
             and productinfo.status = #{status}
         </if>
-        <if test="status !=null and type ==null">
-            and productinfo.status = #{status}
+        <if test="Status !=null and Status !=''">
+            and productinfo.status in(${Status})
         </if>
+    </select>
+    <!--查询所有的投标-->
+    <select id="selectAllBorrowInfo" resultType="com.guanyitong.model.vo.UserProductInfoVo">
+           select * from productinfo
     </select>
     <!--查询一条数据（根据borrowMoneyUserId 和 status）-->
     <select id="selectProductInfoByStAndBUId" parameterType="java.util.Map" resultType="com.guanyitong.model.ProductInfo">
@@ -296,6 +313,21 @@
         </if>
         <if test="status !=null">
             status = #{status},
+        </if>
+        <if test="fangqiCauseBy !=null and fangqiCauseBy !=''">
+            fangqiCauseBy = #{fangqiCauseBy},
+        </if>
+        <if test="YesNo !=null and YesNo !=''">
+            YesNo = #{YesNo},
+        </if>
+        <if test="moneyUse !=null and moneyUse !=''">
+            moneyUse = #{moneyUse},
+        </if>
+        <if test="QSUse !=null and QSUse !=''">
+            QSUse = #{QSUse},
+        </if>
+        <if test="fangqiCauseBy !=null and fangqiCauseBy !=''">
+            fangqiCauseBy = #{fangqiCauseBy},
         </if>
         updateTime = #{updateTime}
         where id = #{id}

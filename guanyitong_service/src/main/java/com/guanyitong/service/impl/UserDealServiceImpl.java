@@ -37,7 +37,7 @@ public class UserDealServiceImpl implements UserDealService {
         productInfo.setSYMoney(SYMoney);
         productInfo.setId(userDealMoney.getProductInfoId());
         Integer j = productDao.updateProductInfo(productInfo);//产品的可出借金额减少
-        if(i>0 && j>0 && SYMoney ==0){//如果剩余可出借金额为0,修改标的状态为  status = 5 筹集完成
+        if(i>0 && j>0 && SYMoney ==0){//如果剩余可出借金额为0,修改标的状态为  status = 5 筹集完成（待提现）
             Map map = new HashMap();
             map.put("id",userDealMoney.getProductInfoId());
             map.put("status",5);
@@ -60,6 +60,16 @@ public class UserDealServiceImpl implements UserDealService {
         List<UserDealMoneyVo> userDealMoneyVos = userDealDao.selectAllUserDeal(map);
         PageInfo<UserDealMoneyVo> pageInfo = new PageInfo<UserDealMoneyVo>(userDealMoneyVos);
         return pageInfo;
+    }
+
+    /**
+     * 查询所有用户的出借数量
+     * @param map
+     * @return
+     */
+    @Override
+    public Integer selectAllUserDealCount(Map map) {
+        return userDealDao.selectAllUserDealCount(map);
     }
 
     /**

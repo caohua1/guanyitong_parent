@@ -210,6 +210,15 @@ public class ProductServiceImpl implements ProductService{
     }
 
     /**
+     * 查询所有的投标，监听器监听，是否开始投标
+     * @return
+     */
+    @Override
+    public List<UserProductInfoVo> selectAllBorrowInfo() {
+        return productDao.selectAllBorrowInfo();
+    }
+
+    /**
      * 根据id查询借款明细
      * @param id
      * @return

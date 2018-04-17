@@ -18,10 +18,27 @@ public interface AccountDetailsDao {
     //查询出借人出借记录
     public List<UserDealMoney> selectUserDealMoneyList(Map UserDealMoneyMap);
 
-    //查询出借人回款记录和收益记录
+    //查询出借人回款记录
     public List<UserDealBackMoneyRecord> selectReturnedEarningsMoney(Map ReturnedEarningsMap);
+    /**
+     * 充值记录总数量
+     * @param map
+     * @return
+     */
+    public Integer selectRechargeCount(Map map);
+    /**
+     * 出借记录总数量
+     * @param map
+     * @return
+     */
+    public Integer selectUserDealMoneyCount(Map map);
 
-
+    /**
+     * 回款记录总数量
+     * @param map
+     * @return
+     */
+    public Integer selectReturnedEarningsMoneyCount(Map map);
 
 
 }
