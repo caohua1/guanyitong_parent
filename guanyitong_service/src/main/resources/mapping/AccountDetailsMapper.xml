@@ -22,6 +22,21 @@
 
     </select>
 
+    <!--出借人充值记录总数量-->
+    <select id="selectRechargeCount" parameterType="java.util.Map" resultType="Integer">
+        SELECT count(*) FROM recharge_money
+        WHERE 1=1
+        <if test="startTime !=null and endTime ==null">
+            and rechargeTime &gt;= #{startTime}
+        </if>
+        <if test="startTime ==null and endTime !=null">
+            and rechargeTime &lt;= #{endTime}
+        </if>
+        <if test="userId !=null and userId!=''">
+            and userId=#{userId}
+        </if>
+
+    </select>
     <!-- 查询出借人出借记录-->
     <select id="selectUserDealMoneyList" parameterType="java.util.Map" resultType="com.guanyitong.model.UserDealMoney">
         SELECT * FROM user_deal_money
@@ -37,9 +52,38 @@
         </if>
     </select>
 
-    <!-- 查询出借人回款和收益记录-->
+    <!--出借记录总数量-->
+    <select id="selectUserDealMoneyCount" parameterType="java.util.Map" resultType="Integer">
+        SELECT count(*) FROM user_deal_money
+        WHERE 1=1
+        <if test="startTime !=null and endTime ==null">
+            and createTime &gt;= #{startTime}
+        </if>
+        <if test="startTime ==null and endTime !=null">
+            and createTime &lt;= #{endTime}
+        </if>
+        <if test="userId !=null and userId!=''">
+            and userId=#{userId}
+        </if>
+    </select>
+    <!-- 查询出借人回款记录-->
     <select id="selectReturnedEarningsMoney" parameterType="java.util.Map" resultType="com.guanyitong.model.UserDealBackMoneyRecord">
         SELECT * FROM userbackmoneyrecord
+        WHERE 1=1
+        <if test="startTime !=null and endTime ==null">
+            and time &gt;= #{startTime}
+        </if>
+        <if test="startTime ==null and endTime !=null">
+            and time &lt;= #{endTime}
+        </if>
+        <if test="userId !=null and userId!=''">
+            and userId=#{userId}
+        </if>
+    </select>
+
+    <!--回款记录总数量-->
+    <select id="selectReturnedEarningsMoneyCount" parameterType="java.util.Map" resultType="Integer">
+        SELECT count(*) FROM userbackmoneyrecord
         WHERE 1=1
         <if test="startTime !=null and endTime ==null">
             and time &gt;= #{startTime}
