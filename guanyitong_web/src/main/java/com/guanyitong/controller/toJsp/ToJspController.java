@@ -2,12 +2,15 @@ package com.guanyitong.controller.toJsp;
 
 import com.guanyitong.mapper.ProductDao;
 import com.guanyitong.model.Product;
+import com.guanyitong.model.ProductInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("/toJsp")
 @Controller
@@ -185,8 +188,32 @@ public class ToJspController {
         //查询所有的标种
         List<Product> products = productDao.selectAllProducts();
         model.addAttribute("products",products);
-        return "";
+        //根据id查询此条数据
+        Map map = new HashMap();
+        map.put("productInfoId",id);
+        List<ProductInfo> productInfos = productDao.selectProductInfo(map);
+        model.addAttribute("productInfos",productInfos.get(0));
+        return "borrowManager/update_productInfo";
     }
+
+    /**
+     * 提现收款管理页面
+     * @return
+     */
+    @RequestMapping("/towithdrawBackMoney_manage")
+    public String towithdrawBackMoney_manage(){
+        return "borrowManager/withdrawBackMoney_manage";
+    }
+
+    /**
+     * 出借用户统计页面
+     * @return
+     */
+    @RequestMapping("/todealUserStatistics2")
+    public String todealUserStatistics2(){
+        return "borrowManager/dealUser_statistics";
+    }
+
     //============================借款人(财务管理)
     /**
      * 跳转到借款人银行卡管理
