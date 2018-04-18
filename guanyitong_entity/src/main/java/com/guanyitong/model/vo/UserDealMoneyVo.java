@@ -13,7 +13,7 @@ public class UserDealMoneyVo extends UserDealMoney implements Serializable{
     private String name;//产品的类型
     private String NO;//产品的名称
     private Integer yield;//利率
-    private Integer Zmoney;
+    private Integer ZMoney;
     private String idCard;
     private Date pCreateTime;//产品发布时间
     private Integer pStatus;
@@ -61,12 +61,12 @@ public class UserDealMoneyVo extends UserDealMoney implements Serializable{
         this.yield = yield;
     }
 
-    public Integer getZmoney() {
-        return Zmoney;
+    public Integer getZMoney() {
+        return ZMoney;
     }
 
     public void setZmoney(Integer zmoney) {
-        Zmoney = zmoney;
+        ZMoney = zmoney;
     }
 
     public String getIdCard() {

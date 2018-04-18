@@ -112,7 +112,7 @@ public class AccountDetailsController {
                          map1.put("count",CJ_count);
                      }
                  }else{
-                     if(type2 !=-1 && type2 ==2  && type2!=null){
+                     if(type2 !=-1 && type2 ==2 && type2!=null){
                          map1.put("pageInfo",rechargeMoneyPageInfo);
                          map1.put("count",CZ_count);
                      }else if(type2 !=-1 && type2 ==3  && type2!=null){

@@ -89,6 +89,12 @@ function createTBody() {
                 }
             }else{
                 tbody.innerHTML = "暂无数据";
+                if(bBtn) {
+                    $('.pageTest').page({
+                        leng: 0,
+                        activeClass: 'activP' //active 类样式定义
+                    });
+                }
             }
         },
         error: function () {
