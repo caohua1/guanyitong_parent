@@ -37,8 +37,8 @@
           <if test="idCard !=null and idCard !=''">
               and  am.idCard = #{idCard}
           </if>
-          <if test="startTime !=null and endTime !=null">
-              and  udm.createTime BETWEEN #{startTime} and endTime
+          <if test="startTi !=null and endTi !=null">
+              and  udm.createTime BETWEEN #{startTi} and #{endTi}
           </if>
           <if test="minMoney !=null and maxMoney">
                and udm.dealMoney BETWEEN #{minMoney} and #{maxMoney}
@@ -47,7 +47,7 @@
 
      <!--出借用户的数量-->
      <select id="selectAllUserDealCount" parameterType="java.util.Map" resultType="Integer">
-          select DISTINCT udm.id,count(udm.id) from user_deal_money udm
+          select count(udm.id) from user_deal_money udm
           left join account_manager am on am.userId = udm.userId
           left join user_info ui on ui.id = udm.userId
           left join productinfo pi on pi.id = udm.productInfoId
@@ -62,8 +62,8 @@
           <if test="idCard !=null and idCard !=''">
                and  am.idCard = #{idCard}
           </if>
-          <if test="startTime !=null and endTime !=null">
-               and  udm.createTime BETWEEN #{startTime} and endTime
+          <if test="startTi !=null and endTi !=null">
+               and  udm.createTime BETWEEN #{startTi} and #{endTi}
           </if>
           <if test="minMoney !=null and maxMoney">
                and udm.dealMoney BETWEEN #{minMoney} and #{maxMoney}

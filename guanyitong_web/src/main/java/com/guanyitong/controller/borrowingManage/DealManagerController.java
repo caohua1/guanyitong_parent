@@ -24,15 +24,15 @@ public class DealManagerController {
     /**
      * 出借用户统计（分页）
      * @param userDealMoneyVo
-     * @param startTime
-     * @param endTime
+     * @param startTi
+     * @param endTi
      * @param pageNum
      * @param pageSize
      * @return
      */
     @RequestMapping("/selectAllUserDeal")
     @ResponseBody
-    public JsonResult selectAllUserDeal(UserDealMoneyVo userDealMoneyVo, String startTime, String endTime,Integer minMoney, Integer maxMoney,Integer pageNum, Integer pageSize){
+    public JsonResult selectAllUserDeal(UserDealMoneyVo userDealMoneyVo, String startTi, String endTi,Integer minMoney, Integer maxMoney,Integer pageNum, Integer pageSize){
         JsonResult result = new JsonResult();
         try{
             Map map = new HashMap();
@@ -46,25 +46,26 @@ public class DealManagerController {
                 if(userDealMoneyVo.getIdCard()!=null &&!("").equals(userDealMoneyVo.getIdCard())){
                     map.put("idCard",userDealMoneyVo.getIdCard());
                 }
-                if(startTime !=null && !("").equals(startTime)){
-                    map.put("startTime", DateAndTimeUtil.convert(startTime));
-                }
-                if(endTime !=null &&  !("").equals(endTime)){
-                    map.put("endTime",DateAndTimeUtil.convert(endTime));
-                }
-                if(minMoney !=null){
-                    map.put("minMoney",minMoney);
-                }
-                if(maxMoney !=null){
-                    map.put("maxMoney",maxMoney);
-                }
+            }
+            if(startTi !=null && !("").equals(startTi)){
+                map.put("startTi", DateAndTimeUtil.convert(startTi));
+            }
+            if(endTi !=null &&  !("").equals(endTi)){
+                map.put("endTi",DateAndTimeUtil.convert(endTi));
+            }
+            if(minMoney !=null){
+                map.put("minMoney",minMoney);
+            }
+            if(maxMoney !=null){
+                map.put("maxMoney",maxMoney);
             }
             PageInfo<UserDealMoneyVo> pageInfo = userDealService.selectAllUserDeal(map, pageNum, pageSize);
             Integer count = userDealService.selectAllUserDealCount(map);
-            map.put("count",count);
-            map.put("pageInfo",pageInfo);
+            Map map1 = new HashMap();
+            map1.put("count",count);
+            map1.put("pageInfo",pageInfo);
             result.setState(JsonResult.SUCCESS);
-            result.setData(map);
+            result.setData(map1);
             result.setMessage("返回数据成功");
         }catch(Exception e){
             e.printStackTrace();

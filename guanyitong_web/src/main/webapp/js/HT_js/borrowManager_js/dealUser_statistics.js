@@ -3,8 +3,8 @@ var param = {
     pageSize : null,
     username : null,
     name : null,
-    startTime : null,
-    endTime : null,
+    startTi : null,
+    endTi : null,
     minMoney : null,
     maxMoney : null,
     idCard : null
@@ -22,12 +22,13 @@ $(function(){
 
 var bBtn = true;
 //初始化列表
+
 function createTBody(){
     param.pageNum = $("#pageNum").html();
     param.pageSize = $("#pageSize").html();
     param.username = $("#username").val();
-    param.endTime = $("#endTime").val();
-    param.startTime = $("#startTime").val();
+    param.endTi = $("#endTime").val();
+    param.startTi = $("#startTime").val();
     param.name = $("#name").val();
     param.minMoney = $("#minMoney").val();
     param.maxMoney = $("#maxMoney").val();
@@ -56,7 +57,7 @@ function createTBody(){
                         str += "<tr>"+
                             "<td>" +(j++) + "</td>"+
                             "<td>" + data[i].username + "</td>" +
-                            "<td>" + data[i].NO + "</td>"+
+                            "<td>" + data[i].no + "</td>"+
                             "<td>" + data[i].name + "</td>" +
                             "<td>" + data[i].zmoney + "</td>"+
                             "<td>" + data[i].yield + "</td>" +
@@ -106,6 +107,12 @@ function createTBody(){
                 }
             }else{
                 tbody.innerHTML = "暂无数据";
+                if(bBtn) {
+                    $('.pageTest').page({
+                        leng: 0,
+                        activeClass: 'activP' //active 类样式定义
+                    });
+                }
             }
         },
         error: function () {

@@ -83,13 +83,15 @@ public class AccountDetailsController {
 
                  if(type1!=null && type1==0){
                      if(type2 !=-1 && type2 ==2 && type2!=null){
-                         map1.put("pageInfo",rechargeMoneyPageInfo);
+                         map2.put("rechargeMoneyPageInfo",rechargeMoneyPageInfo);
+                         map1.put("pageInfo",map2);
                          map1.put("count",CZ_count);
                      }else if(type2 !=-1 && type2 ==3  && type2!=null){
-                         map1.put("pageInfo",userDealBackMoneyRecordPageInfo);
+                         map2.put("userDealBackMoneyRecordPageInfo",userDealBackMoneyRecordPageInfo);
+                         map1.put("pageInfo",map2);
                          map1.put("count",HK_count);
                      }else if(type2 !=-1 && type2 ==4  && type2!=null){
-                         map1.put("pageInfo",null);
+                         map1.put("pageInfo",map2);
                          map1.put("count",0);
                      }else {
                          map2.put("rechargeMoneyPageInfo",rechargeMoneyPageInfo);
@@ -99,27 +101,30 @@ public class AccountDetailsController {
                      }
                  }else if( type1!=null && type1==1){
                      if(type2!=null && type2 !=-1 && type2 ==2){
-                         map1.put("pageInfo",null);
+                         map1.put("pageInfo",map2);
                          map1.put("count",0);
                      }else if(type2!=null && type2 !=-1 && type2 ==3){
-                         map1.put("pageInfo",null);
+                         map1.put("pageInfo",map2);
                          map1.put("count",0);
                      }else if(type2!=null && type2 !=-1 && type2 ==4){
-                         map1.put("pageInfo",userDealMoneyPageInfo);
+                         map2.put("userDealMoneyPageInfo",userDealMoneyPageInfo);
+                         map1.put("pageInfo",map2);
                          map1.put("count",CJ_count);
                      }else{
-                         map1.put("pageInfo",userDealMoneyPageInfo);
+                         map2.put("userDealMoneyPageInfo",userDealMoneyPageInfo);
+                         map1.put("pageInfo",map2);
                          map1.put("count",CJ_count);
                      }
                  }else{
-                     if(type2!=null && type2 !=-1 && type2 ==2){
-                         map1.put("pageInfo",rechargeMoneyPageInfo);
+                     if(type2 !=null && type2 !=-1 && type2 ==2  ){
+                         map2.put("rechargeMoneyPageInfo",rechargeMoneyPageInfo);map1.put("pageInfo",map2);
                          map1.put("count",CZ_count);
                      }else if(type2!=null &&  type2 !=-1 && type2 ==3){
-                         map1.put("pageInfo",userDealBackMoneyRecordPageInfo);
+                         map2.put("userDealBackMoneyRecordPageInfo",userDealBackMoneyRecordPageInfo);
+                         map1.put("pageInfo",map2);
                          map1.put("count",HK_count);
-                     }else if(type2!=null && type2 !=-1 && type2 ==4){
-                         map1.put("pageInfo",userDealMoneyPageInfo);
+                     }else if(type2 !=null && type2 !=-1 && type2 ==4  ){
+                         map2.put("userDealMoneyPageInfo",userDealMoneyPageInfo);map1.put("pageInfo",map2);
                          map1.put("count",CJ_count);
                      }else {
                          map2.put("rechargeMoneyPageInfo",rechargeMoneyPageInfo);
