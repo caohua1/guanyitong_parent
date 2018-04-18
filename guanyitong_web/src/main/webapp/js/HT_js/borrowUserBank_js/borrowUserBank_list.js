@@ -9,6 +9,7 @@ $(function () {
     });
     //点击搜索
     $("#select").click(function(){
+        bBtn = true;
         createTBody();
     });
 
