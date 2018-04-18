@@ -14,7 +14,6 @@ $(function(){
         createData();
     });
 })
-
 var bBtn = true;
 function createData() {
     var startTime=$("#startTime").val();
@@ -44,6 +43,7 @@ function createData() {
             maxLJSY:maxLJSY,
         },
         success:function (msg) {
+            console.log(msg);
             var str="" ;
             var count = msg.data.count;
             var j = (pageNum-1)*pageSize+1;
@@ -52,7 +52,6 @@ function createData() {
             if(data !=null && data.length>0){
                 $("#pageCount").text(Math.ceil(count/pageSize));
                 if(j<=count || (j == 1 && count == 1)){
-
                     for(var i in data){
                     str+="<tr>"+
                         "<td>"+(j++)+"</td>"+
@@ -66,7 +65,7 @@ function createData() {
                         "<td>"+data[i].dhkmoney+"</td>"+
                         "<td>"+data[i].ljsy+"</td>"+
                         "<td>"+data[i].createTime+"</td>"+
-                        "<td><span><a href="+basePath+"RechargeSheetVo/selectByrid.do?id="+data[i].userId+">查看明细</a></span></td>"+
+                        "<td><span><a href="+basePath+"AccountDetails/skipDetails.do?userId="+data[i].userId+"&username="+data[i].username+"&bankNum="+data[i].bankNum+"&realName="+data[i].realName+"&ZMoney="+data[i].zmoney+"&yuE="+data[i].yuE+"&BHMoney="+data[i].bhmoney+"&TQZMoney="+data[i].tqzmoney+"&DHKMoney="+data[i].dhkmoney+">查看明细</a></span></td>"+
                         "</tr>"
                 }
                 tbody.innerHTML=str;

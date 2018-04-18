@@ -17,41 +17,25 @@ public class AccountDetails {
      String type,
      int condition
      */
-    private Date startTime;
-    private Date endTime;
-    private String PmenType;
-    private String type;
+    private String startTime;
+    private String endTime;
+    private Integer PmenType;
+    private Integer type;
     private int condition;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    public Date getStartTime() {
-        return startTime;
-    }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
-    public String getPmenType() {
+    public Integer getPmenType() {
         return PmenType;
     }
 
-    public void setPmenType(String pmenType) {
+    public void setPmenType(Integer pmenType) {
         PmenType = pmenType;
     }
 
-    public String getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 
@@ -61,5 +45,21 @@ public class AccountDetails {
 
     public void setCondition(int condition) {
         this.condition = condition;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 }

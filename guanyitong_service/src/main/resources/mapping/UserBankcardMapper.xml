@@ -47,4 +47,30 @@
     <select id="selectDimId" parameterType="Long" resultType="com.guanyitong.model.UserBankcard">
         select * from user_bankcard where borrowMoneyUserId LIKE CONCAT("%",#{borrowMoneyUserId},"%")
     </select>
+
+    <!--查询分页总数量-->
+    <select id="selectUserBankcardAcount" parameterType="java.util.Map" resultType="Integer">
+        SELECT count(id) FROM user_bankcard WHERE 1=1
+        <if test="borrowMoneyUserId !=null and borrowMoneyUserId !=''">
+            and borrowMoneyUserId = #{borrowMoneyUserId}
+        </if>
+        <if test="realName !=null and realName !=''">
+            and realName=#{realName}
+        </if>
+        <if test="IDCardNumber!=null and IDCardNumber!=''">
+            and IDCardNumber=#{IDCardNumber}
+        </if>
+        <if test="cardNo!=null and cardNo!=''">
+            and cardNo=#{cardNo}
+        </if>
+        <if test="firstDate !=null and lastDate ==null">
+            and submitTime  &gt;= #{firstDate}
+        </if>
+        <if test="firstDate ==null and lastDate !=null">
+            and submitTime  &lt;= #{lastDate}
+        </if>
+        <if test="firstDate !=null and lastDate !=null">
+            and submitTime BETWEEN firstDate and lastDate
+        </if>
+    </select>
 </mapper>

@@ -37,6 +37,15 @@ public class UserBankcardServiceImpl implements UserBankcardService{
     }
 
     /**
+     * 分页查询借款人总数量
+     * @param map
+     * @return
+     */
+    public Integer selectUserBankcardAcount(Map map){
+        return userBankcardDao.selectUserBankcardAcount(map);
+    }
+
+    /**
      * 绑定借款人银行卡
      * @param userBankcard
      * @return

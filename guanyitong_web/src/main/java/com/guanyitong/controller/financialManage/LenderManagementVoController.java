@@ -71,7 +71,11 @@ public class LenderManagementVoController {
             }
         }
             PageInfo<LenderManagementVo> lenderManagementVo1 = lenderManagementVoService.selectLenderManagementVo(pageNum, pageSize,lenderMap);
-            result.setData(lenderManagementVo1);
+            Integer lenderAcount = lenderManagementVoService.selectAllLenderAcount(lenderMap);
+            Map<String, Object> acountMap = new HashMap<String, Object>();
+            acountMap.put("PageInfo",lenderManagementVo1);
+            acountMap.put("acount",lenderAcount);
+            result.setData(acountMap);
             result.setState(JsonResult.SUCCESS);
             result.setMessage("返回数据成功");
 
