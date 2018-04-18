@@ -54,8 +54,6 @@
                 <th>保护期金额</th>
                 <th>提取中金额</th>
                 <th>待回收金额</th>
-
-
             </tr>
             <tr>
                 <td>${moneyManage.ZMoney}</td>
@@ -101,9 +99,16 @@
             </tr>
             <tbody id="dataBody"></tbody>
         </table>
-        <!--分页-->
+        <div class="acon-yong">
+            <span>用户总数：</span><span id = "count">0</span>
+        </div>
+        <%--分页--%>
         <div class="fenye">
-            <div class="pageTest"></div>
+            <div class="pageTest">
+            </div>
+            <div class="acon-yong">
+                <span>第</span><span id="pageNum">1</span><span>页</span><span>/</span><span>总</span><span id="pageCount">1</span><span>页</span>/<span>每页显示</span><span id="pageSize">1</span><span>条</span>
+            </div>
         </div>
     </div>
 

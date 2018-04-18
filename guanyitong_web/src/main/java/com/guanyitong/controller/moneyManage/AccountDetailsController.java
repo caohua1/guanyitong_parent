@@ -39,7 +39,7 @@ public class AccountDetailsController {
     @RequestMapping("/skipDetails")
     public String skipDetails(Model model, MoneyManageVo moneyManageVo){
         model.addAttribute("moneyManage",moneyManageVo);
-        return "";
+        return "capitalAccount/capitalAccount_select";
     }
 
 
@@ -98,13 +98,13 @@ public class AccountDetailsController {
                          map1.put("count",CZ_count + HK_count);
                      }
                  }else if( type1!=null && type1==1){
-                     if(type2 !=-1 && type2 ==2  && type2!=null){
+                     if(type2!=null && type2 !=-1 && type2 ==2){
                          map1.put("pageInfo",null);
                          map1.put("count",0);
-                     }else if(type2 !=-1 && type2 ==3  && type2!=null){
+                     }else if(type2!=null && type2 !=-1 && type2 ==3){
                          map1.put("pageInfo",null);
                          map1.put("count",0);
-                     }else if(type2 !=-1 && type2 ==4  && type2!=null){
+                     }else if(type2!=null && type2 !=-1 && type2 ==4){
                          map1.put("pageInfo",userDealMoneyPageInfo);
                          map1.put("count",CJ_count);
                      }else{
@@ -112,13 +112,13 @@ public class AccountDetailsController {
                          map1.put("count",CJ_count);
                      }
                  }else{
-                     if(type2 !=-1 && type2 ==2  && type2!=null){
+                     if(type2!=null && type2 !=-1 && type2 ==2){
                          map1.put("pageInfo",rechargeMoneyPageInfo);
                          map1.put("count",CZ_count);
-                     }else if(type2 !=-1 && type2 ==3  && type2!=null){
+                     }else if(type2!=null &&  type2 !=-1 && type2 ==3){
                          map1.put("pageInfo",userDealBackMoneyRecordPageInfo);
                          map1.put("count",HK_count);
-                     }else if(type2 !=-1 && type2 ==4  && type2!=null){
+                     }else if(type2!=null && type2 !=-1 && type2 ==4){
                          map1.put("pageInfo",userDealMoneyPageInfo);
                          map1.put("count",CJ_count);
                      }else {

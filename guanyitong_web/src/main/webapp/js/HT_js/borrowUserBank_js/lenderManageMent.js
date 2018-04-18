@@ -46,7 +46,6 @@ function creatTable() {
             console.log(msg);
             var str="" ;
             var count = msg.data.acount;
-            alert("总数量"+count)
             $('#count').text(count);
             var j = (pageNum-1)*pageSize+1;
             var data = msg.data.PageInfo.list;
