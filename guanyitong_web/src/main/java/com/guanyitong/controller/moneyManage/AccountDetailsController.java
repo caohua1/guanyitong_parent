@@ -80,14 +80,15 @@ public class AccountDetailsController {
                 PageInfo<UserDealMoney> userDealMoneyPageInfo = accountDetailsService.selectUserDealMoneyList(map, pageNum, pageSize);
                 Integer CJ_count = accountDetailsService.selectUserDealMoneyCount(map);
                  Map map2 = new HashMap();
-                 if(type1==0 ){
-                     if(type2 !=-1 && type2 ==2){
+
+                 if(type1!=null && type1==0){
+                     if(type2 !=-1 && type2 ==2 && type2!=null){
                          map1.put("pageInfo",rechargeMoneyPageInfo);
                          map1.put("count",CZ_count);
-                     }else if(type2 !=-1 && type2 ==3){
+                     }else if(type2 !=-1 && type2 ==3  && type2!=null){
                          map1.put("pageInfo",userDealBackMoneyRecordPageInfo);
                          map1.put("count",HK_count);
-                     }else if(type2 !=-1 && type2 ==4){
+                     }else if(type2 !=-1 && type2 ==4  && type2!=null){
                          map1.put("pageInfo",null);
                          map1.put("count",0);
                      }else {
@@ -96,14 +97,14 @@ public class AccountDetailsController {
                          map1.put("pageInfo",map2);
                          map1.put("count",CZ_count + HK_count);
                      }
-                 }else if(type1==1){
-                     if(type2 !=-1 && type2 ==2){
+                 }else if( type1!=null && type1==1){
+                     if(type2 !=-1 && type2 ==2  && type2!=null){
                          map1.put("pageInfo",null);
                          map1.put("count",0);
-                     }else if(type2 !=-1 && type2 ==3){
+                     }else if(type2 !=-1 && type2 ==3  && type2!=null){
                          map1.put("pageInfo",null);
                          map1.put("count",0);
-                     }else if(type2 !=-1 && type2 ==4){
+                     }else if(type2 !=-1 && type2 ==4  && type2!=null){
                          map1.put("pageInfo",userDealMoneyPageInfo);
                          map1.put("count",CJ_count);
                      }else{
@@ -111,13 +112,13 @@ public class AccountDetailsController {
                          map1.put("count",CJ_count);
                      }
                  }else{
-                     if(type2 !=-1 && type2 ==2){
+                     if(type2 !=-1 && type2 ==2  && type2!=null){
                          map1.put("pageInfo",rechargeMoneyPageInfo);
                          map1.put("count",CZ_count);
-                     }else if(type2 !=-1 && type2 ==3){
+                     }else if(type2 !=-1 && type2 ==3  && type2!=null){
                          map1.put("pageInfo",userDealBackMoneyRecordPageInfo);
                          map1.put("count",HK_count);
-                     }else if(type2 !=-1 && type2 ==4){
+                     }else if(type2 !=-1 && type2 ==4  && type2!=null){
                          map1.put("pageInfo",userDealMoneyPageInfo);
                          map1.put("count",CJ_count);
                      }else {
