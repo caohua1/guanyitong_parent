@@ -34,5 +34,6 @@ public interface RechargeMoneyDao {
      */
     public List<RechargeMoney> selectRechargeMoneyList(Map rechargeRecordMap);
 
+    public Integer RechargeSheetCount(Map rechargeRecordMap);
 
 }

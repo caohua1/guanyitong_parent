@@ -38,8 +38,7 @@ public class BankCardManageController {
     @RequestMapping("/addUserBankcard")
     @ResponseBody
     public JsonResult addUserBankcard(UserBankcard userBankcard){
-        System.out.println(userBankcard.getBorrowMoneyUserId()+"----"+userBankcard.getRealName()+"----"+
-                userBankcard.getBankName()+"---"+userBankcard.getIDCardNumber()+"-----"+userBankcard.getOpenAccountRegion()+"---"+userBankcard.getCardNo()+"----"+userBankcard.getYN());
+
         JsonResult result = new JsonResult();
         try{
             int i = userBankcardService.insertUserBankcardDao(userBankcard);

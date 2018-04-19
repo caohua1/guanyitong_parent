@@ -57,6 +57,55 @@
                 AND r.status =#{status}
             </if>
     </select>
+
+    <select id="RechargeSheetCount" parameterType="java.util.Map" resultType="Integer">
+        SELECT
+        count(r.id)
+        FROM
+        recharge_money r
+        LEFT JOIN account_manager a ON r.userId = a.userId
+        LEFT JOIN user_info u ON r.userId=u.id
+        WHERE 1=1
+        <if test="rid!=null and rid!=''">
+            AND r.id=#{rid}
+        </if>
+        <if test="phone!=null and phone!=''">
+            AND  u.username =#{phone}
+        </if>
+        <if test="serial!=null and serial!=''">
+            AND r.serial =#{serial}
+        </if>
+        <if test="userId!=null and userId!=''">
+            AND r.userId = #{userId}
+        </if>
+        <if test="realName!=null and realName!=''">
+            AND a.realName = #{realName}
+        </if>
+        <if test="firstMoney !=null and lastMoney ==null">
+            and cast(r.rechargeMoney AS signed INT) &gt;= #{firstMoney}
+        </if>
+        <if test="firstMoney ==null and lastMoney !=null">
+            and cast(r.rechargeMoney AS signed INT) &lt;= #{lastMoney}
+        </if>
+        <if test="firstMoney!=null and lastMoney!=null">
+            AND cast(r.rechargeMoney AS signed INT) BETWEEN #{firstMoney}
+            AND #{lastMoney}
+        </if>
+        <if test="firstDate!=null and lastDate==null">
+            AND r.rechargeTime  &gt;= #{firstDate}
+        </if>
+        <if test="firstDate==null and lastDate !=null">
+            AND r.rechargeTime &lt;= #{lastDate}
+        </if>
+        <if test="firstDate!=null and lastDate!=null">
+            AND r.rechargeTime BETWEEN #{firstDate} and #{lastDate}
+        </if>
+        <if test="status!=null and status!=''">
+            AND r.status =#{status}
+        </if>
+    </select>
+
+
     <!--添加充值记录-->
     <insert id="insertRechargeMoney" useGeneratedKeys="true" keyProperty="id" parameterType="com.guanyitong.model.RechargeMoney">
         INSERT INTO recharge_money (

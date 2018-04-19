@@ -18,5 +18,6 @@ public interface RechargeSheetVoService {
 
     public List<RechargeSheetVo> selectByrid(Long rid);
 
+    public Integer RechargeSheetCount(Map demandMap);
 
 }

@@ -80,5 +80,60 @@
     <select id="selectUserZTxMoney" parameterType="Long" resultType="java.lang.Double">
         select sum(txMoney) from withdrawal_money where status = 0 and userId =18
     </select>
+
+    <!-- 查询全部提现的总金额-->
+    <select id="totalJe" resultType="Integer">
+        SELECT sum(txMoney) from withdrawal_money
+    </select>
+
+    <select id="selectWithdrawalCount" parameterType="com.guanyitong.model.vo.WithdrawalMoneyVo" resultType="Integer">
+        select count(wm.id) from withdrawal_money wm
+        left join account_manager am on am.userId = wm.userId
+        left join user_info ui on ui.id = wm.userId
+        left join borrowmoney_user bu on bu.id = wm.borrowMoneyUserId
+        where 1=1
+        <if test="username !=null and username!=''">
+            and ui.username = #{username}
+        </if>
+        <if test="borrowMoneyUserId !=null">
+            and wm.borrowMoneyUserId = #{borrowMoneyUserId}
+        </if>
+        <if test="realName !=null and realName !=''">
+            and am.realName = #{realName}
+        </if>
+        <if test="idCard !=null and idCard !=''">
+            and am.idCard = #{idCard} or bu.legalIDCard = #{idCard}
+        </if>
+        <if test="txNumber !=null and txNumber !=''">
+            and wm.txNumber = #{txNumber}
+        </if>
+        <if test="minMoney !=null and maxMoney !=null">
+            and wm.txMoney BETWEEN #{minMoney} and #{maxMoney}
+        </if>
+        <if test="minMoney !=null and maxMoney ==null">
+            and wm.txMoney &gt;= #{minMoney}
+        </if>
+        <if test="minMoney ==null and maxMoney !=null">
+            and wm.txMoney &lt;= #{maxMoney}
+        </if>
+        <if test="sqUser !=null and sqUser !=''">
+            and wm.sqUser = #{sqUser}
+        </if>
+        <if test="startTime !=null and endTime !=null">
+            and wm.txTime BETWEEN  #{startTime} and #{endTime}
+        </if>
+        <if test="startTime !=null and endTime ==null">
+            and wm.txTime &gt;= startTime
+        </if>
+        <if test="startTime ==null and endTime !=null">
+            and wm.txTime &lt;= endTime
+        </if>
+        <if test="userType !=null">
+            and wm.userType = #{userType}
+        </if>
+        <if test="status !=null">
+            and wm.status = #{status}
+        </if>
+    </select>
 </mapper>
 

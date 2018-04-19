@@ -24,4 +24,17 @@ public interface WithdrawMoneyService {
      * @return
      */
     public PageInfo<WithdrawalMoneyVo> selectWithdrawal(WithdrawalMoneyVo withdrawalMoneyVo,Integer pageNum,Integer pageSize);
+
+    /**
+     * 提现总数量
+     * @param withdrawalMoneyVo
+     * @return
+     */
+    public Integer selectWithdrawalCount(WithdrawalMoneyVo withdrawalMoneyVo);
+
+    /**
+     * 查询出提现总金额
+     * @return
+     */
+    public Integer totalJe();
 }

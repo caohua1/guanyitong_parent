@@ -129,6 +129,24 @@ public class WithdrawMoneyServiceImpl implements WithdrawMoneyService{
         PageInfo<WithdrawalMoneyVo> pageInfo = new PageInfo<WithdrawalMoneyVo>(withdrawalMoneyVos);
         return pageInfo;
     }
+    /**
+     * 提现总数量
+     * @param withdrawalMoneyVo
+     * @return
+     */
+    @Override
+    public Integer selectWithdrawalCount(WithdrawalMoneyVo withdrawalMoneyVo) {
+        return withdrawMoneyDao.selectWithdrawalCount(withdrawalMoneyVo);
+    }
+
+    /**
+     * 查询出提现总金额
+     * @return
+     */
+    @Override
+    public Integer totalJe() {
+        return withdrawMoneyDao.totalJe();
+    }
 
     //==================================1 按月还本还息
     private List<BackMoney> byMonth(Map map,ProductInfo productInfo,List<BackMoney> backMoneyList){

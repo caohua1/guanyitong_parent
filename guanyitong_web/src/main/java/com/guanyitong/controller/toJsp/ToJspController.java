@@ -260,4 +260,14 @@ public class ToJspController {
         return "capitalAccount/capitalAccount";
     }
 
+
+    /**
+     * 跳转到提现管理页面
+     * @return
+     */
+    @RequestMapping("toCashManagement")
+    public String toCashManagement(){
+        return "CashManagement/cashManagement";
+    }
+
 }

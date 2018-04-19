@@ -114,7 +114,7 @@ public class WithdrawalMoney implements Serializable {
         return sqUser;
     }
 
-    public void setShUser(String sqUser) {
+    public void setSqUser(String sqUser) {
         this.sqUser = sqUser;
     }
 

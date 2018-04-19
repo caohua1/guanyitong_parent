@@ -1,5 +1,7 @@
 package com.guanyitong.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -52,7 +54,7 @@ public class UserDealBackMoneyRecord implements Serializable {
     public void setLx(String lx) {
         this.lx = lx;
     }
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getTime() {
         return time;
     }

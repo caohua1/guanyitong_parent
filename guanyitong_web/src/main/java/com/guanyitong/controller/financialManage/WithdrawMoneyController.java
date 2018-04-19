@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import util.DateAndTimeUtil;
 import util.JsonResult;
 
 import java.util.*;
@@ -51,19 +52,60 @@ public class WithdrawMoneyController {
 
     /**
      * 分页，条件查询，所有提现数据
-     * @param withdrawalMoneyVo
+     * @param
      * @param pageNum
      * @param pageSize
      * @return
      */
     @RequestMapping("/selectWithdrawal")
     @ResponseBody
-    public JsonResult selectWithdrawal(WithdrawalMoneyVo withdrawalMoneyVo,Integer pageNum,Integer pageSize){
+    public JsonResult selectWithdrawal(String username,String borrowMoneyUserId,String realName,String idCard,String txNumber,
+                                       Integer minMoney,Integer maxMoney,String startTime,String endTime,String sqUser,
+                                       Integer userType,Integer status,Integer pageNum,Integer pageSize){
         JsonResult result = new JsonResult();
+        WithdrawalMoneyVo withdrawalMoneyVo = new WithdrawalMoneyVo();
         try{
+            if(username!=null && username!=""){
+                withdrawalMoneyVo.setUsername(username);
+            }
+            if(borrowMoneyUserId!=null && borrowMoneyUserId!=""){
+                withdrawalMoneyVo.setBorrowMoneyUserId(borrowMoneyUserId);
+            }
+            if(realName!=null && realName!=""){
+                withdrawalMoneyVo.setRealName(realName);
+            }
+            if(idCard!=null && idCard!=""){
+                withdrawalMoneyVo.setIdCard(idCard);
+            }
+            if(txNumber!=null && txNumber!=""){
+                withdrawalMoneyVo.setTxNumber(txNumber);
+            }
+            if(minMoney!=null){
+                withdrawalMoneyVo.setMinMoney(minMoney);
+            }
+            if(maxMoney!=null){
+                withdrawalMoneyVo.setMaxMoney(maxMoney);
+            }
+            if(startTime!=null&&startTime!=""){
+                withdrawalMoneyVo.setStartTime(DateAndTimeUtil.convert(startTime));
+            }if(endTime!=null&&endTime!=""){
+                withdrawalMoneyVo.setEndTime(DateAndTimeUtil.convert(endTime));
+            }if(sqUser!=null&&sqUser!=""){
+                withdrawalMoneyVo.setSqUser(sqUser);
+            }if(userType!=null){
+                withdrawalMoneyVo.setUserType(userType);
+            }if(status!=null){
+                withdrawalMoneyVo.setStatus(status);
+            }
+            HashMap rechargeMap = new HashMap();
             PageInfo<WithdrawalMoneyVo> pageInfo = withdrawMoneyService.selectWithdrawal(withdrawalMoneyVo, pageNum, pageSize);
+            Integer totalMoney = withdrawMoneyService.totalJe();
+            Integer allCount = withdrawMoneyService.selectWithdrawalCount(withdrawalMoneyVo);
+            rechargeMap.put("pageInfo",pageInfo);
+            rechargeMap.put("totalMoney",totalMoney);
+            rechargeMap.put("allCount",allCount);
             result.setState(JsonResult.SUCCESS);
-            result.setData(pageInfo);
+            result.setData(rechargeMap);
             result.setMessage("返回数据成功");
         }catch(Exception e){
             e.printStackTrace();
@@ -92,6 +134,7 @@ public class WithdrawMoneyController {
             }
             if(status ==1){
                 map.put("txTime",new Date());
+                System.out.println(new Date());
                 map.put("dzMoney",dzMoney);
                 map.put("borrowMoneyUserId",borrowMoneyUserId);
             }

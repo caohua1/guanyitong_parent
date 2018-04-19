@@ -110,7 +110,7 @@
 
                     <li onclick="liClick(this)" url="<%=basePath%>toJsp/toRechargeManagement.do">充值记录</li>
 
-                    <li onclick="liClick(this)" url="iframe_p.html">提现管理</li>
+                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/toCashManagement.do">提现管理</li>
 
                     <li onclick="liClick(this)" url="<%=basePath%>toJsp/toCapitalAccount.do">资金账户管理</li>
                 </ul>
