@@ -45,7 +45,7 @@ public class MD5Util {
 
     // 测试主函数
     public static void main(String args[]) {
-        String s = new String("15032072575");
+        String s = new String("1234");
         System.out.println("原始：" + s);
         System.out.println("MD5后：" + MD5(s));
 

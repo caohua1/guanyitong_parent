@@ -4,14 +4,18 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
 //职位表实体类
-public class Post implements Serializable {
+public class Role implements Serializable {
     private Long id;
     private String pname;
     private Date pcreateTime;
     private Date pupdateTime;
     private Integer pstatus;
     private String pdescribe;//描述
+    private List<Permission> permissionList;//一个角色对应多个权限
+    private List<Employee> userList;//一个角色对应多个用户
 
     public Long getId() {
         return id;
@@ -61,5 +65,21 @@ public class Post implements Serializable {
 
     public void setPdescribe(String pdescribe) {
         this.pdescribe = pdescribe;
+    }
+
+    public List<Permission> getPermissionList() {
+        return permissionList;
+    }
+
+    public void setPermissionList(List<Permission> permissionList) {
+        this.permissionList = permissionList;
+    }
+
+    public List<Employee> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<Employee> userList) {
+        this.userList = userList;
     }
 }

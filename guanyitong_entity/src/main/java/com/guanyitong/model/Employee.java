@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
 //员工实体类
 public class Employee implements Serializable {
     private Long id;
@@ -19,6 +21,15 @@ public class Employee implements Serializable {
     private Date eupdateTime;
     private Integer estatus;
     private String epassword;
+    private List<Role> roleList;//一个用户具有多个角色
+
+    public List<Role> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
+    }
 
     public Long getId() {
         return id;

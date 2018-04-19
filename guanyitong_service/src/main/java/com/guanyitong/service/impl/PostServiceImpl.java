@@ -4,7 +4,7 @@ package com.guanyitong.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.guanyitong.mapper.PostDAO;
-import com.guanyitong.model.Post;
+import com.guanyitong.model.Role;
 import com.guanyitong.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ public class PostServiceImpl implements PostService {
      */
     @Transactional
     @Override
-    public Integer insertPost(Post post) {
+    public Integer insertPost(Role post) {
         Integer i = postDAO.insertPost(post);
         return i;
     }
@@ -37,10 +37,10 @@ public class PostServiceImpl implements PostService {
      * @return
      */
     @Override
-    public PageInfo<Post> selectPost(Post post, Integer pageNum, Integer pageSize) {
+    public PageInfo<Role> selectPost(Role post, Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum,pageSize);
-        List<Post> posts = postDAO.selectPost(post);
-        PageInfo<Post> pageInfo = new PageInfo<Post>(posts);
+        List<Role> posts = postDAO.selectPost(post);
+        PageInfo<Role> pageInfo = new PageInfo<Role>(posts);
         return pageInfo;
     }
 
@@ -50,8 +50,8 @@ public class PostServiceImpl implements PostService {
      * @return
      */
     @Override
-    public Post selectPostById(Long id) {
-        Post post = postDAO.selectPostById(id);
+    public Role selectPostById(Long id) {
+        Role post = postDAO.selectPostById(id);
         return post;
     }
 
@@ -62,7 +62,7 @@ public class PostServiceImpl implements PostService {
      */
     @Transactional
     @Override
-    public Integer updatePost(Post post) {
+    public Integer updatePost(Role post) {
         Integer i = postDAO.updatePost(post);
         return i;
     }

@@ -81,14 +81,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     /**
-     * 登陆查询
+     * 登陆
+     * @param employee
+     * @return
      */
     @Override
-    public boolean register(Long edeptno,String epassword) {
-        if(epassword.equals(employeeDAO.register(edeptno))){
-            return true;
-        }else {
-            return false;
-        }
+    public Employee login(Employee employee) {
+        return employeeDAO.login(employee);
     }
+
+
 }

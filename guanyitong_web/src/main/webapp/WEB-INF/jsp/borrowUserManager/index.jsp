@@ -39,8 +39,9 @@
     <div></div>
     <div>
         <!--<span><a href="login.html">登陆</a></span>-->
-        <span><span>当前的账号：</span><span>00000</span></span>
-        <span>退出</span>
+        <input type="hidden" value="${employee}" id="employee"/>
+        <span><span>当前的账号：</span><span>${employee.ephone}</span></span>
+        <span id="logout">退出</span>
     </div>
 
 </div>
@@ -53,60 +54,23 @@
     <div class="index-cont-left">
         <ul id="accordion" class="accordion accliu">
 
-            <li>
 
-                <div class="link"><i class="fa fa-paint-brush"></i>用户管理<i class="fa fa-chevron-down"></i></div>
+  <%--parentNameList--%>
+      <c:forEach items="${parentNameList}" var="list">
+          <li>
+              <div class="link"><i class="fa fa-paint-brush"></i>${list}<i class="fa fa-chevron-down"></i></div>
+              <ul class="submenu">
+              <c:forEach items="${permissionList}" var="list1">
 
-                <ul class="submenu">
+                  <c:if test="${list1.parentName == list}">
+                      <li onclick="liClick(this)" url="<%=basePath%>${list1.permissionUrl}">${list1.permissionName}</li>
+                  </c:if>
 
-                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/toborrowUserList.do">借款人认证资料管理</li>
+              </c:forEach>
+              </ul>
+          </li>
+      </c:forEach>
 
-                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/toborrowUserApprrove1.do">借款人认证资料审核</li>
-
-                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/toborrowUserApprrove2.do">借款额度申请审核</li>
-
-                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/toborrowUserApprrove3.do">合同管理</li>
-
-                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/toborrowUserStatistics.do">借款用户统计</li>
-
-                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/todealUserStatistics.do">出借注册用户统计</li>
-
-                </ul>
-
-            </li>
-
-            <li>
-
-                <div class="link"><i class="fa fa-code"></i>借贷管理<i class="fa fa-chevron-down"></i></div>
-
-                <ul class="submenu">
-
-                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/toproductType_list.do">标种管理</li>
-
-                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/toproductInfo_manage_list.do">投标管理</li>
-
-                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/toproductInfo_apprrove_manage.do">投标审核管理</li>
-
-                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/toborrowMoney_manage.do">借款管理</li>
-
-                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/towithdrawBackMoney_manage.do">提现收款管理</li>
-
-                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/todealUserStatistics2.do">出借用户统计</li>
-
-                </ul>
-
-            </li>
-
-            <li>
-
-                <div class="link"><i class="fa fa-mobile"></i>财务管理<i class="fa fa-chevron-down"></i></div>
-
-                <ul class="submenu">
-                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/toBankCardManage.do">借款人银行卡管理</li>
-
-                    <li onclick="liClick(this)" url="<%=basePath%>toJsp/toLenderManageMent.do">出借人银行卡管理</li>
-
-                    <li onclick="liClick(this)" url="iframe_n.html">还款管理</li>
 
                     <li onclick="liClick(this)" url="<%=basePath%>toJsp/toRechargeManagement.do">充值记录</li>
 
@@ -116,7 +80,6 @@
                 </ul>
             </li>
         </ul>
-
     </div>
 
     <div class="index-cont-rightt">
