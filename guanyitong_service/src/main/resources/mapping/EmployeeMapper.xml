@@ -67,8 +67,9 @@
         update employee set estatus = 0 where id = #{id}
     </update>
 
-    <!-- 登陆，根据用户手机查询用户密码-->
-    <select id="register" parameterType="java.lang.Long" resultType="java.lang.String">
-        SELECT epassword FROM employee WHERE ephone=#{edeptno}
+
+    <!--登陆-->
+    <select id="login" parameterType="com.guanyitong.model.Employee" resultType="com.guanyitong.model.Employee">
+        select * from employee where ephone = #{ephone} and epassword = #{epassword}
     </select>
 </mapper>

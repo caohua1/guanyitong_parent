@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guanyitong.mapper.PermissionDao">
+
+    <!--查询某员工的权限-->
+    <select id="permissions" parameterType="Long" resultType="com.guanyitong.model.vo.PermissionVo">
+        select p.*,p1.permissionName parentName from  role r
+        left join role_employee re on r.id = re.postId
+        left join role_permission rp on rp.postId = re.postId
+        left join permission p on p.id = rp.permissionId
+        left join permission p1 on p1.id  = p.parentId
+        where re.employeeId = #{employeeId}
+    </select>
+
+    <!--查询某父级菜单下的所有子菜单-->
+    <select id="child_permissions" parameterType="Long" resultType="com.guanyitong.model.vo.PermissionVo">
+        select p.*,p1.permissionName parentName from permission p
+        left join  permission p1 on p1.id = p.parentId
+        where p.parentId = #{parentId}
+    </select>
+</mapper>
+

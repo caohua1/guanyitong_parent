@@ -42,17 +42,17 @@
         <div class="tjiaoP_a">
             <span>出借时间:</span>
             <span>
-                <input type="text" id="startTime" onfocus="MyCalendar.SetDate(this)" class="input-text">
+                <input type="text" id="startTime" onfocus="MyCalendar.SetDate(this)" class="input-text" style="width: 91px;height: 31px;">
             </span>
             <span>至</span>
             <span>
-                <input type="text" id="endTime" onfocus="MyCalendar.SetDate(this)" class="input-text">
+                <input type="text" id="endTime" onfocus="MyCalendar.SetDate(this)" class="input-text" >
             </span>
         </div>
 
         <div class="tjiaoP_a">
             <span>出借金额:</span><span>
-            <input type="text" id="minMoney"></span>
+            <input type="text" id="minMoney" style="width: 91px;height: 31px;"></span>
             <span>至</span>
             <span><input type="text" id="maxMoney"></span>
         </div>

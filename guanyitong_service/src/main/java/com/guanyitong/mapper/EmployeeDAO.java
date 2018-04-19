@@ -41,8 +41,10 @@ public interface EmployeeDAO {
     public Integer deleteEmployee(Long id);
 
     /**
-     * 登陆查询
+     * 登陆
+     * @param employee
+     * @return
      */
-    public String register(Long edeptno);
+    public Employee login(Employee employee);
 
 }

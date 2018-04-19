@@ -1,7 +1,7 @@
 package com.guanyitong.controller.EmployeeManage;
 
 import com.github.pagehelper.PageInfo;
-import com.guanyitong.model.Post;
+import com.guanyitong.model.Role;
 import com.guanyitong.service.PostService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +28,7 @@ public class PostController {
      */
     @RequestMapping("/insertPost")
     @ResponseBody
-    public JsonResult insertPost(Post post){
+    public JsonResult insertPost(Role post){
         JsonResult result = new JsonResult();
         try{
             post.setPcreateTime(new Date());
@@ -59,10 +59,10 @@ public class PostController {
      */
     @RequestMapping("/selectAllPost")
     @ResponseBody
-    public JsonResult selectAllPost(Post post,Integer pageNum,Integer pageSize){
+    public JsonResult selectAllPost(Role post, Integer pageNum, Integer pageSize){
         JsonResult result = new JsonResult();
         try{
-            PageInfo<Post> pageInfo = postService.selectPost(post, pageNum, pageSize);
+            PageInfo<Role> pageInfo = postService.selectPost(post, pageNum, pageSize);
             result.setState(JsonResult.SUCCESS);
             result.setData(pageInfo);
             result.setMessage("返回数据成功");
@@ -83,7 +83,7 @@ public class PostController {
     @RequestMapping("/toupdate")
     public String toupdate(Long id, Model model){
         try{
-            Post post = postService.selectPostById(id);
+            Role post = postService.selectPostById(id);
            model.addAttribute("post",post);
         }catch(Exception e){
             e.printStackTrace();
@@ -98,7 +98,7 @@ public class PostController {
      */
     @RequestMapping("/updatePost")
     @ResponseBody
-    public JsonResult updatePost(Post post){
+    public JsonResult updatePost(Role post){
         JsonResult result = new JsonResult();
         try{
             post.setPupdateTime(new Date());

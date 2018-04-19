@@ -1,6 +1,6 @@
 package com.guanyitong.mapper;
 
-import com.guanyitong.model.Post;
+import com.guanyitong.model.Role;
 
 import java.util.List;
 
@@ -10,26 +10,26 @@ public interface PostDAO {
      * @param post
      * @return
      */
-    public Integer insertPost(Post post);
+    public Integer insertPost(Role post);
 
     /**
      * 查询所有的职位信息（分页）
      * @return
      */
-    public List<Post> selectPost(Post post);
+    public List<Role> selectPost(Role post);
 
     /**
      * 根据id查询职位，回显数据，进行编辑
      * @param id
      * @return
      */
-    public Post selectPostById(Long id);
+    public Role selectPostById(Long id);
     /**
      * 编辑职位信息
      * @param post
      * @return
      */
-    public Integer updatePost(Post post);
+    public Integer updatePost(Role post);
 
     /**
      * 删除职位
