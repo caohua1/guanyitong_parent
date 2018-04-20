@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="<%=path%>/css/common_css/base.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/style.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/css.css" />
+    <link rel="stylesheet" href="<%=path%>/css/common_css/page.css" />
     <script src="<%=path%>/js/common_js/mydate.js"></script>
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
     <script src="<%=path%>/js/common_js/page.js"></script>
