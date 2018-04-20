@@ -110,6 +110,6 @@ public class LenderManagementVoController {
             result.setState(JsonResult.ERROR);
             result.setMessage("返回数据失败");
         }
-        return "borrowUserBankManager/lenderManageMen_select";
+        return "moneyManager/lenderManageMen_select";
     }
 }

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import util.DateAndTimeUtil;
 import util.JsonResult;
 
-import javax.xml.crypto.Data;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -107,6 +106,6 @@ public class RechargeSheetVoController {
     Long rid= Long.valueOf(id);
     List<RechargeSheetVo> rechargeSheetVos = rechargeSheetVoService.selectByrid(rid);
     model.addAttribute("rechargeSheet",rechargeSheetVos);
-    return "reCharge/rechargeManagement_select";
+    return "moneyManager/rechargeManagement_select";
 }
 }

@@ -1,7 +1,6 @@
 package com.guanyitong.controller.moneyManage;
 
 import com.github.pagehelper.PageInfo;
-import com.guanyitong.model.AccountDetails;
 import com.guanyitong.model.RechargeMoney;
 import com.guanyitong.model.UserDealBackMoneyRecord;
 import com.guanyitong.model.UserDealMoney;
@@ -17,9 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import util.DateAndTimeUtil;
 import util.JsonResult;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -39,7 +36,7 @@ public class AccountDetailsController {
     @RequestMapping("/skipDetails")
     public String skipDetails(Model model, MoneyManageVo moneyManageVo){
         model.addAttribute("moneyManage",moneyManageVo);
-        return "capitalAccount/capitalAccount_select";
+        return "moneyManager/capitalAccount_select";
     }
 
 

@@ -130,7 +130,7 @@ public class BankCardManageController {
         }catch(Exception e){
             e.printStackTrace();
         }
-        return "borrowUserBankManager/borrowUserBank_select";
+        return "moneyManager/borrowUserBank_select";
     }
 
     /**
