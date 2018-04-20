@@ -31,8 +31,15 @@
         .acon-table{
             display: none;
         }
-
+         body {
+             margin-left: 0px;
+             margin-top: 0px;
+             margin-right: 0px;
+             margin-bottom: 0px;
+             background-color:gainsboro;
+         }
     </style>
+
 </head>
 <body>
 <!--公共的外层-->

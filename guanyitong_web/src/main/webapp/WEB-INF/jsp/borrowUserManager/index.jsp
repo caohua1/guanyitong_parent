@@ -26,6 +26,15 @@
     <script src="<%=path%>/js/common_js/index.js"></script>
     <script src="<%=path%>/js/common_js/jquery.js"></script>
     <script src="<%=path%>/js/common_js/mydate.js"></script>
+    <style>
+        body {
+            margin-left: 0px;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            background-color:gainsboro;
+        }
+    </style>
 
 </head>
 
