@@ -26,7 +26,7 @@ public class ToJspController {
      */
     @RequestMapping("/toborrowUserList")
     public String toborrowUserList(){
-        return "borrowUserManager/borrowUser_list";
+        return "userManager/borrowUser_list";
     }
 
     /**
@@ -35,7 +35,7 @@ public class ToJspController {
      */
     @RequestMapping("/toAddBorrowUser")
     public String toAddBorrowUser(){
-        return "borrowUserManager/borrowUser_add";
+        return "userManager/borrowUser_add";
     }
 
 
@@ -46,7 +46,7 @@ public class ToJspController {
      */
     @RequestMapping("/toborrowUserApprrove1")
     public String toborrowUserApprrove1(){
-        return "borrowUserManager/borrowUser_apprrove1";
+        return "userManager/borrowUser_apprrove1";
     }
 
     /**
@@ -55,7 +55,7 @@ public class ToJspController {
      */
     @RequestMapping("/toborrowUserApprrove2")
     public String toborrowUserApprrove2(){
-        return "borrowUserManager/borrowUser_apprrove2";
+        return "userManager/borrowUser_apprrove2";
     }
 
     /**
@@ -64,7 +64,7 @@ public class ToJspController {
      */
     @RequestMapping("/toborrowUserApprrove3")
     public String toborrowUserApprrove3(){
-        return "borrowUserManager/borrowUser_apprrove3";
+        return "userManager/borrowUser_apprrove3";
     }
 
     /**
@@ -73,7 +73,7 @@ public class ToJspController {
      */
     @RequestMapping("/toborrowUserStatistics")
     public String totoborrowUserStatistics(){
-        return "borrowUserManager/borrowUser_statistics";
+        return "userManager/borrowUser_statistics";
     }
 
     /**
@@ -82,7 +82,7 @@ public class ToJspController {
      */
     @RequestMapping("/todealUserStatistics")
     public String dealUserStatistics(){
-        return "borrowUserManager/dealUser_statistics";
+        return "userManager/dealUser_statistics";
     }
 
     /**
@@ -94,7 +94,7 @@ public class ToJspController {
     @RequestMapping("/toborrowUserApprrove1_info")
     public String toborrowUserApprrove1_info(Long id,Model model){
         model.addAttribute("id",id);
-        return "borrowUserManager/borrowUser_apprrove1_info";
+        return "userManager/borrowUser_apprrove1_info";
     }
 
     /**
@@ -106,7 +106,7 @@ public class ToJspController {
     @RequestMapping("/toborrowUserApprrove2_info")
     public String toborrowUserApprrove2_info(Long id,Model model){
         model.addAttribute("id",id);
-        return "borrowUserManager/borrowUser_apprrove2_info";
+        return "userManager/borrowUser_apprrove2_info";
     }
 
     /**
@@ -118,7 +118,7 @@ public class ToJspController {
     @RequestMapping("/toborrowUserApprrove3_info")
     public String toborrowUserApprrove3_info(Long id,Model model){
         model.addAttribute("id",id);
-        return "borrowUserManager/borrowUser_apprrove3_info";
+        return "userManager/borrowUser_apprrove3_info";
     }
 
     //=============================借款管理
@@ -214,23 +214,23 @@ public class ToJspController {
         return "borrowManager/dealUser_statistics";
     }
 
-    //============================借款人(财务管理)
+
+    //============================(财务管理模块)
     /**
      * 跳转到借款人银行卡管理
      * @return
      */
     @RequestMapping("/toBankCardManage")
-    public String toBankCardManage(){ return "borrowUserBankManager/borrowUserBank";}
+    public String toBankCardManage(){ return "moneyManager/borrowUserBank";}
 
     /**
      * 跳转到添加用户银行卡页面
      * @return
      */
     @RequestMapping("/toAddBankCard")
-    public String toAddBankCard(){return "borrowUserBankManager/borrowUserBank_add";}
+    public String toAddBankCard(){return "moneyManager/borrowUserBank_add";}
 
 
-    //============================出借人银行卡管理
 
     /**
      * 跳转到出借人银行卡管理页面
@@ -238,7 +238,7 @@ public class ToJspController {
      */
     @RequestMapping("/toLenderManageMent")
     public String toLenderManageMent(){
-        return "borrowUserBankManager/lenderManageMent";
+        return "moneyManager/lenderManageMent";
     }
 
 
@@ -248,7 +248,7 @@ public class ToJspController {
      */
     @RequestMapping("/toRechargeManagement")
     public String toRechargeManagement(){
-        return "reCharge/rechargeManagement";
+        return "moneyManager/rechargeManagement";
     }
 
     /**
@@ -257,7 +257,11 @@ public class ToJspController {
      */
     @RequestMapping("/toCapitalAccount")
     public String toCapitalAccount(){
-        return "capitalAccount/capitalAccount";
+        return "moneyManager/capitalAccount";
+    }
+
+    public String tobackMoney(){
+        return "";
     }
 
 
