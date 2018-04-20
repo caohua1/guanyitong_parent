@@ -24,6 +24,15 @@
     <script src="<%=path%>/js/common_js/mydate.js"></script>
     <script src="<%=path%>/js/common_js/page.js"></script>
     <script  src="${ctx}/js/HT_js/borrowManager_js/productInfo_manage_list.js"></script>
+    <style>
+        body {
+            margin-left: 0px;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            background-color:gainsboro;
+        }
+    </style>
 </head>
 <body>
 <!--公共的外层-->
