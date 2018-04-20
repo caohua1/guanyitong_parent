@@ -30,7 +30,7 @@
     <script src="<%=path%>/js/common_js/mydate.js"></script>
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
     <script src="<%=path%>/js/common_js/page.js"></script>
-    <script src="${ctx}/js/HT_js/borrowUserBank_js/borrowUserBank_list.js"></script>
+    <script src="${ctx}/js/HT_js/moneyManager_js/borrowUserBank_list.js"></script>
     <style type="text/css">
         .pageTest{ width: 1000px; height: 50px; margin-top: 100px;}
         .activP{

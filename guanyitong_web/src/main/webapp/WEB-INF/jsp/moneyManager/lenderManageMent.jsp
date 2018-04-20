@@ -30,7 +30,7 @@
     <script src="<%=path%>/js/common_js/mydate.js"></script>
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
     <script src="<%=path%>/js/common_js/page.js"></script>
-    <script  src="${ctx}/js/HT_js/borrowUserBank_js/lenderManageMent.js"></script>
+    <script  src="${ctx}/js/HT_js/moneyManager_js/lenderManageMent.js"></script>
     <style>
         body {
             margin-left: 0px;

@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="<%=path%>/css/common_css/css.css" />
     <script src="<%=path%>/js/common_js/mydate.js"></script>
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
-    <script src="${ctx}/js/HT_js/reCharge_js/rechargeManagement.js"></script>
+    <script src="${ctx}/js/HT_js/moneyManager_js/rechargeManagement.js"></script>
 </head>
 <body>
 <!--公共的外层-->
