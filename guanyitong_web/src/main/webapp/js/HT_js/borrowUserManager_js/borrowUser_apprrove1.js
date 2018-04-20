@@ -101,10 +101,8 @@ function initlist(Sta){
                            }
                            str += "<td><span><a  href=\"toborrowUserApprrove1_info.do?id="+ data[i].id+"\" >查看</a></span><span><a href='javascript:;'>修改</a></span></td>" +
                                "</tr>";
-
                     }
                     tbody.innerHTML = str;
-
                     if(bBtn){
                         $('.pageTest').page({
                             leng:Math.ceil(count/pageSize),
@@ -116,9 +114,7 @@ function initlist(Sta){
                             }
                         });
                     }
-
                     bBtn = false;
-
                 }else{//点击下一页没有数据
                     tbody.innerHTML = "此页暂无数据";
                 }
@@ -131,7 +127,6 @@ function initlist(Sta){
                     });
                 }
             }
-
         },
         error: function () {
             alert("查询失败")

@@ -75,4 +75,14 @@ public class RechargeSheetVoServiceImpl implements RechargeSheetVoService {
         demandMap.put("rid",rid);
         return rechargeMoneyDao.listRechargeSheetVo(demandMap);
     }
+
+    /**
+     * 充值记录总数量
+     * @param demandMap
+     * @return
+     */
+    @Override
+    public Integer RechargeSheetCount(Map demandMap) {
+        return rechargeMoneyDao.RechargeSheetCount(demandMap);
+    }
 }

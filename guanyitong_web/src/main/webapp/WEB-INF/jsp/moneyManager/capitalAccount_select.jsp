@@ -98,7 +98,8 @@
         <div class="soua"><button id="sous">搜索</button></div>
     </div>
     <div class="acon-table">
-        <table border="1"  border="0" cellspacing="0" cellpadding="0" >
+        <table border="1"  border="0" cellspacing="0" cellpadding="0" id="tab">
+            <thead>
             <tr>
                 <th>时间</th>
                 <th>存入</th>
@@ -106,6 +107,7 @@
                 <th>明细</th>
                 <th>类型</th>
             </tr>
+            </thead>
             <tbody id="dataBody"></tbody>
         </table>
         <div class="acon-yong">

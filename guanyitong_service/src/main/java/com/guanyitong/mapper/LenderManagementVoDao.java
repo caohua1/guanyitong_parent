@@ -9,13 +9,11 @@ import java.util.Map;
  *出借人银行卡管理
  */
 public interface LenderManagementVoDao  {
-
-
     /**
      * 条件查找出借人银行卡
      * @return
      */
-    public List<LenderManagementVo> selectLenderManagementVo(Map needsMap);
+    public List<LenderManagementVo> selectLenderManagementVo(Map lenderMap);
 
     /**
      * 条件查找（根据用户身份证查询）

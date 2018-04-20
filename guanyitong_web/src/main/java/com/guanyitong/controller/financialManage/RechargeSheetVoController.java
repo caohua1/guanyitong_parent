@@ -90,7 +90,11 @@ public class RechargeSheetVoController {
                 demandMap.put("lastDate",lasDate);
             }
             PageInfo<RechargeSheetVo> rechargeSheetVoPageInfo = rechargeSheetVoService.listRechargeSheetVo(pageNum, pageSize, demandMap);
-            result.setData(rechargeSheetVoPageInfo);
+            Integer rechargeCount = rechargeSheetVoService.RechargeSheetCount(demandMap);
+            HashMap rechargeMap = new HashMap();
+            rechargeMap.put("PageInfo",rechargeSheetVoPageInfo);
+            rechargeMap.put("count",rechargeCount);
+            result.setData(rechargeMap);
             result.setState(JsonResult.SUCCESS);
             result.setMessage("返回数据成功");
         }catch (Exception e){

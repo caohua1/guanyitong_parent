@@ -79,8 +79,8 @@
               </ul>
           </li>
       </c:forEach>
-
-
+                </ul>
+            </li>
         </ul>
     </div>
 
@@ -120,14 +120,6 @@
                 $('')
             })
         })
-
-        //点击退出
-        $("#logout").on("click",function () {
-            var local = window.location;
-            var basePath = local.protocol+"//"+local.host+"/";
-            window.location.href = basePath + "logout.do";
-        });
-
 
 
     })
