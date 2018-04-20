@@ -252,7 +252,7 @@ public class ToJspController {
     }
 
     /**
-     * 跳转到资金管理页面
+     * 跳转到资金账户管理页面
      * @return
      */
     @RequestMapping("/toCapitalAccount")
@@ -269,9 +269,9 @@ public class ToJspController {
      * 跳转到提现管理页面
      * @return
      */
-    @RequestMapping("toCashManagement")
+    @RequestMapping("/toCashManagement")
     public String toCashManagement(){
-        return "CashManagement/cashManagement";
+        return "moneyManager/cashManagement";
     }
 
 }

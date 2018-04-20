@@ -1,5 +1,5 @@
 package com.guanyitong.controller.Login;
-import javax.validation.Valid;
+
 
 import com.guanyitong.model.Employee;
 import com.guanyitong.model.vo.PermissionVo;
@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class HomeController {
      * @return
      */
    @RequestMapping(value="/login",method=RequestMethod.POST)
-   public String login(@Valid Employee employee ,Model model){
+   public String login(@Valid Employee employee , Model model){
        try {
            Employee employee1 = employeeService.login(employee);
            //查出是否有此用户

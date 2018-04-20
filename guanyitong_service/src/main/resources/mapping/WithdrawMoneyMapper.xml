@@ -83,9 +83,9 @@
 
     <!-- 查询全部提现的总金额-->
     <select id="totalJe" resultType="Integer">
-        SELECT sum(txMoney) from withdrawal_money
+        SELECT sum(txMoney) from withdrawal_money where status=1
     </select>
-
+<!-- 提现总数量-->
     <select id="selectWithdrawalCount" parameterType="com.guanyitong.model.vo.WithdrawalMoneyVo" resultType="Integer">
         select count(wm.id) from withdrawal_money wm
         left join account_manager am on am.userId = wm.userId

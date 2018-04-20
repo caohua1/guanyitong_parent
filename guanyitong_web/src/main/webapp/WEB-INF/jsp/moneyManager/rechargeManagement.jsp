@@ -28,10 +28,11 @@
     <link rel="stylesheet" href="<%=path%>/css/common_css/base.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/style.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/css.css" />
+    <link rel="stylesheet" href="<%=path%>/css/common_css/page.css" />
     <script src="<%=path%>/js/common_js/mydate.js"></script>
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
     <script src="<%=path%>/js/common_js/page.js"></script>
-    <script src="${ctx}/js/HT_js/reCharge_js/rechargeManagement.js"></script>
+    <script src="${ctx}/js/HT_js/moneyManager_js/rechargeManagement.js"></script>
 </head>
 <body>
 <!--公共的外层-->
@@ -78,15 +79,12 @@
             </div>
         </div>
     </div>
-    <div class="acon-yong">
-        <span>用户总数：</span><span id = "count">0</span>
-    </div>
     <%--分页--%>
     <div class="fenye">
         <div class="pageTest">
         </div>
         <div class="acon-yong">
-            <span>第</span><span id="pageNum">1</span><span>页</span><span>/</span><span>总</span><span id="pageCount">1</span><span>页</span>/<span>每页显示</span><span id="pageSize">3</span><span>条</span>
+            <span>第</span><span id="pageNum">1</span><span>页</span><span>/</span><span>总</span><span id="pageCount">1</span><span>页</span>/<span>每页显示</span><span id="pageSize">9</span><span>条</span>
         </div>
     </div>
 </div>

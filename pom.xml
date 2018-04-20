@@ -221,7 +221,7 @@
         </dependency>
 
         <!--定时器Quartz-->
-       <dependency>
+        <dependency>
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz</artifactId>
             <version>2.2.0</version>
@@ -240,32 +240,32 @@
             <version>5.0.0.Alpha1</version>
         </dependency>
         <!--net.sf.json-->
-         <dependency>
-           <groupId>commons-beanutils</groupId>
-           <artifactId>commons-beanutils</artifactId>
-           <version>1.9.3</version>
-       </dependency>
-       <dependency>
-           <groupId>commons-collections</groupId>
-           <artifactId>commons-collections</artifactId>
-           <version>3.2.1</version>
-       </dependency>
-       <dependency>
-           <groupId>commons-lang</groupId>
-           <artifactId>commons-lang</artifactId>
-           <version>2.6</version>
-       </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.3</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
         <dependency>
             <groupId>net.sf.ezmorph</groupId>
             <artifactId>ezmorph</artifactId>
             <version>1.0.6</version>
         </dependency>
-       <dependency>
-           <groupId>net.sf.json-lib</groupId>
-           <artifactId>json-lib</artifactId>
-           <version>2.2.3</version>
-           <classifier>jdk15</classifier>
-       </dependency>
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.2.3</version>
+            <classifier>jdk15</classifier>
+        </dependency>
 
         <!--mybatise分页插件依赖-->
         <dependency>
@@ -318,8 +318,12 @@
             <version>1.2.2</version>
         </dependency>
 
-
-    <!-- commons-logging -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>4.2.0.Final</version>
+        </dependency>
+        <!-- commons-logging -->
         <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
@@ -338,26 +342,26 @@
             <version>1.1.2</version>
         </dependency>
         <!--jackson,直接用对象来接收ajax传得值-->
-       <!-- <dependency>
-            <groupId>com.jayway.jsonpath</groupId>
-            <artifactId>json-path</artifactId>
-            <version>0.8.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-core-lgpl</artifactId>
-            <version>1.8.5</version>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-lgpl</artifactId>
-            <version>1.8.5</version>
-        </dependency>-->
+        <!-- <dependency>
+             <groupId>com.jayway.jsonpath</groupId>
+             <artifactId>json-path</artifactId>
+             <version>0.8.1</version>
+             <scope>test</scope>
+         </dependency>
+         <dependency>
+             <groupId>org.codehaus.jackson</groupId>
+             <artifactId>jackson-core-lgpl</artifactId>
+             <version>1.8.5</version>
+         </dependency>
+         <dependency>
+             <groupId>org.codehaus.jackson</groupId>
+             <artifactId>jackson-mapper-lgpl</artifactId>
+             <version>1.8.5</version>
+         </dependency>-->
 
 
         <!-- json数据 -->
-       <dependency>
+        <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
             <version>1.9.13</version>

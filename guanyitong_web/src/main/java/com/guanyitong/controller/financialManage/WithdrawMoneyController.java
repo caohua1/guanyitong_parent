@@ -134,7 +134,6 @@ public class WithdrawMoneyController {
             }
             if(status ==1){
                 map.put("txTime",new Date());
-                System.out.println(new Date());
                 map.put("dzMoney",dzMoney);
                 map.put("borrowMoneyUserId",borrowMoneyUserId);
             }
@@ -156,6 +155,4 @@ public class WithdrawMoneyController {
         }
         return result;
     }
-
-
 }
