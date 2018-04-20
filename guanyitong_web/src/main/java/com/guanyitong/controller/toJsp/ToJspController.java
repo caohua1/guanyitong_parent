@@ -179,6 +179,19 @@ public class ToJspController {
     }
 
     /**
+     * 借款管理，查看借款明细
+     * @param id
+     * @param status
+     * @param model
+     * @return
+     */
+    @RequestMapping("/toborrowMoney_info")
+    public String toborrowMoney_info(Long id,Integer status,Model model){
+        model.addAttribute("id",id);//标的id（productInfoId）
+        model.addAttribute("status",status);
+        return "borrowManager/borrowMoney_info";
+    }
+    /**
      * 修改产品（productInfo）
      * @return
      */
@@ -260,8 +273,13 @@ public class ToJspController {
         return "moneyManager/capitalAccount";
     }
 
+    /**
+     * 跳转到还款管理页面
+     * @return
+     */
+    @RequestMapping("/tobackMoney")
     public String tobackMoney(){
-        return "";
+        return "moneyManager/backMoney";
     }
 
 }

@@ -1,6 +1,7 @@
 package com.guanyitong.mapper;
 
 import com.guanyitong.model.BackMoney;
+import com.guanyitong.model.vo.BackMoneyManageListVo;
 import com.guanyitong.model.vo.BackMoneyVo;
 
 import java.util.List;
@@ -23,8 +24,21 @@ public interface BackMoneyDao {
 
     /**
      * 借款人还款
-     * @param map
+     * @param backMoney
      * @return
      */
     public Integer updateStatus(BackMoney backMoney);
+
+    /**
+     * 财务管理模块（还款管理列表，分页）
+     * @return
+     */
+    public List<BackMoneyManageListVo> backMoneyList(Map map);
+
+    /**
+     * 财务管理模块（还款管理列表，分页）总数量
+     * @param map
+     * @return
+     */
+    public Integer backMoneyListCount(Map map);
 }

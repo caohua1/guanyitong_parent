@@ -33,4 +33,75 @@
             and id = #{id}
         </if>
     </update>
+
+    <!--还款列表的展示-->
+    <select id="backMoneyList" parameterType="java.util.Map" resultType="com.guanyitong.model.vo.BackMoneyManageListVo">
+        select ub.realName,ub.IDCardNumber,ub.bankName,ub.cardNo,
+        bm.borrowMoneyUserId,bm.productInfoId,bm.bj,bm.lx,bm.backMoney,bm.id,bm.count,
+        bm.backTime,bm.realBackTime,bm.status from back_money bm
+        left join borrowmoney_user bu on bm.borrowMoneyUserId = bu.id
+        left join user_bankcard ub on ub.borrowMoneyUserId = bu.id
+        where 1=1
+        <if test="borrowMoneyUserId !=null">
+            and bm.borrowMoneyUserId = #{borrowMoneyUserId}
+        </if>
+        <if test="IDCardNumber !=null and IDCardNumber !=''">
+            and ub.IDCardNumber = #{IDCardNumber}
+        </if>
+        <if test="realName!=null and realName !=''">
+            and ub.realName = #{realName}
+        </if>
+        <if test="bankName !=null and bankName !=''">
+            and ub.bankName = #{bankName}
+        </if>
+        <if test="cardNo!=null and cardNo !=''">
+            and ub.cardNo = #{cardNo}
+        </if>
+        <if test="bj !=null">
+            and bm.bj = #{bj}
+        </if>
+        <if test="startTime !=null and endTime ==null">
+            and bm.realBackTime &gt;= #{startTime}
+        </if>
+        <if test="startTime ==null and endTime !=null">
+            and bm.realBackTime &lt;= #{endTime}
+        </if>
+        <if test="startTime !=null and endTime !=null">
+            and bm.realBackTime  BETWEEN #{startTime} and #{endTime}
+        </if>
+    </select>
+    <!--还款列表的展示-->
+    <select id="backMoneyListCount" parameterType="java.util.Map" resultType="Integer">
+        select count(bm.id) from back_money bm
+        left join borrowmoney_user bu on bm.borrowMoneyUserId = bu.id
+        left join user_bankcard ub on ub.borrowMoneyUserId = bu.id
+        where 1=1
+        <if test="borrowMoneyUserId !=null">
+            and bm.borrowMoneyUserId = #{borrowMoneyUserId}
+        </if>
+        <if test="IDCardNumber !=null and IDCardNumber !=''">
+            and ub.IDCardNumber = #{IDCardNumber}
+        </if>
+        <if test="realName!=null and realName !=''">
+            and ub.realName = #{realName}
+        </if>
+        <if test="bankName !=null and bankName !=''">
+            and ub.bankName = #{bankName}
+        </if>
+        <if test="cardNo!=null and cardNo !=''">
+            and ub.cardNo = #{cardNo}
+        </if>
+        <if test="bj !=null">
+            and bm.bj = #{bj}
+        </if>
+        <if test="startTime !=null and endTime ==null">
+            and bm.realBackTime &gt;= #{startTime}
+        </if>
+        <if test="startTime ==null and endTime !=null">
+            and bm.realBackTime &lt;= #{endTime}
+        </if>
+        <if test="startTime !=null and endTime !=null">
+            and bm.realBackTime  BETWEEN #{startTime} and #{endTime}
+        </if>
+    </select>
 </mapper>
