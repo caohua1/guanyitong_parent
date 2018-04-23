@@ -31,6 +31,7 @@ $(function(){
     //点击搜索
     $("#sou").click(function(){
         bBtn = true;
+        $("#pageNum").text(1);
         var Sta =null;//全部提现
         initlist(Sta);
     });
