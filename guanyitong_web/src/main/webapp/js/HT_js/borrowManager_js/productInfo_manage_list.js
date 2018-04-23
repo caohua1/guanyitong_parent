@@ -40,7 +40,7 @@ function createTBody(){
         param.Sta = "0,1,2";
     }
     if($("#backMoneyType").val()==0){
-        param.backMoneyType = "按月还本还息";
+        param.backMoneyType = "按月还本付息";
     }else if($("#backMoneyType").val() ==1){
         param.backMoneyType = "先息后本";
     }else if($("#backMoneyType").val() ==2){
@@ -115,7 +115,7 @@ function createTBody(){
                 tbody.innerHTML = "暂无数据";
                 if(bBtn) {
                     $('.pageTest').page({
-                        leng: 0,
+                        leng: 1,
                         activeClass: 'activP' //active 类样式定义
                     });
                 }

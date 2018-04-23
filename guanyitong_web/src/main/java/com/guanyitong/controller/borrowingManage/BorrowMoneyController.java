@@ -252,8 +252,12 @@ public class BorrowMoneyController {
         JsonResult result = new JsonResult();
         try{
             PageInfo<UserProductInfoVo> productInfoVoPageInfo = productService.selectUserProductinfo(productInfoId, pageNum, pageSize);
+            Integer count = productService.selectUserProductinfoCount(productInfoId);
+            Map map = new HashMap();
+            map.put("pageInfo",productInfoVoPageInfo);
+            map.put("count",count);
             result.setState(JsonResult.SUCCESS);
-            result.setData(productInfoVoPageInfo);
+            result.setData(map);
             result.setMessage("返回出借人列表成功");
         }catch(Exception e){
             e.printStackTrace();

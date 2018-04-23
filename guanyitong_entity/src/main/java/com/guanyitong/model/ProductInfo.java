@@ -6,6 +6,31 @@ import java.io.Serializable;
 import java.util.Date;
 //出借的产品（每个种类有不同的产品）详情
 public class ProductInfo implements Serializable {
+    /*borrowMoneyUserId:00000006
+    NO:程度v
+    yield:87.87
+    productId:3
+    ZMoney:1000000
+    backMoneyType:按月还本付息
+    YesNo:否
+    raiseMoneyMonth:6
+    monthNum:6
+    moneyUse:反弹效果不错
+    QSUse:许多v
+    coverImage:/summary/png/2018-04-23/7fa394ff-e38f-409b-9dc5-06a3ff892638.png
+    startRaiseTime:2018-04-05
+    endRaiseTime:2018-07-05
+    startBorrowTime:2018-04-05
+    endBorrowTime:2018-07-05
+    Name
+    upload.do
+            7fa394ff-e38f-409b-9dc5-06a3ff892638.png
+    insertProductinfo.do
+    toproductInfo_add.do?file=908319749846166606.jpg.png
+    jquery-1.8.3.min.js
+    mydate.js
+    productInfo_add.js*/
+
     private Long id;
     private Long productId;
     private String borrowMoneyUserId;//借款主体id
@@ -15,7 +40,7 @@ public class ProductInfo implements Serializable {
     private Integer raiseMoneyMonth;//筹钱期限
     private Integer ZMoney;//借款总额（所有的用户出借总额不超过100万元）
     private Integer SYMoney;//剩余可出借的金额
-    private Integer yield;//收益率
+    private Double yield;//收益率
     private Date createTime;
     private Date startRaiseTime;//开始筹钱的时间
     private Date endRaiseTime;//结束筹钱的时间
@@ -102,11 +127,11 @@ public class ProductInfo implements Serializable {
         this.raiseMoneyMonth = raiseMoneyMonth;
     }
 
-    public Integer getYield() {
+    public Double getYield() {
         return yield;
     }
 
-    public void setYield(Integer yield) {
+    public void setYield(Double yield) {
         this.yield = yield;
     }
 

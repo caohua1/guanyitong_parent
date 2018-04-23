@@ -232,9 +232,6 @@ public class ProductManagerController {
                   map.put("maxBorrowMoney",maxBorrowMoney);
               }
               PageInfo<UserProductInfoVo> productInfoVoPageInfo = productService.selectBorrowInfo(map, pageNum, pageSize);
-              for(UserProductInfoVo userProductInfoVo:productInfoVoPageInfo.getList()){
-                  System.out.println("状态："+userProductInfoVo.getStatus());
-              }
               Integer count = productService.selectBorrowInfoCount(map);
               Map map1 = new HashMap();
               map1.put("count",count);

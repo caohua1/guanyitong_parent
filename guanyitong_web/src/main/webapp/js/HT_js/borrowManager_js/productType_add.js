@@ -4,7 +4,7 @@ var param = {
 
 $(function(){
       //点击添加
-      $("#add").on("click",function(){
+      $("#add").on("click",function () {
           toadd();
       });
 
@@ -32,6 +32,9 @@ function toadd(){
             } else {
                 alert("添加失败");
             }
+        },
+        error : function () {
+            alert("网络出现问题");
         }
     });
 

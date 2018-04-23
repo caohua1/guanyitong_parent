@@ -185,6 +185,16 @@ public class ProductServiceImpl implements ProductService{
     }
 
     /**
+     * 查看投标详情，所有投此标的人数
+     * @param productInfoId
+     * @return
+     */
+    @Override
+    public Integer selectUserProductinfoCount(Long productInfoId) {
+        return productDao.selectUserProductinfoCount(productInfoId);
+    }
+
+    /**
      * 分页查询借款列表（条件查询）
      * @param map
      * @param pageNum

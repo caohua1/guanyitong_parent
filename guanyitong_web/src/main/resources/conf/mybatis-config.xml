@@ -4,9 +4,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
    <!--标签放置顺序properties?,settings?,typeAliases?,typeHandlers?,objectFactory?,objectWrapperFactory?,plugins?,environments?,mappers?-->
-   <settings>
+   <!--<settings>
     <setting name="logImpl" value="STDOUT_LOGGING" ></setting>
-    </settings>
+    </settings>-->
     <!-- 命名空间 -->
     <typeAliases>
          <typeAlias alias="User" type="com.guanyitong.model.User"/>

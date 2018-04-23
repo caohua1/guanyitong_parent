@@ -15,15 +15,16 @@
 
     <!--根据borrowMoneyUserId和productInfoId查询用户的还款计划-->
     <select id="selectBackMoney" parameterType="java.util.Map" resultType="com.guanyitong.model.BackMoney">
-        select * from back_money  where 1=1
+        select bm.* from back_money bm
+        where 1=1
         <if test="borrowMoneyUserId !=null and borrowMoneyUserId !=''">
-            and borrowMoneyUserId = #{borrowMoneyUserId}
+            and bm.borrowMoneyUserId = #{borrowMoneyUserId}
         </if>
         <if test="productInfoId !=null and productInfoId !=''">
-            and productInfoId = #{productInfoId}
+            and bm.productInfoId = #{productInfoId}
         </if>
         <if test="status !=null">
-            and status = #{status}
+            and bm.status = #{status}
         </if>
     </select>
     <!--还款（还款方式不同）-->

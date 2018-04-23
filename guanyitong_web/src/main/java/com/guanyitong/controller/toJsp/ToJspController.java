@@ -137,7 +137,7 @@ public class ToJspController {
      */
     @RequestMapping("/toproductType_add")
     public String toproductType_add(){
-        return "borrowManager/toproductType_add";
+        return "borrowManager/productType_add";
     }
     /**
      * 跳转到投标管理页面
@@ -146,6 +146,19 @@ public class ToJspController {
     @RequestMapping("/toproductInfo_manage_list")
     public String toproductInfo_manage_list(){
         return "borrowManager/productInfo_manage_list";
+    }
+
+    /**
+     * 跳转到添加投标的页面
+     * @return
+     */
+    @RequestMapping("/toproductInfo_add")
+    public String toproductInfo_add(Model model){
+        Map map = new HashMap();
+        map.put("id",null);
+        List<Product> products = productDao.selectProduct(map);
+        model.addAttribute("products",products);
+        return "borrowManager/productInfo_add";
     }
 
     /**
@@ -186,9 +199,10 @@ public class ToJspController {
      * @return
      */
     @RequestMapping("/toborrowMoney_info")
-    public String toborrowMoney_info(Long id,Integer status,Model model){
+    public String toborrowMoney_info(Long id,Integer status,Model model,String borrowMoneyUserId){
         model.addAttribute("id",id);//标的id（productInfoId）
         model.addAttribute("status",status);
+        model.addAttribute("borrowMoneyUserId",borrowMoneyUserId);
         return "borrowManager/borrowMoney_info";
     }
     /**

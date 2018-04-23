@@ -120,7 +120,12 @@
                 $('')
             })
         })
-
+        /*退出*/
+       $("#logout").click(function () {
+           var local = window.location;
+           var basePath = local.protocol+"//"+local.host+"/";
+           window.location.href = basePath + "logout.do";
+       });
 
     })
 

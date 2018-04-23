@@ -6,6 +6,8 @@ import java.util.List;
 
 public class BackMoneyVo  implements Serializable {
     private String NO;//产品名称
+    private Integer productStatus;
+    private Integer yield;//年收益率
     private  String allBj;//应还的所有的本金
     private String allLx;//应还所有的利息
     private String allBjAndLx;//应还本息
@@ -18,6 +20,22 @@ public class BackMoneyVo  implements Serializable {
 
     public void setNO(String NO) {
         this.NO = NO;
+    }
+
+    public Integer getProductStatus() {
+        return productStatus;
+    }
+
+    public void setProductStatus(Integer productStatus) {
+        this.productStatus = productStatus;
+    }
+
+    public Integer getYield() {
+        return yield;
+    }
+
+    public void setYield(Integer yield) {
+        this.yield = yield;
     }
 
     public String getAllBj() {

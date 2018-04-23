@@ -101,6 +101,16 @@
           where udm.productInfoId = #{productInfoId}
      </select>
 
+    <!--查询数量-->
+    <select id="selectUserProductinfoCount" parameterType="Long" resultType="Integer">
+        select count(udm.id)
+        from user_deal_money udm
+        left join productinfo pi on pi.id = udm.productInfoId
+        left join product p on p.id = pi.productId
+        left join user_info ui on ui.id = udm.userId
+        where udm.productInfoId = #{productInfoId}
+    </select>
+
     <!--出借用户统计(分页，条件)-->
     <select id="selectAllUserDeal" resultType="com.guanyitong.model.vo.UserProductInfoVo" parameterType="java.util.Map">
         select udm.dealMoney,pi.*,ui.username from user_deal_money udm

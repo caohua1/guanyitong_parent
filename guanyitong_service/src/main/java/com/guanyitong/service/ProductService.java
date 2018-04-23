@@ -99,6 +99,12 @@ public interface ProductService {
      * @return
      */
     public PageInfo<UserProductInfoVo> selectUserProductinfo(Long productInfoId, Integer pageNum, Integer pageSize);
+    /**
+     * 查看投标详情，所有投此标的人数
+     * @param productInfoId
+     * @return
+     */
+    public Integer selectUserProductinfoCount(Long productInfoId);
 
 
     //==============================================借款流程

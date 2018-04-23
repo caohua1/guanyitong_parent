@@ -52,7 +52,7 @@
         <div><span>还款方式:</span>
             <span><select id="backMoneyType">
 							<option selected="selected" value="-1">==请选择</option>
-							<option value="0">按月还本还息</option>
+							<option value="0">按月还本付息</option>
 							<option value="1">先息后本</option>
                             <option value="2">一次性还本付息</option>
 						</select></span>
@@ -104,7 +104,7 @@
         <div class="pageTest">
         </div>
         <div class="acon-yong">
-            <span>第</span><span id="pageNum">1</span><span>页</span><span>/</span><span>总</span><span id="pageCount">1</span><span>页</span>/<span>每页显示</span><span id="pageSize">3</span><span>条</span>
+            <span>第</span><span id="pageNum">1</span><span>页</span><span>/</span><span>总</span><span id="pageCount">1</span><span>页</span>/<span>每页显示    </span><span id="pageSize">3</span><span>条</span>
         </div>
     </div>
 

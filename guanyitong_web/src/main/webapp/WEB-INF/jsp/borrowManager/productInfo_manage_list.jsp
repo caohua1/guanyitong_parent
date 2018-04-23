@@ -41,7 +41,7 @@
 
 
     <div class="acont-nav">标种列表：</div>
-    <div class="acont-ahref"><a href="iframe_hcon.html">添加投标</a></div>
+    <div class="acont-ahref"><a href="<%=basePath%>toJsp/toproductInfo_add.do">添加投标</a></div>
     <div class="acon-input">
         <div><span>用户借款ID:</span><span><input type="text" id="borrowMoneyUserId"></span></div>
         <div><span>产品名称:</span><span><input type="text" id="NO"></span></div>
@@ -53,7 +53,7 @@
         <div><span>还款方式:</span>
             <span><select id="backMoneyType">
 							<option selected="selected" value="-1">==请选择</option>
-							<option value="0">按月还本还息</option>
+							<option value="0">按月还本付息</option>
 							<option value="1">先息后本</option>
                             <option value="2">一次性还本付息</option>
 						</select></span>

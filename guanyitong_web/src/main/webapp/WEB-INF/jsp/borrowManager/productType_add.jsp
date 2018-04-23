@@ -43,7 +43,7 @@
         </div>
 
         <div class="biaoque">
-            <div><button id="add" >确定提交</button></div>
+            <div><input type="submit" id="add" value="添加"></div>
             <div><input type="reset" value="取消" id="back"></div>
         </div>
     </form>
