@@ -14,9 +14,7 @@ $(function () {
         createTBody();
     });
 
-    $("#fhui").click(function(){
-        window.history.back(-1);
-    });
+
 });
 var bBtn = true;
 //初始化列表
@@ -68,7 +66,7 @@ function createTBody() {
                             "<td>" + data[i].idcardNumber + "</td>" +
                             "<td>" + data[i].bankName + "</td>" +
                             "<td>" + data[i].cardNo + "</td>" +
-                            "<td>" + data[i].YN + "</td>" +
+                            "<td>" + data[i].yn + "</td>" +
                             "<td>" + data[i].submitTime + "</td>" +
                             "<td><span><a href=" + basePath + "BankCardManagementr/selectUserBankcardById.do?borrowMoneyUserId=" + data[i].borrowMoneyUserId + ">查看</a></span></td>" +
                             "</tr>";

@@ -23,7 +23,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>添加用户银行卡</title>
+    <title>借款人银行卡管理</title>
     <link rel="stylesheet" href="<%=path%>/css/common_css/base.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/style.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/css.css" />
@@ -79,7 +79,6 @@
             <tbody id="result"></tbody>
         </table>
     </div>
-
     <div class="acon-yong">
         <span>用户总数：</span><span id = "count">0</span>
     </div>
