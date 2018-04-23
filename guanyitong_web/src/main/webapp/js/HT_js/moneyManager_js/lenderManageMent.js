@@ -19,7 +19,6 @@ var bBtn = true;
 function creatTable() {
     var phone=$("#phone").val();
     var realName=$("#realName").val();
-    alert(realName)
     var idCard=$("#idCard").val();
     var bankNum=$("#bankNum").val();
     var firstDate=$("#firstDate").val();

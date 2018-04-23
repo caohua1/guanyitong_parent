@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="<%=path%>/css/common_css/style.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/css.css" />
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
-    <script  src="${ctx}/js/HT_js/moneyManager_js/borrowUserBank_list.js"></script>
+    <script  src="${ctx}/js/HT_js/moneyManager_js/borrowUserBank_select.js"></script>
     <style type="text/css">
         .pageTest{ width: 1000px; height: 50px; margin-top: 100px;}
         .activP{
@@ -87,7 +87,8 @@
         </div>
     </div>
     <div class="btnlcon">
-        <span>说明： 此银行卡同时为在还款期作为扣款银行卡</span>
+        <span id="yn">${userBankcard.YN}</span>
+        <span id="shuoM">说明： 此银行卡同时为在还款期作为扣款银行卡</span>
     </div>
     <div class="aatj">
         <button id="fhui">返回</button>

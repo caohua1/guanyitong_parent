@@ -19,7 +19,6 @@ $(function(){
 })
 //Time:时间   deposit:存入    expend:支出    detail:明细    Type:类型
 function capital(Time,deposit,expend,detail,Type){
-
     this.Time=Time;
     this.deposit=deposit;
     this.expend=expend;

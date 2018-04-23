@@ -38,7 +38,6 @@ public class BankCardManageController {
     @RequestMapping("/addUserBankcard")
     @ResponseBody
     public JsonResult addUserBankcard(UserBankcard userBankcard){
-
         JsonResult result = new JsonResult();
         try{
             int i = userBankcardService.insertUserBankcardDao(userBankcard);
@@ -120,11 +119,24 @@ public class BankCardManageController {
      */
     @RequestMapping("/selectUserBankcardById")
     public String selectUserBankcardById(Long borrowMoneyUserId, Model model){
-
         try{
             UserBankcard userBankcard = userBankcardService.selectUserBankcardById(borrowMoneyUserId);
             if(userBankcard!=null){
+               if(userBankcard.getRealName()==null){
+                   userBankcard.setRealName("暂无数据");
+               }if(userBankcard.getIDCardNumber()==null){
+                    userBankcard.setIDCardNumber("暂无数据");
+                }if(userBankcard.getCardNo()==null){
+                    userBankcard.setCardNo("暂无数据");
+                }if(userBankcard.getBankName()==null){
+                    userBankcard.setBankName("暂无数据");
+                }if(userBankcard.getOpenAccountRegion()==null){
+                    userBankcard.setOpenAccountRegion("暂无数据");
+                }if(userBankcard.getPhone()==null){
+                    userBankcard.setPhone("暂无数据");
+                }
                 model.addAttribute("userBankcard",userBankcard);
+
             }
         }catch(Exception e){
             e.printStackTrace();
