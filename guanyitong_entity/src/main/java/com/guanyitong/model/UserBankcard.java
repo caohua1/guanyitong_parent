@@ -2,8 +2,8 @@ package com.guanyitong.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.xml.crypto.Data;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 借款人银行卡管理
@@ -16,7 +16,7 @@ public class UserBankcard implements Serializable {
     private String IDCardNumber;//用户身份证号码
     private String bankName;//用户开户银行
     private String cardNo;//用户银行卡号
-    private Data submitTime;//用户提交时间
+    private Date submitTime;//用户提交时间
     private String openAccountRegion;//用户开户行地区
     private String userName;//用户名（唯一标识）
     private String phone;//借款人可联系手机号
@@ -71,11 +71,11 @@ public class UserBankcard implements Serializable {
     }
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    public Data getSubmitTime() {
+    public Date getSubmitTime() {
         return submitTime;
     }
 
-    public void setSubmitTime(Data submitTime) {
+    public void setSubmitTime(Date submitTime) {
         this.submitTime = submitTime;
     }
 
