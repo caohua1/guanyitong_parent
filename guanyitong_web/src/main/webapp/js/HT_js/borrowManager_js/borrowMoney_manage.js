@@ -60,17 +60,16 @@ function createTBody(){
         url: basePath+"product/selectProductInfoVo.do",
         data: param,
         success: function (msg) {
-            console.log(msg);
             var str = "";
             var count = msg.data.count;
             var j = (pageNum-1)*pageSize+1;
             $('#count').text(count);
             var data = msg.data.pageInfo.list;
+            console.log(data);
             if(data !=null && data.length>0){
                 $("#pageCount").text(Math.ceil(count/pageSize));
                 if(j<=count || (j == 1 && count == 1)){
                     for (i in data) {
-                        console.log(data[i].status);
                             str += "<tr>"+
                                 "<td>" +(j++) + "</td>"+
                                 "<td>" + data[i].borrowMoneyUserId + "</td>"+
@@ -82,64 +81,65 @@ function createTBody(){
                                 "<td>" + data[i].startBorrowTime +"-" +data[i].endBorrowTime+ "</td>"+
                                 "<td>" + data[i].backMoneyType  + "</td>"+
                                 "<td>" + data[i].createTime + "</td>"
-                            if(data[i].status = 2){
+                            if(data[i].status == 2){
                                 str +=  "<td>" + "审核完成，未开始筹集" + "</td>"+
-                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span>" +
+                                    "<td><span><a  href=\"toborrowMoney_info.do?id="+ data[i].id+"&status="+data[i].status+"\" >查看</a></span>" +
                                     "<span><a  href=\"toUpdateProductInfo.do?id="+ data[i].id+"\" >修改</a></span>"+
                                     "<span><a  href=\"javascript:;\" onclick=\"select('"+data[i].id+"')\" >下架</a></span>"+
                                     "<span><a class='fangqij' href='javascript:;' onclick=\"fangqi('"+data[i].id+"')\">放弃</a></span>"+
                                     "</td>"
 
-                            }else if(data[i].status ==4){
+                            }else if(data[i].status == 4){
                                 str +="<td>" + "筹集中" + "</td>"+
-                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span>" +
+                                    "<td><span><a  href=\"toborrowMoney_info.do?id="+ data[i].id+"&status="+data[i].status+"\" >查看</a></span>" +
                                     "<span><a  href=\"javascript:;\" onclick=\"select('"+data[i].id+"')\" >下架</a></span></td>"
                             } else if(data[i].status ==5){
-                                str +="<td>" + "筹集完（待还款）" + "</td>"+
-                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span>" +
+                                str +="<td>" + "筹集完（未提现）" + "</td>"+
+                                    "<td><span><a  href=\"toborrowMoney_info.do?id="+ data[i].id+"\" >查看</a></span>" +
                                     "</td>"
                             }else if(data[i].status ==6){
                                 str +="<td>" + "筹集失败" + "</td>"+
-                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span>" +
+                                    "<td><span><a  href=\"toborrowMoney_info.do?id="+ data[i].id+"&status="+data[i].status+"\" >查看</a></span>" +
                                     "<span><a  href=\"toUpdateProductInfo.do?id="+ data[i].id+"\" >修改</a></span>"+
                                     "<span><a class='fangqij' href=\"javascript:;\" onclick=\"fangqi('"+data[i].id+"')\" >放弃</a></span>"+
                                     "</td>"
                             }else if(data[i].status ==7){
-                                str +="<td>" + "已上架" + "</td>"+
-                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span>" +
+                                str +="<td>" + "再上架，筹集中" + "</td>"+
+                                    "<td><span><a  href=\"toborrowMoney_info.do?id="+ data[i].id+"&status="+data[i].status+"\" >查看</a></span>" +
                                     "</td>"
                             }
                             else if(data[i].status ==8){
                                 str +="<td>" + "下架" + "</td>"+
-                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span>" +
+                                    "<td><span><a  href=\"toborrowMoney_info.do?id="+ data[i].id+"&status="+data[i].status+"\" >查看</a></span>" +
                                     "<span><a  href=\"toUpdateProductInfo.do?id="+ data[i].id+"\" >修改</a></span>"+
                                     "<span><a class='fangqij' href=\"javascript:;\" onclick=\"fangqi('"+data[i].id+"')\" >放弃</a></span>"+
                                     "</td>"
                             }else if(data[i].status ==9){
                                 str +="<td>" + "已放弃" + "</td>"+
-                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span>" +
+                                    "<td><span><a  href=\"toborrowMoney_info.do?id="+ data[i].id+"&status="+data[i].status+"\" >查看</a></span>" +
                                     "</td>"
                             }else if(data[i].status ==10){
                                 str +="<td>" + "提现申请中" + "</td>"+
-                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span>" +
+                                    "<td><span><a  href=\"toborrowMoney_info.do?id="+ data[i].id+"&status="+data[i].status+"\" >查看</a></span>" +
                                     "</td>"
                             }else if(data[i].status ==11){
-                                str +="<td>" + "提现成功（待还款）" + "</td>"+
-                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span>" +
+                                str +="<td>" + "筹集完,提现成功（待还款）" + "</td>"+
+                                    "<td><span><a  href=\"toborrowMoney_info.do?id="+ data[i].id+"&status="+data[i].status+"\" >查看</a></span>" +
                                     "</td>"
                             }else if(data[i].status ==12){
                                 str +="<td>" + "提现失败" + "</td>"+
-                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span>" +
+                                    "<td><span><a  href=\"toborrowMoney_info.do?id="+ data[i].id+"&status="+data[i].status+"\" >查看</a></span>" +
                                     "</td>"
                             }else if(data[i].status ==13){
                                 str +="<td>" + "还款中（未全部还款完成）" + "</td>"+
-                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span>" +
+                                    "<td><span><a  href=\"toborrowMoney_info.do?id="+ data[i].id+"&status="+data[i].status+"\" >查看</a></span>" +
                                     "</td>"
                             }else if(data[i].status ==14){
                                 str +="<td>" + "还款完成" + "</td>"+
-                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span>" +
+                                    "<td><span><a  href=\"toborrowMoney_info.do?id="+ data[i].id+"&status="+data[i].status+"\" >查看</a></span>" +
                                     "</td>"
                             }
+                            str+="</tr>";
                     }
                     tbody.innerHTML = str;
 

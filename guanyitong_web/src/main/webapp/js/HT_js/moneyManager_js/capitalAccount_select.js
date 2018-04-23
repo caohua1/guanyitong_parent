@@ -13,6 +13,7 @@ $(function(){
     $("#sous").click(function(){
         bBtn = true;
         var id = $("#id").html();
+        $("#pageNum").text(1);
         createData(id);
     });
 

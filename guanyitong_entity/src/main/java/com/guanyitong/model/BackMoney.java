@@ -1,4 +1,6 @@
 package com.guanyitong.model;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -63,6 +65,7 @@ public class BackMoney implements Serializable {
         this.backMoney = backMoney;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getBackTime() {
         return backTime;
     }
@@ -71,6 +74,7 @@ public class BackMoney implements Serializable {
         this.backTime = backTime;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getRealBackTime() {
         return realBackTime;
     }

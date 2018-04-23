@@ -153,7 +153,7 @@ public class WithdrawMoneyServiceImpl implements WithdrawMoneyService{
         int count = 1;
         int monthNum = productInfo.getMonthNum();//期限（几个月）
         int ZMoney = productInfo.getZMoney();
-        double bj= ZMoney /monthNum;//本金
+        double bj=doubleTwo(ZMoney /monthNum) ;//本金
         Date date = new Date();
         for(int m=0;m<monthNum;m++){
             double lx =ZMoney*productInfo.getYield()/100/12;//每个月的利息不一样，ZMoney（逐渐递减）不一样，

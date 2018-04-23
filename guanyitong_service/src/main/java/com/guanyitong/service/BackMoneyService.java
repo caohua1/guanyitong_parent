@@ -1,6 +1,8 @@
 package com.guanyitong.service;
 
+import com.github.pagehelper.PageInfo;
 import com.guanyitong.model.BackMoney;
+import com.guanyitong.model.vo.BackMoneyManageListVo;
 import com.guanyitong.model.vo.BackMoneyVo;
 
 import java.util.List;
@@ -21,8 +23,20 @@ public interface BackMoneyService {
     public BackMoneyVo selectBackMoney(Map map);
     /**
      * 借款人还款
-     * @param map
+     * @param backMoney
      * @return
      */
     public Boolean updateStatus(BackMoney backMoney);
+    /**
+     * 财务管理模块（还款管理列表，分页）
+     * @return
+     */
+    public PageInfo<BackMoneyManageListVo> backMoneyList(Map map,Integer pageNum,Integer pageSize);
+
+    /**
+     * 财务管理模块（还款管理列表，分页）总数量
+     * @param map
+     * @return
+     */
+    public Integer backMoneyListCount(Map map);
 }

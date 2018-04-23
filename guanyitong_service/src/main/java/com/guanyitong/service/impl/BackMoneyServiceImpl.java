@@ -1,9 +1,12 @@
 package com.guanyitong.service.impl;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.guanyitong.mapper.*;
 import com.guanyitong.model.BackMoney;
 import com.guanyitong.model.ProductInfo;
 import com.guanyitong.model.UserDealBackMoneyRecord;
 import com.guanyitong.model.UserDealMoney;
+import com.guanyitong.model.vo.BackMoneyManageListVo;
 import com.guanyitong.model.vo.BackMoneyVo;
 import com.guanyitong.service.BackMoneyService;
 import com.guanyitong.service.UserDealService;
@@ -79,6 +82,10 @@ public class BackMoneyServiceImpl implements BackMoneyService {
     @Transactional
     @Override
     public Boolean updateStatus(BackMoney backMoney) {
+        if(backMoney.getStatus()==2){
+            Integer o = backMoneyDao.updateStatus(backMoney);//2 修改状态为还款失败
+            return o>0;
+        }
         Integer i = backMoneyDao.updateStatus(backMoney);//1 修改状态为已还款
         Map map = new HashMap();
         map.put("borrowMoneyUserId",backMoney.getBorrowMoneyUserId());
@@ -99,6 +106,31 @@ public class BackMoneyServiceImpl implements BackMoneyService {
             }
         }
         return false;
+    }
+
+    /**
+     * 财务管理模块（还款管理列表，分页）
+     * @param map
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public PageInfo<BackMoneyManageListVo> backMoneyList(Map map, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<BackMoneyManageListVo> backMoneyManageListVos = backMoneyDao.backMoneyList(map);
+        PageInfo<BackMoneyManageListVo> pageInfo = new PageInfo<BackMoneyManageListVo>(backMoneyManageListVos);
+        return pageInfo;
+    }
+
+    /**
+     * 财务管理模块（还款管理列表，分页）总数量
+     * @param map
+     * @return
+     */
+    @Override
+    public Integer backMoneyListCount(Map map) {
+        return backMoneyDao.backMoneyListCount(map);
     }
 
 
