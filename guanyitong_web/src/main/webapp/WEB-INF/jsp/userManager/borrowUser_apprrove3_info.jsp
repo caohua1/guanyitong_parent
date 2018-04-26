@@ -39,6 +39,7 @@
 <body>
 <!--公共的外层-->
 <input type="hidden" value="${id}" id="borrowMoneyUserId"/>
+<input type="hidden" value="${status}" id="status1"/>
 <div class="iframe_acont">
     <div class="acont-nav">借款人资料：</div>
 
@@ -169,9 +170,19 @@
     </div>
 
     <div class="aatj">
-        <!--<div><button class="quexeng">审核通过</button></div>-->
-        <div><a class="fan" href="javascript:history.go(-1)">返回</a></div>
-        <!--<div><button class="quexxiao">审核不通过</button></div>-->
+        <c:if test="${status==4}">
+            <div><button class="quexeng">审核通过</button></div>
+            <div><button class="quexxiao" style="width: 100px;">审核不通过</button></div>
+        </c:if>
+        <c:if test="${status==5}">
+            <div><button class="quexeng">审核通过</button></div>
+            <div><button class="quexxiao" style="width: 100px;">审核不通过</button></div>
+        </c:if>
+        <div>
+            <button id="back">返回</button>
+        </div>
+
+
 
     </div>
 
@@ -220,39 +231,26 @@
 
     })
 </script>
-<script>
-    function test(){
-        var selectedFile = $('#myFile').get(0).files[0];
-        var reader = new FileReader();
-        reader.readAsDataURL(selectedFile);
-        reader.onload = function(e){
-            var urlsrc = this.result;
-            $('#myImg').show();
-            $('#myImg').attr('src', urlsrc);
-        }
-        console.log(selectedFile);
-    }
-    function test2(){
-        var selectedFile = $('#myFile2').get(0).files[0];
-        var reader = new FileReader();
-        reader.readAsDataURL(selectedFile);
-        reader.onload = function(e){
-            var urlsrc = this.result;
-            $('#myImg2').show();
-            $('#myImg2').attr('src', urlsrc);
-        }
-        console.log(selectedFile);
-    }
-    function test3(){
-        var selectedFile = $('#myFile3').get(0).files[0];
-        var reader = new FileReader();
-        reader.readAsDataURL(selectedFile);
-        reader.onload = function(e){
-            var urlsrc = this.result;
-            $('#myImg3').show();
-            $('#myImg3').attr('src', urlsrc);
-        }
-        console.log(selectedFile);
-    }
 
+<script>
+    $(function(){
+
+        $('.fan').css({'color':'#434343'});
+        $('.quexeng').click(function(){
+
+            $('.showhide').show();
+        })
+        $('.showhideng>span').click(function(){
+            $('.showhide').hide();
+        })
+
+        $('.quexxiao').click(function(){
+
+            $('.showtexthide').show();
+        })
+        $('.showhideng>span').click(function(){
+            $('.showtexthide').hide();
+        })
+
+    })
 </script>

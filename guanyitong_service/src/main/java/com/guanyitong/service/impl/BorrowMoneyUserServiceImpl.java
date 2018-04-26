@@ -77,4 +77,14 @@ public class BorrowMoneyUserServiceImpl implements BorrowMoneyUserService {
         return borrowMoneyUserDao.selectDimId(dimId);
     }
 
+    /**
+     * 修改借款人信息（资料审核没通过）
+     * @param borrowMoneyUser
+     * @return
+     */
+    @Override
+    public Integer updateBorrowUser(BorrowMoneyUser borrowMoneyUser) {
+        return borrowMoneyUserDao.updateBorrowUser(borrowMoneyUser);
+    }
+
 }

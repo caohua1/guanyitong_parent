@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="<%=path%>/css/common_css/style.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/css.css" />
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
+    <script src="<%=path%>/js/common_js/mydate.js"></script>
     <script  src="${ctx}/js/HT_js/borrowUserManager_js/borrowUser_add.js"></script>
     <style>
         body {
@@ -46,7 +47,7 @@
             <p style="height: auto;line-height: 0;"><span></span><span id="myFile_div"><img src="" id="myImg" style="display: none;width: 100px;height: 100px;margin-left: 15px;"></span></p>
             <p><span>法人代表：</span><span><input type="text" id="legalPersonName"></span></p>
             <p><span>法人手机号：</span><span><input type="text" id="legalPhone"></span></p>
-            <p><span>成立时间：</span><span><input type="text" id="companyCreateTime"></span></p>
+            <p><span>成立时间：</span><span><input type="text"  onfocus="MyCalendar.SetDate(this)" class="input-text" id="companyCreateTime"></span></p>
             <p><span>注册资本：</span><span><input type="text" id="registerMoney"></span></p>
             <p><span>注册地址：</span><span><input type="text" id="registerAddress"></span></p>
             <p><span>借款金额：</span><span><input type="text" id="borrowMoney"></span></p>
@@ -120,7 +121,7 @@
 
 
         <div class="aatj">
-            <div><button id="toAdd">确定</button></div>
+            <div><input type="submit" value="添加借款人" id="add"></div>
             <div><input type="reset" value="取消"></div>
         </div>
     </form>
@@ -129,59 +130,4 @@
 </div>
 </body>
 </html>
-<%--
-$("#add").click(function(){
-    var code = $("#code").val();
-    var name1 = $("#name1").val();
 
-    $.ajax({
-        url:"tianjia.php", //要处理的页面
-        data:{c:code,n:name1},  //要传过去的数据
-        type:"POST",  //提交方式
-        dataType:"TEXT", //返回的数据类型，TEXT字符串 JSON返回JSON XML返回XML；dataType中T要大写！！
-        success: function(data){ //回调函数，data为形参，是从login-cl.php页面返回的值
-            if(data.trim()=="OK") //trim()去空格
-            alert("添加成功");
-            else
-            alert("添加失败");
-        }
-
-    });
-})
---%>
-<script>
-    function test(){
-        var selectedFile = $('#myFile').get(0).files[0];
-        var reader = new FileReader();
-        reader.readAsDataURL(selectedFile);
-        reader.onload = function(e){
-            var urlsrc = this.result;
-            $('#myImg').show();
-            $('#myImg').attr('src', urlsrc);
-        }
-        console.log(selectedFile);
-    }
-    function test2(){
-        var selectedFile = $('#myFile2').get(0).files[0];
-        var reader = new FileReader();
-        reader.readAsDataURL(selectedFile);
-        reader.onload = function(e){
-            var urlsrc = this.result;
-            $('#myImg2').show();
-            $('#myImg2').attr('src', urlsrc);
-        }
-        console.log(selectedFile);
-    }
-    function test3(){
-        var selectedFile = $('#myFile3').get(0).files[0];
-        var reader = new FileReader();
-        reader.readAsDataURL(selectedFile);
-        reader.onload = function(e){
-            var urlsrc = this.result;
-            $('#myImg3').show();
-            $('#myImg3').attr('src', urlsrc);
-        }
-        console.log(selectedFile);
-    }
-
-</script>

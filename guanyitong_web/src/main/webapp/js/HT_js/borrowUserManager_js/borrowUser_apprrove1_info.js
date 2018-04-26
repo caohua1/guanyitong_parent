@@ -10,7 +10,6 @@ $(function(){
         $('.showhide').hide();
         var status = 2;
         toupdate(status);
-
     });
 
     //点击确定审核失败
@@ -18,6 +17,11 @@ $(function(){
         $(".showtexthide").hide();
         var status = 1;
         toupdate(status);
+    });
+
+    //点击返回
+    $("#back").on("click",function () {
+        window.history.back(-1);
     });
 
 });
@@ -39,7 +43,8 @@ function init(){
             var data = msg.data;
             console.log(msg)
           if(msg.data!=null){
-              $("#id").html(id);
+              $("#id").html(addPreZero(id));
+              alert(addPreZero(id));
               if(data.companyName !=null && data.charterImage !=''){
                   $("#companyName").html(data.companyName);
               }else{
@@ -184,12 +189,21 @@ function toupdate(status) {
         success: function (msg) {
             if(msg.state==0){
                alert("操作成功")
+                window.location.href = basePath+"toJsp/toborrowUserApprrove1.do";
+
             }else{
-                alert("网络错误");
+                alert("修改失败");
+                window.location.href = basePath+"toJsp/toborrowUserApprrove1.do";
             }
         },
         error: function () {
-            alert("修改失败")
+            alert("网络错误")
         }
     });
+}
+
+
+//补零
+function addPreZero(num){
+    return ('0000000'+num).slice(-8);
 }

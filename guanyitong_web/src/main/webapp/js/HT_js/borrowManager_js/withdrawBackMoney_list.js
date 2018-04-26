@@ -142,7 +142,6 @@ function createTBody(){
 
 //下架操作
 function update(id,status){
-    alert(status);
     $('.showhide').show();
     $('.zhezaocegn').show();
     if(status==10){
@@ -155,6 +154,8 @@ function update(id,status){
     var basePath = local.protocol+"//"+local.host+"/";
     //点击确定放弃
     $("#update").click(function () {
+        $('.showhide').hide();
+        $('.zhezaocegn').hide();
         $.ajax({
             type: "post",
             url: basePath+"borrowMoney/updateStatus.do",
@@ -168,9 +169,10 @@ function update(id,status){
                 console.log(msg);
                 if (msg.state == 0) {
                     alert("操作成功");
-                    window.location.href = basePath + "toJsp/toborrowMoney_manage.do";
+                    createTBody();
                 } else {
                     alert("操作失败");
+                    createTBody();
                 }
             },
             error : function(){

@@ -70,8 +70,8 @@ function initlist(Sta){
     var realName= $("#realName").val();
     var idCard= $("#idCard").val();
     var txNumber= $("#txNumber").val();
-    var minMoney= $("#minMoney").val();
-    var maxMoney= $("#maxMoney").val();
+    var minMoney= parseFloat($("#minMoney").val());
+    var maxMoney= parseFloat($("#maxMoney").val());
     var startTime= $("#startTime").val();
     var endTime= $("#endTime").val();
     var sqUser= $("#sqUser").val();

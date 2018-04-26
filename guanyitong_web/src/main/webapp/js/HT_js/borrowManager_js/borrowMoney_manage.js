@@ -185,7 +185,7 @@ function select(id){
     var local = window.location;
     var basePath = local.protocol+"//"+local.host+"/";
     //点击确定放弃
-    $("#toFangqi").onclick(function () {
+    $("#toFangqi").click(function () {
         $.ajax({
             type: "post",
             url: basePath+"borrowMoney/updateStatus.do",
@@ -211,13 +211,13 @@ function select(id){
     });
 
     //点击取消
-    $("#quxiao").onclick(function () {
+    $("#quxiao").click(function () {
         $('.showhide').hide();
         $('.zhezaocegn').hide();
     });
 
     //点击x
-    $("#x").onclick(function () {
+    $("#x").click(function () {
         $('.showhide').hide();
         $('.zhezaocegn').hide();
     });

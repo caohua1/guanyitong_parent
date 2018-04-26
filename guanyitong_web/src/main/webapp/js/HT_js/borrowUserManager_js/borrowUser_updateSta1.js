@@ -1,6 +1,9 @@
+
 var param = {
+    id :null,
     companyName : null,
     charterNum : null,
+    charterImage : null,
     legalPersonName : null,
     legalPhone : null,
     companyCreateTime : null,
@@ -9,65 +12,85 @@ var param = {
     borrowMoney : null,
     apprroveName : null,
     legalIDCard : null,
+    legalIDCardImageZ : null,
+    legalIDCardImageF : null,
     XYJF : null,
     XYJFDescribe : null,
     address : null,
     companyDescribe : null,
     borrowUse : null,
-    charterImage : null,
-    legalIDCardImageZ : null,
-    legalIDCardImageF : null
+    moneyInfo : null,
+    ensureInfo :null,
+    status :null,
+    Type : null
 
-};
+}
 
 $(function(){
-      //点击添加
-      $("#add").on("click",function(){
-          toadd();
-      });
+    //点击确定修改
+    $("#update").on("click",function () {
+        param.id = $("#id").val();
+        param.companyName = $("#companyName").val();
+        param.charterNum = $("#charterNum").val();
+        param.legalPersonName = $("#legalPersonName").val();
+        param.legalPhone = $("#legalPhone").val();
+        param.companyCreateTime =parserDate($("#companyCreateTime").val());
+        param.registerMoney = $("#registerMoney").val();
+        param.registerAddress = $("#registerAddress").val();
+        param.borrowMoney = $("#borrowMoney").val();
+        param.apprroveName = $("#apprroveName").val();
+        param.legalIDCard = $("#legalIDCard").val();
+        param.XYJF = $("#XYJF").val();
+        param.XYJFDescribe = $("#XYJFDescribe").val();
+        param.address = $("#address").val();
+        param.borrowUse = $("#borrowUse").val();
+        param.companyDescribe = $("#companyDescribe").val();
+        param.moneyInfo = $("#moneyInfo").val();
+        param.ensureInfo = $("#ensureInfo").val();
+        param.status = $("#status").val();
+        alert(param.status);
+        param.Type = $("#Type").val();
+        updateBorrowUser();
+    });
+
+    //点击取消
+    $("#back").on("click",function () {
+        window.history.back(-1);
+    });
 });
 
-//添加
-function toadd(){
-    param.companyName = $("#companyName").val();
-    param.charterNum = $("#charterNum").val();
-    param.legalPersonName = $("#legalPersonName").val();
-    param.legalPhone = $("#legalPhone").val();
-    param.companyCreateTime = parserDate($("#companyCreateTime").val());
-    param.registerMoney = $("#registerMoney").val();
-    param.registerAddress = $("#registerAddress").val();
-    param.borrowMoney = $("#borrowMoney").val();
-    param.apprroveName = $("#apprroveName").val();
-    param.legalIDCard = $("#legalIDCard").val();
-    param.XYJF = $("#XYJF").val(); //下拉菜单
-    param.XYJFDescribe = $("#XYJFDescribe").val();
-    param.address = $("#address").val();
-    param.companyDescribe = $("#companyDescribe").val();
-    param.borrowUse = $("#borrowUse").val();
+//修改产品标
+function updateBorrowUser(){
     var local = window.location;
     var basePath = local.protocol+"//"+local.host+"/";
     $.ajax({
         type: "post",
-        url: basePath+"BorrowMoneyUser/addBorrowMoneyUser.do",
+        url: basePath+"BorrowMoneyUser/updateBorrowUser.do",
         data: param,
         dataType: "json",
         success: function (msg) {
             console.log(msg);
             if (msg.state == 0) {
-                alert("添加成功");
-                window.location.href = basePath + "toJsp/toborrowUserList.do";
+                alert("修改成功");
+                if(param.Type==1){
+                    window.location.href =basePath + "toJsp/toborrowUserList.do";
+                }else if(param.Type==2){
+                    window.location.href = basePath+"toJsp/toborrowUserApprrove1.do";
+                }else if(param.Type==3){
+                    window.location.href = basePath+"toJsp/toborrowUserApprrove2.do";
+                }
             } else {
-                alert("添加失败");
+                alert("修改失败");
             }
         },
-        error : function () {
+        error : function(){
             alert("网络出现问题");
         }
     });
+}
 
-};
 
-//图片上传,营业执照图片
+//身份证正面
 function upload1(fileObj){
 
     //var fileObj = document.getElementById(id).files[0]; // js 获取文件对象
@@ -78,6 +101,7 @@ function upload1(fileObj){
     var formFile = new FormData();
     formFile.append("action", "UploadVMKImagePath");
     formFile.append("file", fileObj[0]); //加入文件对象
+
     var data = formFile;
     var local = window.location;
     var basePath = local.protocol+"//"+local.host+"/";
@@ -95,8 +119,8 @@ function upload1(fileObj){
             var reader = new FileReader();
             reader.readAsDataURL(selectedFile);
             reader.onload = function(e){
-                $('#myImg').show();
-                $('#myImg').attr('src', "http://127.0.0.1"+msg.data.readPath);
+                $('#charterImage').attr('src', "http://127.0.0.1"+msg.data.readPath);
+                $("#charterImage").val(msg.data.readPath);
                 param.charterImage = msg.data.readPath;
             }
         },
@@ -105,7 +129,6 @@ function upload1(fileObj){
         }
     });
 }
-
 //身份证正面
 function upload2(fileObj){
 
@@ -135,8 +158,8 @@ function upload2(fileObj){
             var reader = new FileReader();
             reader.readAsDataURL(selectedFile);
             reader.onload = function(e){
-                $('#myImg2').show();
-                $('#myImg2').attr('src', "http://127.0.0.1"+msg.data.readPath);
+                $('#legalIDCardImageZ').attr('src', "http://127.0.0.1"+msg.data.readPath);
+                $("#legalIDCardImageZ").val(msg.data.readPath);
                 param.legalIDCardImageZ = msg.data.readPath;
             }
         },
@@ -146,7 +169,7 @@ function upload2(fileObj){
     });
 }
 
-//身份证反面
+//身份证正面
 function upload3(fileObj){
 
     //var fileObj = document.getElementById(id).files[0]; // js 获取文件对象
@@ -157,16 +180,6 @@ function upload3(fileObj){
     var formFile = new FormData();
     formFile.append("action", "UploadVMKImagePath");
     formFile.append("file", fileObj[0]); //加入文件对象
-
-    //第一种  XMLHttpRequest 对象
-    //var xhr = new XMLHttpRequest();
-    //xhr.open("post", "/Admin/Ajax/VMKHandler.ashx", true);
-    //xhr.onload = function () {
-    //    alert("上传完成!");
-    //};
-    //xhr.send(formFile);
-
-    //第二种 ajax 提交
 
     var data = formFile;
     var local = window.location;
@@ -185,8 +198,8 @@ function upload3(fileObj){
             var reader = new FileReader();
             reader.readAsDataURL(selectedFile);
             reader.onload = function(e){
-                $('#myImg3').show();
-                $('#myImg3').attr('src', "http://127.0.0.1"+msg.data.readPath);
+                $('#legalIDCardImageF').attr('src', "http://127.0.0.1"+msg.data.readPath);
+                $("#legalIDCardImageF").val(msg.data.readPath);
                 param.legalIDCardImageF = msg.data.readPath;
             }
         },

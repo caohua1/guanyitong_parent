@@ -169,7 +169,7 @@
              and productinfo.createTime &lt;= #{endTime}
          </if>
           <if test="startBorrowTime !=null and endBorrowTime !=null">
-             and startBorrowTime &gt;= #{startBorrowTime} and endBorrowTime &lt;= #{endBorrowTime}
+             and startBorrowTime BETWEEN #{startBorrowTime} and  #{endBorrowTime}
           </if>
          <if test="startBorrowTime !=null and endBorrowTime ==null">
              and startBorrowTime &gt;= #{startBorrowTime}
@@ -218,7 +218,7 @@
             and productinfo.createTime &lt;= #{endTime}
         </if>
         <if test="startBorrowTime !=null and endBorrowTime !=null">
-            and startBorrowTime &gt;= #{startBorrowTime} and endBorrowTime &lt;= #{endBorrowTime}
+            and startBorrowTime BETWEEN #{startBorrowTime} and  #{endBorrowTime}
         </if>
         <if test="startBorrowTime !=null and endBorrowTime ==null">
             and startBorrowTime &gt;= #{startBorrowTime}
@@ -321,6 +321,7 @@
         <if test="coverImage !=null and coverImage !=''">
             coverImage = #{coverImage},
         </if>
+
         <if test="status !=null">
             status = #{status},
         </if>

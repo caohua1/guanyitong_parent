@@ -89,6 +89,78 @@
 
     </select>
 
+    <!--修改borrowMoneyUser-->
+    <update id="updateBorrowUser" parameterType="com.guanyitong.model.BorrowMoneyUser">
+        update borrowmoney_user set
+        <if test="companyName !=null and companyName !=''">
+            companyName = #{companyName},
+        </if>
+        <if test="charterNum !=null and charterNum !=''">
+            charterNum = #{charterNum},
+        </if>
+        <if test="charterImage !=null and charterImage !=''">
+            charterImage = #{charterImage},
+        </if>
+        <if test="legalPersonName !=null and legalPersonName !=''">
+            legalPersonName = #{legalPersonName},
+        </if>
+        <if test="legalPhone !=null and legalPhone !=''">
+            legalPhone = #{legalPhone},
+        </if>
+        <if test="companyCreateTime !=null and companyCreateTime !=''">
+            companyCreateTime = #{companyCreateTime},
+        </if>
+        <if test="registerMoney !=null and registerMoney!=''">
+            registerMoney = #{registerMoney},
+        </if>
+        <if test="registerAddress !=null and registerAddress !=''">
+            registerAddress = #{registerAddress},
+        </if>
+        <if test="borrowMoney !=null and borrowMoney !=''">
+            borrowMoney = #{borrowMoney},
+        </if>
+        <if test="apprroveName !=null and apprroveName !=''">
+            apprroveName = #{apprroveName},
+        </if>
+        <if test="legalIDCard !=null and legalIDCard !=''">
+            legalIDCard = #{legalIDCard},
+        </if>
+        <if test="legalIDCardImageZ !=null and legalIDCardImageZ !=''">
+            legalIDCardImageZ = #{legalIDCardImageZ},
+        </if>
+        <if test="legalIDCardImageF !=null and legalIDCardImageF !=''">
+            legalIDCardImageF = #{legalIDCardImageF},
+        </if>
+        <if test="XYJF !=null and XYJF !=''">
+            XYJF = #{XYJF},
+        </if>
+        <if test="XYJFDescribe !=null and XYJFDescribe !=''">
+            XYJFDescribe = #{XYJFDescribe},
+        </if>
+        <if test="address !=null and address !=''">
+            address = #{address},
+        </if>
+        <if test="companyDescribe !=null and companyDescribe !=''">
+            companyDescribe = #{companyDescribe},
+        </if>
+        <if test="borrowUse !=null and borrowUse !=''">
+            borrowUse = #{borrowUse},
+        </if>
+        <if test="moneyInfo !=null and moneyInfo !=''">
+            moneyInfo = #{moneyInfo},
+        </if>
+        <if test="ensureInfo !=null and ensureInfo !=''">
+            ensureInfo = #{ensureInfo},
+        </if>
+        <if test="status!=null">
+            status = #{status},
+        </if>
+        <if test="updateTime!=null">
+            updateTime = #{updateTime}
+        </if>
+        where id = #{id}
+    </update>
+
     <!--审核借款人的资料信息-->
     <update id="updateStatus" parameterType="java.util.Map">
         update borrowmoney_user set status = #{status}

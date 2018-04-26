@@ -82,7 +82,7 @@ function createTBody(){
 
                             str +=   "<td>" + data[i].createTime + "</td>"+
 
-                                "<td><span><a  href=\"toborrowUserApprrove3_info.do?id="+ data[i].id+"\" >查看</a></span><span"+" class="+"quespan"+">确定审核人员</span></td>" +
+                                "<td><span><a  href=\"toborrowUserApprrove3_info.do?id="+ data[i].id+"&status="+data[i].status+"\" >查看</a></span><span"+" class="+"quespan"+">确定审核人员</span></td>" +
 
                                 "</tr>";
 

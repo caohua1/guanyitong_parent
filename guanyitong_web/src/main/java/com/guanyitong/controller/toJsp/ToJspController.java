@@ -1,6 +1,8 @@
 package com.guanyitong.controller.toJsp;
 
+import com.guanyitong.mapper.BorrowMoneyUserDao;
 import com.guanyitong.mapper.ProductDao;
+import com.guanyitong.model.BorrowMoneyUser;
 import com.guanyitong.model.Product;
 import com.guanyitong.model.ProductInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ public class ToJspController {
 
     @Autowired
     private ProductDao productDao;
+    @Autowired
+    private BorrowMoneyUserDao borrowMoneyUserDao;
     //==================================借款人（用户管理模块）
 
     /**
@@ -47,6 +51,19 @@ public class ToJspController {
     @RequestMapping("/toborrowUserApprrove1")
     public String toborrowUserApprrove1(){
         return "userManager/borrowUser_apprrove1";
+    }
+
+    /**
+     * 跳转到修改页面（认证资料审核未通过，可以修改全部）
+     * @return
+     */
+    @RequestMapping("/toborrowUser_updateSta1")
+    public String toborrowUser_updateSta1(Long id,Model model,Integer status,Integer Type){
+        BorrowMoneyUser borrowMoneyUser = borrowMoneyUserDao.selectBorrowMoneyUser(id);
+        model.addAttribute("borrowMoneyUser",borrowMoneyUser);
+        model.addAttribute("status",status);
+        model.addAttribute("Type",Type);
+        return "userManager/borrowUser_updateSta1";
     }
 
     /**
@@ -92,8 +109,9 @@ public class ToJspController {
      * @return
      */
     @RequestMapping("/toborrowUserApprrove1_info")
-    public String toborrowUserApprrove1_info(Long id,Model model){
+    public String toborrowUserApprrove1_info(Long id,Model model,Integer status){
         model.addAttribute("id",id);
+        model.addAttribute("status",status);
         return "userManager/borrowUser_apprrove1_info";
     }
 
@@ -104,8 +122,9 @@ public class ToJspController {
      * @return
      */
     @RequestMapping("/toborrowUserApprrove2_info")
-    public String toborrowUserApprrove2_info(Long id,Model model){
+    public String toborrowUserApprrove2_info(Long id,Model model,Integer status){
         model.addAttribute("id",id);
+        model.addAttribute("status",status);
         return "userManager/borrowUser_apprrove2_info";
     }
 
@@ -116,8 +135,9 @@ public class ToJspController {
      * @return
      */
     @RequestMapping("/toborrowUserApprrove3_info")
-    public String toborrowUserApprrove3_info(Long id,Model model){
+    public String toborrowUserApprrove3_info(Long id,Model model,Integer status){
         model.addAttribute("id",id);
+        model.addAttribute("status",status);
         return "userManager/borrowUser_apprrove3_info";
     }
 

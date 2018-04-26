@@ -83,7 +83,7 @@ function initlist(Sta){
                            "<td>" + data[i].legalIDCard + "</td>" +
                            "<td>" + data[i].companyName + "</td>" +
                            "<td>" + data[i].charterNum + "</td>"
-                       if(status ==2){
+                       if(Sta ==2){
                            str += "<td>" + "待审核资料：证书" + "</td>"
                        }
                        str +=  "<td>" + data[i].createTime + "</td>"
@@ -97,11 +97,20 @@ function initlist(Sta){
                        }
 
                        str += "<td>" + data[i].auditUserName + "</td>"
-                       if(status==3){
+                       if(Sta==3){
                            str+="<td>" + data[i].causeBy + "</td>"
                        }
-                           str += "<td><span><a href=\"toborrowUserApprrove2_info.do?id="+ data[i].id+"\" >查看</a></span></td>" +
-                               "</tr>";
+                       if(data[i].status == 2){
+                           str += "<td><span><a  href=\"toborrowUserApprrove2_info.do?id="+ data[i].id+"&status="+data[i].status+"\" >审核</a></span>"
+                       }else if(data[i].status == 3){
+                           str += "<td><span><a  href=\"toborrowUserApprrove2_info.do?id="+ data[i].id+"&status="+data[i].status+"\" >查看</a></span>"+
+                               "<span><a href=\"toborrowUser_updateSta1.do?id="+data[i].id+"&status=2&Type=3\">修改</a></span></td>"
+                       }else if(data[i].status == 4){
+                           str += "<td><span><a  href=\"toborrowUserApprrove2_info.do?id="+ data[i].id+"&status="+data[i].status+"\" >查看</a></span>"
+                       }
+
+
+                       str+= "</tr>";
                        }
 
                     tbody.innerHTML = str;

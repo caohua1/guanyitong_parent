@@ -10,8 +10,8 @@ public class WithdrawalMoneyVo extends WithdrawalMoney implements Serializable {
     private String username;
     private Date startTime;
     private Date endTime;
-    private Integer minMoney;
-    private Integer maxMoney;
+    private Double minMoney;
+    private Double maxMoney;
     private String idCard;
 
     public String getRealName() {
@@ -46,19 +46,19 @@ public class WithdrawalMoneyVo extends WithdrawalMoney implements Serializable {
         this.endTime = endTime;
     }
 
-    public Integer getMinMoney() {
+    public Double getMinMoney() {
         return minMoney;
     }
 
-    public void setMinMoney(Integer minMoney) {
+    public void setMinMoney(Double minMoney) {
         this.minMoney = minMoney;
     }
 
-    public Integer getMaxMoney() {
+    public Double getMaxMoney() {
         return maxMoney;
     }
 
-    public void setMaxMoney(Integer maxMoney) {
+    public void setMaxMoney(Double maxMoney) {
         this.maxMoney = maxMoney;
     }
 

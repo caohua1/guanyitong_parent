@@ -51,6 +51,7 @@ public class BorrowMoneyUser implements Serializable {
     private String moneyInfo;//资产信息
     private String ensureInfo;//保证信息
     private Integer status;
+    private Date updateTime;
 
     public Long getId() {
         return id;
@@ -260,5 +261,14 @@ public class BorrowMoneyUser implements Serializable {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

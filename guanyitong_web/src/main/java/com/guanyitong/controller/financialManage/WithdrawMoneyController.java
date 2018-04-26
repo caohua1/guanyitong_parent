@@ -60,7 +60,7 @@ public class WithdrawMoneyController {
     @RequestMapping("/selectWithdrawal")
     @ResponseBody
     public JsonResult selectWithdrawal(String username,String borrowMoneyUserId,String realName,String idCard,String txNumber,
-                                       Integer minMoney,Integer maxMoney,String startTime,String endTime,String sqUser,
+                                       Double minMoney,Double maxMoney,String startTime,String endTime,String sqUser,
                                        Integer userType,Integer status,Integer pageNum,Integer pageSize){
         JsonResult result = new JsonResult();
         WithdrawalMoneyVo withdrawalMoneyVo = new WithdrawalMoneyVo();

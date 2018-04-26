@@ -30,52 +30,55 @@
             margin-bottom: 0px;
             background-color:gainsboro;
         }
+        .bbjianjie{ color:#00F}
+
     </style>
 </head>
 <body>
 <!--公共的外层-->
 
 <input type="hidden" value="${id}" id="borrowMoneyUserId"/>
+<input type="hidden" value="${status}" id="status"/>
 
 <div class="iframe_acont">
     <div class="acont-nav">借款人资料：</div>
 
-    <div class="bbyong"><span>用户ID : </span><span id="id"></span></div>
+    <div class="bbyong"><span>用户ID : </span><span class="bbjianjie" id="id"></span></div>
 
     <div class="bbifra">
         <div>
             <span>企业名称：</span>
-            <span id="companyName"></span>
+            <span class="bbjianjie" id="companyName"></span>
         </div>
         <div>
             <span>成立时间：</span>
-            <span id="companyCreateTime"></span>
+            <span class="bbjianjie" id="companyCreateTime"></span>
         </div>
         <div>
             <span>营业执照号：</span>
-            <span id="charterNum"></span>
+            <span class="bbjianjie" id="charterNum"></span>
         </div>
         <div>
             <span>注册资本：</span>
-            <span id="registerMoney"></span>
+            <span class="bbjianjie" id="registerMoney"></span>
         </div>
         <div>
             <span>注册地址：</span>
-            <span id="registerAddress"></span>
+            <span class="bbjianjie" id="registerAddress"></span>
         </div>
 
         <div>
             <span>借款金额：</span>
-            <span id="borrowMoney"></span>
+            <span class="bbjianjie" id="borrowMoney"></span>
         </div>
 
         <div>
             <span>法人手机号：</span>
-            <span id="legalPhone"></span>
+            <span class="bbjianjie" id="legalPhone"></span>
         </div>
         <div>
             <span>法人姓名：</span>
-            <span id="legalPersonName"></span>
+            <span class="bbjianjie" id="legalPersonName"></span>
         </div>
 
         <div>
@@ -89,11 +92,11 @@
     <div class="bbifra">
         <div>
             <span>真实姓名：</span>
-            <span id="apprroveName"></span>
+            <span class="bbjianjie" id="apprroveName"></span>
         </div>
         <div>
             <span>法人身份证号：</span>
-            <span id="legalIDCard"></span>
+            <span class="bbjianjie" id="legalIDCard"></span>
         </div>
         <div style="width: 80%;" class="faren">
             <div>法人身份证图片：</div>
@@ -111,11 +114,11 @@
     <div class="bbifra">
         <div>
             <span>征信积分：</span>
-            <span id="XYJF"></span>
+            <span class="bbjianjie" id="XYJF"></span>
         </div>
         <div>
             <span>征信备注：</span>
-            <span id="XYJFDescribe"></span>
+            <span class="bbjianjie" id="XYJFDescribe"></span>
         </div>
     </div>
 
@@ -124,7 +127,7 @@
     <div class="bbifra">
         <div>
             <span>居住地：</span>
-            <span id="address"></span>
+            <span class="bbjianjie" id="address"></span>
         </div>
 
     </div>
@@ -150,9 +153,18 @@
     </div>
 
     <div class="aatj">
-        <div><button class="quexeng" >审核通过</button></div>
-        <div><a class="fan" href="javascript:history.go(-1)" id="back">返回</a></div>
-        <div><button class="quexxiao" >审核不通过</button></div>
+        <c:if test="${status==0}">
+            <div><button class="quexeng" >审核通过</button></div>
+            <div><button class="quexxiao" >审核不通过</button></div>
+        </c:if>
+        <c:if test="${status==1}">
+            <div><button class="quexeng" >审核通过</button></div>
+            <div><button class="quexxiao" >审核不通过</button></div>
+        </c:if>
+        <div>
+
+            <button id="back">返回</button>
+        </div>
 
     </div>
 

@@ -52,6 +52,7 @@ function createTBody() {
             bankName : bankName
         },
         success: function(msg){
+            console.log(msg);
             var str="" ;
             var count=msg.data.count;
             var j = (pageNum-1)*pageSize+1;
@@ -76,17 +77,17 @@ function createTBody() {
                             "<td>" + data[i].realBackTime + "</td>"
                             if(data[i].status == 0){
                                str += "<td>" +  "待还款" + "</td>"+/*id,borrowMoneyUserId,status,productInfoId,count*/
-                                   "<td><span><a href=\"toborrowUserApprrove1_info.do?productInfoId="+ data[i].productInfoId+"\" >查看</a></span>" +
+                                   "<td><span><a href=\"toborrowMoney_info.do?id="+ data[i].productInfoId+"&status="+data[i].productinfoStatus+"&borrowMoneyUserId="+data[i].borrowMoneyUserId+"\"  >查看</a></span>" +
                                    "<span><a href=\"javascript:;\" onclick=\"toupdate('"+data[i].id+"','1','"+data[i].borrowMoneyUserId+"'," +
                                    "'"+data[i].productInfoId+"','"+data[i].count+"')\">确认还款成功</a></span>" +
                                    "<span><a href=\"javascript:;\" onclick=\"toupdate('"+data[i].id+"','2','"+data[i].borrowMoneyUserId+"'," +
                                    "'"+data[i].productInfoId+"','"+data[i].count+"')\">确认还款失败</a></span></td>"
                             }else if(data[i].status ==1){
                                 str += "<td>" +  "已还款" + "</td>"+
-                                    "<td><span><a href=\"javascript:;\" >查看</a></span></td>"
+                                    "<td><span><a href=\"toborrowMoney_info.do?id="+ data[i].productInfoId+"&status="+data[i].productinfoStatus+"&borrowMoneyUserId="+data[i].borrowMoneyUserId+"\" >查看</a></span></td>"
                             }else if(data[i].status==2){
                                 str += "<td>" +  "还款失败" + "</td>"+
-                                    "<td><span><a href=\"javascript:;\" >查看</a></span></td>"
+                                    "<td><span><a href=\"toborrowMoney_info.do?id="+ data[i].productInfoId+"&status="+data[i].productinfoStatus+"&borrowMoneyUserId="+data[i].borrowMoneyUserId+"\" >查看</a></span></td>"
                             }
                             str+= "</tr>";
                     }
@@ -125,11 +126,6 @@ function createTBody() {
 
 //确认还款成功还是失败
 function toupdate(id,status,borrowMoneyUserId,productInfoId,count){
-    alert(id);
-    alert(status);
-    alert(borrowMoneyUserId);
-    alert(productInfoId);
-    alert(count);
     $('.showhide').show();
     $('.zhezaocegn').show();
     if(status ==1){
@@ -157,7 +153,6 @@ function toupdate(id,status,borrowMoneyUserId,productInfoId,count){
                 console.log(msg);
                 if (msg.state == 0) {
                     alert("操作成功");
-                    bBtn = true;
                     createTBody();
                 } else {
                     alert("操作失败");

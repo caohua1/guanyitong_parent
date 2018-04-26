@@ -38,6 +38,7 @@
 <body>
 <!--公共的外层-->
 <input type="hidden" value="${id}" id="borrowMoneyUserId"/>
+<input type="text" value="${status}" id="status"/>
 <div class="iframe_acont">
     <div class="acont-nav">借款人资料：</div>
 
@@ -163,9 +164,17 @@
     </div>
 
     <div class="aatj">
-        <div><button class="quexeng">审核通过</button></div>
-        <div><a class="fan" href="javascript:history.go(-1)">返回</a></div>
-        <div><button class="quexxiao">审核不通过</button></div>
+        <c:if test="${status==2}">
+            <div><button class="quexeng">审核通过</button></div>
+            <div><button class="quexxiao" style="width: 100px;">审核不通过</button></div>
+        </c:if>
+        <c:if test="${status ==3}">
+            <div><button class="quexeng">审核通过</button></div>
+            <div><button class="quexxiao" style="width: 100px;">审核不通过</button></div>
+        </c:if>
+        <div>
+            <button id="back">返回</button>
+        </div>
 
     </div>
 

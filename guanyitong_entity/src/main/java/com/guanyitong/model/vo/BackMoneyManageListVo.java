@@ -9,6 +9,7 @@ public class BackMoneyManageListVo extends BackMoney {
     private String IDCardNumber;//身份证号
     private String bankName;//开户行
     private String cardNo;//银行卡号
+    private Integer productinfoStatus;//标的状态
 
     public String getRealName() {
         return realName;
@@ -40,5 +41,13 @@ public class BackMoneyManageListVo extends BackMoney {
 
     public void setCardNo(String cardNo) {
         this.cardNo = cardNo;
+    }
+
+    public Integer getProductinfoStatus() {
+        return productinfoStatus;
+    }
+
+    public void setProductinfoStatus(Integer productinfoStatus) {
+        this.productinfoStatus = productinfoStatus;
     }
 }

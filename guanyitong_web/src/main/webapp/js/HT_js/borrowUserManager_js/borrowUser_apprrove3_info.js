@@ -1,6 +1,5 @@
 $(function(){
     init();
-
     //点击取消
     $("#cancel").on("click",function(){
        $('.showhide').hide();
@@ -8,20 +7,26 @@ $(function(){
     //点击确定，审核通过
     $("#apprrove_success").on("click",function(){
         $('.showhide').hide();
-        var status = 2;
+        var status = 6;
         toupdate(status);
-
     });
 
     //点击确定审核失败
     $("#apprrove_no").on("click",function () {
         $(".showtexthide").hide();
-        var status = 1;
+        var status = 5;
         toupdate(status);
+    });
+
+    //点击返回
+    $("#back").on("click",function () {
+        window.history.back(-1);
     });
 
 
 });
+
+
 
 //初始化页面
 function init(){
@@ -40,14 +45,10 @@ function init(){
             var data = msg.data;
             console.log(msg)
           if(msg.data!=null){
-              $("#id").html(id);
+              $("#id").html(addPreZero(id));
               //0 认证信息待审核  1 认证审核失败 2 认证信息审核成功，借款额度待审核  3 借款额度审核失败
               // 4 借款额度审核成功，合同待确认  5 合同确认失败  6 合同确认成功，产品待审核
               // 7 待还款 8 还款中 9 已还款
-
-         /* <div><span>✔</span>  <span>认证资料审核：</span><span id="status">已通过</span></div>
-              <div><span>✔</span>  <span>额度申请审核：</span><span id="status_money">已通过</span></div>
-              <div><span>✔</span>  <span>合约</span><span id="status_heto">已签约</span></div>*/
               if(data.status ==0){
                  $("#status").html("待审核");
                  $("#status_money").html("待审核");
@@ -231,12 +232,20 @@ function toupdate(status) {
         success: function (msg) {
             if(msg.state==0){
                alert("操作成功")
+                window.location.href = basePath+"toJsp/toborrowUserApprrove3.do";
             }else{
-                alert("网络错误");
+                alert("操作失败");
+                window.location.href = basePath+"toJsp/toborrowUserApprrove3.do";
             }
         },
         error: function () {
-            alert("修改失败")
+            alert("网络问题")
         }
     });
+}
+
+
+//补零
+function addPreZero(num){
+    return ('0000000'+num).slice(-8);
 }

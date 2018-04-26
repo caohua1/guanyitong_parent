@@ -39,9 +39,10 @@
     <select id="backMoneyList" parameterType="java.util.Map" resultType="com.guanyitong.model.vo.BackMoneyManageListVo">
         select ub.realName,ub.IDCardNumber,ub.bankName,ub.cardNo,
         bm.borrowMoneyUserId,bm.productInfoId,bm.bj,bm.lx,bm.backMoney,bm.id,bm.count,
-        bm.backTime,bm.realBackTime,bm.status from back_money bm
+        bm.backTime,bm.realBackTime,bm.status,p.status productinfoStatus from back_money bm
         left join borrowmoney_user bu on bm.borrowMoneyUserId = bu.id
         left join user_bankcard ub on ub.borrowMoneyUserId = bu.id
+        left join productinfo p on p.id = bm.productInfoId
         where 1=1
         <if test="borrowMoneyUserId !=null">
             and bm.borrowMoneyUserId = #{borrowMoneyUserId}

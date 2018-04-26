@@ -33,8 +33,11 @@
 
 </head>
 <body>
+
 <div class="loginliu">
-    ${message}
+    <div style="padding-top: 300px;padding-left: 45%">
+        <p><b style="color: red;font-size: 20px"> ${message}</b></p>
+    </div>
     <form action="<%=basePath%>login.do" commandName="employee" method="post">
         <div class="loadliu">
             <p><span><img src="<%=path%>/img/yong.png"></span><span><input type="text" name="ephone"></span></p>

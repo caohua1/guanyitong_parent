@@ -82,7 +82,7 @@ function initlist(Sta){
                                "<td>" + data[i].legalIDCard + "</td>" +
                                "<td>" + data[i].companyName + "</td>" +
                                "<td>" + data[i].charterNum + "</td>"
-                           if(status ==0){
+                           if(Sta ==0){
                                str += "<td>" + "待审核资料：证书" + "</td>"
                            }
                            str +=  "<td>" + data[i].createTime + "</td>"
@@ -96,11 +96,18 @@ function initlist(Sta){
                            }
 
                            str += "<td>" + data[i].auditUserName + "</td>"
-                           if(status==1){
+                           if(Sta==1){
                                str+="<td>" + data[i].causeBy + "</td>"
                            }
-                           str += "<td><span><a  href=\"toborrowUserApprrove1_info.do?id="+ data[i].id+"\" >查看</a></span><span><a href='javascript:;'>修改</a></span></td>" +
-                               "</tr>";
+                       if(data[i].status == 0){
+                           str += "<td><span><a  href=\"toborrowUserApprrove1_info.do?id="+ data[i].id+"&status="+data[i].status+"\" >审核</a></span>"
+                       }else if(data[i].status == 1){
+                           str += "<td><span><a  href=\"toborrowUserApprrove1_info.do?id="+ data[i].id+"&status="+data[i].status+"\" >查看</a></span>"+
+                               "<span><a href=\"toborrowUser_updateSta1.do?id="+data[i].id+"&status=0&Type=2\">修改</a></span></td>"
+                       }else if(data[i].status == 2){
+                           str += "<td><span><a  href=\"toborrowUserApprrove1_info.do?id="+ data[i].id+"&status="+data[i].status+"\" >查看</a></span>"
+                       }
+                           str+= "</tr>";
                     }
                     tbody.innerHTML = str;
                     if(bBtn){
@@ -120,6 +127,8 @@ function initlist(Sta){
                 }
             }else{
                 tbody.innerHTML = "暂无数据";
+                alert("暂无数据");
+                layer.msg("暂无数据");
                 if(bBtn) {
                     $('.pageTest').page({
                         leng: 0,

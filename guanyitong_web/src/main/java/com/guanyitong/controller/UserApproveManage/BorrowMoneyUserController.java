@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import util.DateAndTimeUtil;
 import util.JsonResult;
 
+import javax.json.Json;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,21 +31,14 @@ public class BorrowMoneyUserController {
      */
     @RequestMapping("/addBorrowMoneyUser")
     @ResponseBody
-    public JsonResult addBorrowMoneyUser(BorrowMoneyUser borrowMoneyUser,String companytime){
+    public JsonResult addBorrowMoneyUser(BorrowMoneyUser borrowMoneyUser){
         JsonResult result = new JsonResult();
         try{
             borrowMoneyUser.setCreateTime(new Date());
-            if(companytime!=null && !("").equals(companytime)){
-                borrowMoneyUser.setCompanyCreateTime(DateAndTimeUtil.convert(companytime));
-            }
             Integer i = borrowMoneyUserService.insertUser(borrowMoneyUser);
             if(i>0){
                 result.setState(JsonResult.SUCCESS);
                 result.setMessage("返回数据成功");
-                result.setData(borrowMoneyUser);
-            }else {
-                result.setState(JsonResult.ERROR);
-                result.setMessage("返回数据失败");
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -223,4 +217,30 @@ public class BorrowMoneyUserController {
         }
         return result;
    }
+
+    /**
+     * 修改借款人信息（资料审核没通过）
+     * @param borrowMoneyUser
+     * @return
+     */
+   @RequestMapping("/updateBorrowUser")
+   @ResponseBody
+   public JsonResult updateBorrowUser(BorrowMoneyUser borrowMoneyUser){
+       JsonResult result = new JsonResult();
+       try{
+           borrowMoneyUser.setUpdateTime(new Date());
+           Integer i = borrowMoneyUserService.updateBorrowUser(borrowMoneyUser);
+           if(i>0){
+               result.setState(JsonResult.SUCCESS);
+               result.setMessage("修改成功");
+           }
+       }catch(Exception e){
+           e.printStackTrace();
+           result.setState(JsonResult.ERROR);
+           result.setMessage("修改失败");
+       }
+       return result;
+   }
 }
+
+

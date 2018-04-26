@@ -79,7 +79,7 @@
 
 
 
-        <div class="tjiaoP_a"><span>时间:</span><span><input type="text" id="startTime"></span><span>至</span><span><input type="text" id="endTime"></span></div>
+        <div class="tjiaoP_a"><span>时间:</span><span><input type="text" id="startTime" onfocus="MyCalendar.SetDate(this)"></span><span>至</span><span><input type="text" id="endTime" onfocus="MyCalendar.SetDate(this)"></span></div>
         <div><span>收支类型:</span>
             <span><select id="selectSZ">
 							<option value="-1">==请选择</option>
@@ -118,7 +118,7 @@
             <div class="pageTest">
             </div>
             <div class="acon-yong">
-                <span>第</span><span id="pageNum">1</span><span>页</span><span>/</span><span>总</span><span id="pageCount">1</span><span>页</span>/<span>每页显示</span><span id="pageSize">1</span><span>条</span>
+                <span>第</span><span id="pageNum">1</span><span>页</span><span>/</span><span>总</span><span id="pageCount">1</span><span>页</span>/<span>每页显示</span><span id="pageSize">9</span><span>条</span>
             </div>
         </div>
     </div>

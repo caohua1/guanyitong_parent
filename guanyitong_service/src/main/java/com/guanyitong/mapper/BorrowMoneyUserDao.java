@@ -13,5 +13,6 @@ public interface BorrowMoneyUserDao {
     public Integer updateStatus(Map map);
     public int selectCount(Map map);
     public List<BorrowMoneyUser> selectDimId(Long dimId);
+    public Integer updateBorrowUser(BorrowMoneyUser borrowMoneyUser);
 
 }

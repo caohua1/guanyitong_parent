@@ -123,13 +123,29 @@
     </div>
 
 
-    <div class="showhide">
+   <%-- <div class="showhide">
         <div class="showhideng">
             <span>✖</span>
             <p>确定是审核人员？</p>
             <div class="quex">
                 <div><span>确定</span></div>
                 <div><span>取消</span></div>
+            </div>
+        </div>
+    </div>--%>
+
+    <div class="showhide" style="display: none">
+        <div class="showhideng">
+            <span id="x">✖</span>
+            <div style="padding-top: 20px">
+                <b style="color: red;font-size: 15px;padding-left: 20px">可修改借款金额</b>
+            </div>
+            <div style="padding-top: 40px;padding-left: 20px">
+            借款金额：<input type="text" id="borrowMoney" style="height: 25px"/>
+            </div>
+            <div class="quex">
+                <div><span id="updateMoney">确定</span></div>
+                <div><span id="quxiao">取消</span></div>
             </div>
         </div>
     </div>
@@ -144,6 +160,8 @@
 
 </div>
 </body>
+
+<div class="zhezaocegn"></div>
 </html>
 <%--<script>
     $(function(){
@@ -156,4 +174,23 @@
         });
     });
 </script>--%>
+
+
+<script>
+    $(function(){
+        $('.showhideng>p').css({'top':'12%'});
+        $('.showhideng textarea').css({'top':'20%'});
+        $('.quex').css({'top':'80%'});
+        $('.tjiaoP_a>span').find('input').css({'width':'91px','height':'30px'});
+        /* $('.fangqij').click(function(){
+             $('.showhide').show();
+             $('.zhezaocegn').show();
+         })*/
+        $('.showhideng>span').click(function(){
+            $('.showhide').hide();
+            $('.zhezaocegn').hide();
+        })
+        $('.zhezaocegn').height(document.documentElement.clientHeight);
+    })
+</script>
 

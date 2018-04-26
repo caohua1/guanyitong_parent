@@ -21,9 +21,12 @@
     <link rel="stylesheet" href="<%=path%>/css/common_css/style.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/css.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/page.css" />
+    <link rel="stylesheet" href="<%=path%>/css/common_css/layer.css" />
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
     <script src="<%=path%>/js/common_js/mydate.js"></script>
     <script src="<%=path%>/js/common_js/page.js"></script>
+    <script src="<%=path%>/js/common_js/layer.js"></script>
     <script  src="${ctx}/js/HT_js/borrowUserManager_js/borrowUser_apprrove1.js"></script>
     <style>
         .acon-table{

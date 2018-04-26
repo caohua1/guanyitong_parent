@@ -55,8 +55,8 @@
                          </c:forEach>
 					</select></span>
         </p>
-        <p><span>借款金额：</span><span><input type="text" id="ZMoney" value="<c:if test="${not empty productInfos.ZMoney}">${productInfos.ZMoney}</c:if>
-                                                                             <c:if test="${empty productInfos.ZMoney}">${productInfos.ZMoney}</c:if>"></span></p>
+        <p><span>借款金额：</span><span><input type="text" id="ZMoney"  value="<c:if test="${not empty productInfos.ZMoney}">${productInfos.ZMoney}</c:if>
+                                                                             <c:if test="${empty productInfos.ZMoney}">${productInfos.ZMoney}</c:if>" disabled></span></p>
         <p><span>还款方式：</span>
             <span><select id="backMoneyType">
                        <c:if test="${productInfos.backMoneyType=='按月还本付息'}"><option value="1" selected="selected">按月还本付息</option></c:if>
@@ -70,9 +70,6 @@
 
         <p><span>筹标期限是否还息：</span>
             <span><select id="YesNo">
-                       <%--<c:if test="${productInfos.YesNo=='是'}"><option value="1" selected="selected">是</option></c:if>
-                       <c:if test="${productInfos.YesNo=='否'}"><option value="0" selected="selected">否</option></c:if>
-                       <c:if test="${empty productInfos.YesNo}"></c:if>"><option value="" selected="selected">请选择</option></span></p>--%>
 						<option <c:if test="${productInfos.yesNo=='是'}"> selected="selected"</c:if> value="1">是</option>
                         <option <c:if test="${productInfos.yesNo=='否'}"> selected="selected"</c:if> value="0">否</option>
 
@@ -97,12 +94,6 @@
         <p><span>资金用途：</span><span><input type="text" id="moneyUse" value="${productInfos.moneyUse}"></span></p>
         <p><span>起诉资金：</span><span><input type="text" id="QSUse" value="${productInfos.QSUse}"></span></p>
 
-
-
-       <%-- <p><span>封面：</span><input type="file" name="file" id="myFile" onchange="upload(this)" value="${productInfos.coverImage}"></p>
-
-        <p style="height: auto;line-height: 0;"><span></span><span id="myFile_div"><img src="http://127.0.0.1${productInfos.coverImage}" id="myImg" style="display: none;width: 100px;height: 100px;margin-left: 15px;"></span></p>
---%>
         <div style="line-height: 0;height: auto;">
             <div style="line-height: 50px;height: auto;"><span style="margin-right: 10px;">封面照片:</span><input type="file" name="file"  id="myFile" onchange="upload(this.files)"></div>
             <div id="myFile_div3" style="line-height: 0;height: auto;">
@@ -112,14 +103,10 @@
         </div>
     </div>
 
-
-
-
     <div class="aatj">
         <div><button id="update">确定提交</button></div>
         <div><button id="back">取消</button></div>
     </div>
-
 
 </div>
 </body>
