@@ -1,7 +1,8 @@
 package com.guanyitong.model.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.guanyitong.model.AccountManager;
+
+import com.guanyitong.model.RechargeMoney;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,48 +10,62 @@ import java.util.Date;
 /**
  * 充值明细实体类
  */
-public class RechargeSheetVo extends AccountManager implements Serializable {
+public class RechargeSheetVo extends RechargeMoney implements Serializable {
 
+    private String bankAddress;//开户地址
+    private String bankName;//开户银行名称
+    private String bankNum;//银行卡号
+    private Date createTime;//绑定时间
+    private String idCard;//身份证号码
+    private String realName;//用户真实姓名
+    private String username;//用户名
 
-    private String rechargeMoney;//充值金额
-    private String dzMoney;//实际到账金额
-    private Date rechargeTime;//充值时间
-    private String serial;//流水号
-    private String username;//手机号
-    private Long rid;//充值表主键id
-
-
-    public String getRechargeMoney() {
-        return rechargeMoney;
+    public String getBankAddress() {
+        return bankAddress;
     }
 
-    public void setRechargeMoney(String rechargeMoney) {
-        this.rechargeMoney = rechargeMoney;
+    public void setBankAddress(String bankAddress) {
+        this.bankAddress = bankAddress;
     }
 
-    public String getDzMoney() {
-        return dzMoney;
+    public String getBankName() {
+        return bankName;
     }
 
-    public void setDzMoney(String dzMoney) {
-        this.dzMoney = dzMoney;
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
     }
 
+    public String getBankNum() {
+        return bankNum;
+    }
+
+    public void setBankNum(String bankNum) {
+        this.bankNum = bankNum;
+    }
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    public Date getRechargeTime() {
-        return rechargeTime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setRechargeTime(Date rechargeTime) {
-        this.rechargeTime = rechargeTime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public String getSerial() {
-        return serial;
+    public String getIdCard() {
+        return idCard;
     }
 
-    public void setSerial(String serial) {
-        this.serial = serial;
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
     public String getUsername() {
@@ -59,13 +74,5 @@ public class RechargeSheetVo extends AccountManager implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public Long getRid() {
-        return rid;
-    }
-
-    public void setRid(Long rid) {
-        this.rid = rid;
     }
 }

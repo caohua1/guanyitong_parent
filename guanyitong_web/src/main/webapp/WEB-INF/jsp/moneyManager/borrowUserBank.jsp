@@ -54,7 +54,7 @@
     <div class="acont-nav">银行卡管理：</div>
     <div class="acont-ahref"><a href="${ctx}/toJsp/toAddBankCard.do">添加用户银行卡</a></div>
     <div class="acon-input">
-        <div><span>用户ID:</span><span><input type="text" id="borrowMoneyUserId"></span></div>
+        <div><span>用户借款ID:</span><span><input type="text" id="borrowMoneyUserId"></span></div>
         <div><span>真实姓名:</span><span><input type="text" id="realName"></span></div>
         <div><span>身份证号:</span><span><input type="text" id="IDCardNumber"></span></div>
         <div><span>卡号:</span><span><input type="text" id="cardNo"></span></div>
@@ -66,7 +66,7 @@
             <thead>
             <tr>
                 <th>序号</th>
-                <th>用户ID</th>
+                <th>用户借款ID</th>
                 <th>真实姓名</th>
                 <th>身份证号</th>
                 <th>开户行</th>
@@ -87,7 +87,7 @@
             <div class="pageTest">
             </div>
             <div class="acon-yong">
-                <span>第</span><span id="pageNum">1</span><span>页</span><span>/</span><span>总</span><span id="pageCount">1</span><span>页</span>/<span>每页显示</span><span id="pageSize">1</span><span>条</span>
+                <span>第</span><span id="pageNum">1</span><span>页</span><span>/</span><span>总</span><span id="pageCount">1</span><span>页</span>/<span>每页显示</span><span id="pageSize">9</span><span>条</span>
             </div>
         </div>
     <div class="showhide">

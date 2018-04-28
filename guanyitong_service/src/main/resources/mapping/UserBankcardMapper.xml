@@ -20,27 +20,27 @@
         <if test="cardNo!=null and cardNo!=''">
             and cardNo=#{cardNo}
         </if>
-        <if test="firstDate !=null and lastDate ==null">
-            and submitTime  &gt;= #{firstDate}
+        <if test="firstTime !=null and lastTime ==null">
+            and submitTime  &gt;= #{firstTime}
         </if>
-        <if test="firstDate ==null and lastDate !=null">
-            and submitTime  &lt;= #{lastDate}
+        <if test="firstTime ==null and lastTime !=null">
+            and submitTime  &lt;= #{lastTime}
         </if>
-        <if test="firstDate !=null and lastDate !=null">
-            and submitTime BETWEEN firstDate and lastDate
+        <if test="firstTime !=null and lastTime !=null">
+            and submitTime BETWEEN #{firstTime} and #{lastTime}
         </if>
         
     </select>
     <!-- 用户绑定银行卡-->
     <insert id="insertUserBankcardDao" parameterType="com.guanyitong.model.UserBankcard">
-       INSERT INTO user_bankcard (borrowMoneyUserId,realName,IDCardNumber,cardNo,bankName,openAccountRegion,phone,YN)
+       INSERT INTO user_bankcard (borrowMoneyUserId,realName,IDCardNumber,cardNo,bankName,submitTime,openAccountRegion,phone,YN)
        VALUES
-       (#{borrowMoneyUserId},#{realName},#{IDCardNumber},#{cardNo},#{bankName},#{openAccountRegion},#{phone},#{YN})
+       (#{borrowMoneyUserId},#{realName},#{IDCardNumber},#{cardNo},#{bankName},#{submitTime},#{openAccountRegion},#{phone},#{YN})
     </insert>
 
     <!--根据主键id查看详情-->
     <select id="selectUserBankcardById" parameterType="Long" resultType="com.guanyitong.model.UserBankcard">
-        select * from user_bankcard where borrowMoneyUserId = #{id}
+        select * from user_bankcard where borrowMoneyUserId = #{borrowMoneyUserId}
     </select>
 
     <!--模糊查询 borrowMoneyUserId -->

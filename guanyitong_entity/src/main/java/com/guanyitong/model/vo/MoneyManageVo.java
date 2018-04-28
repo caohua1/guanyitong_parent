@@ -14,7 +14,7 @@ public class MoneyManageVo implements Serializable {
     private Double yuE;//可用余额
     private Double BHMoney;//保护期金额
     private Double TQZMoney;//提取中的金额
-        private Double DHKMoney;//待回款金额
+    private Double DHKMoney;//待回款金额
     private Double LJSY;//累计收益
     private Date createTime;//开通时间id
 

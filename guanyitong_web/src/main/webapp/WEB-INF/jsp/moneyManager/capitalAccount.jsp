@@ -51,18 +51,11 @@
     <div class="acont-nav">资金账户管理 ：</div>
 
     <div class="acon-input">
-
-
-
         <div class="tjiaoP_a"><span>开通时间:</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="startTime"></span><span>至</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="endTime"></span></div>
-        <div class="tjiaoP_a"><span>可用金额:</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="minyuE"></span><span>至</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="maxyuE"></span></div>
+        <div class="tjiaoP_a"><span>可用金额:</span><span><input type="text" class="input-text" id="minyuE"></span><span>至</span><span><input type="text" class="input-text" id="maxyuE"></span></div>
 
         <div class="tjiaoP_a"><span>累计收益:</span><span><input type="text" id="minLJSY"></span><span>至</span><span><input type="text" id="maxLJSY"></span></div>
-
-
         <div class="soua"><button id="select">搜索</button></div>
-
-
     </div>
     <div class="acon-table">
         <table border="1"  border="0" cellspacing="0" cellpadding="0" >

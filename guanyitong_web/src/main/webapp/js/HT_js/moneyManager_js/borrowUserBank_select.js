@@ -8,6 +8,5 @@ $(function () {
     }else {
         $("#shuoM").hide();
     }
-
 });
 

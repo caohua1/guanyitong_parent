@@ -62,10 +62,10 @@
             and wm.txTime BETWEEN  #{startTime} and #{endTime}
         </if>
         <if test="startTime !=null and endTime ==null">
-            and wm.txTime &gt;= startTime
+            and wm.txTime &gt;= #{startTime}
         </if>
         <if test="startTime ==null and endTime !=null">
-            and wm.txTime &lt;= endTime
+            and wm.txTime &lt;= #{endTime}
         </if>
         <if test="userType !=null">
             and wm.userType = #{userType}
@@ -123,10 +123,10 @@
             and wm.txTime BETWEEN  #{startTime} and #{endTime}
         </if>
         <if test="startTime !=null and endTime ==null">
-            and wm.txTime &gt;= startTime
+            and wm.txTime &gt;= #{startTime}
         </if>
         <if test="startTime ==null and endTime !=null">
-            and wm.txTime &lt;= endTime
+            and wm.txTime &lt;= #{endTime}
         </if>
         <if test="userType !=null">
             and wm.userType = #{userType}

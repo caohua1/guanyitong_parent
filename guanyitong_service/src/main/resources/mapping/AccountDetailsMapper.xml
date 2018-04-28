@@ -3,20 +3,20 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.guanyitong.mapper.AccountDetailsDao">
-
-    <!-- 出借人账户明细 xml-->
-
     <!--查询出借人充值记录-->
     <select id="selectRechargeList" parameterType="java.util.Map" resultType="com.guanyitong.model.RechargeMoney">
         SELECT * FROM recharge_money
         WHERE 1=1
-        <if test="startTime !=null and endTime ==null">
-            and rechargeTime &gt;= #{startTime}
+        <if test="startTime!=null and endTime==null">
+            and rechargeTime&gt;=#{startTime}
         </if>
-        <if test="startTime ==null and endTime !=null">
-            and rechargeTime &lt;= #{endTime}
+        <if test="startTime==null and endTime!=null">
+            and rechargeTime&lt;=#{endTime}
         </if>
-        <if test="userId !=null and userId!=''">
+        <if test="startTime!=null and endTime!=null">
+            AND rechargeTime BETWEEN #{startTime} and #{endTime}
+        </if>
+        <if test="userId!=null and userId!=''">
             and userId=#{userId}
         </if>
 
@@ -32,10 +32,12 @@
         <if test="startTime ==null and endTime !=null">
             and rechargeTime &lt;= #{endTime}
         </if>
+        <if test="startTime!=null and endTime!=null">
+            AND rechargeTime BETWEEN #{startTime} and #{endTime}
+        </if>
         <if test="userId !=null and userId!=''">
             and userId=#{userId}
         </if>
-
     </select>
     <!-- 查询出借人出借记录-->
     <select id="selectUserDealMoneyList" parameterType="java.util.Map" resultType="com.guanyitong.model.UserDealMoney">
@@ -46,6 +48,9 @@
         </if>
         <if test="startTime ==null and endTime !=null">
             and createTime &lt;= #{endTime}
+        </if>
+        <if test="startTime!=null and endTime!=null">
+            AND createTime BETWEEN #{startTime} and #{endTime}
         </if>
         <if test="userId !=null and userId!=''">
             and userId=#{userId}
@@ -62,6 +67,9 @@
         <if test="startTime ==null and endTime !=null">
             and createTime &lt;= #{endTime}
         </if>
+        <if test="startTime!=null and endTime!=null">
+            AND createTime BETWEEN #{startTime} and #{endTime}
+        </if>
         <if test="userId !=null and userId!=''">
             and userId=#{userId}
         </if>
@@ -75,6 +83,9 @@
         </if>
         <if test="startTime ==null and endTime !=null">
             and time &lt;= #{endTime}
+        </if>
+        <if test="startTime!=null and endTime!=null">
+            AND time BETWEEN #{startTime} and #{endTime}
         </if>
         <if test="userId !=null and userId!=''">
             and userId=#{userId}
@@ -90,6 +101,9 @@
         </if>
         <if test="startTime ==null and endTime !=null">
             and time &lt;= #{endTime}
+        </if>
+        <if test="startTime!=null and endTime!=null">
+            AND time BETWEEN #{startTime} and #{endTime}
         </if>
         <if test="userId !=null and userId!=''">
             and userId=#{userId}

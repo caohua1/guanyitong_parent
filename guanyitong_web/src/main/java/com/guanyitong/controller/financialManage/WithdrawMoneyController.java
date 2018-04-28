@@ -23,7 +23,6 @@ public class WithdrawMoneyController {
     private WithdrawMoneyService withdrawMoneyService;
     @Autowired
     private BackMoneyService backMoneyService;
-
     /**
      * 提现，添加数据（//pc端的是借款人,有申请人姓名）
      * @return
@@ -55,7 +54,8 @@ public class WithdrawMoneyController {
      * @param
      * @param pageNum
      * @param pageSize
-     * @return
+     * @retur
+     *
      */
     @RequestMapping("/selectWithdrawal")
     @ResponseBody
@@ -80,15 +80,15 @@ public class WithdrawMoneyController {
             if(txNumber!=null && txNumber!=""){
                 withdrawalMoneyVo.setTxNumber(txNumber);
             }
-            if(minMoney!=null){
+            if(!minMoney.isNaN()){
                 withdrawalMoneyVo.setMinMoney(minMoney);
             }
-            if(maxMoney!=null){
+            if(!maxMoney.isNaN()){
                 withdrawalMoneyVo.setMaxMoney(maxMoney);
             }
-            if(startTime!=null&&startTime!=""){
+            if(startTime!=null&&!("").equals(startTime)){
                 withdrawalMoneyVo.setStartTime(DateAndTimeUtil.convert(startTime));
-            }if(endTime!=null&&endTime!=""){
+            }if(endTime!=null&&!("").equals(endTime)){
                 withdrawalMoneyVo.setEndTime(DateAndTimeUtil.convert(endTime));
             }if(sqUser!=null&&sqUser!=""){
                 withdrawalMoneyVo.setSqUser(sqUser);

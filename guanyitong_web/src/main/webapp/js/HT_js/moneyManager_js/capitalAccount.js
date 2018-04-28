@@ -77,7 +77,7 @@ function createData() {
                         clickBack: function (pageNum) {
                             $(this)[0].leng = Math.ceil(count / pageSize);
                             $("#pageNum").text(pageNum);
-                            createTBody();
+                            createData();
                         }
                     });
                 }

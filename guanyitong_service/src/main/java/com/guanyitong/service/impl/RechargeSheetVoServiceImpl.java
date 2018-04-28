@@ -31,20 +31,19 @@ public class RechargeSheetVoServiceImpl implements RechargeSheetVoService {
      * @return
      */
     @Override
-    public PageInfo<RechargeSheetVo> listRechargeSheetVo(Integer pageNum, Integer pageSize, Map demandMap) {
+    public PageInfo<RechargeSheetVo> listRechargeSheetVo(Map demandMap,Integer pageNum, Integer pageSize){
         PageHelper.startPage(pageNum,pageSize);//开始分页
         List<RechargeSheetVo> listRechargeSheetVos = rechargeMoneyDao.listRechargeSheetVo(demandMap);
         PageInfo<RechargeSheetVo> rechargeSheetVoPageInfo = new PageInfo<RechargeSheetVo>(listRechargeSheetVos);
         return rechargeSheetVoPageInfo;
     }
-
     /**
      * 添加充值记录并修改当前用户余额
      * @param rechargeMoney
      * @return
      */
     @Override
-    public boolean insertRechargeMoney(RechargeMoney rechargeMoney) {
+    public boolean insertRechargeMoney(RechargeMoney rechargeMoney){
         Long id = rechargeMoneyDao.insertRechargeMoney(rechargeMoney);
         HashMap<Object, Object> balanceMap = new HashMap<Object, Object>();
         balanceMap.put("userId",rechargeMoney.getUserId());

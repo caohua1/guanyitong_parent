@@ -27,16 +27,11 @@ function creatTable(){
     var lastMoney= $("#lastMoney").val();
     var firstDate= $("#firstDate").val();
     var lastDate= $("#lastDate").val();
-    var myselect=document.getElementById("select_stu");
-    var myIndex= myselect.selectedIndex;
-    if(myselect.options[myIndex].value==0){
-        stu=0;
-    }else if(myselect.options[myIndex].value==1){
+    if($("#select_stu").val()==1){
         stu=1;
-    }else{
-        stu=null;
+    }else if($("#select_stu").val()==0){
+        stu=0;
     }
-
     var tbody=window.document.getElementById("tbody-result");
     //获取当前页面的url
     var local = window.location;

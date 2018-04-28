@@ -3,7 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.guanyitong.mapper.RechargeMoneyDao">
-
     <!--查询充值记录（分页查询，条件查询）-->
     <select id="listRechargeSheetVo" parameterType="java.util.Map" resultType="com.guanyitong.model.vo.RechargeSheetVo">
         SELECT
@@ -19,6 +18,9 @@
         LEFT JOIN account_manager a ON r.userId = a.userId
         LEFT JOIN user_info u ON r.userId=u.id
             WHERE 1=1
+            <if test="status!=null">
+            AND r.status =#{status}
+            </if>
             <if test="rid!=null and rid!=''">
                 AND r.id=#{rid}
             </if>
@@ -53,9 +55,7 @@
             <if test="firstDate!=null and lastDate!=null">
                 AND r.rechargeTime BETWEEN #{firstDate} and #{lastDate}
             </if>
-            <if test="status!=null and status!=''">
-                AND r.status =#{status}
-            </if>
+
     </select>
 
     <select id="RechargeSheetCount" parameterType="java.util.Map" resultType="Integer">
@@ -104,8 +104,6 @@
             AND r.status =#{status}
         </if>
     </select>
-
-
     <!--添加充值记录-->
     <insert id="insertRechargeMoney" useGeneratedKeys="true" keyProperty="id" parameterType="com.guanyitong.model.RechargeMoney">
         INSERT INTO recharge_money (
@@ -134,6 +132,4 @@
     <update id="updateRechargeMoney"  parameterType="java.lang.Long">
         UPDATE recharge_money SET status=1 WHERE id=#{id}
     </update>
-
-
 </mapper>

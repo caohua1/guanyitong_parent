@@ -78,7 +78,6 @@ public class LenderManagementVoController {
             result.setData(acountMap);
             result.setState(JsonResult.SUCCESS);
             result.setMessage("返回数据成功");
-
         }catch (Exception e){
             e.printStackTrace();
             result.setState(JsonResult.ERROR);

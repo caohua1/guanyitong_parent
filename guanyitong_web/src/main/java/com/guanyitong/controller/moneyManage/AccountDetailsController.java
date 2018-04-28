@@ -64,9 +64,8 @@ public class AccountDetailsController {
                    map.put("startTime", DateAndTimeUtil.convert(startTime));
                }
                if(endTime!=null && !("").equals(endTime)){
-                   map.put("startTime", DateAndTimeUtil.convert(endTime));
+                   map.put("endTime", DateAndTimeUtil.convert(endTime));
                }
-               //收入：回款，充值------ 支出：出借
                  //查询出借人充值记录
                  PageInfo<RechargeMoney> rechargeMoneyPageInfo = accountDetailsService.selectRechargeList(map, pageNum, pageSize);
                  Integer CZ_count = accountDetailsService.selectRechargeCount(map);

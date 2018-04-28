@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import util.DateAndTimeUtil;
 import util.JsonResult;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -43,7 +45,6 @@ public class RechargeSheetVoController {
                                            RechargeSheetVo rechargeSheetVo,
                                             @RequestParam(required=false)String firstMoney, @RequestParam(required=false)String lastMoney,
                                             @RequestParam(required=false)String firstDate, @RequestParam(required=false)String lastDate){
-
         JsonResult result = new JsonResult();
         Map<Object, Object> demandMap = new HashMap<Object, Object>();
         DateAndTimeUtil dateAndTimeUtil = new DateAndTimeUtil();
@@ -61,7 +62,6 @@ public class RechargeSheetVoController {
                     demandMap.put("userId",rechargeSheetVo.getUserId());
                 }
                 if(rechargeSheetVo.getUsername()!=null && !("").equals(rechargeSheetVo.getUsername())){
-
                     demandMap.put("phone",rechargeSheetVo.getUsername());
                 }
                 if(rechargeSheetVo.getSerial()!=null && !("").equals(rechargeSheetVo.getSerial())){
@@ -74,6 +74,7 @@ public class RechargeSheetVoController {
                     demandMap.put("userId",rechargeSheetVo.getUserId());
                 }
                 if(rechargeSheetVo.getStatus()!=null && !("").equals(rechargeSheetVo.getStatus())){
+                    System.out.println("状态"+rechargeSheetVo.getStatus());
                     demandMap.put("status",rechargeSheetVo.getStatus());
                 }
             }
@@ -89,7 +90,7 @@ public class RechargeSheetVoController {
             if(lasDate!=null){
                 demandMap.put("lastDate",lasDate);
             }
-            PageInfo<RechargeSheetVo> rechargeSheetVoPageInfo = rechargeSheetVoService.listRechargeSheetVo(pageNum, pageSize, demandMap);
+            PageInfo<RechargeSheetVo> rechargeSheetVoPageInfo = rechargeSheetVoService.listRechargeSheetVo(demandMap,pageNum, pageSize);
             Integer rechargeCount = rechargeSheetVoService.RechargeSheetCount(demandMap);
             HashMap rechargeMap = new HashMap();
             rechargeMap.put("PageInfo",rechargeSheetVoPageInfo);
@@ -104,12 +105,20 @@ public class RechargeSheetVoController {
         }
         return result;
     }
-
 @RequestMapping("/selectByrid")
-    public String selectByUserId(String id, Model model){
+    public String selectByUserId(String id, Model model) throws ParseException {
     Long rid= Long.valueOf(id);
     List<RechargeSheetVo> rechargeSheetVos = rechargeSheetVoService.selectByrid(rid);
+    for (RechargeSheetVo recharge:rechargeSheetVos
+         ) {
+        recharge.getRechargeTime();
+        System.out.println("时间----"+recharge.getRechargeTime());
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String formatDate = df.format(recharge.getRechargeTime());
+        recharge.setRechargeTime(df.parse(formatDate));
+        System.out.println(formatDate);
+    }
     model.addAttribute("rechargeSheet",rechargeSheetVos);
     return "moneyManager/rechargeManagement_select";
-}
+    }
 }

@@ -2,7 +2,7 @@ $(function () {
     $("ul#lists").on("click","li",function(){
 for (var item in UserBankcardList){
     if($(this).text()==UserBankcardList[item].id){
-    $("#btnShow").val(UserBankcardList[item].id);
+    $("#btnShow").val(addPreZero(UserBankcardList[item].id));
     $("#realName").val(UserBankcardList[item].apprroveName);
     $("#IDCardNumber").val(UserBankcardList[item].legalIDCard);
     }
@@ -13,8 +13,12 @@ for (var item in UserBankcardList){
         window.history.back(-1);
     });
 })
+function addPreZero(num){
+    return ('0000000'+num).slice(-8);
+}
 function dim(userId,event) {
     //获取当前页面的url
+    alert(userId)
     var local = window.location;
     var basePath = local.protocol+"//"+local.host+"/";
     event.stopPropagation();
@@ -23,7 +27,6 @@ function dim(userId,event) {
     $(".dianbot").slideDown();
     $('#lists').html('');
     //通过后台接口请求数据
-
     $.ajax({
         url:basePath+"BankCardManagementr/selectDimId.do",
         type:"post",
@@ -35,7 +38,7 @@ function dim(userId,event) {
             var result = msg.data;
             console.log(msg);
             for( i in result){
-                var str = '<li class="text">'+ result[i].id +'</li>';
+                var str = '<li class="text">'+ addPreZero(result[i].id) +'</li>';
                 $(str).appendTo("#lists");
                 listArry(new person(result[i].id,result[i].apprroveName,result[i].legalIDCard));
             }

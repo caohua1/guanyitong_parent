@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import util.DateAndTimeUtil;
 import util.JsonResult;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -40,9 +41,12 @@ public class BankCardManageController {
     public JsonResult addUserBankcard(UserBankcard userBankcard){
         JsonResult result = new JsonResult();
         try{
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date parse = sdf.parse(sdf.format(date));
+            userBankcard.setSubmitTime(parse);
             int i = userBankcardService.insertUserBankcardDao(userBankcard);
             if(i>0){
-                System.out.println("返回数据");
                 result.setData(i);
                 result.setState(JsonResult.SUCCESS);
                 result.setMessage("返回数据成功");
@@ -62,21 +66,20 @@ public class BankCardManageController {
      */
     @RequestMapping("/selectByUserBankcard")
     @ResponseBody
-    public JsonResult selectByUserBankcard(Integer pageNum, Integer pageSize,UserBankcard userBankcard,  @RequestParam(required=false)String first,  @RequestParam(required=false)String last){
+    public JsonResult selectByUserBankcard(Integer pageNum, Integer pageSize,UserBankcard userBankcard,  @RequestParam(required=false)String firstDate,  @RequestParam(required=false)String lastDate){
         JsonResult result = new JsonResult();
         DateAndTimeUtil dateAndTimeUtil = new DateAndTimeUtil();
-        Date firstDate=null;
-        Date lastDate =null;
-        if(first!=null&&first!=""){
-            firstDate = dateAndTimeUtil.convert(first);
+        Date firstTime=null;
+        Date lastTime =null;
+        if(firstDate!=null&&firstDate!=""){
+            firstTime = dateAndTimeUtil.convert(firstDate);
         }
-        if(last!=null&&last!=""){
-            lastDate = dateAndTimeUtil.convert(last);
+        if(lastDate!=null&&lastDate!=""){
+            lastTime = dateAndTimeUtil.convert(lastDate);
         }
         try{
             Map<Object, Object> conditionMap = new HashMap<Object, Object>();
             if(userBankcard!=null){
-
                 if(userBankcard.getBorrowMoneyUserId()!=null && !("").equals(userBankcard.getBorrowMoneyUserId())){
                     conditionMap.put("borrowMoneyUserId",userBankcard.getBorrowMoneyUserId());
                 }
@@ -89,11 +92,11 @@ public class BankCardManageController {
                 if (userBankcard.getCardNo()!=null && !("").equals(userBankcard.getCardNo())){
                     conditionMap.put("cardNo",userBankcard.getCardNo());
                 }
-                if(firstDate !=null){
-                    conditionMap.put("firstDate",firstDate);
+                if(firstTime !=null){
+                    conditionMap.put("firstTime",firstTime);
                 }
-                if(lastDate !=null){
-                    conditionMap.put("lastDate",lastDate);
+                if(lastTime !=null){
+                    conditionMap.put("lastTime",lastTime);
                 }
             }
             PageInfo<UserBankcard> userBankcardPageInfo = userBankcardService.selectByUserBankcard(conditionMap, pageNum, pageSize);
@@ -136,14 +139,12 @@ public class BankCardManageController {
                     userBankcard.setPhone("暂无数据");
                 }
                 model.addAttribute("userBankcard",userBankcard);
-
             }
         }catch(Exception e){
             e.printStackTrace();
         }
         return "moneyManager/borrowUserBank_select";
     }
-
     /**
      * 模糊查询用户id
      * @param borrowMoneyUserId
@@ -156,10 +157,6 @@ public class BankCardManageController {
         try{
             Long dimId= Long.valueOf(borrowMoneyUserId);
             List<BorrowMoneyUser> userBankcards = borrowMoneyUserService.selectDimId(dimId);
-            for (BorrowMoneyUser qq:
-                 userBankcards) {
-                System.out.println(qq.getId()+"---"+qq.getApprroveName()+"---"+qq.getLegalIDCard());
-            }
             result.setData(userBankcards);
             result.setState(JsonResult.SUCCESS);
             result.setMessage("返回数据成功");

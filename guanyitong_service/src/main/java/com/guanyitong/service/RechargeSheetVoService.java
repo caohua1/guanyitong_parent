@@ -10,7 +10,7 @@ import java.util.Map;
 
 public interface RechargeSheetVoService {
 
-    public PageInfo<RechargeSheetVo> listRechargeSheetVo(Integer pageNum, Integer pageSize, Map demandMap);
+    public PageInfo<RechargeSheetVo> listRechargeSheetVo(Map demandMap,Integer pageNum, Integer pageSize);
 
     public boolean insertRechargeMoney(RechargeMoney rechargeMoney);
 

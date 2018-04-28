@@ -30,10 +30,10 @@ public interface UserBankcardDao {
 
     /**
      * 根据id查看详情
-     * @param id
+     * @param borrowMoneyUserId
      * @return
      */
-    public UserBankcard selectUserBankcardById(Long id);
+    public UserBankcard selectUserBankcardById(Long borrowMoneyUserId);
 
     /**
      * 模糊查询borrowMoneyUserId

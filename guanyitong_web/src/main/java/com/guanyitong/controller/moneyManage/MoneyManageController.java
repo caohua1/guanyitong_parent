@@ -57,17 +57,17 @@ public class MoneyManageController {
                 if(list.size()>0 && list !=null){
                     for(MoneyManageVo moneyManageVo : list){//判断累计收益的范围
                         if(minLJSY !=null && maxLJSY ==null){
-                            if(minLJSY<moneyManageVo.getLJSY()){
+                            if(minLJSY<=moneyManageVo.getLJSY()){
                                 list1.add(moneyManageVo);
                             }
                         }
                         if(minLJSY==null && maxLJSY!=null){
-                            if(maxLJSY>moneyManageVo.getLJSY()){
+                            if(maxLJSY>=moneyManageVo.getLJSY()){
                                 list1.add(moneyManageVo);
                             }
                         }
                         if(minLJSY!=null && maxLJSY !=null){
-                            if(minLJSY<moneyManageVo.getLJSY() && maxLJSY>moneyManageVo.getLJSY()){
+                            if(minLJSY<=moneyManageVo.getLJSY() && maxLJSY>=moneyManageVo.getLJSY()){
                                 list1.add(moneyManageVo);
                             }
                         }

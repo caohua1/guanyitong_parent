@@ -13,8 +13,6 @@ $(function () {
         $("#pageNum").text(1);
         createTBody();
     });
-
-
 });
 var bBtn = true;
 //初始化列表
@@ -85,10 +83,10 @@ function createTBody() {
                     }
                 bBtn = false;
                 }else{//点击下一页没有数据
-                    tbody.innerHTML = "此页暂无数据";
+                    result.innerHTML = "此页暂无数据";
                 }
             }else{
-                tbody.innerHTML = "暂无数据";
+                result.innerHTML = "暂无数据";
                 if(bBtn) {
                     $('.pageTest').page({
                         leng: 0,
