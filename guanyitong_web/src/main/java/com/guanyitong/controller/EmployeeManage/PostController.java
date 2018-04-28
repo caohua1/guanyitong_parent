@@ -1,7 +1,10 @@
 package com.guanyitong.controller.EmployeeManage;
 
 import com.github.pagehelper.PageInfo;
+import com.guanyitong.mapper.PermissionDao;
+import com.guanyitong.model.Permission;
 import com.guanyitong.model.Role;
+import com.guanyitong.model.RolePermission;
 import com.guanyitong.service.PostService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import util.JsonResult;
 
-import java.util.Date;
+import java.util.*;
 
 @Controller
 @RequestMapping("/post")
@@ -20,21 +23,22 @@ public class PostController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private PostService postService;
-
+    @Autowired
+    private PermissionDao permissionDao;
     /**
      * 添加职位
-     * @param post
+     * @param role
      * @return
      */
     @RequestMapping("/insertPost")
     @ResponseBody
-    public JsonResult insertPost(Role post){
+    public JsonResult insertPost(Role role,String permissionIds){
         JsonResult result = new JsonResult();
         try{
-            post.setPcreateTime(new Date());
-            if(post !=null){
-                Integer i = postService.insertPost(post);
-                if(i>0){
+            role.setPcreateTime(new Date());
+            if(role !=null){
+                Boolean b = postService.insertPost(role,permissionIds);
+                if(b==true){
                     result.setState(JsonResult.SUCCESS);
                     result.setMessage("添加成功");
                 }else{
@@ -52,19 +56,23 @@ public class PostController {
 
     /**
      * 分页查询所有的职位（条件查询）
-     * @param post
+     * @param role
      * @param pageNum
      * @param pageSize
      * @return
      */
     @RequestMapping("/selectAllPost")
     @ResponseBody
-    public JsonResult selectAllPost(Role post, Integer pageNum, Integer pageSize){
+    public JsonResult selectAllPost(Role role, Integer pageNum, Integer pageSize){
         JsonResult result = new JsonResult();
         try{
-            PageInfo<Role> pageInfo = postService.selectPost(post, pageNum, pageSize);
+            PageInfo<Role> pageInfo = postService.selectPost(role, pageNum, pageSize);
+            Integer count = postService.selectPostCount(role);
+            Map map = new HashMap();
+            map.put("count",count);
+            map.put("pageInfo",pageInfo);
             result.setState(JsonResult.SUCCESS);
-            result.setData(pageInfo);
+            result.setData(map);
             result.setMessage("返回数据成功");
         }catch(Exception e){
             e.printStackTrace();
@@ -84,11 +92,26 @@ public class PostController {
     public String toupdate(Long id, Model model){
         try{
             Role post = postService.selectPostById(id);
-           model.addAttribute("post",post);
+            //查询所有的权限
+            List<Permission> permissions = permissionDao.selectParentPermission();
+            if(permissions!=null && permissions.size()>0){
+                for(Permission permission : permissions){
+                    Map<String,List<Permission>> map = new HashMap<String, List<Permission>>();
+                    List<Permission> permissions1 = permissionDao.selectChildPermission(permission.getId());
+                    map.put("permission",permissions1);
+                    permission.setMap(map);
+                }
+            }
+
+            //查询此角色的权限
+            List<Permission> rolePermissions = postService.selectPermissionRole(id);
+            model.addAttribute("post",post);
+            model.addAttribute("permissions",permissions);
+            model.addAttribute("rolePermissions",rolePermissions);
         }catch(Exception e){
             e.printStackTrace();
         }
-        return "";
+        return "permissionManager/role_update";
     }
 
     /**
@@ -98,13 +121,13 @@ public class PostController {
      */
     @RequestMapping("/updatePost")
     @ResponseBody
-    public JsonResult updatePost(Role post){
+    public JsonResult updatePost(Role post,String permissionIds){
         JsonResult result = new JsonResult();
         try{
             post.setPupdateTime(new Date());
             if(post !=null){
-                Integer i = postService.updatePost(post);
-                if(i>0){
+                Boolean b= postService.updatePost(post,permissionIds);
+                if(b==true){
                     result.setState(JsonResult.SUCCESS);
                     result.setMessage("修改成功");
                 }else{

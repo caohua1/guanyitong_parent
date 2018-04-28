@@ -7,7 +7,7 @@ import java.io.Serializable;
 //员工的vo
 public class EmployeeVo extends Employee implements Serializable{
     private String dname;//部门名称
-    private String pname;//职位名称
+    private String pname;//职位名称(角色)
 
     public String getDname() {
         return dname;

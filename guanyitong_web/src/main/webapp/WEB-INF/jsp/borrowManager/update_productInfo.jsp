@@ -105,8 +105,9 @@
 
     <div class="aatj">
         <div><button id="update">确定提交</button></div>
-        <div><button id="back">取消</button></div>
+        <div><button id="select" onclick="javascript:history.go(-1)">返回</button></div>
     </div>
+    
 
 </div>
 </body>

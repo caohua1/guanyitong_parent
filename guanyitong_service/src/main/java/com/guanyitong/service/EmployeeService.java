@@ -2,6 +2,7 @@ package com.guanyitong.service;
 
 import com.github.pagehelper.PageInfo;
 import com.guanyitong.model.Employee;
+import com.guanyitong.model.vo.EmployeeVo;
 
 
 public interface EmployeeService {
@@ -13,16 +14,24 @@ public interface EmployeeService {
     public Integer insertEmployee(Employee employee);
     /**
      * 分页查询员工信息（条件查询）
-     * @param employee
+     * @param employeeVo
      * @return
      */
-    public PageInfo<Employee> selectEmployee(Employee employee,Integer pageNum,Integer pageSize);
+    public PageInfo<EmployeeVo> selectEmployee(EmployeeVo employeeVo, Integer pageNum, Integer pageSize);
+
+    /**
+     * 查询员工总数量
+     * @param employeeVo
+     * @return
+     */
+    public Integer selectEmployeeCount(EmployeeVo employeeVo);
+
     /**
      * 查询某个员工的信息，编辑页面回显数据
      * @param id
      * @return
      */
-    public Employee selectEmployeeById(Long id);
+    public EmployeeVo selectEmployeeById(Long id);
     /**
      * 编辑员工信息
      * @param employee

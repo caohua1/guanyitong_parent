@@ -1,6 +1,8 @@
 package com.guanyitong.model;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 public class Permission implements Serializable{
     private Long id;
@@ -10,6 +12,7 @@ public class Permission implements Serializable{
     private Integer status;
     private Long parentId;
     private Role role;//一个权限对应一个角色
+    private Map<String,List<Permission>> map;
 
     public Role getRole() {
         return role;
@@ -65,5 +68,13 @@ public class Permission implements Serializable{
 
     public void setParentId(Long parentId) {
         this.parentId = parentId;
+    }
+
+    public Map<String, List<Permission>> getMap() {
+        return map;
+    }
+
+    public void setMap(Map<String, List<Permission>> map) {
+        this.map = map;
     }
 }

@@ -3,24 +3,56 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.guanyitong.mapper.PostDAO">
+
    <!--添加职位-->
-    <insert id="insertPost" parameterType="com.guanyitong.model.Role">
-        insert into post(pname,pcreateTime,pdescribe) values(#{pname},#{pcreateTime},#{pdescribe})
+    <insert id="insertPost" parameterType="com.guanyitong.model.Role" useGeneratedKeys="true" keyProperty="id">
+        insert into role(pname,pcreateTime,pdescribe) values(#{pname},#{pcreateTime},#{pdescribe})
     </insert>
+    <!--添加给（权限-角色）-->
+    <insert id="insertPermissionRole" parameterType="java.util.Map">
+        insert role_permission(postId,permissionId) values(#{postId},#{permissionId});
+    </insert>
+
+    <!--角色权限中间表，查询某绝色得权限-->
+    <select id="selectPermissionRole" parameterType="Long" resultType="com.guanyitong.model.Permission">
+        select p.permissionName,p.parentId,p.id from role_permission rp
+         left join permission p on p.id = rp.permissionId
+         left join permission p1 on p1.id = p.parentId
+         where rp.postId = #{postId}
+    </select>
+
+    <!--删除某角色得权限-->
+    <delete id="deletePermissionRole" parameterType="Long">
+        delete from role_permission where postId = #{postId}
+    </delete>
     <!--分页查询公司所有的职位(根据职位名称条件查询)-->
     <select id="selectPost" parameterType="com.guanyitong.model.Role" resultType="com.guanyitong.model.Role">
-        select * from post where pstatus = 1
+        select * from role where 1 = 1
         <if test="pname !=null and pname !=''">
             and pname LIKE CONCAT("%",#{pname},"%")
+        </if>
+        <if test="id !=null">
+            and id = #{id}
+        </if>
+    </select>
+
+    <!--分页查询公司所有的职位(根据职位名称条件查询)-->
+    <select id="selectPostCount" parameterType="com.guanyitong.model.Role" resultType="Integer">
+        select count(*) from role where 1 = 1
+        <if test="pname !=null and pname !=''">
+            and pname LIKE CONCAT("%",#{pname},"%")
+        </if>
+        <if test="id !=null">
+            and id = #{id}
         </if>
     </select>
     <!--根据id查询职位-->
     <select id="selectPostById" parameterType="Long" resultType="com.guanyitong.model.Role">
-        select * from post where id = #{id}
+        select * from role where id = #{id}
     </select>
     <!--编辑职位(修改名称和描述)-->
     <update id="updatePost" parameterType="com.guanyitong.model.Role">
-        update post set
+        update role set
         <if test="pname !=null and pname!=''">
             pname = #{pname},
         </if>
@@ -34,6 +66,8 @@
     </update>
     <!--删除职位（修改状态为0）-->
     <update id="deletePost" parameterType="Long">
-        update post set pstatus = 0 where id = #{id}
+        update role set pstatus = 0 where id = #{id}
     </update>
+
+
 </mapper>

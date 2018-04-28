@@ -47,6 +47,7 @@ public class WithdrawMoneyServiceImpl implements WithdrawMoneyService{
             map.put("borrowMoneyUserId",withdrawalMoney.getBorrowMoneyUserId());
             map.put("status1",5);//筹集完待提现
             map.put("status",10);//提现中
+            map.put("updateTime",new Date());
             Integer k = productDao.updateStatus(map);//把标的状态改为提现中
             return i>0 && k>0;
         }

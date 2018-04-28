@@ -1,0 +1,36 @@
+.angcon>p>span input{
+	margin-left: 5px;
+}
+.angcon>p>span select{
+	width: 231px;
+	height: 35px;
+}
+.juese{
+	clear: both;
+	line-height: 50px;
+}
+.juese label{
+	padding: 0 50px 0 5px;
+}
+.juesee{
+	font-weight: 800;
+}
+.juese>input:nth-child(1){
+	margin-left: 80px;
+}
+.angcon{
+	margin-bottom: 30px;
+}
+.quanxian{
+	color: #DD0000;line-height: 100px;clear: both;padding-left: 80px;
+}
+.aatj{
+	margin-left: 80px;
+}
+.quanxian1{
+	margin-left: 80px;
+	clear: both;
+	line-height: 50px;
+	border-bottom: 1px solid #ccc;
+	width: 40%;
+}

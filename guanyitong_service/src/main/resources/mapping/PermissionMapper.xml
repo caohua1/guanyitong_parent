@@ -20,5 +20,17 @@
         left join  permission p1 on p1.id = p.parentId
         where p.parentId = #{parentId}
     </select>
+
+    <!--查询所有可用的父类权限-->
+    <select id="selectParentPermission" resultType="com.guanyitong.model.Permission">
+        select * from permission where status =1 and parentId is null
+    </select>
+
+    <!--查询某父类权限下的权限-->
+    <select id="selectChildPermission" parameterType="Long" resultType="com.guanyitong.model.Permission">
+        select * from permission where status =1 and parentId = #{parentId}
+    </select>
+
+
 </mapper>
 

@@ -5,19 +5,54 @@
 <mapper namespace="com.guanyitong.mapper.EmployeeDAO">
    <!--添加员工-->
     <insert id="insertEmployee" parameterType="com.guanyitong.model.Employee">
-        insert into employee (ename,esex,ebirth,eidcard,ephone,email,edeptno,epostno,ecreateTime,epassword)
-        values(#{ename},#{esex},#{ebirth},#{eidcard},#{ephone},#{email},#{edeptno},#{epostno},#{ecreateTime},#{epassword})
+        insert into employee (ename,esex,ebirth,eidcard,ephone,email,edeptno,eroleId,ecreateTime,epassword)
+        values(#{ename},#{esex},#{ebirth},#{eidcard},#{ephone},#{email},#{edeptno},#{eroleId},#{ecreateTime},#{epassword})
     </insert>
 
     <!--查询员工列表(条件查询，姓名)-->
     <select id="selectEmployee" parameterType="com.guanyitong.model.vo.EmployeeVo" resultType="com.guanyitong.model.vo.EmployeeVo">
-        select e.id,e.ename,e.esex,e.ebirth,e.eidcard,e.ephone,e.email,d.dname,p.pname,e.ecreateTime from employee e
+        select e.id,e.ename,e.esex,e.ebirth,e.eidcard,e.ephone,e.email,d.dname,p.pname,e.ecreateTime,e.estatus from employee e
         left join dept d on  e.edeptno = d.id
-        left join post p on  e.epostno = p.id
-        where e.estatus = 1
-         <if test="ename!=null and ename!=''">
+        left join role p on  e.eroleId = p.id
+        where 1=1
+        <if test="estatus!=null ">
+            and e.estatus = #{estatus}
+        </if>
+        <if test="ename!=null and ename!=''">
              and e.ename LIKE CONCAT("%",#{ename},"%")
-         </if>
+        </if>
+        <if test="ephone !=null and ephone !=''">
+            and e.ephone = #{ephone}
+        </if>
+        <if test="estatus!=null and estatus !=''">
+            and e.estatus = #{estatus}
+        </if>
+        <if test="eroleId !=null and eroleId !=''">
+            and e.eroleId = #{eroleId}
+        </if>
+    </select>
+
+    <!--查询所有员工的数量-->
+    <select id="selectEmployeeCount" parameterType="com.guanyitong.model.vo.EmployeeVo" resultType="Integer">
+        select count(e.id) from employee e
+        left join dept d on  e.edeptno = d.id
+        left join role p on  e.eroleId = p.id
+        where 1=1
+        <if test="estatus!=null">
+            and e.estatus = #{estatus}
+        </if>
+        <if test="ename!=null and ename!=''">
+            and e.ename LIKE CONCAT("%",#{ename},"%")
+        </if>
+        <if test="ephone !=null and ephone !=''">
+            and e.ephone = #{ephone}
+        </if>
+        <if test="estatus!=null and estatus !=''">
+            and e.estatus = #{estatus}
+        </if>
+        <if test="eroleId !=null and eroleId  !=''">
+            and e.eroleId = #{eroleId}
+        </if>
     </select>
 
     <!--查询某个员工的信息，编辑页面回显数据-->
@@ -27,37 +62,37 @@
     <!--编辑员工信息-->
     <update id="updateEmployee" parameterType="com.guanyitong.model.Employee">
         update employee set
-        <if test="ename ! = null and ename !=''">
+        <if test="ename != null and ename !=''">
             ename = #{ename},
         </if>
-        <if test="esex ! = null and esex !=''">
+        <if test="esex != null and esex !=''">
             esex = #{esex},
         </if>
-        <if test="ebirth ! = null and ebirth !=''">
+        <if test="ebirth != null and ebirth !=''">
             ebirth = #{ebirth},
         </if>
-        <if test="eidcard ! = null and eidcard !=''">
+        <if test="eidcard != null and eidcard !=''">
             eidcard = #{eidcard},
         </if>
-        <if test="ephone ! = null and ephone !=''">
+        <if test="ephone != null and ephone !=''">
             ephone = #{ephone},
         </if>
-        <if test="email ! = null and email !=''">
+        <if test="email != null and email !=''">
             email = #{email},
         </if>
-        <if test="edeptno ! = null ">
+        <if test="edeptno != null ">
             edeptno = #{edeptno},
         </if>
-        <if test="epostno ! = null ">
-            epostno = #{epostno},
+        <if test="eroleId != null ">
+            eroleId = #{eroleId},
         </if>
-        <if test="ecreateTime ! = null ">
+        <if test="ecreateTime != null ">
             ecreateTime = #{ecreateTime},
         </if>
-        <if test="epassword ! = null and epassword !=''">
+        <if test="epassword != null and epassword !=''">
             epassword = #{epassword},
         </if>
-        <if test="eupdateTime ! = null ">
+        <if test="eupdateTime != null ">
             eupdateTime = #{eupdateTime}
         </if>
         where id = #{id}
