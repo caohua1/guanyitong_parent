@@ -80,10 +80,10 @@ public class WithdrawMoneyController {
             if(txNumber!=null && txNumber!=""){
                 withdrawalMoneyVo.setTxNumber(txNumber);
             }
-            if(!minMoney.isNaN()){
+            if(minMoney!=null){
                 withdrawalMoneyVo.setMinMoney(minMoney);
             }
-            if(!maxMoney.isNaN()){
+            if(maxMoney!=null){
                 withdrawalMoneyVo.setMaxMoney(maxMoney);
             }
             if(startTime!=null&&!("").equals(startTime)){
