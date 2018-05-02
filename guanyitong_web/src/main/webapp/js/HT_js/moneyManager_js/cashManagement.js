@@ -153,7 +153,7 @@ function initlist(Sta){
                                 "<td>"+"----------"+"</td>"
                             }else if(data[i].status==2){
                                 str +=  "<td>" + "提现失败" + "</td>"+
-                                    "<td><span class='quespannn'><a href=\"javascript:;\" onclick=\"toupdate('"+data[i].id+"','0')\">申请提现</a></span></td>"
+                                    "<td><span class='quespannn'><a href=\"javascript:;\" onclick=\"SQTX_TWO('"+data[i].id+"','"+data[i].borrowMoneyUserId+"','"+data[i].dzMoney+"')\">申请提现</a></span></td>"
                             }
 
                             "</tr>";
@@ -187,7 +187,35 @@ function initlist(Sta){
     })
 }
 
+//提现失败，再次申请提现
+function SQTX_TWO(id,borrowMoneyUserId,dzMoney) {
+    var local = window.location;
+    var basePath = local.protocol+"//"+local.host+"/";
+    $.ajax({
+        type: "post",
+        url: basePath+"withdrawMoney/insertWithdrawMoney.do",
+        data: {
+            id : id,
+            borrowMoneyUserId:borrowMoneyUserId,
+            dzMoney:dzMoney
+        },
+        dataType: "json",
+        success: function (msg) {
+            console.log(msg);
+            if (msg.state == 0) {
+                alert("再次申请成功");
+                initlist(Sta);
+            } else {
+                alert("再次申请失败");
+            }
+        },
+        error : function(){
+            alert("网络出现问题");
+        }
+    });
+}
 
+//提现成功，提现失败，修改状态
 function toupdate(id,status,borrowMoneyUserId,dzMoney){
     var local = window.location;
     var basePath = local.protocol+"//"+local.host+"/";
@@ -196,7 +224,6 @@ function toupdate(id,status,borrowMoneyUserId,dzMoney){
         url: basePath+"withdrawMoney/updateStatus.do",
         data: {
             id : id,
-            status : status,
             borrowMoneyUserId:borrowMoneyUserId,
             dzMoney:dzMoney
         },
@@ -205,7 +232,6 @@ function toupdate(id,status,borrowMoneyUserId,dzMoney){
             console.log(msg);
             if (msg.state == 0) {
                 alert("操作成功");
-                bBtn = true;
                 initlist(Sta);
             } else {
                 alert("操作失败");

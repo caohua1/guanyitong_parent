@@ -137,7 +137,7 @@ public class WithdrawMoneyController {
                 map.put("dzMoney",dzMoney);
                 map.put("borrowMoneyUserId",borrowMoneyUserId);
             }
-            if(status ==2){
+            if(status ==2 || status == 0){
                 map.put("borrowMoneyUserId",borrowMoneyUserId);
             }
             Boolean b = withdrawMoneyService.updateStatus(map);
