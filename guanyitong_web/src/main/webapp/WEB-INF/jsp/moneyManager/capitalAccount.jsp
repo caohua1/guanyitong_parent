@@ -45,15 +45,10 @@
 <body>
 <!--公共的外层-->
 <div class="iframe_acont">
-
-
-
     <div class="acont-nav">资金账户管理 ：</div>
-
     <div class="acon-input">
         <div class="tjiaoP_a"><span>开通时间:</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="startTime"></span><span>至</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="endTime"></span></div>
         <div class="tjiaoP_a"><span>可用金额:</span><span><input type="text" class="input-text" id="minyuE"></span><span>至</span><span><input type="text" class="input-text" id="maxyuE"></span></div>
-
         <div class="tjiaoP_a"><span>累计收益:</span><span><input type="text" id="minLJSY"></span><span>至</span><span><input type="text" id="maxLJSY"></span></div>
         <div class="soua"><button id="select">搜索</button></div>
     </div>
@@ -79,14 +74,9 @@
             </tbody>
         </table>
     </div>
-
-
-
     <div class="acon-yong">
         <span>用户总数：</span><span id = "count">0</span>
     </div>
-
-
     <div class="showhide">
         <div class="showhideng">
             <span>✖</span>

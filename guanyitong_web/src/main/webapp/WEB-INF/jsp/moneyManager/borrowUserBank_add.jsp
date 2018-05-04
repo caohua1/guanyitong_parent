@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="<%=path%>/css/common_css/base.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/style.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/css.css" />
+    <link rel="stylesheet" href="<%=path%>/css/common_css/simpleAlert.css"/>
+    <script src="<%=path%>/js/common_js/simpleAlert.js"></script>
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
     <script  src="${ctx}/js/HT_js/moneyManager_js/borrowUserBank_add.js"></script>
     <style type="text/css">
@@ -51,7 +53,7 @@
     <div class="iframe_lcona">
         <div>用户ID：</div>
         <div class="dianconl">
-            <input  id="btnShow" type="test" onkeyup="dim(this.value,event)">
+            <input  id="btnShow" type="test" onkeyup="dim(this.value,event)"><span><font color="#FF0000">*必填项</font></span>
             <div class="dianbot">
                 <ul id='lists'>
                 </ul>
@@ -61,44 +63,43 @@
     <div class="iframe_lcona">
         <div>真实姓名：</div>
         <div>
-            <input type="text" id="realName">
+            <input type="text" id="realName"><span><font color="#FF0000">*必填项</font></span>
         </div>
     </div>
     <div class="iframe_lcona">
         <div>身份证号：</div>
         <div>
-            <input type="text" id="IDCardNumber">
+            <input type="text" id="IDCardNumber"><span><font color="#FF0000">*必填项</font></span>
         </div>
     </div>
     <div class="iframe_lcona">
         <div>卡号：</div>
         <div>
-            <input type="text" id="cardNo">
+            <input type="text" id="cardNo"><span><font color="#FF0000">*必填项</font></span>
         </div>
     </div>
     <div class="iframe_lcona">
         <div>开户银行：</div>
         <div>
-            <input type="text" id="bankName">
+            <input type="text" id="bankName"><span><font color="#FF0000">*必填项</font></span>
         </div>
     </div>
     <div class="iframe_lcona">
         <div>开户地区：</div>
         <div>
-            <input type="text" id="openAccountRegion">
+            <input type="text" id="openAccountRegion"><span><font color="#FF0000">*必填项</font></span>
         </div>
     </div>
     <div class="iframe_lcona">
         <div>可联系手机号：</div>
         <div>
-            <input type="text" id="phone">
+            <input type="text" id="phone"><span><font color="#FF0000">*必填项</font></span>
         </div>
     </div>
     <div class="btnlcon">
         <span><input type="checkbox" checked="checked" onclick="check()" id="YN"></span>
         <span>同时为在还款期作为扣款银行卡</span>
     </div>
-
     <div class="aatj">
         <div><input type="button" onclick="addUserBank()" value="确定绑定"></div>
         <div><button id="qXiao">取消</button></div>

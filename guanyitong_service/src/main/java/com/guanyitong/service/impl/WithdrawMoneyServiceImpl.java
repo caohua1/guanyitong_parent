@@ -144,7 +144,7 @@ public class WithdrawMoneyServiceImpl implements WithdrawMoneyService{
      * @return
      */
     @Override
-    public Integer totalJe() {
+    public Double totalJe() {
         return withdrawMoneyDao.totalJe();
     }
 

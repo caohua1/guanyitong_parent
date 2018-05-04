@@ -8,7 +8,6 @@ for (var item in UserBankcardList){
     }
 }
     })
-
     $("#qXiao").click(function(){
         window.history.back(-1);
     });
@@ -18,7 +17,6 @@ function addPreZero(num){
 }
 function dim(userId,event) {
     //获取当前页面的url
-    alert(userId)
     var local = window.location;
     var basePath = local.protocol+"//"+local.host+"/";
     event.stopPropagation();
@@ -65,6 +63,7 @@ function listArry(userBankcard) {
     UserBankcardList.push(userBankcard);
 }
 function addUserBank() {
+    if($("#btnShow").val()!=""&&$("#realName").val()!=""&&$("#IDCardNumber").val()!=""&&$("#cardNo").val()!=""&&$("#bankName").val()!=""&&$("#openAccountRegion").val()!=""&&$("#phone").val()!=""){
     //获取当前页面的url
     var local = window.location;
     var Path = local.protocol+"//"+local.host+"/";
@@ -92,12 +91,29 @@ function addUserBank() {
             var result = msg.data;
             console.log(msg);
             if(result==1){
-                alert("添加成功");
+                var onlyChoseAlert = simpleAlert({
+                    "content":"添加成功",
+                    "buttons":{
+                        "确定":function () {
+                            window.history.back(-1);
+                        }
+                    }
+                })
             }
         },
         error:function(){
             console.error('请求失败！')
         }
     })
+    }else {
+        var onlyChoseAlert = simpleAlert({
+            "content":"请完善资料!",
+            "buttons":{
+                "确定":function () {
+                    onlyChoseAlert.close();
+                }
+            }
+        })
+    }
 }
 

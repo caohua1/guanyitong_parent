@@ -47,5 +47,5 @@ public interface WithdrawMoneyDao {
      * 查询出提现总金额
      * @return
      */
-    public Integer totalJe();
+    public Double totalJe();
 }

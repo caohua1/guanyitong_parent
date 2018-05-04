@@ -30,9 +30,6 @@
 <body>
 <!--公共的外层-->
 <div class="iframe_acont">
-
-
-
     <div class="acont-nav">还款管理：</div>
     <!--<div class="acont-ahref"><a href="iframe_acon.html">添加新用户</a></div>-->
     <div class="acon-input">
@@ -43,13 +40,8 @@
         <div><span>卡号:</span><span><input type="text" id="cardNo"></span></div>
         <div><span>还款本金:</span><span><input type="text" id="bj"></span></div>
         <div class="tjiaoP_a"><span>还款时间:</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="startTime"></span><span>至</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="endTime"></span></div>
-
         <div class="soua"><button id="select">搜索</button></div>
-
-
     </div>
-
-
     <div class="acon-table">
         <table border="1"  border="0" cellspacing="0" cellpadding="0" >
             <thead>
@@ -70,16 +62,12 @@
             </tr>
             </thead>
             <tbody id="tbody-result">
-
             </tbody>
-
         </table>
     </div>
-
     <div class="acon-yong">
         <span>用户总数：</span><span id="count">0</span>
     </div>
-
    <%-- <div class="bbyong">
         <div><span>应还总本息：</span><span>xxxxxxx</span></div>
         <div><span>应还总本金：</span><span>xxx</span></div>

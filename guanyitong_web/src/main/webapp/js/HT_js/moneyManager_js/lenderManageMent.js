@@ -8,7 +8,9 @@ $(function () {
     $('.showhideng>span').click(function(){
         $('.showhide').hide();
     })
-
+    $("#fanH").click(function(){
+        window.history.back(-1);
+    });
     //点击搜索
     $("#select").click(function(){
         bBtn = true;

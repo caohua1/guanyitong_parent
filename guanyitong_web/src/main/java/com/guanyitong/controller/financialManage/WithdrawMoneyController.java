@@ -99,7 +99,7 @@ public class WithdrawMoneyController {
             }
             HashMap rechargeMap = new HashMap();
             PageInfo<WithdrawalMoneyVo> pageInfo = withdrawMoneyService.selectWithdrawal(withdrawalMoneyVo, pageNum, pageSize);
-            Integer totalMoney = withdrawMoneyService.totalJe();
+            Double totalMoney = withdrawMoneyService.totalJe();
             Integer allCount = withdrawMoneyService.selectWithdrawalCount(withdrawalMoneyVo);
             rechargeMap.put("pageInfo",pageInfo);
             rechargeMap.put("totalMoney",totalMoney);

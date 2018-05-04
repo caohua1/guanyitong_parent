@@ -82,7 +82,7 @@
     </select>
 
     <!-- 查询全部提现的总金额-->
-    <select id="totalJe" resultType="Integer">
+    <select id="totalJe" resultType="java.lang.Double">
         SELECT sum(txMoney) from withdrawal_money where status=1
     </select>
 <!-- 提现总数量-->

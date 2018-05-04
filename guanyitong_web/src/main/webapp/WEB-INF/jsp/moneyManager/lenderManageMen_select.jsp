@@ -81,7 +81,6 @@
             ${lender.bankName}
         </div>
     </div>
-
     <div class="iframe_lcona">
         <div>开户地区：</div>
         <div>
@@ -89,7 +88,7 @@
         </div>
     </div>
     <div class="aatj">
-        <a href="${ctx}/toJsp/toLenderManageMent.do" style="color: #434343;line-height: 100px;">返回</a>
+        <button id="fanH">返回</button>
     </div>
 </div>
 </body>
