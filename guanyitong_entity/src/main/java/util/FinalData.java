@@ -59,7 +59,7 @@ public class FinalData {
     /**
      * 还款方式：按月还本还息
      */
-    public static final String ByMonth = "按月还本还息";
+    public static final String ByMonth = "按月还本付息";
     /**
      * 还款方式：先息后本
      */

@@ -1,5 +1,6 @@
 package com.guanyitong.mapper;
 
+import com.guanyitong.model.Permission;
 import com.guanyitong.model.vo.PermissionVo;
 
 import java.util.List;
@@ -19,4 +20,16 @@ public interface PermissionDao {
      * @return
      */
     public List<PermissionVo> child_permissions(Long parentId);
+
+    /**
+     * 查询所有得父类得权限
+     * @return
+     */
+    public List<Permission> selectParentPermission();
+
+    /**
+     * 查询某父类权限下得所有权限
+     * @return
+     */
+    public List<Permission> selectChildPermission(Long parentID);
 }

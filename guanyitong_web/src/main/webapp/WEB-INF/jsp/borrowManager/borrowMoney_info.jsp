@@ -29,8 +29,8 @@
 <body>
 <div class="iframe_acont">
 
-   <input type="text" value="${id}" id="id"/> <%--产品标的id（productInfoId）--%>
-    <input type="text" value="${status}" id="status"/> <%--产品标的状态--%>
+   <input type="hidden" value="${id}" id="id"/> <%--产品标的id（productInfoId）--%>
+    <input type="hidden" value="${status}" id="status"/> <%--产品标的状态--%>
     <div class="acont-nav">借款明细：</div>
     <div class="bbyong">
         <div><span>用户借款ID：</span><span id="borrowMoneyUserId">${borrowMoneyUserId}</span></div>

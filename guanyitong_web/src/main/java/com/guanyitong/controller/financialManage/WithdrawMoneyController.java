@@ -80,10 +80,10 @@ public class WithdrawMoneyController {
             if(txNumber!=null && txNumber!=""){
                 withdrawalMoneyVo.setTxNumber(txNumber);
             }
-            if(!minMoney.isNaN()){
+            if(minMoney!=null){
                 withdrawalMoneyVo.setMinMoney(minMoney);
             }
-            if(!maxMoney.isNaN()){
+            if(maxMoney!=null){
                 withdrawalMoneyVo.setMaxMoney(maxMoney);
             }
             if(startTime!=null&&!("").equals(startTime)){
@@ -137,7 +137,7 @@ public class WithdrawMoneyController {
                 map.put("dzMoney",dzMoney);
                 map.put("borrowMoneyUserId",borrowMoneyUserId);
             }
-            if(status ==2){
+            if(status ==2 || status == 0){
                 map.put("borrowMoneyUserId",borrowMoneyUserId);
             }
             Boolean b = withdrawMoneyService.updateStatus(map);

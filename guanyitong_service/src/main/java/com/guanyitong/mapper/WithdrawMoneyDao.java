@@ -48,4 +48,10 @@ public interface WithdrawMoneyDao {
      * @return
      */
     public Double totalJe();
+    /**
+     * 提现失败，再次申请提现，原来的数据删除
+     * @param id
+     * @return
+     */
+    public Integer deleteWithdrawalById(Long id);
 }

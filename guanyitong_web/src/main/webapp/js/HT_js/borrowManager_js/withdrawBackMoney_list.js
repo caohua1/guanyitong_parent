@@ -83,12 +83,14 @@ function createTBody(){
                             if(data[i].status ==5){
                                 str += "<td>" + "筹集完" + "</td>"+
                                     "<td>" + "待提现" + "</td>"+
-                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span><span class=\"quespann\"><a href=\"javascript:;\" onclick=\"update('"+data[i].id+"','10')\">申请体现</a></span>" +
+                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span>" +
+                                    "<span class=\"quespann\"><a href=\"javascript:;\" onclick=\"SQTX('"+data[i].borrowMoneyUserId+"','"+data[i].zmoney+"')\">申请体现</a></span>" +
                                     "</td>"
                             }else if(data[i].status ==10){
                                 str += "<td>" + "筹集完" + "</td>"+
                                     "<td>" + "提现申请中" + "</td>"+
-                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span><span class=\"quespannn\"><a href=\"javascript:;\" onclick=\"update('"+data[i].id+"','11' )\">确认提现</a></span>" +
+                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span>" +
+                                   /* "<span class=\"quespannn\"><a href=\"javascript:;\" onclick=\"update('"+data[i].id+"','11' )\">确认提现</a></span>" +*/
                                     "</td>"
                             } else if(data[i].status ==11){
                                 str += "<td>" + "筹集完" + "</td>"+
@@ -98,7 +100,8 @@ function createTBody(){
                             }else if(data[i].status ==12){
                                 str += "<td>" + "筹集完" + "</td>"+
                                     "<td>" + "提现失败" + "</td>"+
-                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span><span class=\"quespann\"><a href=\"javascript:;\" onclick=\"update('"+data[i].id+"','10')\">申请体现</a></span>" +
+                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span>" +
+                                    "<span class=\"quespann\"><a href=\"javascript:;\" onclick=\"SQTX('"+data[i].borrowMoneyUserId+"','"+data[i].zmoney+"')\">申请体现</a></span>" +
                                     "</td>"
                             }
 
@@ -140,7 +143,60 @@ function createTBody(){
 
 }
 
-//下架操作
+//申请提现
+function SQTX(borrowMoneyUserId,zmoney){
+    $('.showhide').show();
+    $('.zhezaocegn').show();
+    $("#span").text("确定要申请提现？");
+
+    var local = window.location;
+    var basePath = local.protocol+"//"+local.host+"/";
+    //点击确定放弃
+    $("#update").click(function () {
+        $('.showhide').hide();
+        $('.zhezaocegn').hide();
+        $.ajax({
+            type: "post",
+            url: basePath+"withdrawMoney/insertWithdrawMoney.do",
+            data: {
+                borrowMoneyUserId : borrowMoneyUserId,
+                txMoney : zmoney,
+                dzMoney : zmoney
+
+            },
+            dataType: "json",
+            success: function (msg) {
+                console.log(msg);
+                if (msg.state == 0) {
+                    alert("申请成功");
+                    createTBody();
+                } else {
+                    alert("申请失败");
+                    createTBody();
+                }
+            },
+            error : function(){
+                alert("网络出现问题");
+            }
+        });
+    });
+
+    //点击取消
+    $("#quxiao").click(function () {
+        $('.showhide').hide();
+        $('.zhezaocegn').hide();
+    });
+
+    //点击x
+    $("#x").click(function () {
+        $('.showhide').hide();
+        $('.zhezaocegn').hide();
+    });
+
+}
+
+//提现成功，失败操作
+/*
 function update(id,status){
     $('.showhide').show();
     $('.zhezaocegn').show();
@@ -195,3 +251,4 @@ function update(id,status){
 
 }
 
+*/

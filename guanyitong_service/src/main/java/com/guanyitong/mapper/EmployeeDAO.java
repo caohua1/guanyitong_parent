@@ -1,6 +1,7 @@
 package com.guanyitong.mapper;
 
 import com.guanyitong.model.Employee;
+import com.guanyitong.model.vo.EmployeeVo;
 
 import java.util.List;
 
@@ -14,17 +15,24 @@ public interface EmployeeDAO {
     public Integer insertEmployee(Employee employee);
     /**
      * 分页查询员工信息（条件查询）
-     * @param employee
+     * @param employeeVo
      * @return
      */
-    public List<Employee> selectEmployee(Employee employee);
+    public List<EmployeeVo> selectEmployee(EmployeeVo employeeVo);
+
+    /**
+     * 查询员工总数量
+     * @param employeeVo
+     * @return
+     */
+    public Integer selectEmployeeCount(EmployeeVo employeeVo);
 
     /**
      * 查询某个员工的信息，编辑页面回显数据
      * @param id
      * @return
      */
-    public Employee selectEmployeeById(Long id);
+    public EmployeeVo selectEmployeeById(Long id);
 
     /**
      * 编辑员工信息

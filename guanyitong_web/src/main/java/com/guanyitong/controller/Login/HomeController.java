@@ -65,37 +65,47 @@ public class HomeController {
                List<PermissionVo> permissions = permissionService.permissions(employee1.getId());
                if(permissions!=null && permissions.size()>0){
                    for(PermissionVo permissionVo : permissions){
-                       if(("").equals(permissionVo.getParentId()) || (null == permissionVo.getParentId())){
-                           List<PermissionVo>  permissionVos1 = permissionService.child_permissions(permissionVo.getId());
-                           if(permissionVos1!=null && permissionVos1.size()>0){
-                               for(PermissionVo permissionVo1 : permissionVos1){
-                                   list.add(permissionVo1);
+                       if(permissionVo!=null){
+                           if(("").equals(permissionVo.getParentId()) || (null == permissionVo.getParentId())){
+                               List<PermissionVo>  permissionVos1 = permissionService.child_permissions(permissionVo.getId());
+                               if(permissionVos1!=null && permissionVos1.size()>0){
+                                   for(PermissionVo permissionVo1 : permissionVos1){
+                                       list.add(permissionVo1);
+                                   }
                                }
+                           }else{
+                               list.add(permissionVo);
                            }
-                       }else{
-                           list.add(permissionVo);
                        }
                    }
                }
 
                //去除集合的重复数据
-               for (int i = 0; i < list.size()-1; i++) {
-                   for (int j = list.size()-1; j > i; j--) {
-                       if (list.get(j).getId() == list.get(i).getId()) {
-                           list.remove(j);
+               if(list!=null && list.size()>0){
+                   for (int i = 0; i < list.size()-1; i++) {
+                       for (int j = list.size()-1; j > i; j--) {
+                           if (list.get(j).getId() == list.get(i).getId()) {
+                               list.remove(j);
+                           }
                        }
                    }
                }
+
                //父级菜单的名称
                List<String> parentNameList = new ArrayList();
-               for(int i=0;i<list.size();i++){
-                   if(i==0){
-                       parentNameList.add(list.get(0).getParentName());
-                   }else {
-                       if(!list.get(i).getParentName().equals(list.get(i-1).getParentName())){
-                           parentNameList.add(list.get(i).getParentName());
+               if(list!=null && list.size()>0){
+                   for(int i=0;i<list.size();i++){
+                       if(i==0){
+                           parentNameList.add(list.get(0).getParentName());
+                       }else {
+                           if(list.get(i)!=null){
+                               if(!list.get(i).getParentName().equals(list.get(i-1).getParentName())){
+                                   parentNameList.add(list.get(i).getParentName());
+                               }
+                           }
                        }
                    }
+
                }
 
                //展示到页面

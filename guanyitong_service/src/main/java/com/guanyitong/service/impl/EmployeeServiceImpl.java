@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.guanyitong.mapper.EmployeeDAO;
 import com.guanyitong.model.Employee;
+import com.guanyitong.model.vo.EmployeeVo;
 import com.guanyitong.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,18 +31,29 @@ public class EmployeeServiceImpl implements EmployeeService {
         return i;
     }
 
+
+    /**
+     * 查询所有员工的总数
+     * @param employeeVo
+     * @return
+     */
+    @Override
+    public Integer selectEmployeeCount(EmployeeVo employeeVo) {
+        return employeeDAO.selectEmployeeCount(employeeVo);
+    }
+
     /**
      * 分页查询员工信息（条件查询）
-     * @param employee
+     * @param employeeVo
      * @param pageNum
      * @param pageSize
      * @return
      */
     @Override
-    public PageInfo<Employee> selectEmployee(Employee employee, Integer pageNum, Integer pageSize) {
+    public PageInfo<EmployeeVo> selectEmployee(EmployeeVo employeeVo, Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum,pageSize);
-        List<Employee> employees = employeeDAO.selectEmployee(employee);
-        PageInfo<Employee> pageInfo = new PageInfo<Employee>(employees);
+        List<EmployeeVo> employees = employeeDAO.selectEmployee(employeeVo);
+        PageInfo<EmployeeVo> pageInfo = new PageInfo<EmployeeVo>(employees);
         return pageInfo;
     }
 
@@ -51,8 +63,8 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @return
      */
     @Override
-    public Employee selectEmployeeById(Long id) {
-        Employee employee = employeeDAO.selectEmployeeById(id);
+    public EmployeeVo selectEmployeeById(Long id) {
+        EmployeeVo employee = employeeDAO.selectEmployeeById(id);
         return employee;
     }
 

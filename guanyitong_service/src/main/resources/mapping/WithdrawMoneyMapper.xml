@@ -14,13 +14,13 @@
     <update id="updateStatus" parameterType="java.util.Map">
       update withdrawal_money set
         <if test="status !=null">
-            status = #{status}
+            status = #{status},
         </if>
         <if test="shTime !=null">
-          shTime = #{shTime}
+          shTime = #{shTime},
         </if>
         <if test="txTime !=null and dzMoney !=null">
-            ,txTime = #{txTime}, dzMoney = #{dzMoney}
+            txTime = #{txTime}, dzMoney = #{dzMoney}
         </if>
       where id = #{id}
     </update>
@@ -135,5 +135,11 @@
             and wm.status = #{status}
         </if>
     </select>
+
+
+    <!--提现失败，再次申请提现，删除原来的数据-->
+    <delete id="deleteWithdrawalById" parameterType="Long">
+        delete  from withdrawal_money where id = #{id}
+    </delete>
 </mapper>
 

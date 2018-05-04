@@ -41,12 +41,20 @@ public class WithdrawMoneyServiceImpl implements WithdrawMoneyService{
     @Transactional
     @Override
     public Boolean insertWithdrawMoney(WithdrawalMoney withdrawalMoney) {
+
         if(withdrawalMoney.getBorrowMoneyUserId()!=null && !("").equals(withdrawalMoney.getBorrowMoneyUserId())){
+            if(withdrawalMoney.getId()!=null){//说明提现失败，再次申请提现
+                //删除原来的数据
+                withdrawMoneyDao.deleteWithdrawalById(withdrawalMoney.getId());
+                //把id设为null
+                withdrawalMoney.setId(null);
+            }
             Integer i = withdrawMoneyDao.insertWithdrawMoney(withdrawalMoney);//借款人申请提现
             Map map = new HashMap();
             map.put("borrowMoneyUserId",withdrawalMoney.getBorrowMoneyUserId());
             map.put("status1",5);//筹集完待提现
             map.put("status",10);//提现中
+            map.put("updateTime",new Date());
             Integer k = productDao.updateStatus(map);//把标的状态改为提现中
             return i>0 && k>0;
         }
@@ -165,7 +173,7 @@ public class WithdrawMoneyServiceImpl implements WithdrawMoneyService{
             backMoney.setProductInfoId(productInfo.getId());
             backMoney.setLx(String.valueOf(lx1));
             backMoney.setBj(String.valueOf(bj));
-            backMoney.setBackMoney(String.valueOf(bj+lx1));
+            backMoney.setBackMoney(String.valueOf(doubleTwo(bj+lx1)));
             backMoney.setCount(count);
             count++;
             ZMoney -= bj; //借款金额不断减少，利息也要减少
@@ -193,10 +201,10 @@ public class WithdrawMoneyServiceImpl implements WithdrawMoneyService{
             backMoney.setLx(String.valueOf(lx1));
             if(m==(monthNum-1)){
                 backMoney.setBj(String.valueOf(bj));
-                backMoney.setBackMoney(String.valueOf(bj+lx1));
+                backMoney.setBackMoney(String.valueOf(doubleTwo(bj+lx1)));
             }else{
                 backMoney.setBj(String.valueOf(0));
-                backMoney.setBackMoney(String.valueOf(0+lx1));
+                backMoney.setBackMoney(String.valueOf(doubleTwo(0+lx1)));
             }
             backMoney.setCount(count);
             count++;
@@ -221,7 +229,7 @@ public class WithdrawMoneyServiceImpl implements WithdrawMoneyService{
         backMoney.setProductInfoId(productInfo.getId());
         backMoney.setLx(String.valueOf(lx1));
         backMoney.setBj(String.valueOf(bj));
-        backMoney.setBackMoney(String.valueOf(bj+lx1));
+        backMoney.setBackMoney(String.valueOf(doubleTwo(bj+lx1)));
         backMoney.setCount(count);
         count++;
         backMoneyList.add(backMoney);

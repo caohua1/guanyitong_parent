@@ -26,10 +26,10 @@ function toadd(){
         dataType: "json",
         success: function (msg) {
             console.log(msg);
-            if (msg.state == 0) {
+            if(msg.state == 0) {
                 alert("添加成功");
                 window.location.href = basePath + "toJsp/toproductType_list.do";
-            } else {
+            }else{
                 alert("添加失败");
             }
         },
@@ -37,6 +37,5 @@ function toadd(){
             alert("网络出现问题");
         }
     });
-
 }
 

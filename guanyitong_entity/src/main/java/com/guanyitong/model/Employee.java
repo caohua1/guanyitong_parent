@@ -16,7 +16,7 @@ public class Employee implements Serializable {
     private String ephone;
     private String email;
     private Long edeptno;
-    private String epostno;
+    private String eroleId;
     private Date ecreateTime;
     private Date eupdateTime;
     private Integer estatus;
@@ -96,12 +96,12 @@ public class Employee implements Serializable {
         this.edeptno = edeptno;
     }
 
-    public String getEpostno() {
-        return epostno;
+    public String getEroleId() {
+        return eroleId;
     }
 
-    public void setEpostno(String epostno) {
-        this.epostno = epostno;
+    public void setEroleId(String eroleId) {
+        this.eroleId = eroleId;
     }
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")

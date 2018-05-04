@@ -59,10 +59,10 @@
     <%--0待提现（体现中），1提现成功，2提现失败--%>
     <div class="menli">
         <ul>
-            <li class="menlili" value="3">全部体现</li>
-            <li class="menlili" value="0">待处理体现</li>
-            <li class="menlili" value="1">成功的体现</li>
-            <li class="menlili" value="2">失败的体现</li>
+            <li class="menlili" value="3">全部提现列表</li>
+            <li class="menlili" value="0">待处理提现</li>
+            <li class="menlili" value="1">成功的提现</li>
+            <li class="menlili" value="2">失败的提现</li>
         </ul>
     </div>
     <div class="acon-table">
@@ -74,9 +74,9 @@
                 <th>银行</th>
                 <th>银行卡号</th>
                 <th>开户人</th>
-                <th>体现金额</th>
+                <th>提现金额</th>
                 <th>费率</th>
-                <th>体现人类型</th>
+                <th>提现人类型</th>
                 <th>申请时间</th>
                 <th>申请人</th>
                 <th>状态</th>
@@ -85,8 +85,8 @@
             <tbody id="dataTab"></tbody>
         </table>
         <div class="bbyong">
-            <div><span>总体现条数：</span><span id="count"></span></div>
-            <div><span>总体现金额：</span><span id="totalJe"></span></div>
+            <div><span>总提现条数：</span><span id="count"></span></div>
+            <div><span>总提现金额：</span><span id="totalJe"></span></div>
         </div>
         <%--分页--%>
         <div class="fenye">

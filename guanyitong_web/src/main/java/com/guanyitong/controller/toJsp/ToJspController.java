@@ -1,10 +1,10 @@
 package com.guanyitong.controller.toJsp;
 
 import com.guanyitong.mapper.BorrowMoneyUserDao;
+import com.guanyitong.mapper.PermissionDao;
+import com.guanyitong.mapper.PostDAO;
 import com.guanyitong.mapper.ProductDao;
-import com.guanyitong.model.BorrowMoneyUser;
-import com.guanyitong.model.Product;
-import com.guanyitong.model.ProductInfo;
+import com.guanyitong.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +22,10 @@ public class ToJspController {
     private ProductDao productDao;
     @Autowired
     private BorrowMoneyUserDao borrowMoneyUserDao;
+    @Autowired
+    private PostDAO postDAO;
+    @Autowired
+    private PermissionDao permissionDao;
     //==================================借款人（用户管理模块）
 
     /**
@@ -326,4 +330,63 @@ public class ToJspController {
         return "moneyManager/cashManagement";
     }
 
+
+    //========================权限管理
+
+    /**
+     * 跳转到员工管理列表页面
+     * @param model
+     * @return
+     */
+    @RequestMapping("/toEmployeeList")
+    public String toEmployeeList(Model model){
+        //查询所有的角色
+        Role role = new Role();
+        List<Role> roles = postDAO.selectPost(role);
+        model.addAttribute("roles",roles);
+        return "permissionManager/employee_list";
+    }
+
+    /**
+     * 添加员工页面
+     * @param model
+     * @return
+     */
+    @RequestMapping("/toEmployeeAdd")
+    public String toEmployeeAdd(Model model){
+        //查询所有的角色
+        Role role = new Role();
+        List<Role> roles = postDAO.selectPost(role);
+        model.addAttribute("roles",roles);
+        return "permissionManager/employee_add";
+    }
+
+    /**
+     * 跳转到角色管理列表页面
+     * @return
+     */
+    @RequestMapping("/toRoleList")
+    public String toRoleList(Model model){
+        //查询所有的角色
+        Role role = new Role();
+        List<Role> roles = postDAO.selectPost(role);
+        model.addAttribute("roles",roles);
+        return "permissionManager/role_list";
+    }
+
+    @RequestMapping("/toRoleAdd")
+    public String toRoleAdd(Model model){
+        //查询所有的权限
+        List<Permission> permissions = permissionDao.selectParentPermission();
+        if(permissions!=null && permissions.size()>0){
+            for(Permission permission : permissions){
+                Map<String,List<Permission>> map = new HashMap<String, List<Permission>>();
+                List<Permission> permissions1 = permissionDao.selectChildPermission(permission.getId());
+                map.put("permission",permissions1);
+                permission.setMap(map);
+            }
+        }
+        model.addAttribute("permissions",permissions);
+        return "permissionManager/role_add";
+    }
 }
