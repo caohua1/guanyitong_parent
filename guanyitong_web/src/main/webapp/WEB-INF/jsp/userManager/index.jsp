@@ -26,15 +26,15 @@
     <script src="<%=path%>/js/common_js/index.js"></script>
     <script src="<%=path%>/js/common_js/jquery.js"></script>
     <script src="<%=path%>/js/common_js/mydate.js"></script>
-    <style>
+   <%-- <style>
         body {
             margin-left: 0px;
             margin-top: 0px;
             margin-right: 0px;
             margin-bottom: 0px;
-            background-color:gainsboro;
+            background-color:darkgrey;
         }
-    </style>
+    </style>--%>
 
 </head>
 
@@ -97,10 +97,52 @@
     </div>
 
 </div>
+
+
+
+<div class="showhide" style="background-color: #13171b;color: #68677b;border-radius:10px;overflow:hidden" >
+    <div class="showhideng">
+        <span id="x">✖</span>
+        <p id="span" >确定是审核人员？</p>
+        <div class="quex">
+            <div><span id="TC" style="border-radius:10px;overflow:hidden">确定</span></div>
+            <div><span id="quxiao" style="border-radius:10px;overflow:hidden">取消</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="zhezaocegn"></div>
 </body>
 </html>
 <script>
+
+
+
+
     $(function(){
+
+        $('.tjiaoP_a>span').find('input').css({'width':'91px','height':'30px'});
+        $('td').css({'padding':'20px 30px'});
+        $('.quespann').click(function(){
+            $('.showhide').eq(0).show();
+            $('.zhezaocegn').show();
+        })
+        $('.showhideng>span').click(function(){
+            $('.showhide').hide();
+            $('.zhezaocegn').hide();
+        })
+
+        $('.quespannn').click(function(){
+            $('.showhide').eq(1).show();
+            $('.zhezaocegn').show();
+        })
+        $('.showhideng>span').click(function(){
+            $('.showhide').hide();
+            $('.zhezaocegn').hide();
+        })
+        $('.zhezaocegn').height(document.documentElement.clientHeight);
+
+
         liClick = function (element) {
 
             var src=$(element).attr("url");
@@ -120,11 +162,29 @@
                 $('')
             })
         })
+
         /*退出*/
        $("#logout").click(function () {
+
+           $('.showhide').show();
+           $('.zhezaocegn').show();
+           $("#span").text("确定要退出吗？");
            var local = window.location;
            var basePath = local.protocol+"//"+local.host+"/";
-           window.location.href = basePath + "logout.do";
+           //点击确定退出
+           $("#TC").click(function () {
+               window.location.href = basePath + "logout.do";
+           });
+           //点击取消
+           $("#quxiao").click(function () {
+               $('.showhide').hide();
+               $('.zhezaocegn').hide();
+           });
+           //点击取消
+           $("#x").click(function () {
+               $('.showhide').hide();
+               $('.zhezaocegn').hide();
+           });
        });
 
     })
@@ -132,6 +192,7 @@
 
 </script>
 
+<%--
 <script language="JavaScript">
     //   function time1(){
     //       var inn=document.getElementById('inn');
@@ -162,4 +223,4 @@
     //       setTimeout(time1,1000);
     //   }
     //   time1();
-</script>
+</script>--%>

@@ -34,7 +34,12 @@ $(function(){
         param.charterNum = $("#charterNum").val();
         param.legalPersonName = $("#legalPersonName").val();
         param.legalPhone = $("#legalPhone").val();
-        param.companyCreateTime =parserDate($("#companyCreateTime").val());
+        if($("#companyCreateTime").val()!=""){
+            param.companyCreateTime =parserDate($("#companyCreateTime").val());
+        }else{
+            param.companyCreateTime =null;
+        }
+
         param.registerMoney = $("#registerMoney").val();
         param.registerAddress = $("#registerAddress").val();
         param.borrowMoney = $("#borrowMoney").val();
@@ -48,9 +53,17 @@ $(function(){
         param.moneyInfo = $("#moneyInfo").val();
         param.ensureInfo = $("#ensureInfo").val();
         param.status = $("#status").val();
-        alert(param.status);
         param.Type = $("#Type").val();
-        updateBorrowUser();
+        if(param.id==""||param.companyName==""||param.charterNum==""||param.legalPersonName==""||param.legalPhone==""||
+            param.companyCreateTime==null||param.registerMoney==""||param.registerAddress==""||param.borrowMoney==""||
+            param.apprroveName==""||param.legalIDCard==""||param.address==""||param.status==""||param.Type==""){
+            alert("为空");
+            return false;
+        }else{
+            alert("添加");
+            updateBorrowUser();
+        }
+
     });
 
     //点击取消

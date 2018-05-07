@@ -283,8 +283,12 @@ function backMoney(){
                             "<td>" + data[i].backTime + "</td>"+
                             "<td>" + data[i].backMoney + "</td>"+
                             "<td>" + data[i].lx + "</td>"+
-                            "<td>" + data[i].bj + "</td>"+
-                            "<td>" + data[i].realBackTime + "</td>"
+                            "<td>" + data[i].bj + "</td>"
+                            if(data[i].realBackTime!=null){
+                               str+="<td>" + data[i].realBackTime + "</td>"
+                            }else{
+                               str+="<td>" + "未还款" + "</td>"
+                            }
                             if(data[i].status==0){
                                 str += "<td>" + "未还款" + "</td>"
                             }else if(data[i].status==1){

@@ -62,6 +62,24 @@ public class ProductServiceImpl implements ProductService{
         return pageInfo;
     }
 
+    /**
+     * 手机端，新手专区
+     * @return
+     */
+    @Override
+    public List<ProductInfo> newUserZQ(Map map) {
+        return productDao.newUserZQ(map);
+    }
+
+    /**
+     * 首页，产品专区3条数据
+     * @return
+     */
+    @Override
+    public List<ProductInfo> selectNewProductInfo() {
+        return productDao.selectNewProductInfo();
+    }
+
     //=======================================================后台管理
     /**
      * 添加产品（标种）

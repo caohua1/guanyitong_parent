@@ -21,24 +21,15 @@
     <link rel="stylesheet" href="<%=path%>/css/common_css/style.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/css.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/page.css" />
-    <link rel="stylesheet" href="<%=path%>/css/common_css/layer.css" />
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
-    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+   <%-- <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>--%>
     <script src="<%=path%>/js/common_js/mydate.js"></script>
     <script src="<%=path%>/js/common_js/page.js"></script>
-    <script src="<%=path%>/js/common_js/layer.js"></script>
     <script  src="${ctx}/js/HT_js/borrowUserManager_js/borrowUser_apprrove1.js"></script>
     <style>
         .acon-table{
             display: none;
         }
-         body {
-             margin-left: 0px;
-             margin-top: 0px;
-             margin-right: 0px;
-             margin-bottom: 0px;
-             background-color:gainsboro;
-         }
     </style>
 
 </head>
@@ -164,13 +155,13 @@
     </div>
 
 
-    <div class="showhide">
+    <div class="showhide" style="background-color: #13171b;color: #68677b;border-radius:10px;overflow:hidden">
         <div class="showhideng">
             <span>✖</span>
             <p>确定是审核人员？</p>
             <div class="quex">
-                <div><span>确定</span></div>
-                <div><span>取消</span></div>
+                <div><span style="border-radius:10px;overflow:hidden">确定</span></div>
+                <div><span style="border-radius:10px;overflow:hidden">取消</span></div>
             </div>
         </div>
     </div>

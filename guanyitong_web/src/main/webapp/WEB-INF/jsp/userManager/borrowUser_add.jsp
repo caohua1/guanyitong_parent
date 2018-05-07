@@ -24,12 +24,24 @@
     <script src="<%=path%>/js/common_js/mydate.js"></script>
     <script  src="${ctx}/js/HT_js/borrowUserManager_js/borrowUser_add.js"></script>
     <style>
-        body {
-            margin-left: 0px;
-            margin-top: 0px;
-            margin-right: 0px;
-            margin-bottom: 0px;
-            background-color:gainsboro;
+        input{
+            color: black;
+            border-radius:8px;
+            overflow:hidden;
+        }
+        button{
+            color: black;
+            border-radius:8px;
+            overflow:hidden;
+        }
+        select{
+            color: black;
+            border-radius:8px;
+            overflow:hidden;
+        }
+        .bt{
+            color:red;
+            font-size: 10px;
         }
     </style>
 </head>
@@ -40,24 +52,24 @@
     <div class="acont-nav">添加借款人：</div>
     <form>
         <div class="angcon">
-            <p><span>企业名称：</span><span><input type="text" id="companyName"></span></p>
-            <p><span>营业执照号：</span><span><input type="text" id="charterNum"></span></p>
-            <p><span>营业执照图片：</span><span><input type="file" name="file"  onchange="upload1(this.files)"></span></p>
+            <p><span>企业名称：</span><span><input type="text" id="companyName"></span><span class="bt"> *必填项</span></p>
+            <p><span>营业执照号：</span><span><input type="text" id="charterNum"></span><span class="bt"> *必填项</span></p>
+            <p><span>营业执照图片：</span><span><input type="file" name="file"  onchange="upload1(this.files)"></span><span class="bt"> *必填项</span></p>
 
             <p style="height: auto;line-height: 0;"><span></span><span id="myFile_div"><img src="" id="myImg" style="display: none;width: 100px;height: 100px;margin-left: 15px;"></span></p>
-            <p><span>法人代表：</span><span><input type="text" id="legalPersonName"></span></p>
-            <p><span>法人手机号：</span><span><input type="text" id="legalPhone"></span></p>
-            <p><span>成立时间：</span><span><input type="text"  onfocus="MyCalendar.SetDate(this)" class="input-text" id="companyCreateTime"></span></p>
-            <p><span>注册资本：</span><span><input type="text" id="registerMoney"></span></p>
-            <p><span>注册地址：</span><span><input type="text" id="registerAddress"></span></p>
-            <p><span>借款金额：</span><span><input type="text" id="borrowMoney"></span></p>
+            <p><span>法人代表：</span><span><input type="text" id="legalPersonName"></span><span class="bt"> *必填项</span></p>
+            <p><span>法人手机号：</span><span><input type="text" id="legalPhone"></span><span class="bt"> *必填项</span></p>
+            <p><span>成立时间：</span><span><input type="text"  onfocus="MyCalendar.SetDate(this)" class="input-text" id="companyCreateTime"></span><span class="bt"> *必填项</span></p>
+            <p><span>注册资本：</span><span><input type="text" id="registerMoney"></span><span class="bt"> *必填项</span></p>
+            <p><span>注册地址：</span><span><input type="text" id="registerAddress"></span><span class="bt"> *必填项</span></p>
+            <p><span>借款金额：</span><span><input type="text" id="borrowMoney"></span><span class="bt"> *必填项</span></p>
         </div>
 
 
         <div class="acont-nav">身份认证：</div>
         <div class="angcon anlin">
-            <p><span>真实姓名：</span><span><input type="text" id="apprroveName"></span></p>
-            <p><span>法人身份证号：</span><span><input type="text" id="legalIDCard"></span></p>
+            <p><span>真实姓名：</span><span><input type="text" id="apprroveName"></span><span class="bt"> *必填项</span></p>
+            <p><span>法人身份证号：</span><span><input type="text" id="legalIDCard"></span><span class="bt"> *必填项</span></p>
 
             <div class="shcuan" style="line-height: 0;height: 0;">
                 <div style="line-height: 50px;height: auto;">法人身份证图片：</div>
@@ -66,18 +78,16 @@
                     <div id="myFile_div2" style="line-height: 0;height: auto;">
                         <img src="" id="myImg2" style="display: none;width: 100px;height: 100px;">
                     </div>
-
                 </div>
                 <div style="line-height: 0;height: auto;">
                     <div style="line-height: 50px;height: auto;"><span style="margin-right: 10px;">反面照片:</span><input type="file" name="file"  onchange="upload3(this.files)"></div>
                     <div id="myFile_div3" style="line-height: 0;height: auto;">
                         <img src="" id="myImg3" style="display: none;width: 100px;height: 100px;">
                     </div>
-
                 </div>
 
             </div>
-
+            <span class="bt"> *必填项</span>
         </div>
 
 
@@ -96,7 +106,7 @@
 
         <div class="acont-nav">居住地认证：</div>
         <div class="angcon">
-            <p><span>居住地：</span><span><input type="text" id="address"></span></p>
+            <p><span>居住地：</span><span><input type="text" id="address"></span><span class="bt"> *必填项</span></p>
 
         </div>
         <div class="acont-nav">企业介绍：</div>
@@ -111,12 +121,14 @@
 
         <div class="acont-nav">资产信息：</div>
         <div class="angcontext">
-            <button>添加资产信息</button>
+            <button id="toAddMoneyInfo">添加资产信息</button>
+            <%--<textarea id="moneyInfo" style="display: none"></textarea>--%>
         </div>
 
         <div class="acont-nav">保证信息：</div>
         <div class="angcontext">
-            <button>添加保证信息</button>
+            <button id="toAddEnsureInfo">添加保证信息</button>
+            <%--<textarea id="ensureInfo" style="display: none"></textarea>--%>
         </div>
 
 

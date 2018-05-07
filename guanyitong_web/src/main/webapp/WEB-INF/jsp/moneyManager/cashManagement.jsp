@@ -97,27 +97,29 @@
             </div>
         </div>
     </div>
-    <div class="showhide">
+    <div class="showhide" style="background-color: #13171b;color: #68677b;border-radius:10px;overflow:hidden">
         <div class="showhideng">
             <span>✖</span>
             <p>请确定打款成功！</p>
             <div class="quex">
-                <div><span>确定</span></div>
-                <div><span>取消</span></div>
+                <div><span style="border-radius:10px;overflow:hidden">确定</span></div>
+                <div><span style="border-radius:10px;overflow:hidden">取消</span></div>
             </div>
         </div>
     </div>
 
-    <div class="showhide">
+    <div class="showhide" style="background-color: #13171b;color: #68677b;border-radius:10px;overflow:hidden">
         <div class="showhideng">
             <span>✖</span>
             <p>请确定打款失败！</p>
             <div class="quex">
-                <div><span>确定</span></div>
-                <div><span>取消</span></div>
+                <div><span style="border-radius:10px;overflow:hidden">确定</span></div>
+                <div><span style="border-radius:10px;overflow:hidden">取消</span></div>
             </div>
         </div>
     </div>
+
+
 </div>
 <div class="zhezaocegn"></div>
 </body>

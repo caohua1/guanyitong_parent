@@ -1,4 +1,4 @@
-body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0} 
+body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0}
     body{font:14px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;color: #434343;} 
     a{text-decoration:none} 
     a:hover{color:#cd0200;text-decoration:underline} 
@@ -25,3 +25,11 @@ body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,s
 		      background-color: #367fa9!important;
 		      color: #fff!important;
 		    }
+
+body {
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    background-color:darkgrey;
+}

@@ -57,13 +57,10 @@ $(function(){
 function toadd(){
     var pname = $("#pname").val();
     if(pname == "" && permissionIds!=""){
-        alert("请输入角色名称!");
         return false;
     }else if(pname != "" && permissionIds==""){
-        alert("请选择至少一个权限!");
         return false;
     }else if(pname == "" && permissionIds==""){
-        alert("请填写角色名称并选择至少一个权限!")
         return false;
     }
 

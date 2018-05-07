@@ -14,16 +14,16 @@
       </select>
       <!--查询用户是否已经存在-->
          <select id="selectUserName" parameterType="com.guanyitong.model.User" resultType="com.guanyitong.model.User">
-             select * from user_info where userName=#{userName}
+             select * from user_info where username=#{username}
          </select>
 
        <!--用户注册-->
          <insert id="insertUser" parameterType="User"  keyProperty="id">
              insert into user_info(
-             userName,password,registTime,status)
+             username,password,registTime,status)
          values 
          (        
-         #{userName},
+         #{username},
          #{password},
          #{registTime},
          #{status}
@@ -33,7 +33,7 @@
 
       <!--查询用户登陆信息是否正确-->
          <select id="selectUser" parameterType="com.guanyitong.model.User" resultType="com.guanyitong.model.User">
-             select * from user_info where userName=#{userName} and password=#{password}
+             select * from user_info where username=#{username} and password=#{password}
          </select>
 
        <!--添加个人资料-->
@@ -50,7 +50,7 @@
 
        <!--用户修改密码-->
         <update id="updatePassword" parameterType="com.guanyitong.model.User">
-            update user_info set password=#{password},updateTime=#{updateTime} where id=#{id}
+            update user_info set password=#{password},updateTime=#{updateTime} where id=#{id} and username = #{username}
         </update>
 
         <!--修改个人资料-->

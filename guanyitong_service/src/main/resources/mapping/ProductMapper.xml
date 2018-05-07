@@ -4,6 +4,19 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.guanyitong.mapper.ProductDao">
 
+    <!--=====================================手机端，-->
+    <!--首页，新手专区，推荐利率高的最近的产品-->
+    <select id="newUserZQ" parameterType="java.util.Map" resultType="com.guanyitong.model.ProductInfo">
+        select id,NO,yield,ZMoney,monthNum,createTime from productinfo where status=4 and createTime BETWEEN #{startTime} and #{endTime}
+    </select>
+
+    <!--首页，展示最新的产品3个(筹集中的产品)-->
+    <select id="selectNewProductInfo" resultType="com.guanyitong.model.ProductInfo">
+        select id,NO,yield,ZMoney,monthNum,createTime from productinfo where status =4 order by createTime limit 0,5
+    </select>
+
+
+
      <!--查询所有的产品-->
      <select id="selectProduct" parameterType="java.util.Map" resultType="com.guanyitong.model.Product">
           select * from product where status=1

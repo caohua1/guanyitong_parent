@@ -5,7 +5,7 @@
   //默认参数 (放在插件外面，避免每次调用插件都调用一次，节省内存)
   var defaults = {
     //id : '#paging',//id
-    leng: 66,//总页数
+    leng: 9,//总页数
     activeClass: 'page-active' ,//active类
     firstPage: '首页',//
     lastPage: '末页',
@@ -29,7 +29,7 @@
         var obj = $(this);
         var str1 = '';
         var str = '';
-        var l = opts.leng;
+        var l = opts.leng;//后台
         if (l > 1&&l < 10) {
           str1 = '<li><a href="javascript:" class="'+ opts.activeClass +'">1</a></li>';
           for (i = 2; i < l + 1; i++) {

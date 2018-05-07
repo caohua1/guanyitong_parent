@@ -1,8 +1,10 @@
 package com.guanyitong.controller.app;
+import com.guanyitong.model.ProductInfo;
 import com.guanyitong.model.Treasure;
 import com.guanyitong.model.UserGuanDou;
 import com.guanyitong.model.UserTreasure;
 import com.guanyitong.service.AccountManagerService;
+import com.guanyitong.service.ProductService;
 import com.guanyitong.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,59 @@ public class IndexController {
     private AccountManagerService accountManagerService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private ProductService productService;
+
+
+
+    //手机端，首页，新手专项，和产品专区
+
+    /**
+     * 手机端首页
+     * @return
+     */
+    @RequestMapping("/index")
+    @ResponseBody
+    public JsonResult index(){
+        JsonResult result = new JsonResult();
+        try{
+            //查询新手专享(利率高的)
+            Date endTime = new Date();
+            Date startTime = DateChangeUtil.dateAddMonths(endTime,-1);
+            Map map = new HashMap();
+            Map data = new HashMap();//返回的数据
+            map.put("startTime",startTime);
+            map.put("endTime",endTime);
+            List<ProductInfo> productInfos = productService.newUserZQ(map);
+            if(productInfos!=null && productInfos.size()>0){
+                double Yield = 0;
+                Map newUserZXQ = new HashMap();
+                for(ProductInfo productInfo :productInfos){
+                    if(productInfo.getYield()>Yield){
+                        Yield = productInfo.getYield();
+                        newUserZXQ.put("newUserZXQ",productInfo);
+                    }
+                }
+                data.put("newUserZXQ",newUserZXQ);
+            }
+            //查询新品专区
+            List<ProductInfo> productInfos1 = productService.selectNewProductInfo();
+            data.put("newProducts",productInfos1);
+            result.setState(JsonResult.SUCCESS);
+            result.setData(data);
+            result.setMessage("返回数据成功");
+        }catch(Exception e){
+            e.printStackTrace();
+            result.setMessage("网络出现问题");
+        }
+        return result;
+    }
+
+
+
+
+
+    //==================================================手机端暂时不需要的接口
     /**
      * 冠豆商城
      * 1.显示用户的冠豆数

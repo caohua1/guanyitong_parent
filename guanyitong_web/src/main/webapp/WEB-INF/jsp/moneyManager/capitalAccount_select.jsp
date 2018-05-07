@@ -32,15 +32,6 @@
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
     <script src="<%=path%>/js/common_js/page.js"></script>
     <script  src="${ctx}/js/HT_js/moneyManager_js/capitalAccount_select.js"></script>
-    <style>
-        body {
-            margin-left: 0px;
-            margin-top: 0px;
-            margin-right: 0px;
-            margin-bottom: 0px;
-            background-color:gainsboro;
-        }
-    </style>
 </head>
 <body>
 <!--公共的外层-->
@@ -125,16 +116,17 @@
 
 
 
-    <div class="showhide">
+    <div class="showhide" style="background-color: #13171b;color: #68677b;border-radius:10px;overflow:hidden">
         <div class="showhideng">
             <span>✖</span>
             <p>确定是审核人员？</p>
             <div class="quex">
-                <div><span>确定</span></div>
-                <div><span>取消</span></div>
+                <div><span style="border-radius:10px;overflow:hidden">确定</span></div>
+                <div><span style="border-radius:10px;overflow:hidden">取消</span></div>
             </div>
         </div>
     </div>
+
 
 
 </div>

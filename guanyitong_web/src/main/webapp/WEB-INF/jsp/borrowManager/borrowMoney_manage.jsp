@@ -25,15 +25,7 @@
     <script src="<%=path%>/js/common_js/mydate.js"></script>
     <script src="<%=path%>/js/common_js/page.js"></script>
     <script  src="${ctx}/js/HT_js/borrowManager_js/borrowMoney_manage.js"></script>
-    <style>
-        body {
-            margin-left: 0px;
-            margin-top: 0px;
-            margin-right: 0px;
-            margin-bottom: 0px;
-            background-color:gainsboro;
-        }
-    </style>
+
 </head>
 <body>
 <!--公共的外层-->
@@ -109,17 +101,19 @@
     </div>
 
    <%--确定放弃--%>
-    <div class="showhide">
+    <div class="showhide" style="background-color: #13171b;color: #68677b;border-radius:10px;overflow:hidden">
         <div class="showhideng">
             <span id="x">✖</span>
             <p>提交放弃原因</p>
             <textarea id="fangqiCauseBy"></textarea>
             <div class="quex">
-                <div><span id="toFangqi">确定</span></div>
-                <div><span id="quxiao">取消</span></div>
+                <div><span id="toFangqi" style="border-radius:10px;overflow:hidden">确定</span></div>
+                <div><span id="quxiao" style="border-radius:10px;overflow:hidden">取消</span></div>
             </div>
         </div>
     </div>
+
+
     <%--确定下架--%>
     <%--<div class="showhide">
         <div class="showhideng">

@@ -26,14 +26,6 @@
         .faren>div:nth-child(1){
             text-align: left;
         }
-
-         body {
-             margin-left: 0px;
-             margin-top: 0px;
-             margin-right: 0px;
-             margin-bottom: 0px;
-             background-color:gainsboro;
-         }
     </style>
 </head>
 <body>
@@ -187,18 +179,18 @@
     </div>
 
 
-    <div class="showhide">
+    <div class="showhide" style="background-color: #13171b;color: #68677b;border-radius:10px;overflow:hidden">
         <div class="showhideng">
             <span>✖</span>
             <p>确定是审核人员？</p>
             <div class="quex">
-                <div><span id="apprrove_success">确定</span></div>
-                <div><span id="cancel">取消</span></div>
+                <div><span id="apprrove_success" style="border-radius:10px;overflow:hidden">确定</span></div>
+                <div><span id="cancel" style="border-radius:10px;overflow:hidden">取消</span></div>
             </div>
         </div>
     </div>
 
-    <div class="showtexthide">
+    <div class="showtexthide" style="background-color: #13171b;color: #68677b;border-radius:10px;overflow:hidden">
         <div class="showhideng">
             <span>✖</span>
             <m>请填写审核不通过原因</m>
@@ -206,6 +198,8 @@
             <button class="bbque" id="apprrove_no">确定</button>
         </div>
     </div>
+
+
 </div>
 </body>
 </html>

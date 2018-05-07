@@ -135,5 +135,10 @@
             and wm.status = #{status}
         </if>
     </select>
+
+    <!--提现失败，再次申请提现，删除原来的数据-->
+    <delete id="deleteWithdrawalById" parameterType="Long">
+        delete from withdrawal_money where id = #{id}
+    </delete>
 </mapper>
 

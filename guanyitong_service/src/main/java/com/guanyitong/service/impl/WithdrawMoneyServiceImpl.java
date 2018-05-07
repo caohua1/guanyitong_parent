@@ -34,7 +34,7 @@ public class WithdrawMoneyServiceImpl implements WithdrawMoneyService{
     private BorrowMoneyUserDao borrowMoneyUserDao;
 
     /**
-     * 提现（修改体现表的状态，同时修改标（productinfo）的状态），添加数据
+     * 申请提现（修改体现表的状态，同时修改标（productinfo）的状态），添加数据
      * @param withdrawalMoney
      * @return
      */
