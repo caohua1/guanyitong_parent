@@ -69,13 +69,13 @@
     <div class="iframe_lcona">
         <div>身份证号：</div>
         <div>
-            <input type="text" id="IDCardNumber"><span><font color="#FF0000">*必填项</font></span>
+            <input type="text" id="IDCardNumber" onblur="isIdCardNo()"><span><font color="#FF0000" id="IDCardInfo">*必填项</font></span>
         </div>
     </div>
     <div class="iframe_lcona">
         <div>卡号：</div>
         <div>
-            <input type="text" id="cardNo"><span><font color="#FF0000">*必填项</font></span>
+            <input type="text" id="cardNo" onblur="message()"><span><font color="#FF0000" id="banknoInfo">*必填项</font></span>
         </div>
     </div>
     <div class="iframe_lcona">

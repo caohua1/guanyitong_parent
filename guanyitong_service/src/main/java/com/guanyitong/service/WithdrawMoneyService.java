@@ -11,7 +11,6 @@ public interface WithdrawMoneyService {
      * @return
      */
     public Boolean insertWithdrawMoney(WithdrawalMoney withdrawalMoney);
-
     /**
      * 确认提现成功、失败（修改状态）,添加审核时间
      * @param map
@@ -24,14 +23,12 @@ public interface WithdrawMoneyService {
      * @return
      */
     public PageInfo<WithdrawalMoneyVo> selectWithdrawal(WithdrawalMoneyVo withdrawalMoneyVo,Integer pageNum,Integer pageSize);
-
     /**
      * 提现总数量
      * @param withdrawalMoneyVo
      * @return
      */
     public Integer selectWithdrawalCount(WithdrawalMoneyVo withdrawalMoneyVo);
-
     /**
      * 查询出提现总金额
      * @return

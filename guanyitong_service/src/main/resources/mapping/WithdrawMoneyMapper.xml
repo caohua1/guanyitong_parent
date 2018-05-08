@@ -135,5 +135,8 @@
             and wm.status = #{status}
         </if>
     </select>
+    <delete id="deleteWithdrawalById" parameterType="java.lang.Long">
+        DELETE FROM withdrawal_money WHERE id=#{id}
+    </delete>
 </mapper>
 

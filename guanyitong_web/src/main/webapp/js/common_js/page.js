@@ -7,7 +7,7 @@
     //id : '#paging',//id
     leng: 66,//总页数
     activeClass: 'page-active' ,//active类
-    firstPage: '首页',//
+    firstPage: '首页',
     lastPage: '末页',
     prv: '«',
     next: '»',
@@ -64,7 +64,6 @@
         });
         obj.on('click', '.prv', function () {
           var pageshow = parseInt($('.' + opts.activeClass).html());
-
           if (pageshow == 1) {
             return false;
           }else if(pageshow > l-5&&pageshow < l+1){
@@ -148,9 +147,7 @@
           }
           obj.find('ul').html(str1);
           obj.find('ul li').eq(4).find('a').addClass(opts.activeClass);
-		      
         }
-
         function fpagePrv(prv){
           var str1 = '';
           if(l>8){
