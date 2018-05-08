@@ -63,9 +63,9 @@ public class BackMoneyServiceImpl implements BackMoneyService {
               allLx += Double.valueOf(backMoney.getLx());
             }
             backMoneyVo.setNO((String) map.get("NO"));
-            backMoneyVo.setAllBj(String.valueOf(allBj));
-            backMoneyVo.setAllLx(String.valueOf(allLx));
-            backMoneyVo.setAllBjAndLx(String.valueOf(allBj+allLx));
+            backMoneyVo.setAllBj(String.valueOf(doubleTwo(allBj)));
+            backMoneyVo.setAllLx(String.valueOf(doubleTwo(allLx)));
+            backMoneyVo.setAllBjAndLx(String.valueOf(doubleTwo(allBj+allLx)));
             backMoneyVo.setBackMoneyList(backMoneyList);
         }
         return backMoneyVo;
@@ -82,6 +82,7 @@ public class BackMoneyServiceImpl implements BackMoneyService {
     @Transactional
     @Override
     public Boolean updateStatus(BackMoney backMoney) {
+        backMoney.setRealBackTime(new Date());
         if(backMoney.getStatus()==2){
             Integer o = backMoneyDao.updateStatus(backMoney);//2 修改状态为还款失败
             return o>0;

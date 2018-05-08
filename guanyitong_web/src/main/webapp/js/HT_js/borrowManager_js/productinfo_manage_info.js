@@ -1,6 +1,24 @@
 $(function(){
     init();
 
+    //点击确定，审核通过
+    $("#apprrove_success").on("click",function(){
+        $('.showhide').hide();
+        var status = 2;
+        toupdate(status);
+    });
+
+    //点击确定审核失败
+    $("#apprrove_no").on("click",function () {
+        $(".showtexthide").hide();
+        var status = 1;
+        toupdate(status);
+    });
+
+    //点击取消
+    $("#cancel").on("click",function(){
+        $('.showhide').hide();
+    });
 
 
 });
@@ -118,14 +136,14 @@ function init(){
 
 //点击确定审核成功或者审核失败,修改状态
 function toupdate(status) {
-    var id = $("#borrowMoneyUserId").val();
+    var id = $("#id").val();
     var causeBy = $("#causeBy").val();
     var local = window.location;
     var basePath = local.protocol+"//"+local.host+"/";
     $.ajax({
         type: "post",
         dataType: "json",
-        url: basePath+"BorrowMoneyUser/updateStatus.do",
+        url: basePath+"product/updateProductInfo.do",
         data: {
             id:id,
             status : status,
@@ -134,12 +152,13 @@ function toupdate(status) {
         success: function (msg) {
             if(msg.state==0){
                alert("操作成功")
+                window.location.href=basePath+"toJsp/toproductInfo_apprrove_manage.do";
             }else{
-                alert("网络错误");
+                alert("操作失败");
             }
         },
         error: function () {
-            alert("修改失败")
+            alert("网络错误")
         }
     });
 }

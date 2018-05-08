@@ -39,7 +39,7 @@
     </insert>
 
     <!--根据主键id查看详情-->
-    <select id="selectUserBankcardById" parameterType="Long" resultType="com.guanyitong.model.UserBankcard">
+    <select id="selectUserBankcardById" parameterType="String" resultType="com.guanyitong.model.UserBankcard">
         select * from user_bankcard where borrowMoneyUserId = #{borrowMoneyUserId}
     </select>
 

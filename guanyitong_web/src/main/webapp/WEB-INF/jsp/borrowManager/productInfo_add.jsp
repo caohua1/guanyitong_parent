@@ -53,7 +53,7 @@
 
 
 
-            <p><span>预期年化收益：</span><span><input type="text" id="yield" ><span class="bt"> *必填项</span></span></p>
+            <p><span>预期年化收益：</span><span><input type="text" id="yield" maxlength="5" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')"><span class="bt"> *必填项</span><span style="color: blue;font-size: 10px" >（只能输入数字和"."号，且最多输入四位有效数字）</span></span></p>
 
             <p><span>类型：</span>
                 <span><select id="productId" >
@@ -64,7 +64,7 @@
 
 					</select><span class="bt"> *必填项</span></span>
             </p>
-            <p><span>借款金额：</span><span><input type="text" id="ZMoney" ><span class="bt"> *必填项</span></span></p>
+            <p><span>借款金额：</span><span><input type="text" id="ZMoney" disabled><span style="display: none;color: blue;font-size: 10px" id="wu"></span><span class="bt"> *必填项</span></span></p>
             <p><span>还款方式：</span>
                 <span><select id="backMoneyType" >
 						<option value="-1" selected="selected">请选择</option>

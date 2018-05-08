@@ -201,8 +201,9 @@ public class ToJspController {
      * @return
      */
     @RequestMapping("/productinfo_manage_info")
-    public String productinfo_manage_info(Long id,Model model){
+    public String productinfo_manage_info(Long id,Integer status,Model model){
         model.addAttribute("id",id);
+        model.addAttribute("status",status);
         return "borrowManager/productinfo_manage_info";
     }
 

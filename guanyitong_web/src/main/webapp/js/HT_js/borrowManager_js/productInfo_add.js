@@ -19,6 +19,12 @@ var param = {
 };
 
 $(function(){
+
+    //输入借款人borrowMOneyUserId后，借款金额，自动显示，并且不能修改
+    $("#borrowMoneyUserId").blur(function(){
+        $("#wu").hide();
+        selectborrowMoney();
+    });
     //点击添加
     $("#add").on("click",function () {
         param.borrowMoneyUserId = $("#borrowMoneyUserId").val();
@@ -112,7 +118,6 @@ function toadd(){
     var local = window.location;
     var basePath = local.protocol+"//"+local.host+"/";
 
-
     $.ajax({
         type: "post",
         url: basePath+"product/insertProductinfo.do",
@@ -173,6 +178,38 @@ function upload(fileObj){
     });
 }
 
+
+//查询借款用户得借款金额
+function selectborrowMoney(){
+    var local = window.location;
+    var basePath = local.protocol+"//"+local.host+"/";
+    var id = $("#borrowMoneyUserId").val();
+
+    $.ajax({
+        type: "post",
+        url: basePath+"borrowMoney/selectborrowMoneyById.do",
+        data: {
+            id : id
+        },
+        dataType: "json",
+        success: function (msg) {
+            console.log(msg);
+            if (msg.state == 0) {
+               //显示此借款用户的
+               $("#ZMoney").val(msg.data.borrowMoney);
+            } else {
+               //此用户不存在
+                $("#wu").show();
+                $("#wu").text("此借款用户不存在");
+                $("#ZMoney").val("");
+            }
+        },
+        error : function () {
+            alert("网络出现问题");
+        }
+    });
+
+}
 var parserDate = function (date) {
     var t = Date.parse(date);
     if (!isNaN(t)) {

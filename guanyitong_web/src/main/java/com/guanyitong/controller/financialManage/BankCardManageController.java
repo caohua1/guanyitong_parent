@@ -123,7 +123,7 @@ public class BankCardManageController {
     @RequestMapping("/selectUserBankcardById")
     public String selectUserBankcardById(Long borrowMoneyUserId, Model model){
         try{
-            UserBankcard userBankcard = userBankcardService.selectUserBankcardById(borrowMoneyUserId);
+            UserBankcard userBankcard = userBankcardService.selectUserBankcardById(String.valueOf(borrowMoneyUserId));
             if(userBankcard!=null){
                if(userBankcard.getRealName()==null){
                    userBankcard.setRealName("暂无数据");

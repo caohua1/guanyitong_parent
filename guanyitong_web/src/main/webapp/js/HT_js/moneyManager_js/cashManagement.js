@@ -141,19 +141,26 @@ function initlist(Sta){
                             "<td>" + data[i].realName + "</td>" +
                             "<td>" + data[i].txMoney + "</td>" +
                             "<td>" + data[i].sxf + "</td>" +
-                            "<td>" + userType + "</td>" +
-                            "<td>" + data[i].txTime + "</td>" +
-                            "<td>" + data[i].sqUser + "</td>"
+                            "<td>" + userType + "</td>"
+                            if(data[i].txTime!=null){
+                              str +="<td>" + data[i].txTime + "</td>"
+                            }else{
+                              str +="<td>" + "----------" + "</td>"
+                            }
+                            str +="<td>" + data[i].sqUser + "</td>"
                             //<%--0待提现（体现中），1提现成功，2提现失败--%>
-                            if(data[i].status==0){
+                            if(data[i].status==0){//借款人
                                str +=  "<td>" + "待提现" + "</td>"+
                                 "<td><span class='quespannn'><a href=\"javascript:;\" onclick=\"toupdate('"+data[i].id+"','1','"+data[i].borrowMoneyUserId+"','"+data[i].dzMoney+"')\" >确认提现成功</a></span></td>"
-                            }else if(data[i].status==1){
+                            }else if(data[i].status==1){//出借人和提现人一样
                                 str +=  "<td>" + "提现成功" + "</td>"+
                                 "<td>"+"----------"+"</td>"
-                            }else if(data[i].status==2){
+                            }else if(data[i].status==2 && data[i].borrowMoneyUserId != null){//借款人
                                 str +=  "<td>" + "提现失败" + "</td>"+
                                     "<td><span class='quespannn'><a href=\"javascript:;\" onclick=\"SQTX_TWO('"+data[i].id+"','"+data[i].borrowMoneyUserId+"','"+data[i].dzMoney+"')\">申请提现</a></span></td>"
+                            }else if(data[i].status==2 && data[i].borrowMoneyUserId == null && data[i].username != null){//出借人
+                                str +=  "<td>" + "提现失败" + "</td>"+
+                                    "<td>"+"----------"+"</td>"
                             }
 
                             "</tr>";
@@ -204,7 +211,7 @@ function SQTX_TWO(id,borrowMoneyUserId,dzMoney) {
             console.log(msg);
             if (msg.state == 0) {
                 alert("再次申请成功");
-                initlist(Sta);
+                initlist(null);
             } else {
                 alert("再次申请失败");
             }
@@ -225,14 +232,15 @@ function toupdate(id,status,borrowMoneyUserId,dzMoney){
         data: {
             id : id,
             borrowMoneyUserId:borrowMoneyUserId,
-            dzMoney:dzMoney
+            dzMoney:dzMoney,
+            status:status
         },
         dataType: "json",
         success: function (msg) {
             console.log(msg);
             if (msg.state == 0) {
                 alert("操作成功");
-                initlist(Sta);
+                initlist(null);
             } else {
                 alert("操作失败");
             }

@@ -83,14 +83,14 @@ function createTBody(){
                                 "<td>" + data[i].createTime + "</td>"
                             if(data[i].status == 0){
                                 str +=  "<td>" + "待审核" + "</td>"+
-                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span><span><a  href='' >审核</a></span></td>"
+                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"&status="+data[i].status+"\" >查看</a></span></td>"
 
                             }else if(data[i].status ==1){
                                 str +="<td>" + "审核未通过" + "</td>"+
-                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></span><span><a  href='' >审核</a></span></td>"
+                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"&status="+data[i].status+"\" >查看</a></span></td>"
                             }else if(data[i].status ==2){
                                 str +="<td>" + "审核通过，未开始筹集" + "</td>"+
-                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"\" >查看</a></td>"
+                                    "<td><span><a  href=\"productinfo_manage_info.do?id="+ data[i].id+"&status="+data[i].status+"\" >查看</a></td>"
                             }
                     }
                     tbody.innerHTML = str;

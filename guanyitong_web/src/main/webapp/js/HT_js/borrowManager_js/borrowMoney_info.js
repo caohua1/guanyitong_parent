@@ -85,7 +85,7 @@ function baseInfo(){
                 }
 
                 if(data.yield !=null ){
-                    $("#yield").html(data.yield/100 + "%");
+                    $("#yield").html(data.yield+ "%");
                 }else{
                     $("#yield").html("暂无数据");
                 }
@@ -287,7 +287,7 @@ function backMoney(){
                             if(data[i].realBackTime!=null){
                                str+="<td>" + data[i].realBackTime + "</td>"
                             }else{
-                               str+="<td>" + "未还款" + "</td>"
+                               str+="<td>" + "   -------" + "</td>"
                             }
                             if(data[i].status==0){
                                 str += "<td>" + "未还款" + "</td>"

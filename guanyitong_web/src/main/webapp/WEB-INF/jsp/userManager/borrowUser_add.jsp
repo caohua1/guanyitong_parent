@@ -43,6 +43,8 @@
             color:red;
             font-size: 10px;
         }
+        .pick-area{display: inline-block;}
+        .angcon a{float:left;margin:10px;}
     </style>
 </head>
 <body>
@@ -58,18 +60,18 @@
 
             <p style="height: auto;line-height: 0;"><span></span><span id="myFile_div"><img src="" id="myImg" style="display: none;width: 100px;height: 100px;margin-left: 15px;"></span></p>
             <p><span>法人代表：</span><span><input type="text" id="legalPersonName"></span><span class="bt"> *必填项</span></p>
-            <p><span>法人手机号：</span><span><input type="text" id="legalPhone"></span><span class="bt"> *必填项</span></p>
+            <p><span>法人手机号：</span><span><input type="text" id="legalPhone" maxlength="11" onkeyup="this.value=this.value.replace(/^1[3|4|5|7|8]\d{10}$/g,'')" onblur="if(this.value.length<11){value='请输入正确的手机号码'}"></span><span class="bt"> *必填项</span><span style="color: blue;font-size: 10px">(输入11位手机号码)</span></p>
             <p><span>成立时间：</span><span><input type="text"  onfocus="MyCalendar.SetDate(this)" class="input-text" id="companyCreateTime"></span><span class="bt"> *必填项</span></p>
             <p><span>注册资本：</span><span><input type="text" id="registerMoney"></span><span class="bt"> *必填项</span></p>
             <p><span>注册地址：</span><span><input type="text" id="registerAddress"></span><span class="bt"> *必填项</span></p>
-            <p><span>借款金额：</span><span><input type="text" id="borrowMoney"></span><span class="bt"> *必填项</span></p>
+            <p><span>借款金额：</span><span><input type="text" id="borrowMoney" maxlength="8" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></span><span class="bt"> *必填项</span><span style="color: blue;font-size: 10px">(只能输入数字,不能超过10000000)</span></p>
         </div>
 
 
         <div class="acont-nav">身份认证：</div>
         <div class="angcon anlin">
             <p><span>真实姓名：</span><span><input type="text" id="apprroveName"></span><span class="bt"> *必填项</span></p>
-            <p><span>法人身份证号：</span><span><input type="text" id="legalIDCard"></span><span class="bt"> *必填项</span></p>
+            <p><span>法人身份证号：</span><span><input type="text" id="legalIDCard" onblur="if((/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/).test(this.value)==false){value='身份证号的格式不正确'}"></span><span class="bt"> *必填项</span><span style="color: blue;font-size: 10px">(请输入15位或18位的身份证号,只能输入数字和字母)</span></p>
 
             <div class="shcuan" style="line-height: 0;height: 0;">
                 <div style="line-height: 50px;height: auto;">法人身份证图片：</div>
@@ -106,17 +108,21 @@
 
         <div class="acont-nav">居住地认证：</div>
         <div class="angcon">
-            <p><span>居住地：</span><span><input type="text" id="address"></span><span class="bt"> *必填项</span></p>
+           <p><span>居住地：</span><span><input type="text" id="address"></span><span class="bt"> *必填项</span></p>
+
 
         </div>
+
         <div class="acont-nav">企业介绍：</div>
         <div class="angcontext">
-            <textarea id="companyDescribe"></textarea>
+            <textarea class="area" id="companyDescribe" maxlength="200" placeholder="请输入文本内容"></textarea>
+            <p style="padding-left: 250px;color: blue;font-size: 10px">最多可输入200字: <span class="text_count" style="color: red"> 0</span>/200</p>
         </div>
 
         <div class="acont-nav">借款用途：</div>
         <div class="angcontext">
-            <textarea id="borrowUse"></textarea>
+            <textarea class="area1" id="borrowUse" placeholder="请输入文本内容"></textarea>
+            <p style="padding-left: 250px;color: blue;font-size: 10px">最多可输入200字: <span class="text_count1" style="color: red"> 0</span>/200</p>
         </div>
 
         <div class="acont-nav">资产信息：</div>
@@ -142,4 +148,28 @@
 </div>
 </body>
 </html>
+<script>
+    $(".area").on("input propertychange",function(){
+        var $this = $(this),
+            _val = $(this).val(),
+            count = "";
+        if(_val.length>200){
+            $this.val(_val.substring(0,200));
+        }
+        count= 200-$this.val().length;
+        $(".text_count").text(count);
+    });
 
+    $(".area1").on("input propertychange",function(){
+        var $this = $(this),
+            _val = $(this).val(),
+            count = "";
+        if(_val.length>200){
+            $this.val(_val.substring(0,200));
+        }
+        count= 200-$this.val().length;
+        $(".text_count1").text(count);
+    });
+
+
+</script>

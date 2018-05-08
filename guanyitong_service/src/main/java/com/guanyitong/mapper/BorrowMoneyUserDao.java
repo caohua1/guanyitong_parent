@@ -15,4 +15,5 @@ public interface BorrowMoneyUserDao {
     public List<BorrowMoneyUser> selectDimId(Long dimId);
     public Integer updateBorrowUser(BorrowMoneyUser borrowMoneyUser);
 
+
 }

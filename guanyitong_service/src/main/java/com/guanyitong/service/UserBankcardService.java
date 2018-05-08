@@ -36,7 +36,7 @@ public interface UserBankcardService {
      * @param borrowMoneyUserId
      * @return
      */
-    public UserBankcard selectUserBankcardById(Long borrowMoneyUserId);
+    public UserBankcard selectUserBankcardById(String borrowMoneyUserId);
 
 
 

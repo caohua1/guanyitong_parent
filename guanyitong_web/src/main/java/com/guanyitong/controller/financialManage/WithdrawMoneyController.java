@@ -24,7 +24,7 @@ public class WithdrawMoneyController {
     @Autowired
     private BackMoneyService backMoneyService;
     /**
-     * 提现，添加数据（//pc端的是借款人,有申请人姓名）
+     * 申请提现，添加数据（//pc端的是借款人,有申请人姓名）
      * @return
      */
     @RequestMapping("/insertWithdrawMoney")

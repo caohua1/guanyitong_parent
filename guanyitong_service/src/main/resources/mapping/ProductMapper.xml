@@ -350,6 +350,9 @@
         <if test="QSUse !=null and QSUse !=''">
             QSUse = #{QSUse},
         </if>
+        <if test="causeBy !=null and causeBy !=''">
+            causeBy = #{causeBy}
+        </if>
         <if test="fangqiCauseBy !=null and fangqiCauseBy !=''">
             fangqiCauseBy = #{fangqiCauseBy},
         </if>
