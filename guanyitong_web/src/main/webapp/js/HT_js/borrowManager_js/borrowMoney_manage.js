@@ -76,7 +76,7 @@ function createTBody(){
                                 "<td>" + data[i].no + "</td>"+
                                 "<td>" + data[i].name + "</td>"+
                                 "<td>" +data[i].zmoney+ "</td>"+
-                                "<td>" + data[i].yield + "</td>"+
+                                "<td>" + data[i].yield +"%"+ "</td>"+
                                 "<td>" +data[i].startRaiseTime +"-" +data[i].endRaiseTime + "</td>"+
                                 "<td>" + data[i].startBorrowTime +"-" +data[i].endBorrowTime+ "</td>"+
                                 "<td>" + data[i].backMoneyType  + "</td>"+

@@ -44,7 +44,14 @@ $(function(){
         param.moneyUse = $("#moneyUse").val();
         param.QSUse = $("#QSUse").val();
         param.coverImage = $("#myImg").val();
-        updateProductInfo();
+        if(param.id==""||param.borrowMoneyUserId==""||param.NO==""||param.yield==""||param.productId==""||
+           param.ZMoney==""||param.backMoneyType==null||param.YesNo==null||param.raiseMoneyMonth==""||
+           param.monthNum==""||param.charterImage==""){
+            return false;
+        }else{
+            updateProductInfo();
+        }
+
     });
 
     //点击取消

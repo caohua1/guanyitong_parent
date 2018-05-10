@@ -23,7 +23,24 @@
     <link rel="stylesheet" href="<%=path%>/css/common_css/xinzeng.css" />
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
     <script  src="${ctx}/js/HT_js/permissionManager_js/employee_update.js"></script>
+ <style>
+     input{
+         color: black;
+         border-radius:8px;
+         overflow:hidden;
+     }
+     button{
+         color: black;
+         border-radius:8px;
+         overflow:hidden;
+     }
+     select{
+         color: black;
+         border-radius:8px;
+         overflow:hidden;
+     }
 
+ </style>
 </head>
 <body>
 <!--公共的外层-->

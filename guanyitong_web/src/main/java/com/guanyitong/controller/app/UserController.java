@@ -70,6 +70,7 @@ public class UserController {
                 user.setStatus(1);
                 int i = userService.insertUser(user);
                 if(i>0){
+                    user.setPassword(MD5Util.MD5(user.getPassword()));
                     result.setState(JsonResult.SUCCESS);
                     result.setData(user);
                     result.setMessage("注册成功");
@@ -80,9 +81,13 @@ public class UserController {
             }
         }catch(Exception e){
             e.printStackTrace();
+            result.setState(JsonResult.ERROR);
+            result.setMessage("网络出现问题");
         }
         return result;
     }
+
+
     /**
      * 登录，并返回token
      * @param user
@@ -104,6 +109,9 @@ public class UserController {
                 result.setState(JsonResult.SUCCESS);
                 result.setData(map);//登录成功返回用户token的一些信息
                 result.setMessage("登录成功");
+            }else{
+                result.setMessage("用户名或密码错误");
+                result.setState(JsonResult.ERROR);
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -127,8 +135,12 @@ public class UserController {
             u.setUpdateTime(new Date());
             int i = userService.updatePassword(u);
             if(i>0){
+                result.setData(u);
                 result.setState(JsonResult.SUCCESS);
                 result.setMessage("密码修改成功");
+            }else{
+                result.setState(JsonResult.ERROR);
+                result.setMessage("修改失败");
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -162,7 +174,7 @@ public class UserController {
             }else{//如果有此用户的个人资料，就去修改
                 userPersonalData.setUpdateTime(new Date());
                 userService.updatePersonalData(userPersonalData);
-                result.setState(JsonResult.SUCCESS);
+                result.setState(JsonResult.ERROR);
                 result.setMessage("成功修改个人资料");
             }
         }catch(Exception e){

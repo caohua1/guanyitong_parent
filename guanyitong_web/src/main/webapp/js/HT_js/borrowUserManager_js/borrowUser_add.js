@@ -16,34 +16,60 @@ var param = {
     borrowUse : null,
     charterImage : null,
     legalIDCardImageZ : null,
-    legalIDCardImageF : null
-
+    legalIDCardImageF : null,
+    ensureInfo:null,
+    moneyInfo:null
 };
 
 $(function(){
-      //点击添加
-      $("#add").on("click",function(){
-          toadd();
+
+        /* //点击添加资产信息
+        $("#toAddMoneyInfo").on("click",function () {
+            $("#tomoneyInfo").show();
+        });
+
+        //点击添加保证信息
+        $("#toAddEnsureInfo").on("click",function () {
+            $("#toensureInfo").show();
+        });*/
+
+        //点击添加
+        $("#add").on("click",function(){
+          param.companyName = $("#companyName").val();
+          param.charterNum = $("#charterNum").val();
+          param.legalPersonName = $("#legalPersonName").val();
+          param.legalPhone = $("#legalPhone").val();
+          if($("#companyCreateTime").val()!=""){
+              param.companyCreateTime = parserDate($("#companyCreateTime").val());
+          }else {
+              param.companyCreateTime = null;
+          }
+          param.registerMoney = $("#registerMoney").val();
+          param.registerAddress = $("#registerAddress").val();
+          param.borrowMoney = $("#borrowMoney").val();
+          param.apprroveName = $("#apprroveName").val();
+          param.legalIDCard = $("#legalIDCard").val();
+          param.XYJF = $("#XYJF").val(); //下拉菜单
+          param.XYJFDescribe = $("#XYJFDescribe").val();
+          param.address = $("#address").val();
+          param.companyDescribe = $("#companyDescribe").val();
+          param.borrowUse = $("#borrowUse").val();
+          param.moneyInfo = $("#moneyInfo").val();
+          param.ensureInfo= $("#ensureInfo").val();
+          if(param.companyName==""||param.charterNum==""||param.legalPersonName==""||param.legalPhone==""||
+             param.companyCreateTime==null||param.registerMoney==""||param.registerAddress==""||param.borrowMoney==""||
+              param.apprroveName==""||param.legalIDCard==""||param.address==""||param.legalIDCardImageF==null||
+                param.legalIDCardImageZ==null||param.charterImage==null){
+              return false;
+          }else{
+              toadd();
+          }
       });
 });
 
 //添加
 function toadd(){
-    param.companyName = $("#companyName").val();
-    param.charterNum = $("#charterNum").val();
-    param.legalPersonName = $("#legalPersonName").val();
-    param.legalPhone = $("#legalPhone").val();
-    param.companyCreateTime = parserDate($("#companyCreateTime").val());
-    param.registerMoney = $("#registerMoney").val();
-    param.registerAddress = $("#registerAddress").val();
-    param.borrowMoney = $("#borrowMoney").val();
-    param.apprroveName = $("#apprroveName").val();
-    param.legalIDCard = $("#legalIDCard").val();
-    param.XYJF = $("#XYJF").val(); //下拉菜单
-    param.XYJFDescribe = $("#XYJFDescribe").val();
-    param.address = $("#address").val();
-    param.companyDescribe = $("#companyDescribe").val();
-    param.borrowUse = $("#borrowUse").val();
+
     var local = window.location;
     var basePath = local.protocol+"//"+local.host+"/";
     $.ajax({

@@ -29,7 +29,7 @@
     </select>
     <!--还款（还款方式不同）-->
     <update id="updateStatus" parameterType="com.guanyitong.model.BackMoney">
-        update back_money set status= #{status} where 1=1
+        update back_money set status= #{status},realBackTime = #{realBackTime} where 1=1
         <if test="id !=null">
             and id = #{id}
         </if>

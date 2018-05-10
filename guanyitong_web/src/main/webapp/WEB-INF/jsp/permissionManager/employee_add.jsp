@@ -23,7 +23,27 @@
     <link rel="stylesheet" href="<%=path%>/css/common_css/xinzeng.css" />
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
     <script  src="${ctx}/js/HT_js/permissionManager_js/employee_add.js"></script>
-
+   <style>
+       input{
+           color: black;
+           border-radius:8px;
+           overflow:hidden;
+       }
+       button{
+           color: black;
+           border-radius:8px;
+           overflow:hidden;
+       }
+       select{
+           color: black;
+           border-radius:8px;
+           overflow:hidden;
+       }
+       .bt{
+           color:red;
+           font-size: 10px;
+       }
+   </style>
 </head>
 <body>
 <!--公共的外层-->
@@ -32,8 +52,8 @@
     <div class="acont-nav">添加账号：</div>
     <form>
         <div class="angcon">
-            <p><span>账号(手机号)：</span><span><input type="text" id="ephone"></span></p>
-            <p><span>姓名：</span><span><input type="text" id="ename"></span></p>
+            <p><span>账号(手机号)：</span><span><input type="text" id="ephone"></span><span class="bt"> *必填项</span></p>
+            <p><span>姓名：</span><span><input type="text" id="ename"></span><span class="bt"> *必填项</span></p>
             <p><span>角色：</span>
                 <span>
 
@@ -42,16 +62,16 @@
 								 <c:forEach items="${roles}" var="role">
                                      <option value="${role.id}">${role.pname}</option>
                                  </c:forEach>
-							</select>
+							</select><span class="bt"> *必填项</span>
 						</span>
             </p>
 
 
             <!--<p style="height: auto;line-height: 0;"><span></span><spanid="myFile_div"><img src="" id="myImg" style="display: none;width: 100px;height: 100px;margin-left: 15px;"></span></p>-->
 
-            <p><span>身份证号：</span><span><input type="text" id="eidcard"></span></p>
-            <p><span>设置密码：</span><span><input type="text" id="epassword"></span></p>
-            <p><span>确认密码：</span><span><input type="text" id="epassword1"></span></p>
+            <p><span>身份证号：</span><span><input type="text" id="eidcard"></span><span class="bt"> *必填项</span></p>
+            <p><span>设置密码：</span><span><input type="text" id="epassword"></span><span class="bt"> *必填项</span></p>
+            <p><span>确认密码：</span><span><input type="text" id="epassword1"></span><span class="bt"> *必填项</span></p>
 
         </div>
 

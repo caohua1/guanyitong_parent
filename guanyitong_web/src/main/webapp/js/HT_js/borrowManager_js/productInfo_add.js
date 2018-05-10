@@ -19,76 +19,105 @@ var param = {
 };
 
 $(function(){
+
+    //输入借款人borrowMOneyUserId后，借款金额，自动显示，并且不能修改
+    $("#borrowMoneyUserId").blur(function(){
+        $("#wu").hide();
+        selectborrowMoney();
+    });
     //点击添加
     $("#add").on("click",function () {
-        toadd();
+        param.borrowMoneyUserId = $("#borrowMoneyUserId").val();
+        param.NO = $("#NO").val();
+        var yield = $("#yield").val();
+        if(yield==null || yield ==""){
+            param.yield = null;
+        }else{
+            param.yield = parseFloat(yield);
+        }
+
+        var productId = $("#productId").val();
+        if(productId ==-1){
+            param.productId = null;
+        }else {
+            param.productId = productId;
+        }
+        param.ZMoney = $("#ZMoney").val();
+        var backMoneyType = $("#backMoneyType").val();
+
+        if(backMoneyType ==1){
+            param.backMoneyType = "按月还本付息";
+        }else if(backMoneyType == 2){
+            param.backMoneyType = "先息后本";
+        }else if(backMoneyType == 3){
+            param.backMoneyType = "一次性还本付息";
+        }else{
+            param.backMoneyType = null;
+        }
+
+        var yesno = $("#YesNo").val();
+
+        if(yesno ==0){
+            param.YesNo = "否"
+        }else if(yesno ==1){
+            param.YesNo = "是";
+        }else{
+            param.YesNo = null;
+        }
+        var raiseMoneyMonth = $("#raiseMoneyMonth").val();
+        if(raiseMoneyMonth==-1){
+            param.raiseMoneyMonth = null;
+        }else {
+            param.raiseMoneyMonth = raiseMoneyMonth;
+        }
+        var monthNum = $("#monthNum").val();
+        if(monthNum==-1){
+            param.monthNum = null;
+        }else{
+            param.monthNum = monthNum;
+        }
+        param.moneyUse = $("#moneyUse").val();
+        param.QSUse = $("#QSUse").val();
+        if($("#startRaiseTime").val()!=""){
+            param.startRaiseTime = parserDate($("#startRaiseTime").val());
+        }else{
+            param.startRaiseTime =null;
+        }
+
+        if($("#endRaiseTime").val()!=""){
+            param.endRaiseTime = parserDate($("#endRaiseTime").val());
+        }else{
+            param.endRaiseTime =null;
+        }
+        if($("#startBorrowTime").val()!=""){
+            param.startBorrowTime = parserDate($("#startBorrowTime").val());
+        }else{
+            param.startBorrowTime =null;
+        }
+        if($("#endBorrowTime").val()!=""){
+            param.endBorrowTime = parserDate($("#endBorrowTime").val());
+        }else{
+            param.endBorrowTime =null;
+        }
+        //必填项
+        if( param.borrowMoneyUserId == "" || param.NO==""|| param.yield==null|| param.ZMoney==""||param.productId==null ||
+            param.raiseMoneyMonth ==null||param.backMoneyType==null||param.YesNo==null || param.monthNum==null||param.startBorrowTime==null||
+            param.startRaiseTime==null||param.endBorrowTime==null||param.endRaiseTime==null){
+            return false;
+        }else{
+            toadd();
+        }
+
     });
 
 });
 
 //添加
 function toadd(){
-    param.borrowMoneyUserId = $("#borrowMoneyUserId").val();
-    param.NO = $("#NO").val();
-    var yield = $("#yield").val();
-    if(yield==null || yield ==""){
-        param.yield = null;
-    }else{
-        param.yield = parseFloat(yield);
-    }
 
-    var productId = $("#productId").val();
-    if(productId ==-1){
-        param.productId = null;
-    }else {
-        param.productId = productId;
-    }
-    param.ZMoney = $("#ZMoney").val();
-    var backMoneyType = $("#backMoneyType").val();
-
-    if(backMoneyType ==1){
-        param.backMoneyType = "按月还本付息";
-    }else if(backMoneyType == 2){
-        param.backMoneyType = "先息后本";
-    }else if(backMoneyType == 3){
-        param.backMoneyType = "一次性还本付息";
-    }else{
-        param.backMoneyType = null;
-    }
-
-    var yesno = $("#YesNo").val();
-
-    if(yesno ==0){
-        param.YesNo = "否"
-    }else if(yesno ==1){
-        param.YesNo = "是";
-    }else{
-        param.YesNo = null;
-    }
-    var raiseMoneyMonth = $("#raiseMoneyMonth").val();
-    if(raiseMoneyMonth==-1){
-        param.raiseMoneyMonth = null;
-    }else {
-        param.raiseMoneyMonth = raiseMoneyMonth;
-    }
-    var monthNum = $("#monthNum").val();
-    if(monthNum==-1){
-        param.monthNum = null;
-    }else{
-        param.monthNum = monthNum;
-    }
-    param.moneyUse = $("#moneyUse").val();
-    param.QSUse = $("#QSUse").val();
-    param.startRaiseTime = parserDate($("#startRaiseTime").val());
-    alert($("#startRaiseTime").val());
-    alert(parserDate($("#startRaiseTime").val()));
-    param.endRaiseTime = parserDate($("#endRaiseTime").val());
-    alert($("#endRaiseTime").val());
-    alert(parserDate($("#endRaiseTime").val()));
-    param.startBorrowTime = parserDate($("#startBorrowTime").val());
-    param.endBorrowTime = parserDate($("#endBorrowTime").val());
     var local = window.location;
     var basePath = local.protocol+"//"+local.host+"/";
+
     $.ajax({
         type: "post",
         url: basePath+"product/insertProductinfo.do",
@@ -149,6 +178,38 @@ function upload(fileObj){
     });
 }
 
+
+//查询借款用户得借款金额
+function selectborrowMoney(){
+    var local = window.location;
+    var basePath = local.protocol+"//"+local.host+"/";
+    var id = $("#borrowMoneyUserId").val();
+
+    $.ajax({
+        type: "post",
+        url: basePath+"borrowMoney/selectborrowMoneyById.do",
+        data: {
+            id : id
+        },
+        dataType: "json",
+        success: function (msg) {
+            console.log(msg);
+            if (msg.state == 0) {
+               //显示此借款用户的
+               $("#ZMoney").val(msg.data.borrowMoney);
+            } else {
+               //此用户不存在
+                $("#wu").show();
+                $("#wu").text("此借款用户不存在");
+                $("#ZMoney").val("");
+            }
+        },
+        error : function () {
+            alert("网络出现问题");
+        }
+    });
+
+}
 var parserDate = function (date) {
     var t = Date.parse(date);
     if (!isNaN(t)) {

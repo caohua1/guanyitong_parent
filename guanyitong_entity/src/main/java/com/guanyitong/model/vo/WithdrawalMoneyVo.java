@@ -6,21 +6,12 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class WithdrawalMoneyVo extends WithdrawalMoney implements Serializable {
-    private String realName;
     private String username;
     private Date startTime;
     private Date endTime;
     private Double minMoney;
     private Double maxMoney;
     private String idCard;
-
-    public String getRealName() {
-        return realName;
-    }
-
-    public void setRealName(String realName) {
-        this.realName = realName;
-    }
 
     public String getUsername() {
         return username;

@@ -72,16 +72,18 @@
         <span>用户总数：</span><span id = "count">0</span>
     </div>
 
-    <div class="showhide">
+    <div class="showhide" style="background-color: #13171b;color: #68677b;border-radius:10px;overflow:hidden">
         <div class="showhideng">
             <span id="x">✖</span>
             <p id="span"></p>
             <div class="quex">
-                <div><span id="update">确定</span></div>
-                <div><span id="quxiao">取消</span></div>
+                <div><span id="update" style="border-radius:10px;overflow:hidden">确定</span></div>
+                <div><span id="quxiao" style="border-radius:10px;overflow:hidden">取消</span></div>
             </div>
         </div>
     </div>
+
+
 
 
 

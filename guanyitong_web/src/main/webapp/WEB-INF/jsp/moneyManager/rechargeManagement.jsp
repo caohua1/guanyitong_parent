@@ -69,16 +69,18 @@
             <tbody id="tbody-result"></tbody>
         </table>
     </div>
-    <div class="showhide">
+    <div class="showhide" style="background-color: #13171b;color: #68677b;border-radius:10px;overflow:hidden">
         <div class="showhideng">
             <span>✖</span>
             <p>确定是审核人员？</p>
             <div class="quex">
-                <div><span>确定</span></div>
-                <div><span>取消</span></div>
+                <div><span style="border-radius:10px;overflow:hidden">确定</span></div>
+                <div><span style="border-radius:10px;overflow:hidden">取消</span></div>
             </div>
         </div>
     </div>
+
+
     <%--分页--%>
     <div class="fenye">
         <div class="pageTest">

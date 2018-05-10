@@ -6,8 +6,8 @@
 
     <!--申请提现，添加数据到数据库 status = 0-->
     <insert id="insertWithdrawMoney" parameterType="com.guanyitong.model.WithdrawalMoney">
-        insert withdrawal_money (userId,borrowMoneyUserId,userType,txNumber,txBank,txMoney,dzMoney,sxf,txTime,sqUser) values(
-            #{userId}, #{borrowMoneyUserId},#{userType},#{txNumber},#{txBank},#{txMoney},#{dzMoney},#{sxf},#{txTime},#{sqUser}
+        insert withdrawal_money (userId,borrowMoneyUserId,realName,userType,txNumber,txBank,txMoney,dzMoney,sxf,txTime,sqUser) values(
+            #{userId}, #{borrowMoneyUserId},#{realName},#{userType},#{txNumber},#{txBank},#{txMoney},#{dzMoney},#{sxf},#{txTime},#{realName}
         );
     </insert>
     <!--确认提现成功、失败（修改状态）,添加审核时间-->
@@ -26,7 +26,7 @@
     </update>
     <!--（分页，条件查询）查询所有提现数据-->
     <select id="selectWithdrawal" parameterType="java.util.Map" resultType="com.guanyitong.model.vo.WithdrawalMoneyVo">
-        select wm.*,am.realName,ui.username,bu.apprroveName from withdrawal_money wm
+        select wm.* from withdrawal_money wm
         left join account_manager am on am.userId = wm.userId
         left join user_info ui on ui.id = wm.userId
         left join borrowmoney_user bu on bu.id = wm.borrowMoneyUserId
@@ -38,7 +38,7 @@
             and wm.borrowMoneyUserId = #{borrowMoneyUserId}
         </if>
         <if test="realName !=null and realName !=''">
-            and am.realName = #{realName}
+            and wm.realName = #{realName}
         </if>
         <if test="idCard !=null and idCard !=''">
             and am.idCard = #{idCard} or bu.legalIDCard = #{idCard}
@@ -99,7 +99,7 @@
             and wm.borrowMoneyUserId = #{borrowMoneyUserId}
         </if>
         <if test="realName !=null and realName !=''">
-            and am.realName = #{realName}
+            and wm.realName = #{realName}
         </if>
         <if test="idCard !=null and idCard !=''">
             and am.idCard = #{idCard} or bu.legalIDCard = #{idCard}
@@ -135,8 +135,10 @@
             and wm.status = #{status}
         </if>
     </select>
-    <delete id="deleteWithdrawalById" parameterType="java.lang.Long">
-        DELETE FROM withdrawal_money WHERE id=#{id}
+
+    <!--提现失败，再次申请提现,删除原来的数据-->
+    <delete id="deleteWithdrawalById" parameterType="Long">
+        delete from withdrawal_money where id = #{id}
     </delete>
 </mapper>
 

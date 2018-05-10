@@ -70,7 +70,7 @@ public class ProductController {
     }
 
     /**
-     * 输入金额后，查看收益详情
+     * 输入金额后，查看收益详情,还款方式不同收益不同
      * @return
      */
     @RequestMapping("/earning")

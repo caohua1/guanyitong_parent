@@ -28,20 +28,34 @@
             margin-bottom: 0px;
             background-image: url('<%=path%>/img/admin-login-bg.jpg');
         }
+        input{
+            color: palevioletred;
+            border-radius:8px;
+            overflow:hidden;
+        }
+        select{
+            color: palevioletred;
+            border-radius:8px;
+            overflow:hidden;
+        }
+        .border_radius { border-radius:5px; color:#B00000; }
     </style>
+
 
 
 </head>
 <body>
 
 <div class="loginliu">
-    <div style="padding-top: 300px;padding-left: 45%">
-        <p><b style="color: red;font-size: 20px"> ${message}</b></p>
+    <div style="padding-top: 300px;padding-left: 42.8%">
+        <p><b style="color: red;font-size: 20px" > ${message}</b></p>
     </div>
-    <form action="<%=basePath%>login.do" commandName="employee" method="post">
+    <form action="<%=basePath%>login.do" commandName="employee" method="post" id="focus">
         <div class="loadliu">
-            <p><span><img src="<%=path%>/img/yong.png"></span><span><input type="text" name="ephone"></span></p>
-            <p><span><img src="<%=path%>/img/pass.png"></span><span><input type="password" name="epassword"></span></p>
+            <p><span><img src="<%=path%>/img/yong.png"></span><span><input type="text" name="ephone"  id="ephone" placeholder="用户名不能为空">
+
+</span></p>
+            <p><span><img src="<%=path%>/img/pass.png"></span><span><input type="password" name="epassword" id="epassword" placeholder="密码不能为空"></span></p>
             <div class="loadliung">
                 <span><input type="submit" value="登陆" id="tologin"></span>
                 <span><input type="reset" value="取消"></span>
@@ -49,38 +63,30 @@
         </div>
     </form>
 
-       <%-- <form:form action="emp-save" method="post" modelAttribute="employee">
-            <!-- path 属性对应 HTML 表单标签的 name 属性 -->
-            LastName：<form:input path="lastName"/> <br>
-            Email：<form:input path="email"/> <br>
-            Gender：<form:radiobuttons path="gender" items="${genders}"/> <br>
-            Department：<form:select path="department" items="${dapartments}" itemLabel="departmentName" itemValue="id"></form:select><br>
-            <input type="submit" value="Submit">
-        </form:form>--%>
-
-    <%--<form:form action="/login" commandName="user" method="post">
-        用户名：<form:input path="ename"/> <form:errors path="ename" cssClass="error"/> <br/>
-        密 &nbsp;&nbsp;码：<form:password path="epassword"/> <form:errors path="epassword" cssClass="error" /> <br/>
-        <form:button name="button">submit</form:button>
-    </form:form>--%>
 </div>
 </body>
 </html>
 <script>
     $(function(){
         $('.loginliu').height(document.documentElement.clientHeight);
-       /* $("#tologin").click(function(){
-            tologin();
-        });*/
 
+
+        //提交表单
+
+        $('#tologin').click(function(){
+            var ephone = $("#ephone").val();
+            var epassword = $('#epassword').val();
+            if(ephone =="" && epassword !="" ){
+                return false;
+            }else if(ephone !="" && epassword ==""){
+                return false;
+            }else if(ephone =="" && epassword ==""){
+                return false;
+            }else{
+                $('form').submit();
+            }
+        });
     })
 
-     /*function tologin(){
-         var local = window.location;
-         var basePath = local.protocol+"//"+local.host+"/";
-         var ephone =  $("#ephone").val();
-         var epassword = $("#epassword").val();
-         window.location.href = basePath + "login?ephone = "+ephone+"&epassword = "+epassword;
-    }
-*/
+
 </script>

@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="<%=path%>/css/common_css/base.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/style.css" />
     <link rel="stylesheet" href="<%=path%>/css/common_css/css.css" />
-    <link rel="stylesheet" href="<%=path%>/css/common_css/xinzeng.css" />
+   <%-- <link rel="stylesheet" href="<%=path%>/css/common_css/xinzeng.css" />--%>
     <link rel="stylesheet" href="<%=path%>/css/common_css/page.css" />
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
     <script src="<%=path%>/js/common_js/mydate.js"></script>
@@ -87,16 +87,18 @@
         <span>用户总数：</span><span id = "count">0</span>
     </div>
 
-    <div class="showhide">
+    <div class="showhide" style="background-color: #13171b;color: #68677b;border-radius:10px;overflow:hidden">
         <div class="showhideng">
             <span id="x">✖</span>
             <p id="span"></p>
             <div class="quex">
-                <div><span id="update">确定</span></div>
-                <div><span id="quxiao">取消</span></div>
+                <div><span id="update" style="border-radius:10px;overflow:hidden">确定</span></div>
+                <div><span id="quxiao" style="border-radius:10px;overflow:hidden">取消</span></div>
             </div>
         </div>
     </div>
+
+
 
 
 

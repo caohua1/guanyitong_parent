@@ -38,13 +38,6 @@
             background-color: #367fa9!important;
             color: #fff!important;
         }
-        body {
-            margin-left: 0px;
-            margin-top: 0px;
-            margin-right: 0px;
-            margin-bottom: 0px;
-            background-color:gainsboro;
-        }
     </style>
 
 </head>
@@ -90,16 +83,18 @@
                 <span>第</span><span id="pageNum">1</span><span>页</span><span>/</span><span>总</span><span id="pageCount">1</span><span>页</span>/<span>每页显示</span><span id="pageSize">9</span><span>条</span>
             </div>
         </div>
-    <div class="showhide">
+    <div class="showhide" style="background-color: #13171b;color: #68677b;border-radius:10px;overflow:hidden">
         <div class="showhideng">
             <span>✖</span>
             <p>确定是审核人员？</p>
             <div class="quex">
-                <div><span>确定</span></div>
-                <div><span>取消</span></div>
+                <div><span style="border-radius:10px;overflow:hidden">确定</span></div>
+                <div><span style="border-radius:10px;overflow:hidden">取消</span></div>
             </div>
         </div>
     </div>
+
+
 </div>
 </body>
 </html>

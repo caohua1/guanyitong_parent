@@ -1,10 +1,13 @@
 package com.guanyitong.controller.borrowingManage;
 import com.github.pagehelper.PageInfo;
+import com.guanyitong.mapper.BorrowMoneyUserDao;
+import com.guanyitong.model.BorrowMoneyUser;
 import com.guanyitong.model.Product;
 import com.guanyitong.model.ProductInfo;
 import com.guanyitong.model.vo.BackMoneyVo;
 import com.guanyitong.model.vo.UserProductInfoVo;
 import com.guanyitong.service.BackMoneyService;
+import com.guanyitong.service.BorrowMoneyUserService;
 import com.guanyitong.service.ProductService;
 import com.guanyitong.service.UserDealService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +41,8 @@ public class BorrowMoneyController {
     private UserDealService userDealService;
     @Autowired
     private BackMoneyService backMoneyService;
+    @Autowired
+    private BorrowMoneyUserService borrowMoneyUserService;
 
 
     /**
@@ -263,6 +268,29 @@ public class BorrowMoneyController {
             e.printStackTrace();
             result.setState(JsonResult.ERROR);
             result.setMessage("返回数据失败");
+        }
+        return result;
+    }
+
+
+    @RequestMapping("/selectborrowMoneyById")
+    @ResponseBody
+    public JsonResult selectborrowMoneyById(Long id){
+        JsonResult result = new JsonResult();
+        try{
+            BorrowMoneyUser borrowMoneyUser = borrowMoneyUserService.selectBorrowMoneyUser(id);
+            if(borrowMoneyUser!=null){
+                result.setState(JsonResult.SUCCESS);
+                result.setData(borrowMoneyUser);
+                result.setMessage("返回数据成功");
+            }else{
+                result.setState(JsonResult.ERROR);
+                result.setMessage("没有此借款用户");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            result.setState(JsonResult.ERROR);
+            result.setMessage("网络问题");
         }
         return result;
     }

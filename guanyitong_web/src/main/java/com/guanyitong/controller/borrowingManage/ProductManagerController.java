@@ -355,10 +355,15 @@ public class ProductManagerController {
     public JsonResult updateProductInfo(ProductInfo productInfo){
          JsonResult result = new JsonResult();
          try{
-             Integer i = productService.updateProductInfo(productInfo);
-             if(i>0){
-                 result.setState(JsonResult.SUCCESS);
-                 result.setMessage("修改成功");
+             if(productInfo.getId()!=null){
+                 Integer i = productService.updateProductInfo(productInfo);
+                 if(i>0){
+                     result.setState(JsonResult.SUCCESS);
+                     result.setMessage("修改成功");
+                 }
+             }else{
+                 result.setState(JsonResult.ERROR);
+                 result.setMessage("修改失败");
              }
          }catch(Exception e){
              e.printStackTrace();

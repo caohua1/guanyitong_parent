@@ -24,12 +24,20 @@
     <script src="<%=path%>/js/common_js/mydate.js"></script>
     <script  src="${ctx}/js/HT_js/borrowUserManager_js/borrowUser_updateSta1.js"></script>
     <style>
-        body {
-            margin-left: 0px;
-            margin-top: 0px;
-            margin-right: 0px;
-            margin-bottom: 0px;
-            background-color:gainsboro;
+        input{
+            color: black;
+            border-radius:8px;
+            overflow:hidden;
+        }
+        button{
+            color: black;
+            border-radius:8px;
+            overflow:hidden;
+        }
+        select{
+            color: black;
+            border-radius:8px;
+            overflow:hidden;
         }
     </style>
 </head>

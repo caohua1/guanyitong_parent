@@ -23,7 +23,27 @@
     <link rel="stylesheet" href="<%=path%>/css/common_css/xinzeng.css" />
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
     <script  src="${ctx}/js/HT_js/permissionManager_js/role_add.js"></script>
-
+<style>
+    input{
+        color: black;
+        border-radius:8px;
+        overflow:hidden;
+    }
+    button{
+        color: black;
+        border-radius:8px;
+        overflow:hidden;
+    }
+    select{
+        color: black;
+        border-radius:8px;
+        overflow:hidden;
+    }
+    .bt{
+        color:red;
+        font-size: 10px;
+    }
+</style>
 </head>
 <body>
 
@@ -33,7 +53,7 @@
     <div class="acont-nav">添加角色：</div>
     <form>
         <div class="angcon">
-            <p><span>角色名称：</span><span><input type="text" id="pname"></span></p>
+            <p><span>角色名称：</span><span><input type="text" id="pname"></span><span class="bt"> *必填项</span></p>
         </div>
 
         <div class="quanxian1">选择权限</div>
@@ -57,8 +77,6 @@
                     </ul>
                 </li>
             </c:forEach>
-
-
         </ul>
 
         <div class="quanxian">请填写角色名称并选择至少一个权限!</div>

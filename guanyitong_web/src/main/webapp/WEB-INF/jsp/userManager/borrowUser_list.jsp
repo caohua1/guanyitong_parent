@@ -32,15 +32,6 @@
     <script src="<%=path%>/js/common_js/mydate.js"></script>
     <script src="<%=path%>/js/common_js/page.js"></script>
     <script  src="${ctx}/js/HT_js/borrowUserManager_js/borrowUser_list.js"></script>
-    <style>
-        body {
-            margin-left: 0px;
-            margin-top: 0px;
-            margin-right: 0px;
-            margin-bottom: 0px;
-            background-color:gainsboro;
-        }
-    </style>
 </head>
 <body>
 <!--公共的外层-->
@@ -134,7 +125,7 @@
         </div>
     </div>--%>
 
-    <div class="showhide" style="display: none">
+    <div class="showhide" style="background-color: #13171b;color: #68677b;border-radius:10px;overflow:hidden">
         <div class="showhideng">
             <span id="x">✖</span>
             <div style="padding-top: 20px">
@@ -144,11 +135,13 @@
             借款金额：<input type="text" id="borrowMoney" style="height: 25px"/>
             </div>
             <div class="quex">
-                <div><span id="updateMoney">确定</span></div>
-                <div><span id="quxiao">取消</span></div>
+                <div><span id="updateMoney" style="border-radius:10px;overflow:hidden">确定</span></div>
+                <div><span id="quxiao" style="border-radius:10px;overflow:hidden">取消</span></div>
             </div>
         </div>
     </div>
+
+
     <%--分页--%>
     <div class="fenye">
         <div class="pageTest">

@@ -62,7 +62,7 @@ public class UserBankcardServiceImpl implements UserBankcardService{
      * @return
      */
     @Override
-    public UserBankcard selectUserBankcardById(Long borrowMoneyUserId) {
+    public UserBankcard selectUserBankcardById(String borrowMoneyUserId) {
         return userBankcardDao.selectUserBankcardById(borrowMoneyUserId);
     }
 

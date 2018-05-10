@@ -18,7 +18,27 @@ $(function(){
 
     //点击添加
     $("#toadd").click(function () {
-        toadd();
+        param.ename = $("#ename").val();
+        param.ephone = $("#ephone").val();
+        var eroleId = $("#eroleId").val();
+        if(eroleId ==-1){
+            param.eroleId= null;
+        }else{
+            param.eroleId = eroleId;
+        }
+        param.epassword = $("#epassword").val();
+        var epassword1 = $("#epassword1").val();
+        if(epassword1 !=param.epassword){
+            alert("两次密码不一致！");
+            return false;
+        }
+        param.eidcard = $("#eidcard").val();
+        if(param.ename==""||param.ephone==""||param.eroleId==null || param.epassword==""){
+            return false;
+        }else{
+            toadd();
+        }
+
     });
 
 });
@@ -26,21 +46,6 @@ $(function(){
 
 //添加
 function toadd(){
-    param.ename = $("#ename").val();
-    param.ephone = $("#ephone").val();
-    var eroleId = $("#eroleId").val();
-    if(eroleId ==-1){
-        param.eroleId= null;
-    }else{
-        param.eroleId = eroleId;
-    }
-    param.epassword = $("#epassword").val();
-    var epassword1 = $("#epassword1").val();
-    if(epassword1 !=param.epassword){
-        alert("两次密码不一致！");
-        return false;
-    }
-    param.eidcard = $("#eidcard").val();
     var local = window.location;
     var basePath = local.protocol+"//"+local.host+"/";
     $.ajax({

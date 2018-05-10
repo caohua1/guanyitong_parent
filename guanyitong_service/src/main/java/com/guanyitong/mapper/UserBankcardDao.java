@@ -33,7 +33,7 @@ public interface UserBankcardDao {
      * @param borrowMoneyUserId
      * @return
      */
-    public UserBankcard selectUserBankcardById(Long borrowMoneyUserId);
+    public UserBankcard selectUserBankcardById(String borrowMoneyUserId);
 
     /**
      * 模糊查询borrowMoneyUserId

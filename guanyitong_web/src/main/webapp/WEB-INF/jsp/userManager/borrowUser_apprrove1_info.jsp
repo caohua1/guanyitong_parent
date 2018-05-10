@@ -23,13 +23,6 @@
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
     <script  src="${ctx}/js/HT_js/borrowUserManager_js/borrowUser_apprrove1_info.js"></script>
     <style>
-        body {
-            margin-left: 0px;
-            margin-top: 0px;
-            margin-right: 0px;
-            margin-bottom: 0px;
-            background-color:gainsboro;
-        }
         .bbjianjie{ color:#00F}
 
     </style>
@@ -169,7 +162,7 @@
     </div>
 
 
-    <div class="showhide">
+    <div class="showhide" style="background-color: #13171b;color: #68677b;border-radius:10px;overflow:hidden">
         <div class="showhideng">
             <span>✖</span>
             <p>确定是审核人员？</p>
@@ -180,14 +173,15 @@
         </div>
     </div>
 
-    <div class="showtexthide">
+    <div class="showtexthide" style="background-color: #13171b;color: #68677b;border-radius:10px;overflow:hidden">
         <div class="showhideng">
             <span>✖</span>
             <m>请填写审核不通过原因</m>
-            <textarea placeholder="请输入不通过原因" id="causeBy"></textarea>
-            <button class="bbque" id="apprrove_no">确定</button>
+            <textarea placeholder="请输入不通过原因" id="causeBy" style="border-radius:10px;overflow:hidden"></textarea>
+            <button class="bbque" id="apprrove_no" style="border-radius:10px;overflow:hidden">确定</button>
         </div>
     </div>
+
 
 </div>
 </body>

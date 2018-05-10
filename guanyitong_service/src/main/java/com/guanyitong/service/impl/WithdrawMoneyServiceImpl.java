@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.guanyitong.mapper.*;
 import com.guanyitong.model.BackMoney;
 import com.guanyitong.model.ProductInfo;
+import com.guanyitong.model.UserBankcard;
 import com.guanyitong.model.WithdrawalMoney;
 import com.guanyitong.model.vo.UserProductInfoVo;
 import com.guanyitong.model.vo.WithdrawalMoneyVo;
@@ -32,22 +33,30 @@ public class WithdrawMoneyServiceImpl implements WithdrawMoneyService{
     private BackMoneyDao backMoneyDao;
     @Autowired
     private BorrowMoneyUserDao borrowMoneyUserDao;
+    @Autowired
+    private UserBankcardDao userBankcardDao;
 
     /**
-     * 提现（修改体现表的状态，同时修改标（productinfo）的状态），添加数据
+     * 申请提现（修改体现表的状态，同时修改标（productinfo）的状态），添加数据
      * @param withdrawalMoney
      * @return
      */
     @Transactional
     @Override
     public Boolean insertWithdrawMoney(WithdrawalMoney withdrawalMoney) {
-
         if(withdrawalMoney.getBorrowMoneyUserId()!=null && !("").equals(withdrawalMoney.getBorrowMoneyUserId())){
             if(withdrawalMoney.getId()!=null){//说明提现失败，再次申请提现
                 //删除原来的数据
                 withdrawMoneyDao.deleteWithdrawalById(withdrawalMoney.getId());
                 //把id设为null
                 withdrawalMoney.setId(null);
+            }
+            //查询出借款人的银行信息根据borrowMoneyUserId
+            UserBankcard userBankcard = userBankcardDao.selectUserBankcardById(withdrawalMoney.getBorrowMoneyUserId());
+            if(userBankcard!=null){
+               withdrawalMoney.setRealName(userBankcard.getRealName());//真实姓名
+               withdrawalMoney.setTxBank(userBankcard.getBankName());//银行名称
+               withdrawalMoney.setTxNumber(userBankcard.getCardNo());//银行卡号
             }
             Integer i = withdrawMoneyDao.insertWithdrawMoney(withdrawalMoney);//借款人申请提现
             Map map = new HashMap();

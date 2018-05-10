@@ -10,12 +10,13 @@ public class WithdrawalMoney implements Serializable {
     private Long id;
     private Long userId;//出借人id
     private String borrowMoneyUserId;//借款人id
+    private String realName;//真实姓名
     private Integer userType;//提现人类型 0 出借人 1 借款人
     private String txNumber;//提现账号（银行卡）
     private String txBank;//提现银行
     private String txMoney;//提现金额
     private String dzMoney;//到账金额
-    private String sxf;//手续费
+    private Double sxf;//手续费
     private Date txTime;//提现时间
     private Integer status;//(0失败 1已经提现，转帐中 2审核中)
     private String sqUser;//申请人（借款人）
@@ -42,6 +43,14 @@ public class WithdrawalMoney implements Serializable {
 
     public void setBorrowMoneyUserId(String borrowMoneyUserId) {
         this.borrowMoneyUserId = borrowMoneyUserId;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
     public Integer getUserType() {
@@ -84,11 +93,11 @@ public class WithdrawalMoney implements Serializable {
         this.dzMoney = dzMoney;
     }
 
-    public String getSxf() {
+    public Double getSxf() {
         return sxf;
     }
 
-    public void setSxf(String sxf) {
+    public void setSxf(Double sxf) {
         this.sxf = sxf;
     }
 

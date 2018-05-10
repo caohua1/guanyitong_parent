@@ -52,7 +52,6 @@ function createTBody() {
             bankName : bankName
         },
         success: function(msg){
-            console.log(msg);
             var str="" ;
             var count=msg.data.count;
             var j = (pageNum-1)*pageSize+1;
@@ -61,6 +60,7 @@ function createTBody() {
             var data = msg.data.pageInfo.list;
             if(data !=null && data.length>0) {
                 $("#pageCount").text(Math.ceil(count/pageSize));
+                console.log("j:"+j);
                 if (j <= count || (j == 1 && count == 1)) {
                     for (var i in data) {
                         str += "<tr>" +

@@ -27,6 +27,17 @@ public interface ProductService {
      */
     public PageInfo<UserProductInfoVo> selectAllUserDeal(Map map,Integer pageNum,Integer pageSize);
 
+    /**
+     * 手机端，首页，新手专区
+     * @return
+     */
+    public List<ProductInfo> newUserZQ(Map map);
+
+    /**
+     * 首页，产品专区
+     * @return
+     */
+    public List<ProductInfo> selectNewProductInfo();
 
 
     //===========================================后台管理

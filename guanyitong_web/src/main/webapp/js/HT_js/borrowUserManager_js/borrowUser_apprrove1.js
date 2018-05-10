@@ -127,7 +127,6 @@ function initlist(Sta){
                 }
             }else{
                 tbody.innerHTML = "暂无数据";
-                alert("暂无数据");
                 layer.msg("暂无数据");
                 if(bBtn) {
                     $('.pageTest').page({

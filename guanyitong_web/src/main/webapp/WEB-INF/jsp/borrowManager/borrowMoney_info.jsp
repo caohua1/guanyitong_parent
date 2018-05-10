@@ -39,7 +39,7 @@
     <div class="bbyong">
         <div><span>产品名称：</span><span id="NO"></span></div>
         <div><span>状态：</span><span id="productStatus"></span></div>
-        <div><span>历史年化收益率：</span><span style="margin-left: 20px;font-size: 20px;" id="yield">8.76%</span></div>
+        <div><span>历史年化收益率：</span><span style="margin-left: 20px;font-size: 20px;" id="yield"></span><span></span></div>
     </div>
 
     <ul class="ulfirame_j">

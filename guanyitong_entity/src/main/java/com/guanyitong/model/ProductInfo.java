@@ -52,6 +52,7 @@ public class ProductInfo implements Serializable {
     private String YesNo;//筹标期间是否还息
     private String moneyUse;//资金用途
     private String QSUse;//起诉用途
+    private String causeBy;//审核不通过原因
     private String fangqiCauseBy;//放弃原因
 
     public Long getId() {
@@ -227,6 +228,14 @@ public class ProductInfo implements Serializable {
 
     public void setQSUse(String QSUse) {
         this.QSUse = QSUse;
+    }
+
+    public String getCauseBy() {
+        return causeBy;
+    }
+
+    public void setCauseBy(String causeBy) {
+        this.causeBy = causeBy;
     }
 
     public String getFangqiCauseBy() {

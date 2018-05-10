@@ -22,19 +22,11 @@
     <link rel="stylesheet" href="<%=path%>/css/common_css/css.css" />
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
     <script  src="${ctx}/js/HT_js/borrowManager_js/productinfo_manage_info.js"></script>
-    <style>
-        body {
-            margin-left: 0px;
-            margin-top: 0px;
-            margin-right: 0px;
-            margin-bottom: 0px;
-            background-color:gainsboro;
-        }
-    </style>
 </head>
 <body>
 <!--公共的外层-->
 <input type="hidden" value="${id}" id="id"/>
+<input type="text" value="${status}" id="status"/>
 <div class="iframe_acont">
 
 
@@ -112,17 +104,48 @@
 
     </div>
 
+    <div class="showhide" style="background-color: #13171b;color: #68677b;border-radius:10px;overflow:hidden">
+        <div class="showhideng">
+            <span>✖</span>
+            <p>确定是审核人员？</p>
+            <div class="quex">
+                <div><span id="apprrove_success">确定</span></div>
+                <div><span id="cancel">取消</span></div>
+            </div>
+        </div>
+    </div>
 
+    <div class="showtexthide" style="background-color: #13171b;color: #68677b;border-radius:10px;overflow:hidden">
+        <div class="showhideng">
+            <span>✖</span>
+            <m>请填写审核不通过原因</m>
+            <textarea placeholder="请输入不通过原因" id="causeBy" style="border-radius:10px;overflow:hidden"></textarea>
+            <button class="bbque" id="apprrove_no" style="border-radius:10px;overflow:hidden">确定</button>
+        </div>
+    </div>
+
+
+
+
+    <div class="aatj">
+        <c:if test="${status==0}">
+            <div><button class="quexeng"  >审核通过</button></div>
+            <div><button class="quexxiao" >审核不通过</button></div>
+        </c:if>
+        <c:if test="${status==1}">
+            <div><button class="quexeng" >再次审核通过</button></div>
+            <div><button class="quexxiao" >再次审核不通过</button></div>
+        </c:if>
         <div class="soua"><button id="select" onclick="javascript:history.go(-1)">返回</button></div>
 
-
+    </div>
 
 
 
 </div>
 </body>
 </html>
-<script>
+<%--<script>
     $(function(){
         $('.tjiaoP_a>span').find('input').css({'width':'91px','height':'30px'});
         $('.quespan').click(function(){
@@ -135,40 +158,26 @@
     })
 
 
-</script>
-<%--<script>
-    function test(){
-        var selectedFile = $('#myFile').get(0).files[0];
-        var reader = new FileReader();
-        reader.readAsDataURL(selectedFile);
-        reader.onload = function(e){
-            var urlsrc = this.result;
-            $('#myImg').show();
-            $('#myImg').attr('src', urlsrc);
-        }
-        console.log(selectedFile);
-    }
-    function test2(){
-        var selectedFile = $('#myFile2').get(0).files[0];
-        var reader = new FileReader();
-        reader.readAsDataURL(selectedFile);
-        reader.onload = function(e){
-            var urlsrc = this.result;
-            $('#myImg2').show();
-            $('#myImg2').attr('src', urlsrc);
-        }
-        console.log(selectedFile);
-    }
-    function test3(){
-        var selectedFile = $('#myFile3').get(0).files[0];
-        var reader = new FileReader();
-        reader.readAsDataURL(selectedFile);
-        reader.onload = function(e){
-            var urlsrc = this.result;
-            $('#myImg3').show();
-            $('#myImg3').attr('src', urlsrc);
-        }
-        console.log(selectedFile);
-    }
-
 </script>--%>
+<script>
+    $(function(){
+
+        $('.fan').css({'color':'#434343'});
+        $('.quexeng').click(function(){
+
+            $('.showhide').show();
+        })
+        $('.showhideng>span').click(function(){
+            $('.showhide').hide();
+        })
+
+        $('.quexxiao').click(function(){
+
+            $('.showtexthide').show();
+        })
+        $('.showhideng>span').click(function(){
+            $('.showtexthide').hide();
+        })
+
+    })
+</script>
