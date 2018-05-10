@@ -33,13 +33,13 @@
     <div class="acont-nav">还款管理：</div>
     <!--<div class="acont-ahref"><a href="iframe_acon.html">添加新用户</a></div>-->
     <div class="acon-input">
-        <div><span>用户ID:</span><span><input type="text" id="borrowMoneyUserId"></span></div>
-        <div><span>真实姓名:</span><span><input type="text" id="realName"></span></div>
-        <div><span>身份证号:</span><span><input type="text" id="idcardNumber"></span></div>
-        <div><span>开户行:</span><span><input type="text" id="bankName"></span></div>
-        <div><span>卡号:</span><span><input type="text" id="cardNo"></span></div>
-        <div><span>还款本金:</span><span><input type="text" id="bj"></span></div>
-        <div class="tjiaoP_a"><span>还款时间:</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="startTime"></span><span>至</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="endTime"></span></div>
+        <div><span style="font-weight: bold">用户ID:</span><span><input type="text" id="borrowMoneyUserId"></span></div>
+        <div><span style="font-weight: bold">真实姓名:</span><span><input type="text" id="realName"></span></div>
+        <div><span style="font-weight: bold">身份证号:</span><span><input type="text" id="idcardNumber"></span></div>
+        <div><span style="font-weight: bold">开户行:</span><span><input type="text" id="bankName"></span></div>
+        <div><span style="font-weight: bold">卡号:</span><span><input type="text" id="cardNo"></span></div>
+        <div><span style="font-weight: bold">还款本金:</span><span><input type="text" id="bj"></span></div>
+        <div class="tjiaoP_a"><span style="font-weight: bold">还款时间:</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="startTime"></span><span>至</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="endTime"></span></div>
         <div class="soua"><button id="select">搜索</button></div>
     </div>
     <div class="acon-table">

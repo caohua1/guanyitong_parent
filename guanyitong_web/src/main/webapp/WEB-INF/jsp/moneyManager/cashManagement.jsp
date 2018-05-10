@@ -39,14 +39,14 @@
     <div class="acont-nav">提现管理</div>
     <!--<div class="acont-ahref"><a href="iframe_acon.html">添加新用户</a></div>-->
     <div class="acon-input">
-        <div><span>用户ID/手机号:</span><span><input type="text" id="userID_name"></span></div>
-        <div><span>真实姓名:</span><span><input type="text" id="realName"></span></div>
-        <div><span>身份证号:</span><span><input type="text" id="idCard"></span></div>
-        <div><span>银行卡号:</span><span><input type="text" id="txNumber"></span></div>
-        <div class="tjiaoP_a"><span>提取金额:</span><span><input type="text" id="minMoney"></span><span>至</span><span><input type="text"id="maxMoney"></span></div>
-        <div class="tjiaoP_a"><span>申请时间:</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="startTime"></span><span>至</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="endTime"></span></div>
-        <div><span>申请人:</span><span><input type="text" id="sqUser"></span></div>
-        <div><span>提现人类型:</span>
+        <div><span style="font-weight: bold">用户ID/手机号:</span><span><input type="text" id="userID_name"></span></div>
+        <div><span style="font-weight: bold">真实姓名:</span><span><input type="text" id="realName"></span></div>
+        <div><span style="font-weight: bold">身份证号:</span><span><input type="text" id="idCard"></span></div>
+        <div><span style="font-weight: bold">银行卡号:</span><span><input type="text" id="txNumber"></span></div>
+        <div class="tjiaoP_a"><span style="font-weight: bold">提取金额:</span><span><input type="text" id="minMoney"></span><span>至</span><span><input type="text"id="maxMoney"></span></div>
+        <div class="tjiaoP_a"><span style="font-weight: bold">申请时间:</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="startTime"></span><span>至</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="endTime"></span></div>
+        <div><span style="font-weight: bold">申请人:</span><span><input type="text" id="sqUser"></span></div>
+        <div><span style="font-weight: bold">提现人类型:</span>
             <span><select id="select_stu">
 							<option checked="checked" value="2">请选择</option>
 							<option value="0">出借人</option>

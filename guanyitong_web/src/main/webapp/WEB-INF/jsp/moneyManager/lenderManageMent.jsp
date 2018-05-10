@@ -48,12 +48,12 @@
     <div class="acont-nav">出借人银行卡管理 ：</div>
     <!--<div class="acont-ahref"><a href="iframe_lcon.html">添加用户银行卡</a></div>-->
     <div class="acon-input">
-        <div><span>手机号:</span><span><input type="text" id="phone"></span></div>
-        <div><span>真实姓名:</span><span><input type="text" id="realName"></span></div>
-        <div><span>身份证号:</span><span><input type="text" id="idCard"></span></div>
-        <div><span>卡号:</span><span><input type="text" id="bankNum"></span></div>
+        <div><span style="font-weight: bold">手机号:</span><span><input type="text" id="phone"></span></div>
+        <div><span style="font-weight: bold">真实姓名:</span><span><input type="text" id="realName"></span></div>
+        <div><span style="font-weight: bold">身份证号:</span><span><input type="text" id="idCard"></span></div>
+        <div><span style="font-weight: bold">卡号:</span><span><input type="text" id="bankNum"></span></div>
 
-        <div class="tjiaoP_a"><span>绑定时间:</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="firstDate"></span><span>至</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="lastDate"></span></div>
+        <div class="tjiaoP_a"><span style="font-weight: bold">绑定时间:</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="firstDate"></span><span>至</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="lastDate"></span></div>
         <div class="soua"><button id="select">搜索</button></div>
     </div>
     <div class="acon-table">

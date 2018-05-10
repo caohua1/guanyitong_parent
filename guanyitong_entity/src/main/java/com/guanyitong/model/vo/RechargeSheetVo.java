@@ -11,7 +11,6 @@ import java.util.Date;
  * 充值明细实体类
  */
 public class RechargeSheetVo extends RechargeMoney implements Serializable {
-
     private String bankAddress;//开户地址
     private String bankName;//开户银行名称
     private String bankNum;//银行卡号

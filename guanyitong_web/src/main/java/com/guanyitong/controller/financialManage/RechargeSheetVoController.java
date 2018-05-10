@@ -74,7 +74,6 @@ public class RechargeSheetVoController {
                     demandMap.put("userId",rechargeSheetVo.getUserId());
                 }
                 if(rechargeSheetVo.getStatus()!=null && !("").equals(rechargeSheetVo.getStatus())){
-                    System.out.println("状态"+rechargeSheetVo.getStatus());
                     demandMap.put("status",rechargeSheetVo.getStatus());
                 }
             }
