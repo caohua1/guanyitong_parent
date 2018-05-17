@@ -40,12 +40,12 @@
 <div class="iframe_acont">
     <div class="acont-nav">充值记录管理页面 :</div>
     <div class="acon-input">
-        <div><span>手机号:</span><span><input type="text" id="phone"></span></div>
-        <div><span>真实姓名:</span><span><input type="text" id="realname"></span></div>
-        <div><span>流水号:</span><span><input type="text" id="serial"></span></div>
-        <div class="tjiaoP_a"><span>充值金额:</span><span><input type="text" id="firstMoney"></span><span>至</span><span><input type="text" id="lastMoney"></span></div>
-        <div class="tjiaoP_a"><span>充值时间:</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="firstDate"></span><span>至</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="lastDate"></span></div>
-        <div><span>充值状态:</span>
+        <div><span style="font-weight: bold">手机号:</span><span><input type="text" id="phone"></span></div>
+        <div><span style="font-weight: bold">真实姓名:</span><span><input type="text" id="realname"></span></div>
+        <div><span style="font-weight: bold">流水号:</span><span><input type="text" id="serial"></span></div>
+        <div class="tjiaoP_a"><span style="font-weight: bold">充值金额:</span><span><input type="text" id="firstMoney"></span><span>至</span><span><input type="text" id="lastMoney"></span></div>
+        <div class="tjiaoP_a"><span style="font-weight: bold">充值时间:</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="firstDate"></span><span>至</span><span><input type="text" onfocus="MyCalendar.SetDate(this)" class="input-text" id="lastDate"></span></div>
+        <div><span style="font-weight: bold">充值状态:</span>
             <span><select id="select_stu">
                             <option checked="checked" value="2">请选择</option>
 							<option value="1">充值成功</option>

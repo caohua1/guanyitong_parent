@@ -39,57 +39,57 @@
     <div class="acont-nav">充值明细：</div>
 <c:forEach items="${rechargeSheet}" var="recharge">
     <div class="iframe_lcona">
-        <div>手机号：</div>
-        <div>${recharge.username}</div>
+        <div style="font-weight: bold">手机号：</div>
+        <div><span style="color: #FF0000">${recharge.username}</span></div>
 
 
 
     </div>
 
     <div class="iframe_lcona">
-        <div>真实姓名：</div>
+        <div style="font-weight: bold">真实姓名：</div>
         <div>
-                ${recharge.realName}
+            <span style="color: #FF0000"> ${recharge.realName}</span>
         </div>
     </div>
 
     <div class="iframe_lcona">
-        <div>身份证号：</div>
+        <div style="font-weight: bold">身份证号：</div>
         <div>
-                ${recharge.idCard}
+            <span style="color: #FF0000">${recharge.idCard}</span>
         </div>
     </div>
 
     <div class="iframe_lcona">
-        <div>充值卡号：</div>
+        <div style="font-weight: bold">充值卡号：</div>
         <div>
-                ${recharge.bankNum}
+            <span style="color: #FF0000">${recharge.bankNum}</span>
         </div>
     </div>
 
     <div class="iframe_lcona">
-        <div>充值金额：</div>
+        <div style="font-weight: bold">充值金额：</div>
         <div>
-                ${recharge.rechargeMoney}
+            <span style="color: #FF0000">${recharge.rechargeMoney}</span>
         </div>
     </div>
 
     <div class="iframe_lcona">
-        <div>实际到账金额：</div>
+        <div style="font-weight: bold">实际到账金额：</div>
         <div>
-                ${recharge.dzMoney}
+            <span style="color: #FF0000">${recharge.dzMoney}</span>
         </div>
     </div>
     <div class="iframe_lcona">
-        <div>充值时间：</div>
+        <div style="font-weight: bold">充值时间：</div>
         <div>
-                ${recharge.rechargeTime}
+            <span style="color: #FF0000">${recharge.rechargeTime}</span>
         </div>
     </div>
     <div class="iframe_lcona">
-        <div>流水账号：</div>
+        <div style="font-weight: bold">流水账号：</div>
         <div>
-                ${recharge.serial}
+            <span style="color: #FF0000">${recharge.serial}</span>
         </div>
     </div>
     <!--<div class="btnlcon">

@@ -42,41 +42,41 @@
 <div class="iframe_acont">
     <div class="acont-nav">查看用户银行卡：</div>
     <div class="iframe_lcona">
-        <div>用户ID：</div>
-        <div>${userBankcard.borrowMoneyUserId}</div>
+        <div><span style="font-weight: bold">用户ID：</span></div>
+        <div><span style="color:#FF0000">${userBankcard.borrowMoneyUserId}</span></div>
     </div>
     <div class="iframe_lcona">
-        <div>真实姓名：</div>
-        <div>${userBankcard.realName}</div>
+        <div><span style="font-weight: bold">真实姓名：</span></div>
+        <div><span style="color:#FF0000">${userBankcard.realName}</span></div>
     </div>
     <div class="iframe_lcona">
-        <div>身份证号：</div>
+        <div><span style="font-weight: bold">身份证号：</span></div>
         <div>
-                ${userBankcard.IDCardNumber}
+            <span style="color:#FF0000">${userBankcard.IDCardNumber}</span>
         </div>
     </div>
     <div class="iframe_lcona">
-        <div>卡号：</div>
+        <div><span style="font-weight: bold">卡号：</span></div>
         <div>
-                ${userBankcard.cardNo}
+            <span style="color:#FF0000">${userBankcard.cardNo}</span>
         </div>
     </div>
     <div class="iframe_lcona">
-        <div>开户银行：</div>
+        <div><span style="font-weight: bold">开户银行：</span></div>
         <div>
-                ${userBankcard.bankName}
+            <span style="color:#FF0000">${userBankcard.bankName}</span>
         </div>
     </div>
     <div class="iframe_lcona">
-        <div>开户地区：</div>
+        <div><span style="font-weight: bold">开户地区：</span></div>
         <div>
-                ${userBankcard.openAccountRegion}
+            <span style="color:#FF0000">${userBankcard.openAccountRegion}</span>
         </div>
     </div>
     <div class="iframe_lcona">
-        <div>可联系手机号：</div>
+        <div><span style="font-weight: bold">可联系手机号：</span></div>
         <div>
-                ${userBankcard.phone}
+            <span style="color:#FF0000"> ${userBankcard.phone}</span>
         </div>
     </div>
     <div class="btnlcon">

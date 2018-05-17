@@ -29,7 +29,16 @@
     <link rel="stylesheet" href="<%=path%>/css/common_css/css.css" />
     <script src="<%=path%>/js/common_js/mydate.js"></script>
     <script src="<%=path%>/js/common_js/jquery-1.8.3.min.js"></script>
-    <script  src="${ctx}/js/HT_js/moneyManager_js/lenderManageMent.js"></script>
+    <script  src="${ctx}/js/HT_js/moneyManager_js/lenderManageMent_select.js"></script>
+    <style>
+        body {
+            margin-left: 0px;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            background-color:gainsboro;
+        }
+    </style>
 </head>
 <body>
 <!--公共的外层-->
@@ -39,43 +48,43 @@
 
 
     <div class="iframe_lcona">
-        <div>用户ID：</div>
+        <div><span style="font-weight: bold">用户ID：</span></div>
         <div>
-            ${lender.userId}
+            <span style="color:#FF0000">${lender.userId}</span>
         </div>
     </div>
 
     <div class="iframe_lcona">
-        <div>真实姓名：</div>
+        <div><span style="font-weight: bold">真实姓名：</span></div>
         <div>
-            ${lender.realName}
+            <span style="color:#FF0000">${lender.realName}</span>
         </div>
     </div>
 
     <div class="iframe_lcona">
-        <div>身份证号：</div>
+        <div><span style="font-weight: bold">身份证号：</span></div>
         <div>
-            ${lender.idCard}
+            <span style="color:#FF0000">${lender.idCard}</span>
         </div>
     </div>
 
     <div class="iframe_lcona">
-        <div>卡号：</div>
+        <div><span style="font-weight: bold">卡号：</span></div>
         <div>
-            ${lender.bankNum}
+            <span style="color:#FF0000">${lender.bankNum}</span>
         </div>
     </div>
 
     <div class="iframe_lcona">
-        <div>开户银行：</div>
+        <div><span style="font-weight: bold">开户银行：</span></div>
         <div>
-            ${lender.bankName}
+            <span style="color:#FF0000">${lender.bankName}</span>
         </div>
     </div>
     <div class="iframe_lcona">
-        <div>开户地区：</div>
+        <div><span style="font-weight: bold">开户地区：</span></div>
         <div>
-            ${lender.bankAddress}
+            <span style="color:#FF0000">${lender.bankAddress}</span>
         </div>
     </div>
     <div class="aatj">

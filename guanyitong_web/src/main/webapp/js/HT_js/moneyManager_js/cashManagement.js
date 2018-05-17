@@ -60,6 +60,8 @@ function initlist(Sta){
     var stu;
     var borrowMoneyUserId;
     var username;
+    var minMoney=0;
+    var maxMoney=0;
     var pageSize = $("#pageSize").text();
     var pageNum = $("#pageNum").text();
     if($("#userID_name").val().length==8){
@@ -70,8 +72,8 @@ function initlist(Sta){
     var realName= $("#realName").val();
     var idCard= $("#idCard").val();
     var txNumber= $("#txNumber").val();
-    var minMoney= $("#minMoney").val();
-    var maxMoney=$("#maxMoney").val();
+    minMoney= $("#minMoney").val();
+    maxMoney=$("#maxMoney").val();
     var startTime= $("#startTime").val();
     var endTime= $("#endTime").val();
     var sqUser= $("#sqUser").val();
@@ -196,6 +198,7 @@ function initlist(Sta){
 
 //提现失败，再次申请提现
 function SQTX_TWO(id,borrowMoneyUserId,dzMoney) {
+    alert("borrowMoneyUserId"+borrowMoneyUserId)
     var local = window.location;
     var basePath = local.protocol+"//"+local.host+"/";
     $.ajax({
