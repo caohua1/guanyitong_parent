@@ -58,7 +58,7 @@
     </select>
     <!--查询此银行卡是否已经绑定-->
     <select id="selectBank" parameterType="com.guanyitong.model.AccountManager" resultType="com.guanyitong.model.AccountManager">
-        select * from account_manager where bankNum = #{bankNum} and status=1
+        select * from account_manager where bankNum = #{bankNum} and realName = #{realName} and idCard = #{idCard} and status=1
     </select>
     <!--用户开户，添加信息-->
     <insert id="openAccount" parameterType="com.guanyitong.model.AccountManager">
@@ -85,9 +85,9 @@
     </update>
 
     <!--用户支付信息（支付密码）-->
-    <select id="insertPayInfo" parameterType="com.guanyitong.model.UserPayInfo">
+    <insert id="insertPayInfo" parameterType="com.guanyitong.model.UserPayInfo">
         insert into user_pay_info (userId,payPassword) VALUES (#{userId},#{payPassword});
-    </select>
+    </insert>
 
 
     <!--查询某一个出借记录-->

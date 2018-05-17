@@ -1,6 +1,7 @@
 package com.guanyitong.controller.app;
 import com.guanyitong.model.*;
 import com.guanyitong.service.AccountManagerService;
+import com.guanyitong.service.UserBackMoneyRecordService;
 import com.guanyitong.service.WithdrawMoneyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,8 @@ public class AccountManagerController {
     private AccountManagerService accountManagerService;
     @Autowired
     private WithdrawMoneyService withdrawMoneyService;
+    @Autowired
+    private UserBackMoneyRecordService userBackMoneyRecordService;
 
     /**
      * 验证身份证号格式是否符合
@@ -92,6 +95,9 @@ public class AccountManagerController {
                 if(i>0){
                     result.setState(JsonResult.SUCCESS);
                     result.setMessage("开户（绑定银行卡）成功");
+                }else{
+                    result.setState(JsonResult.ERROR);
+                    result.setMessage("银行卡绑定失败");
                 }
             }else{
                 result.setState(JsonResult.ERROR);
@@ -216,6 +222,28 @@ public class AccountManagerController {
             List<RechargeMoney> rechargeMonies = accountManagerService.selectUserRechargeMoney(userId);
             result.setState(JsonResult.SUCCESS);
             result.setData(rechargeMonies);
+            result.setMessage("返回数据成功");
+        }catch(Exception e){
+            e.printStackTrace();
+            result.setState(JsonResult.ERROR);
+            result.setMessage("返回数据失败");
+        }
+        return result;
+    }
+
+    /**
+     * 查询某用户的回款记录
+     * @param userId
+     * @return
+     */
+    @RequestMapping("/userBackMoneyRecord")
+    @ResponseBody
+    public JsonResult userBackMoneyRecord(Long userId){
+        JsonResult result = new JsonResult();
+        try{
+            List<UserDealBackMoneyRecord> userDealBackMoneyRecords = userBackMoneyRecordService.selectUserBackMoneyRecord(userId);
+            result.setState(JsonResult.SUCCESS);
+            result.setData(userDealBackMoneyRecords);
             result.setMessage("返回数据成功");
         }catch(Exception e){
             e.printStackTrace();

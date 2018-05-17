@@ -85,11 +85,10 @@
     </div>
 
     <div class="index-cont-rightt">
-        <div class="huanyin"><span>员工管理</span><span>/</span><span>借款人认证资料管理</span></div>
         <!--<div class="jinru"><span>员工管理</span><span>/</span><span>借款人认证资料管理</span></div>-->
         <div class="index-cont-right">
 
-
+.
             <iframe  id="frame" src="<%=basePath%>toJsp/toborrowUserList.do">
             </iframe>
 
