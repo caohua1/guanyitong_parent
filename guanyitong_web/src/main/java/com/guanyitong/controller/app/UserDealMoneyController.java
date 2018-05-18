@@ -39,7 +39,6 @@ public class UserDealMoneyController {
                 result.setState(JsonResult.ERROR);
                 result.setMessage("可出借金额不足");
             }
-
         }catch(Exception e){
             e.printStackTrace();
             result.setState(JsonResult.ERROR);
