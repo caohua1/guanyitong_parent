@@ -375,6 +375,11 @@ public class ToJspController {
         return "permissionManager/role_list";
     }
 
+    /**
+     * 跳转到添加角色页面
+     * @param model
+     * @return
+     */
     @RequestMapping("/toRoleAdd")
     public String toRoleAdd(Model model){
         //查询所有的权限
@@ -389,5 +394,18 @@ public class ToJspController {
         }
         model.addAttribute("permissions",permissions);
         return "permissionManager/role_add";
+    }
+
+    //===================================帮助中心模块
+    /**
+     * 跳转到常见问题页面（type=1）
+     * @param type
+     * @param model
+     * @return
+     */
+    @RequestMapping("/toquestions")
+    public String toquestions(Integer type,Model model){
+        model.addAttribute("type",type);
+        return "";
     }
 }

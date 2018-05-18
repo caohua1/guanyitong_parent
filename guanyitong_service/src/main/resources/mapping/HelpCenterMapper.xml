@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guanyitong.mapper.HelpCenterDao">
+
+   <!--添加标题，以及内容-->
+    <insert id="insertHelpCenter" parameterType="com.guanyitong.model.HelpCenter">
+        insert into help_center(type,themName,content,createTime) values(#{type},#{themName},#{content},#{createTime})
+    </insert>
+    <!--分页，查询-->
+    <select id="selectHelpCenter" resultType="com.guanyitong.model.HelpCenter">
+        select * from help_center where status =1
+    </select>
+    <!--查询总数量-->
+    <select id="selectHelpCenterCount" resultType="Integer">
+        select count(*) from help_center where status =1
+    </select>
+   <!--修改，删除-->
+   <update id="updateHelpCenter" parameterType="com.guanyitong.model.HelpCenter">
+       update help_center set
+       <if test="themName!=null and themName!=''">
+           themName = #{themName},
+       </if>
+       <if test="content!=null and content!=''">
+           content = #{content},
+       </if>
+       <if test="updateTime!=null and updateTime!=''">
+           updateTime = #{updateTime}
+       </if>
+       where id = #{id}
+   </update>
+    <!--根据id查询-->
+    <select id="selectHelpCenterById" parameterType="Long" resultType="com.guanyitong.model.HelpCenter">
+        select * from help_center where id = #{id}
+    </select>
+</mapper>

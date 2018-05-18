@@ -27,7 +27,6 @@ public class AccountManagerServiceImpl  implements AccountManagerService {
     @Transactional
     @Override
     public int openAccount(AccountManager accountManager,UserPayInfo userPayInfo) {
-        int j =  accountManagerDao.openAccount(accountManager);
         int i = 0;
         int k = 0;
         UserGuanDou userGuanDou1 = new UserGuanDou();
@@ -35,14 +34,17 @@ public class AccountManagerServiceImpl  implements AccountManagerService {
         userGuanDou1.setGuanDou(20);
         userGuanDou1.setCreatTime(new Date());
         userGuanDou1.setContent(FinalData.OPEN_BANK_GUANDOU);
-        i = userDAO.insertGuanDou(userGuanDou1);
        if(userPayInfo.getPayPassword()!=null){//不为空的话就是还没绑定过其他银行卡,需要设置支付密码
+           int j =  accountManagerDao.openAccount(accountManager);
+           i = userDAO.insertGuanDou(userGuanDou1);
            String s = MD5Util.MD5(userPayInfo.getPayPassword());//对平台支付密码进行加密
            userPayInfo.setUserId(accountManager.getUserId());
            userPayInfo.setPayPassword(s);
            k = accountManagerDao.insertPayInfo(userPayInfo);//添加支付密码表
+           return (i>0&&j>0&&k>0)?1:0;
+       }else{
+           return 0;
        }
-        return (i>0&&j>0&&k>0)?1:0;
     }
     /**
      * 查询此银行卡是否已经绑定过

@@ -4,7 +4,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.guanyitong.mapper.UserBackMoneyRecordDAO">
 
-    <!--添加汇款记录-->
+    <!--添加回款记录-->
     <insert id="insertUserBackMoneyRecord" parameterType="com.guanyitong.model.UserDealBackMoneyRecord">
         insert into userBackMoneyRecord (userId,productInfoId,bj,lx,time,status)
         values(#{userId},#{productInfoId},#{bj},#{lx},#{time},#{status})
@@ -13,6 +13,11 @@
     <!--资金账户管理-->
     <!--查询某用户累计收益-->
     <select id="selectUserBackMoney" parameterType="Long" resultType="java.lang.Double">
-        select sum(lx) from userbackmoneyrecord where status = 1 and userId =18
+        select sum(lx) from userbackmoneyrecord where status = 1 and userId =#{userId}
+    </select>
+
+    <!--查询某用户的回款记录-->
+    <select id="selectUserBackMoneyRecord" parameterType="Long" resultType="com.guanyitong.model.UserDealBackMoneyRecord">
+        select * from userBackMoneyRecord where userId = #{userId}
     </select>
 </mapper>

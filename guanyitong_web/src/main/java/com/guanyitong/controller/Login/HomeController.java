@@ -72,6 +72,8 @@ public class HomeController {
                                    for(PermissionVo permissionVo1 : permissionVos1){
                                        list.add(permissionVo1);
                                    }
+                               }else{
+                                   list.add(permissionVo);
                                }
                            }else{
                                list.add(permissionVo);
@@ -99,8 +101,10 @@ public class HomeController {
                            parentNameList.add(list.get(0).getParentName());
                        }else {
                            if(list.get(i)!=null){
-                               if(!list.get(i).getParentName().equals(list.get(i-1).getParentName())){
+                               if((null!=list.get(i).getParentName())&&(!list.get(i).getParentName().equals(list.get(i-1).getParentName()))){
                                    parentNameList.add(list.get(i).getParentName());
+                               }else if((null==list.get(i).getParentName()) && (!list.get(i).getPermissionName().equals(list.get(i-1).getPermissionName()))){
+                                   parentNameList.add(list.get(i).getPermissionName());
                                }
                            }
                        }

@@ -116,13 +116,13 @@
         <div class="acont-nav">企业介绍：</div>
         <div class="angcontext">
             <textarea class="area" id="companyDescribe" maxlength="200" placeholder="请输入文本内容"></textarea>
-            <p style="padding-left: 250px;color: blue;font-size: 10px">最多可输入200字: <span class="text_count" style="color: red"> 0</span>/200</p>
+            <p style="padding-left: 220px;color: blue;font-size: 10px">最多可输入200字: 剩余:<span class="text_count" style="color: red"> 200</span>/200</p>
         </div>
 
         <div class="acont-nav">借款用途：</div>
         <div class="angcontext">
             <textarea class="area1" id="borrowUse" placeholder="请输入文本内容"></textarea>
-            <p style="padding-left: 250px;color: blue;font-size: 10px">最多可输入200字: <span class="text_count1" style="color: red"> 0</span>/200</p>
+            <p style="padding-left: 220px;color: blue;font-size: 10px">最多可输入200字: 剩余:<span class="text_count1" style="color: red"> 200</span>/200</p>
         </div>
 
         <div class="acont-nav">资产信息：</div>

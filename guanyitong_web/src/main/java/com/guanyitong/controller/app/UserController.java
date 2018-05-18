@@ -3,13 +3,16 @@ import com.guanyitong.model.User;
 import com.guanyitong.model.UserPersonalData;
 import com.guanyitong.model.UserQuestion;
 import com.guanyitong.model.UserQuestionContent;
+import com.guanyitong.service.IFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.guanyitong.service.UserService;
 import com.guanyitong.service.impl.LoginServiceImpl;
+import org.springframework.web.multipart.MultipartFile;
 import util.FinalData;
 import util.JsonResult;
 import util.MD5Util;
@@ -25,6 +28,8 @@ public class UserController {
     private LoginServiceImpl loginService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private IFileService fileService;
 
     /**
      * 累计用户数，累计交易额
@@ -152,30 +157,39 @@ public class UserController {
     /**
      * 添加或者修改用户个人资料
      * @param userPersonalData
-     * @param user
+     * @param multipartFile
      * @return
      */
     @RequestMapping(value = "/insertOrUpdateUserPersonalData",method = RequestMethod.GET)
     @ResponseBody
-    public  JsonResult insertOrUpdateUserPersonalData(UserPersonalData userPersonalData, User user){
+    public  JsonResult insertOrUpdateUserPersonalData(UserPersonalData userPersonalData,@RequestParam(required=false)MultipartFile multipartFile){
         JsonResult result = new JsonResult();
         try{
             userPersonalData.setCreatTime(new Date());
-            if(user.getId()!=null){
-                userPersonalData.setUserId(user.getId());
+            //上传头像
+            if(multipartFile!=null){
+                JsonResult upload = fileService.upload(multipartFile);
+                Map<String,Object> data = (Map<String,Object>)upload.getData();
+                String readPath = (String)data.get("readPath");
+                userPersonalData.setHeadUrl(readPath);
             }
-            UserPersonalData userPersona = userService.selectPersonalData(user.getId());
+            if(userPersonalData.getUserId()!=null){
+                userPersonalData.setUserId(userPersonalData.getUserId());
+            }
+            UserPersonalData userPersona = userService.selectPersonalData(userPersonalData.getUserId());
             if(userPersona==null){//如果没有此用户的资料，就添加
                 int i = userService.insertUserPersonalData(userPersonalData);
                 if(i>0){
                     result.setState(JsonResult.SUCCESS);
                     result.setMessage("成功添加个人资料");
+                    result.setData(null);
                 }
             }else{//如果有此用户的个人资料，就去修改
                 userPersonalData.setUpdateTime(new Date());
                 userService.updatePersonalData(userPersonalData);
                 result.setState(JsonResult.ERROR);
                 result.setMessage("成功修改个人资料");
+                result.setData(null);
             }
         }catch(Exception e){
             e.printStackTrace();
