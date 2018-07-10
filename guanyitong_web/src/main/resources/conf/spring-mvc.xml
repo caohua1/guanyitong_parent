@@ -34,6 +34,13 @@
 			</list>
 		</property>
 	</bean>
+	<bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="locations">
+			<list>
+				<value>classpath:acp_sdk.properties</value>
+			</list>
+		</property>
+	</bean>
 	<!-- 对模型视图添加前后缀 -->
      <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" 
       p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"/>

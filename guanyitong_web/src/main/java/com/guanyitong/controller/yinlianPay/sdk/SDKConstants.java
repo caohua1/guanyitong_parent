@@ -1,4 +1,4 @@
-package com.guanyitong.yinlianPay.sdk;
+package com.guanyitong.controller.yinlianPay.sdk;
 
 /**
  *

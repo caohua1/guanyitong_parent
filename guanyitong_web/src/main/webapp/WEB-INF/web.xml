@@ -86,6 +86,15 @@
     <filter-name>shiroFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  <servlet>
+    <servlet-name>autoLoadServlet</servlet-name>
+    <servlet-class>com.guanyitong.controller.yinlianPay.payAction.AutoLoadServlet</servlet-class>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>autoLoadServlet</servlet-name>
+    <url-pattern>/autoLoadServlet</url-pattern>
+  </servlet-mapping>
   <!-- springMVC核心配置 -->
   <servlet>
     <servlet-name>spring</servlet-name>

@@ -1,4 +1,4 @@
-package com.guanyitong.yinlianPay.sdk;
+package com.guanyitong.controller.yinlianPay.sdk;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -36,8 +36,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.guanyitong.yinlianPay.sdk.SDKConstants.UNIONPAY_CNNAME;
-import static com.guanyitong.yinlianPay.sdk.SDKUtil.isEmpty;
+import static com.guanyitong.controller.yinlianPay.sdk.SDKConstants.UNIONPAY_CNNAME;
+import static com.guanyitong.controller.yinlianPay.sdk.SDKUtil.isEmpty;
 /**
  * @ClassName: CertUtil
  * @Description: acpsdk证书工具类，主要用于对证书的加载和使用
